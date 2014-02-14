@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Castnotice::Application.config.secret_key_base = '0e0624eac8d844b0d323ce6d8e0d1b5fe790eb6ec216fbd67d350106600e56b0f8f283602f580219fc15ead22a3090b560b4be24dbac34694c728b60845b6062'
+Castnotice::Application.config.secret_key_base = ENV["SECRET_TOKEN"]

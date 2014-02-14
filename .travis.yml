@@ -1,0 +1,32 @@
+language: ruby
+before_script:
+  - cp config/application{.example,}.yml
+  - cp config/database{.example,}.yml
+  - bundle exec rake db:create db:schema:load
+rvm:
+  - 2.1.0
+branches:
+  only:
+    - master
+notifications:
+  campfire: collectiveidea:3c3f07431323f476b2fa69acb37c040ebe7f8f36@109379
+  webhooks:
+    urls:
+      - http://buildlight.collectiveidea.com/
+    on_start: true
+addons:
+  code_climate:
+    repo_token: 9510623626e89d9c5d7ac29e7dc642a1e814626f9848ecd90543039bdf68efd1
+cache: bundler
+deploy:
+  provider: heroku
+  api_key:
+    secure: "EVx7Nk5wvVS7O6ZdKDFpgEX2P63WGf/l5TYz019fEn4dh7urMP1t7Sbk65QvkPRx8PZLgkIOZXJ2qUTumm7IJzRNEwN5iw6YumgfkZEh36SS9ExUH+ZIxOLWB9Tufe19rmYQxdjUoK2+3XS/HhlP8EAOeZay3Ry0ubb2ab3mB7g="
+  app:
+    master: castnotice-staging
+  on:
+    repo: collectiveidea/castnotice
+    branch: master
+  run:
+    - "rake db:migrate"
+    - restart
