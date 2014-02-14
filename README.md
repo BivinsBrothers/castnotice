@@ -1,6 +1,7 @@
 # CastNotice
 
 [![Code Climate](https://codeclimate.com/repos/52fe5b7c69568079cf00815e/badges/654c999e3c37d876d790/gpa.png)](https://codeclimate.com/repos/52fe5b7c69568079cf00815e/feed)
+[![Build Status](https://magnum.travis-ci.com/collectiveidea/castnotice.png?token=f5vwtAyNvXmqqy3GsP2X&branch=master)](https://magnum.travis-ci.com/collectiveidea/castnotice)
 
 ## Running
 
