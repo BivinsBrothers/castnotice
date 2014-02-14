@@ -3,21 +3,15 @@ development:
   encoding: unicode
   database: castnotice_development
   pool: 5
-  username: castnotice
-  password:
 
 test:
   adapter: postgresql
   encoding: unicode
   database: castnotice_test
   pool: 5
-  username: castnotice
-  password:
 
 production:
   adapter: postgresql
   encoding: unicode
   database: castnotice_production
   pool: 5
-  username: castnotice
-  password:
