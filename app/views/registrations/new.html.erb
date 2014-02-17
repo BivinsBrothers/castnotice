@@ -1,0 +1,35 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.label :location_address %>
+  <%= f.text_field :location_address %>
+
+  <%= f.label :location_city %>
+  <%= f.text_field :location_city %>
+
+  <%= f.label :location_state %>
+  <%= f.select :location_state, us_states_select %>
+
+  <%= f.label :location_zip %>
+  <%= f.text_field :location_zip %>
+
+  <%= f.label :birthday %>
+  <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %>
+
+  <%= f.label :tos, "Accept our Terms of Service" %>
+  <%= f.check_box :tos %>
+
+  <%= f.submit "Sign up" %>
+<% end %>
