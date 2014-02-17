@@ -1,1 +1,2 @@
 SECRET_TOKEN: "my-secret-token" # Run `rake secret` to get a fresh new token
+DEVISE_SECRET: "devise-secret-token"
