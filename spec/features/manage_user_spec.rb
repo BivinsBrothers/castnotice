@@ -35,7 +35,7 @@ describe "user sign up" do
 
     expect(user.location_address).to eq("123 Somewhere")
     expect(user.location_city).to eq("Grand Rapids")
-    expect(user.location_state).to eq("Michigan")
+    expect(user.location_state).to eq("MI")
     expect(user.location_zip).to eq("49506")
 
     expect(user.birthday).to eq(Date.new(1987, 9, 17))
