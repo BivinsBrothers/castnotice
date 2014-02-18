@@ -11,12 +11,15 @@ gem "coffee-rails", "~> 4.0.0"
 gem "sass-rails", "~> 4.0.0"
 gem "uglifier", ">= 1.3.0"
 
+gem "countries"
+gem "devise"
 gem "figaro"
 gem "jquery-rails"
 gem "turbolinks"
 
 group :development, :test do
   gem "capybara"
+  gem "capybara-ui", github: "collectiveidea/capybara-ui"
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem "poltergeist"
