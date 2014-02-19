@@ -1,0 +1,5 @@
+<% if current_user.resume %>
+  <%= link_to 'Edit Resume', edit_resume_path(current_user.resume) %>
+<% else %>
+  <%= link_to 'Create Resume', new_resume_path %>
+<% end %>
