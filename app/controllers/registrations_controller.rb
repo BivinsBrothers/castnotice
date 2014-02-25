@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
     user = User.new(user_params)
 
     if user.save(user_params)
+      sign_in(user)
       redirect_to :dashboard
     else
       @user = user

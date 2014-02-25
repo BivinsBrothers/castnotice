@@ -28,6 +28,8 @@ describe "user sign up" do
       User.count
     }.from(0).to(1)
 
+    expect(page).to have_content("Dashboard")
+
     user = User.last
 
     expect(user.name).to eq("Test Dummy")
