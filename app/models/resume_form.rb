@@ -1,9 +1,12 @@
 class ResumeForm
   include ActiveModel::Model
+  include ActiveModel::Validations
   include ::ResumeFormHelpers
 
   attr_accessor :user, :name, :email, :birthday, :phone, :weight, :hair_color, :eye_color, :unions, :agent_name,
                 :agent_phone, :additional_skills, :height_feet, :height_inches, :attributes
+
+  validates :name, :email, :phone, :birthday, presence: true
 
   def initialize(user, attributes={})
     @attributes = attributes
@@ -12,7 +15,7 @@ class ResumeForm
     consolidate_birthday
 
     if user.resume.present?
-      @attributes = user.resume.form_attributes_hash.merge!(@attributes)
+      @attributes = user.resume.resume_form_attributes.merge!(@attributes)
     end
 
     super(@attributes)
@@ -40,16 +43,14 @@ class ResumeForm
   end
 
   def save
-    user.update_attributes(
-      name: @name,
-      email: @email,
-      birthday: @birthday
-    )
+    resume = user.resume || user.build_resume
 
-    if user.resume
-      user.resume.update_attributes(form_attributes_hash)
-    else
-      user.create_resume(form_attributes_hash)
+    user.attributes = { name: @name, email: @email, birthday: @birthday }
+    resume.attributes = resume_form_attributes
+
+    if valid? && user.valid? && resume.valid?
+      user.save!
+      resume.save!
     end
   end
 

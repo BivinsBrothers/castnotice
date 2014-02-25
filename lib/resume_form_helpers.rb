@@ -1,5 +1,5 @@
 module ResumeFormHelpers
-  def form_attributes_hash
+  def resume_form_attributes
     {
       phone: phone,
       weight: weight,

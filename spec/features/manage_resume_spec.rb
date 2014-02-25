@@ -91,5 +91,25 @@ describe "manage resume" do
     expect(resume.hair_color).to eq("brown")
     expect(resume.eye_color).to eq("green")
   end
+
+  it "displays validation errors for required attributes" do
+    user = create(:user)
+    log_in user
+
+    visit dashboard_path
+    click_link "Create Resume"
+
+    fill_in "Name", with: ""
+    fill_in "Email", with: ""
+    fill_in "Phone", with: ""
+
+    click_button "Save"
+
+    expect(page).to have_content("Edit My Close Up")
+
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Email can't be blank")
+    expect(page).to have_content("Phone can't be blank")
+  end
 end
 
