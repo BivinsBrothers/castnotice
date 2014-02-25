@@ -4,7 +4,7 @@ before_script:
   - cp config/database{.example,}.yml
   - bundle exec rake db:create db:schema:load
 rvm:
-  - 2.1.0
+  - 2.1.1
 branches:
   only:
     - master
