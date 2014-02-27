@@ -1,5 +1,46 @@
 <h2>Edit My Close Up</h2>
 
-<%= form_for(@resume_form, url: resume_path, method: :put) do |form| %>
-  <%= render "resume_form", f: form %>
+<%= form_for(@resume_form, url: resume_path, method: :put) do |f| %>
+  <% @resume_form.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :phone %>
+  <%= f.phone_field :phone %>
+
+  <%= f.label :birthday %>
+  <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %>
+
+  <%= f.label :height %>
+  <%= f.select :height_feet, 0..8 %>
+  <%= f.select :height_inches, 0..11 %>
+
+  <%= f.label :weight %>
+  <%= f.text_field :weight %>
+
+  <%= f.label :hair_color %>
+  <%= f.select :hair_color, hair_color_select %>
+
+  <%= f.label :eye_color %>
+  <%= f.select :eye_color, eye_color_select %>
+
+  <%= f.label :unions %>
+  <%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
+
+  <%= f.label :agent_name %>
+  <%= f.text_field :agent_name %>
+
+  <%= f.label :agent_phone %>
+  <%= f.phone_field :agent_phone %>
+
+  <%= f.label :additional_skills %>
+  <%= f.text_area :additional_skills %>
+
+  <%= f.submit "Save" %>
 <% end %>

@@ -1,32 +1,16 @@
 class ResumesController < ApplicationController
   before_filter :authenticate_user!
 
-  def new
-    @resume_form = ResumeForm.new(current_user)
-  end
-
-  def create
-    resume_form = ResumeForm.new(current_user, resume_form_params)
-
-    if resume_form.save
-      redirect_to :dashboard
-    else
-      @resume_form = resume_form
-      render :new
-    end
-  end
-
   def edit
-    @resume_form = ResumeForm.new(current_user)
+    @resume_form = ResumeForm.new(current_user, current_resume.resume_form_attributes)
   end
 
   def update
-    resume_form = ResumeForm.new(current_user, resume_form_params)
+    @resume_form = ResumeForm.new(current_user, resume_form_params)
 
-    if resume_form.save
+    if @resume_form.save
       redirect_to :dashboard
     else
-      @resume_form = resume_form
       render :edit
     end
   end
@@ -41,6 +25,6 @@ class ResumesController < ApplicationController
   end
 
   def current_resume
-    @resume ||= current_user.resume
+    current_user.resume || current_user.create_resume
   end
 end
