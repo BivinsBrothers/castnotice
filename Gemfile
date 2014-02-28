@@ -15,6 +15,7 @@ gem "countries"
 gem "devise"
 gem "figaro"
 gem "jquery-rails"
+gem "rails_12factor"
 gem "turbolinks"
 
 group :development, :test do
