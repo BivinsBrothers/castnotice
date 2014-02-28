@@ -1,36 +1,30 @@
 class ResumesController < ApplicationController
   before_filter :authenticate_user!
 
-  def new
-    @resume_form = ResumeForm.new(user: current_user)
+  def edit
+    @resume_form = ResumeForm.new(current_user, current_resume.resume_form_attributes)
   end
 
-  def create
-    form_params = resume_params
+  def update
+    @resume_form = ResumeForm.new(current_user, resume_form_params)
 
-    form_params.merge!(user: current_user)
-    form_params.merge!(birthday: Date.civil(
-      form_params.delete("birthday(1i)").to_i,
-      form_params.delete("birthday(2i)").to_i,
-      form_params.delete("birthday(3i)").to_i
-    ))
-
-    resume_form = ResumeForm.new(form_params)
-
-    if resume_form.save
+    if @resume_form.save
       redirect_to :dashboard
     else
-      @resume_form = resume_form
-      render :new
+      render :edit
     end
   end
 
   private
 
-  def resume_params
+  def resume_form_params
     params.require(:resume_form)
           .permit(:name, :email, :phone, :weight, :hair_color, :eye_color, :agent_name,
                   :agent_phone, :additional_skills, :height_feet, :height_inches, :birthday,
                   { unions: [] })
+  end
+
+  def current_resume
+    current_user.resume || current_user.create_resume
   end
 end

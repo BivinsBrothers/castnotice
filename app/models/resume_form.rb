@@ -1,11 +1,37 @@
 class ResumeForm
   include ActiveModel::Model
+  include ActiveModel::Validations
+  include ::ResumeFormHelpers
 
-  attr_accessor :user, :name, :email, :birthday, :phone, :weight, :hair_color, :eye_color, :unions, :agent_name,
-                :agent_phone, :additional_skills, :height_feet, :height_inches
+  attr_accessor :user, :resume, :name, :email, :birthday, :phone, :weight,
+                :hair_color, :eye_color, :unions, :agent_name, :agent_phone,
+                :additional_skills, :height_feet, :height_inches, :attributes
+
+  validates :name, :email, :phone, :birthday, presence: true
+
+  def initialize(user, attributes={})
+    @attributes = attributes
+    @user = user
+    @resume = user.resume
+
+    consolidate_birthday
+
+    if user.resume.present?
+      @attributes = resume.resume_form_attributes.merge!(@attributes)
+    end
+
+    super(@attributes)
+  end
 
   def height
     (@height_feet.to_i * 12) + @height_inches.to_i
+  end
+
+  def height=(inches)
+    inches = 0 if inches.nil?
+
+    @height_feet = inches / 12
+    @height_inches = inches % 12
   end
 
   def name
@@ -21,32 +47,22 @@ class ResumeForm
   end
 
   def save
-    user.update_attributes(
-      name: name,
-      email: email,
-      birthday: birthday
-    )
+    user.attributes = { name: @name, email: @email, birthday: @birthday }
+    resume.attributes = resume_form_attributes
 
-    if user.resume
-      user.resume.update_attributes(resume_attributes)
-    else
-      user.create_resume(resume_attributes)
+    if valid? && user.valid? && resume.valid?
+      user.save!
+      resume.save!
     end
   end
 
   private
 
-  def resume_attributes
-    {
-      phone: phone,
-      weight: weight,
-      hair_color: hair_color,
-      eye_color: eye_color,
-      unions: unions,
-      agent_name: agent_name,
-      agent_phone: agent_phone,
-      additional_skills: additional_skills,
-      height: height
-    }
+  def consolidate_birthday
+    @attributes["birthday"] = Date.civil(
+      @attributes.delete("birthday(1i)").to_i,
+      @attributes.delete("birthday(2i)").to_i,
+      @attributes.delete("birthday(3i)").to_i
+    ) if @attributes["birthday(1i)"].present?
   end
 end
