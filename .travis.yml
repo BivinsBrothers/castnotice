@@ -20,6 +20,7 @@ addons:
 cache: bundler
 deploy:
   provider: heroku
+  strategy: git
   api_key:
     secure: "EVx7Nk5wvVS7O6ZdKDFpgEX2P63WGf/l5TYz019fEn4dh7urMP1t7Sbk65QvkPRx8PZLgkIOZXJ2qUTumm7IJzRNEwN5iw6YumgfkZEh36SS9ExUH+ZIxOLWB9Tufe19rmYQxdjUoK2+3XS/HhlP8EAOeZay3Ry0ubb2ab3mB7g="
   app:
