@@ -37,4 +37,15 @@ module ApplicationHelper
       OpenStruct.new(id: value, text: value)
     end
   end
+
+  def project_type_select
+    [
+      ["Film Project", "film"],
+      ["Television Project", "television"],
+      ["Theater Project", "theater"],
+      ["Comercial Project", "comercial"],
+      ["Voice Over Project", "voice_over"],
+      ["Industrial Project", "industrial"],
+    ]
+  end
 end

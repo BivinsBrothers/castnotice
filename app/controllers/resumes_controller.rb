@@ -7,7 +7,6 @@ class ResumesController < ApplicationController
 
   def update
     @resume_form = ResumeForm.new(current_user, resume_form_params)
-
     if @resume_form.save
       redirect_to :dashboard
     else
@@ -21,7 +20,7 @@ class ResumesController < ApplicationController
     params.require(:resume_form)
           .permit(:name, :email, :phone, :weight, :hair_color, :eye_color, :agent_name,
                   :agent_phone, :additional_skills, :height_feet, :height_inches, :birthday,
-                  { unions: [] })
+                  { unions: [] }, { projects_attributes: [:id, :project_type, :title, :role, :director_studio] })
   end
 
   def current_resume

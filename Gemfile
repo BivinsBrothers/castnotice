@@ -26,6 +26,7 @@ group :development, :test do
   gem "poltergeist"
   gem "pry"
   gem "rspec-rails"
+  gem "launchy"
 end
 
 group :test do
