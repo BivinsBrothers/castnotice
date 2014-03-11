@@ -42,5 +42,30 @@
   <%= f.label :additional_skills %>
   <%= f.text_area :additional_skills %>
 
-  <%= f.submit "Save" %>
+  <table>
+    <tr>
+      <th>Education Type</th>
+      <th>School</th>
+      <th>Major</th>
+      <th>Degree</th>
+      <th>Teacher</th>
+      <th>Years of study</th>
+      <th>Instrument</th>
+    </tr>
+
+  <%= f.fields_for :schools do |schools_form| %>
+    <tr>
+      <td><%= schools_form.select :education_type, education_type_select %></td>
+      <td><%= schools_form.text_field :school %></td>
+      <td><%= schools_form.text_field :major %></td>
+      <td><%= schools_form.text_field :degree %></td>
+      <td><%= schools_form.text_field :teacher %></td>
+      <td><%= schools_form.select :years, 0..100 %></td>
+      <td><%= schools_form.text_field :instruments %></td>
+    </tr>
+  <% end %>
+  </table>
+
+
+<%= f.submit "Save" %>
 <% end %>

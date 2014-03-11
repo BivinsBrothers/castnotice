@@ -3,11 +3,12 @@ class ResumeForm
   include ActiveModel::Validations
   include ::ResumeFormHelpers
 
-  attr_accessor :user, :resume, :name, :email, :birthday, :phone, :weight,
+  attr_accessor :user, :resume, :schools, :name, :email, :birthday, :phone, :weight,
                 :hair_color, :eye_color, :unions, :agent_name, :agent_phone,
                 :additional_skills, :height_feet, :height_inches, :attributes
 
   validates :name, :email, :phone, :birthday, presence: true
+  delegate :schools_attributes, :schools_attributes=, to: :user
 
   def initialize(user, attributes={})
     @attributes = attributes

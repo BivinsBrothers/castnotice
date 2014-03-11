@@ -25,6 +25,10 @@ describe "manage resume" do
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
+    select "University", from: "resume_form_schools_attributes_0_education_type"
+    fill_in "resume_form_schools_attributes_0_school", with: "University of Acting"
+    fill_in "resume_form_schools_attributes_0_major", with: "Acting"
+    fill_in "resume_form_schools_attributes_0_degree", with: "Bachlers in Acting"
 
     click_button "Save"
 
