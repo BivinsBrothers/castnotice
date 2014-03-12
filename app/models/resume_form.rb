@@ -54,7 +54,7 @@ class ResumeForm
     user.attributes = { name: @name, email: @email, birthday: @birthday }
     resume.attributes = resume_form_attributes
 
-     if valid? && user.valid? && resume.valid?
+    if valid? && user.valid? && resume.valid?
       user.save!
       resume.save!
     end
