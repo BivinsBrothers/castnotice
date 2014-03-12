@@ -25,10 +25,6 @@ describe "manage resume" do
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
-    select "University", from: "resume_form_schools_attributes_0_education_type"
-    fill_in "resume_form_schools_attributes_0_school", with: "University of Acting"
-    fill_in "resume_form_schools_attributes_0_major", with: "Acting"
-    fill_in "resume_form_schools_attributes_0_degree", with: "Bachlers in Acting"
 
     click_button "Save"
 
@@ -41,10 +37,20 @@ describe "manage resume" do
     expect(page).to have_content("Awesome Agent")
     expect(page).to have_content("1-616-456-7890")
     expect(page).to have_content("Many years of improve from Disney Stages.")
+
+    expect(page).to have_link("Edit Resume")
   end
 
   it 'allows talent to edit a resume' do
     user = create(:user, name: "New Name")
+
+    school = create(:school, {
+      user: user,
+      education_type: "university",
+      school: "University of Acting",
+      major: "Acting",
+      degree: "Bachelors in Acting"
+    })
 
     resume = create(:resume, {
       user: user,
@@ -76,12 +82,20 @@ describe "manage resume" do
     expect(find_field("resume_form_agent_name").value).to eq("Awesome Agent")
     expect(find_field("resume_form_agent_phone").value).to eq("1-616-456-7890")
     expect(find_field("resume_form_additional_skills").value).to eq("Many years of improve from Disney Stages.")
+    expect(find_field("resume_form_schools_attributes_0_education_type").find('option[selected]').text).to eq("University")
+    expect(find_field("resume_form_schools_attributes_0_school").value).to eq("University of Acting")
+    expect(find_field("resume_form_schools_attributes_0_major").value).to eq("Acting")
+    expect(find_field("resume_form_schools_attributes_0_degree").value).to eq("Bachelors in Acting")
 
     select "5", from: "resume_form_height_feet"
     select "9", from: "resume_form_height_inches"
     fill_in "Weight", with: "155"
     select "Brown", from: "resume_form_hair_color"
     select "Green", from: "resume_form_eye_color"
+    select "College", from: "resume_form_schools_attributes_0_education_type"
+    fill_in "resume_form_schools_attributes_0_school", with: "New School"
+    fill_in "resume_form_schools_attributes_0_major", with: "Ballet"
+    fill_in "resume_form_schools_attributes_0_degree", with: "Masters"
 
     click_button "Save"
 
