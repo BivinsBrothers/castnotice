@@ -15,8 +15,11 @@ gem "countries"
 gem "devise"
 gem "figaro"
 gem "jquery-rails"
-gem "rails_12factor"
 gem "turbolinks"
+
+group :production do
+  gem "rails_12factor"
+end
 
 group :development, :test do
   gem "capybara"
