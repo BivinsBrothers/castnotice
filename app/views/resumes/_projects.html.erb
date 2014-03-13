@@ -6,6 +6,7 @@
     <li>Title: <%= project.title %></li>
     <li>Role: <%= project.role %></li>
     <li>Director Studio: <%= project.director_studio %></li>
+    <li><%= link_to 'Edit Project', edit_project_path(project) %></li>
   </ul>
 <% end %>
 <%= link_to 'New Project', new_project_path %>

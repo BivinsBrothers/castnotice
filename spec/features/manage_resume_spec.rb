@@ -131,5 +131,30 @@ describe "manage resume" do
     expect(page).to have_content("Disney Studios")
 
   end
+
+  it "allows editing a project" do
+    user = create(:user)
+    create(:resume, user: user)
+    create(:project, user: user)
+
+    log_in user
+
+    visit dashboard_path
+
+    click_link 'Edit Project'
+
+    select "Industrial Project", from: "Project Type"
+    fill_in "Title", with: "Industrial"
+    fill_in "Role", with: "Gopher"
+    fill_in "Director/Studio", with: "Tin Cup"
+
+    click_button "Update Project"
+
+    expect(page).to have_content("Industrial Project")
+    expect(page).to have_content("Industrial")
+    expect(page).to have_content("Gopher")
+    expect(page).to have_content("Tin Cup")
+
+  end
 end
 
