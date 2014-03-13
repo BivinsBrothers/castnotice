@@ -1,0 +1,11 @@
+<h2>Projects</h2>
+
+<% current_user.projects.each do |project| %>
+  <ul>
+    <li>Project Type: <%= project_type_name(project.project_type) %></li>
+    <li>Title: <%= project.title %></li>
+    <li>Role: <%= project.role %></li>
+    <li>Director Studio: <%= project.director_studio %></li>
+  </ul>
+<% end %>
+<%= link_to 'New Project', new_project_path %>

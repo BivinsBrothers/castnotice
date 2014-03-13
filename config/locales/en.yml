@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    label:
+      project:
+        director_studio: "Director/Studio"
+        project_type: "Project Type"
+
+

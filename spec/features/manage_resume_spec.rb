@@ -25,30 +25,18 @@ describe "manage resume" do
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
-    select "Film Project", from: "resume_form_projects_attributes_0_project_type"
-    fill_in "resume_form_projects_attributes_0_title", with: "Once Upon A Time"
-    fill_in "resume_form_projects_attributes_0_role", with: "Cinderella"
-    fill_in "resume_form_projects_attributes_0_director_studio", with: "Disney Studios"
 
     click_button "Save"
 
-    expect(user.resume.phone).to eq("1-616-123-4567")
-    expect(user.resume.weight).to eq(140)
-    expect(user.resume.hair_color).to eq("blond")
-    expect(user.resume.eye_color).to eq("blue")
-    expect(user.resume.unions).to eq(["Screen Actors Guild", ""])
-    expect(user.resume.agent_name).to eq("Awesome Agent")
-    expect(user.resume.agent_phone).to eq("1-616-456-7890")
-    expect(user.resume.additional_skills).to eq("Many years of improve from Disney Stages.")
-    expect(user.projects.last.project_type).to eq("film")
-    expect(user.projects.last.title).to eq("Once Upon A Time")
-    expect(user.projects.last.role).to eq("Cinderella")
-    expect(user.projects.last.director_studio).to eq("Disney Studios")
-
-
-    expect(page).to have_link("Edit Resume")
-
-    click_link "Edit Resume"
+    expect(page).to have_content("Dashboard")
+    expect(page).to have_content("1-616-123-4567")
+    expect(page).to have_content("140")
+    expect(page).to have_content("blond")
+    expect(page).to have_content("blue")
+    expect(page).to have_content("Screen Actors Guild")
+    expect(page).to have_content("Awesome Agent")
+    expect(page).to have_content("1-616-456-7890")
+    expect(page).to have_content("Many years of improve from Disney Stages.")
   end
 
   it 'allows talent to edit a resume' do
@@ -67,18 +55,10 @@ describe "manage resume" do
       additional_skills: "Many years of improve from Disney Stages.",
     })
 
-    project = create(:project, {
-      user: user,
-      project_type: "Film Project",
-      title: "Once Upon A Time",
-      role: "Cinderella",
-      director_studio: "Disney Studios"
-    })
-
     log_in user
 
     visit dashboard_path
-    click_link('Edit Resume')
+    click_link('Edit My Close Up')
     expect(page).to have_content('Edit My Close Up')
 
     expect(find_field("Name").value).to eq("New Name")
@@ -92,35 +72,22 @@ describe "manage resume" do
     expect(find_field("resume_form_agent_name").value).to eq("Awesome Agent")
     expect(find_field("resume_form_agent_phone").value).to eq("1-616-456-7890")
     expect(find_field("resume_form_additional_skills").value).to eq("Many years of improve from Disney Stages.")
-    expect(find_field("resume_form_projects_attributes_0_project_type").value).to eq("film")
-    expect(find_field("resume_form_projects_attributes_0_title").value).to eq("Once Upon A Time")
-    expect(find_field("resume_form_projects_attributes_0_role").value).to eq("Cinderella")
-    expect(find_field("resume_form_projects_attributes_0_director_studio").value).to eq("Disney Studios")
 
     select "5", from: "resume_form_height_feet"
     select "9", from: "resume_form_height_inches"
     fill_in "Weight", with: "155"
     select "Brown", from: "resume_form_hair_color"
     select "Green", from: "resume_form_eye_color"
-    select "Television Project", from: "resume_form_projects_attributes_0_project_type"
-    fill_in "resume_form_projects_attributes_0_title", with: "Big Love"
-    fill_in "resume_form_projects_attributes_0_role", with: "Big"
-    fill_in "resume_form_projects_attributes_0_director_studio", with: "Showtime"
 
     click_button "Save"
 
-    expect(page).to have_link("Edit Resume")
+    expect(page).to have_link("Edit My Close Up")
     resume.reload
 
-    expect(resume.height).to eq(69)
-    expect(resume.weight).to eq(155)
-    expect(resume.hair_color).to eq("brown")
-    expect(resume.eye_color).to eq("green")
-    expect(user.projects.last.project_type).to eq("television")
-    expect(user.projects.last.title).to eq("Big Love")
-    expect(user.projects.last.role).to eq("Big")
-    expect(user.projects.last.director_studio).to eq("Showtime")
-
+    expect(page).to have_content(69)
+    expect(page).to have_content(155)
+    expect(page).to have_content("brown")
+    expect(page).to have_content("green")
   end
 
   it "displays validation errors for required attributes" do
@@ -141,6 +108,28 @@ describe "manage resume" do
     expect(page).to have_content("Name can't be blank")
     expect(page).to have_content("Email can't be blank")
     expect(page).to have_content("Phone can't be blank")
+  end
+
+  it "allows adding project" do
+    user = create(:user)
+    create(:resume, user: user)
+    log_in user
+
+    visit dashboard_path
+    click_link "New Project"
+
+    select "Film Project", from: "Project Type"
+    fill_in "Title", with: "Once Upon A Time"
+    fill_in "Role", with: "Cinderella"
+    fill_in "Director/Studio", with: "Disney Studios"
+
+    click_button "Create Project"
+
+    expect(page).to have_content("Film Project")
+    expect(page).to have_content("Once Upon A Time")
+    expect(page).to have_content("Cinderella")
+    expect(page).to have_content("Disney Studios")
+
   end
 end
 

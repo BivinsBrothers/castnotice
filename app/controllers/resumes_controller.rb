@@ -20,7 +20,7 @@ class ResumesController < ApplicationController
     params.require(:resume_form)
           .permit(:name, :email, :phone, :weight, :hair_color, :eye_color, :agent_name,
                   :agent_phone, :additional_skills, :height_feet, :height_inches, :birthday,
-                  { unions: [] }, { projects_attributes: [:id, :project_type, :title, :role, :director_studio] })
+                  { unions: [] })
   end
 
   def current_resume

@@ -42,22 +42,5 @@
   <%= f.label :additional_skills %>
   <%= f.text_area :additional_skills %>
 
-  <table>
-  <h2>Projects</h2>
-    <tr>
-      <th>Project Type</th>
-      <th>Title</th>
-      <th>Role</th>
-      <th>Director Studio</th>
-    </tr>
-  <%= f.fields_for :projects do |projects_form| %>
-    <tr>
-      <td><%= projects_form.select :project_type, project_type_select %></td>
-      <td><%= projects_form.text_field :title %></td>
-      <td><%= projects_form.text_field :role %></td>
-      <td><%= projects_form.text_field :director_studio %></td>
-    </tr>
-  <% end %>
-  </table>
   <%= f.submit "Save" %>
 <% end %>
