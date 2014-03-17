@@ -26,7 +26,7 @@ describe "manage resume" do
     fill_in "Agent phone", with: "1-616-456-7890"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
 
-    click_button "Save"
+    click_button "Edit My Close Up"
 
     expect(page).to have_content("Dashboard")
     expect(page).to have_content("1-616-123-4567")
@@ -38,69 +38,42 @@ describe "manage resume" do
     expect(page).to have_content("1-616-456-7890")
     expect(page).to have_content("Many years of improve from Disney Stages.")
 
-    expect(page).to have_link("Edit Resume")
+    expect(page).to have_link("Edit My Close Up")
   end
 
   it 'allows talent to edit a resume' do
     user = create(:user, name: "New Name")
-
-    school = create(:school, {
-      user: user,
-      education_type: "university",
-      school: "University of Acting",
-      major: "Acting",
-      degree: "Bachelors in Acting"
-    })
-
-    resume = create(:resume, {
-      user: user,
-      height: 73,
-      weight: 140,
-      phone: "1-616-123-4567",
-      hair_color: "blond",
-      eye_color: "blue",
-      unions: "Screen Actors Guild",
-      agent_name: "Awesome Agent",
-      agent_phone: "1-616-456-7890",
-      additional_skills: "Many years of improve from Disney Stages.",
-    })
+    create(:resume, user: user)
 
     log_in user
 
     visit dashboard_path
+
     click_link('Edit My Close Up')
     expect(page).to have_content('Edit My Close Up')
 
     expect(find_field("Name").value).to eq("New Name")
     expect(find_field("Email").value).to eq("test@fake.com")
-    expect(find_field("Phone").value).to eq("1-616-123-4567")
+    expect(find_field("Phone").value).to eq("1-616-555-4567")
     expect(find_field("Weight").value).to eq("140")
-    expect(find_field("resume_form_height_feet").value).to eq("6")
-    expect(find_field("resume_form_height_inches").value).to eq("1")
+    expect(find_field("resume_form_height_feet").value).to eq("5")
+    expect(find_field("resume_form_height_inches").value).to eq("9")
     expect(find_field("resume_form_hair_color").value).to eq("blond")
     expect(find_field("resume_form_eye_color").value).to eq("blue")
     expect(find_field("resume_form_agent_name").value).to eq("Awesome Agent")
-    expect(find_field("resume_form_agent_phone").value).to eq("1-616-456-7890")
-    expect(find_field("resume_form_additional_skills").value).to eq("Many years of improve from Disney Stages.")
-    expect(find_field("resume_form_schools_attributes_0_education_type").find('option[selected]').text).to eq("University")
-    expect(find_field("resume_form_schools_attributes_0_school").value).to eq("University of Acting")
-    expect(find_field("resume_form_schools_attributes_0_major").value).to eq("Acting")
-    expect(find_field("resume_form_schools_attributes_0_degree").value).to eq("Bachelors in Acting")
+    expect(find_field("resume_form_agent_phone").value).to eq("1-616-667-8989")
+
 
     select "5", from: "resume_form_height_feet"
     select "9", from: "resume_form_height_inches"
     fill_in "Weight", with: "155"
     select "Brown", from: "resume_form_hair_color"
     select "Green", from: "resume_form_eye_color"
-    select "College", from: "resume_form_schools_attributes_0_education_type"
-    fill_in "resume_form_schools_attributes_0_school", with: "New School"
-    fill_in "resume_form_schools_attributes_0_major", with: "Ballet"
-    fill_in "resume_form_schools_attributes_0_degree", with: "Masters"
 
-    click_button "Save"
+    click_button "Edit My Close Up"
 
-    expect(page).to have_link("Edit My Close Up")
     resume.reload
+
 
     expect(page).to have_content(69)
     expect(page).to have_content(155)
@@ -113,13 +86,14 @@ describe "manage resume" do
     log_in user
 
     visit dashboard_path
+
     click_link "Create Resume"
 
     fill_in "Name", with: ""
     fill_in "Email", with: ""
     fill_in "Phone", with: ""
 
-    click_button "Save"
+    click_button "Edit My Close Up"
 
     expect(page).to have_content("Edit My Close Up")
 
@@ -131,6 +105,7 @@ describe "manage resume" do
   it "allows adding project" do
     user = create(:user)
     create(:resume, user: user)
+
     log_in user
 
     visit dashboard_path
@@ -150,16 +125,17 @@ describe "manage resume" do
 
   end
 
-  it "allows editing a project" do
+  it "allows editing a project"
     user = create(:user)
     create(:resume, user: user)
     create(:project, user: user)
 
-    log_in user
-
-    visit dashboard_path
-
     click_link 'Edit Project'
+
+    expect(page).to have_content("Film Project")
+    expect(page).to have_content("Once Upon A Time")
+    expect(page).to have_content("Cinderella")
+    expect(page).to have_content("Disney Studios")
 
     select "Industrial Project", from: "Project Type"
     fill_in "Title", with: "Industrial"
@@ -173,6 +149,53 @@ describe "manage resume" do
     expect(page).to have_content("Gopher")
     expect(page).to have_content("Tin Cup")
 
+
+  it "allows adding a school" do
+    user = create(:user)
+    create(:resume, user: user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "New School"
+
+    select "College", from: "Education Type"
+    fill_in "School", with: "Michigan Tech"
+    fill_in "Major", with: "Computer Science"
+    fill_in "Degree", with: "Masters"
+
+    click_button "Create School"
+
+    expect(page).to have_content("College")
+    expect(page).to have_content("Michigan Tech")
+    expect(page).to have_content("Computer Science")
+    expect(page).to have_content("Masters")
+  end
+
+  it "allows editing a school" do
+    user = create(:user)
+    create(:resume, user: user)
+    create(:school, user: user)
+
+    log_in user
+
+    visit dashboard_path
+
+
+
+    click_link "Edit School"
+
+    select "College", from: "Education Type"
+    fill_in "School", with: "Michigan Tech"
+    fill_in "Major", with: "Computer Science"
+    fill_in "Degree", with: "Masters"
+
+    click_button "Update School"
+
+    expect(page).to have_content("College")
+    expect(page).to have_content("Michigan Tech")
+    expect(page).to have_content("Computer Science")
+    expect(page).to have_content("Masters")
   end
 end
 

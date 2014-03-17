@@ -27,3 +27,5 @@ en:
         project_type: "Project Type"
 
 
+      school:
+        education_type: "Education Type"

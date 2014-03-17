@@ -1,0 +1,15 @@
+<h2>Schools</h2>
+
+<% current_user.schools.each do |school| %>
+  <ul>
+    <li>School Type: <%= education_type_name(school.education_type) %></li>
+    <li>School: <%= school.school %></li>
+    <li>Major: <%= school.major %></li>
+    <li>Degree: <%= school.degree %></li>
+    <li>Teacher: <%= school.teacher %></li>
+    <li>Years: <%= school.years %></li>
+    <li>Instrument: <%= school.instruments %></li>
+    <li><%= link_to 'Edit School', edit_school_path(school) %></li>
+  </ul>
+<% end %>
+<%= link_to 'New School', new_school_path %>
