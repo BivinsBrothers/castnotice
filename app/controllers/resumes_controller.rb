@@ -7,7 +7,6 @@ class ResumesController < ApplicationController
 
   def update
     @resume_form = ResumeForm.new(current_user, resume_form_params)
-
     if @resume_form.save
       redirect_to :dashboard
     else

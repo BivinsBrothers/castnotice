@@ -12,7 +12,7 @@ class ResumeForm
   def initialize(user, attributes={})
     @attributes = attributes
     @user = user
-    @resume = user.resume
+    @resume = @user.resume
 
     consolidate_birthday
 
@@ -65,4 +65,5 @@ class ResumeForm
       @attributes.delete("birthday(3i)").to_i
     ) if @attributes["birthday(1i)"].present?
   end
+
 end

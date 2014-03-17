@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe ResumeForm do
-  let(:user) { double(:user, resume: nil) }
+  let(:user) { create(:user, resume: nil) }
   let(:resume_form) { ResumeForm.new(user) }
 
   describe "#height" do

@@ -15,8 +15,11 @@ gem "countries"
 gem "devise"
 gem "figaro"
 gem "jquery-rails"
-gem "rails_12factor"
 gem "turbolinks"
+
+group :production do
+  gem "rails_12factor"
+end
 
 group :development, :test do
   gem "capybara"
@@ -26,6 +29,7 @@ group :development, :test do
   gem "poltergeist"
   gem "pry"
   gem "rspec-rails"
+  gem "launchy"
 end
 
 group :test do

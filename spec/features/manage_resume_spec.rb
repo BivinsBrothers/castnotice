@@ -28,16 +28,15 @@ describe "manage resume" do
 
     click_button "Save"
 
-    expect(user.resume.phone).to eq("1-616-123-4567")
-    expect(user.resume.weight).to eq(140)
-    expect(user.resume.hair_color).to eq("blond")
-    expect(user.resume.eye_color).to eq("blue")
-    expect(user.resume.unions).to eq(["Screen Actors Guild", ""])
-    expect(user.resume.agent_name).to eq("Awesome Agent")
-    expect(user.resume.agent_phone).to eq("1-616-456-7890")
-    expect(user.resume.additional_skills).to eq("Many years of improve from Disney Stages.")
-
-    expect(page).to have_link("Edit Resume")
+    expect(page).to have_content("Dashboard")
+    expect(page).to have_content("1-616-123-4567")
+    expect(page).to have_content("140")
+    expect(page).to have_content("blond")
+    expect(page).to have_content("blue")
+    expect(page).to have_content("Screen Actors Guild")
+    expect(page).to have_content("Awesome Agent")
+    expect(page).to have_content("1-616-456-7890")
+    expect(page).to have_content("Many years of improve from Disney Stages.")
   end
 
   it 'allows talent to edit a resume' do
@@ -53,14 +52,13 @@ describe "manage resume" do
       unions: "Screen Actors Guild",
       agent_name: "Awesome Agent",
       agent_phone: "1-616-456-7890",
-      additional_skills: "Many years of improve from Disney Stages."
+      additional_skills: "Many years of improve from Disney Stages.",
     })
 
     log_in user
 
     visit dashboard_path
-
-    click_link('Edit Resume')
+    click_link('Edit My Close Up')
     expect(page).to have_content('Edit My Close Up')
 
     expect(find_field("Name").value).to eq("New Name")
@@ -83,13 +81,13 @@ describe "manage resume" do
 
     click_button "Save"
 
-    expect(page).to have_link("Edit Resume")
+    expect(page).to have_link("Edit My Close Up")
     resume.reload
 
-    expect(resume.height).to eq(69)
-    expect(resume.weight).to eq(155)
-    expect(resume.hair_color).to eq("brown")
-    expect(resume.eye_color).to eq("green")
+    expect(page).to have_content(69)
+    expect(page).to have_content(155)
+    expect(page).to have_content("brown")
+    expect(page).to have_content("green")
   end
 
   it "displays validation errors for required attributes" do
@@ -110,6 +108,53 @@ describe "manage resume" do
     expect(page).to have_content("Name can't be blank")
     expect(page).to have_content("Email can't be blank")
     expect(page).to have_content("Phone can't be blank")
+  end
+
+  it "allows adding project" do
+    user = create(:user)
+    create(:resume, user: user)
+    log_in user
+
+    visit dashboard_path
+    click_link "New Project"
+
+    select "Film Project", from: "Project Type"
+    fill_in "Title", with: "Once Upon A Time"
+    fill_in "Role", with: "Cinderella"
+    fill_in "Director/Studio", with: "Disney Studios"
+
+    click_button "Create Project"
+
+    expect(page).to have_content("Film Project")
+    expect(page).to have_content("Once Upon A Time")
+    expect(page).to have_content("Cinderella")
+    expect(page).to have_content("Disney Studios")
+
+  end
+
+  it "allows editing a project" do
+    user = create(:user)
+    create(:resume, user: user)
+    create(:project, user: user)
+
+    log_in user
+
+    visit dashboard_path
+
+    click_link 'Edit Project'
+
+    select "Industrial Project", from: "Project Type"
+    fill_in "Title", with: "Industrial"
+    fill_in "Role", with: "Gopher"
+    fill_in "Director/Studio", with: "Tin Cup"
+
+    click_button "Update Project"
+
+    expect(page).to have_content("Industrial Project")
+    expect(page).to have_content("Industrial")
+    expect(page).to have_content("Gopher")
+    expect(page).to have_content("Tin Cup")
+
   end
 end
 
