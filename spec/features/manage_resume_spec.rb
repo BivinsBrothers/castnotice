@@ -3,8 +3,8 @@ require "spec_helper"
 describe "manage resume" do
   it 'allows talent to create a resume' do
     user = create(:user)
-    log_in user
 
+    log_in user
     visit dashboard_path
 
     click_link('Create Resume')
@@ -46,7 +46,6 @@ describe "manage resume" do
     create(:resume, user: user)
 
     log_in user
-
     visit dashboard_path
 
     click_link('Edit My Close Up')
@@ -72,9 +71,6 @@ describe "manage resume" do
 
     click_button "Edit My Close Up"
 
-    resume.reload
-
-
     expect(page).to have_content(69)
     expect(page).to have_content(155)
     expect(page).to have_content("brown")
@@ -83,8 +79,8 @@ describe "manage resume" do
 
   it "displays validation errors for required attributes" do
     user = create(:user)
-    log_in user
 
+    log_in user
     visit dashboard_path
 
     click_link "Create Resume"
@@ -107,8 +103,8 @@ describe "manage resume" do
     create(:resume, user: user)
 
     log_in user
-
     visit dashboard_path
+
     click_link "New Project"
 
     select "Film Project", from: "Project Type"
@@ -125,17 +121,15 @@ describe "manage resume" do
 
   end
 
-  it "allows editing a project"
+  it "allows editing a project" do
     user = create(:user)
     create(:resume, user: user)
     create(:project, user: user)
 
-    click_link 'Edit Project'
+    log_in user
+    visit dashboard_path
 
-    expect(page).to have_content("Film Project")
-    expect(page).to have_content("Once Upon A Time")
-    expect(page).to have_content("Cinderella")
-    expect(page).to have_content("Disney Studios")
+    click_link 'Edit Project'
 
     select "Industrial Project", from: "Project Type"
     fill_in "Title", with: "Industrial"
@@ -148,7 +142,7 @@ describe "manage resume" do
     expect(page).to have_content("Industrial")
     expect(page).to have_content("Gopher")
     expect(page).to have_content("Tin Cup")
-
+  end
 
   it "allows adding a school" do
     user = create(:user)
@@ -178,10 +172,7 @@ describe "manage resume" do
     create(:school, user: user)
 
     log_in user
-
     visit dashboard_path
-
-
 
     click_link "Edit School"
 
@@ -198,4 +189,3 @@ describe "manage resume" do
     expect(page).to have_content("Masters")
   end
 end
-
