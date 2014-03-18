@@ -25,5 +25,5 @@ en:
       project:
         director_studio: "Director/Studio"
         project_type: "Project Type"
-
-
+      school:
+        education_type: "Education Type"

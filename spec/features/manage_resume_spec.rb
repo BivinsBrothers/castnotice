@@ -3,8 +3,8 @@ require "spec_helper"
 describe "manage resume" do
   it 'allows talent to create a resume' do
     user = create(:user)
-    log_in user
 
+    log_in user
     visit dashboard_path
 
     click_link('Create Resume')
@@ -26,7 +26,7 @@ describe "manage resume" do
     fill_in "Agent phone", with: "1-616-456-7890"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
 
-    click_button "Save"
+    click_button "Edit My Close Up"
 
     expect(page).to have_content("Dashboard")
     expect(page).to have_content("1-616-123-4567")
@@ -37,41 +37,31 @@ describe "manage resume" do
     expect(page).to have_content("Awesome Agent")
     expect(page).to have_content("1-616-456-7890")
     expect(page).to have_content("Many years of improve from Disney Stages.")
+
+    expect(page).to have_link("Edit My Close Up")
   end
 
   it 'allows talent to edit a resume' do
     user = create(:user, name: "New Name")
-
-    resume = create(:resume, {
-      user: user,
-      height: 73,
-      weight: 140,
-      phone: "1-616-123-4567",
-      hair_color: "blond",
-      eye_color: "blue",
-      unions: "Screen Actors Guild",
-      agent_name: "Awesome Agent",
-      agent_phone: "1-616-456-7890",
-      additional_skills: "Many years of improve from Disney Stages.",
-    })
+    create(:resume, user: user)
 
     log_in user
-
     visit dashboard_path
+
     click_link('Edit My Close Up')
     expect(page).to have_content('Edit My Close Up')
 
     expect(find_field("Name").value).to eq("New Name")
     expect(find_field("Email").value).to eq("test@fake.com")
-    expect(find_field("Phone").value).to eq("1-616-123-4567")
+    expect(find_field("Phone").value).to eq("1-616-555-4567")
     expect(find_field("Weight").value).to eq("140")
-    expect(find_field("resume_form_height_feet").value).to eq("6")
-    expect(find_field("resume_form_height_inches").value).to eq("1")
+    expect(find_field("resume_form_height_feet").value).to eq("5")
+    expect(find_field("resume_form_height_inches").value).to eq("9")
     expect(find_field("resume_form_hair_color").value).to eq("blond")
     expect(find_field("resume_form_eye_color").value).to eq("blue")
     expect(find_field("resume_form_agent_name").value).to eq("Awesome Agent")
-    expect(find_field("resume_form_agent_phone").value).to eq("1-616-456-7890")
-    expect(find_field("resume_form_additional_skills").value).to eq("Many years of improve from Disney Stages.")
+    expect(find_field("resume_form_agent_phone").value).to eq("1-616-667-8989")
+
 
     select "5", from: "resume_form_height_feet"
     select "9", from: "resume_form_height_inches"
@@ -79,10 +69,7 @@ describe "manage resume" do
     select "Brown", from: "resume_form_hair_color"
     select "Green", from: "resume_form_eye_color"
 
-    click_button "Save"
-
-    expect(page).to have_link("Edit My Close Up")
-    resume.reload
+    click_button "Edit My Close Up"
 
     expect(page).to have_content(69)
     expect(page).to have_content(155)
@@ -92,16 +79,17 @@ describe "manage resume" do
 
   it "displays validation errors for required attributes" do
     user = create(:user)
-    log_in user
 
+    log_in user
     visit dashboard_path
+
     click_link "Create Resume"
 
     fill_in "Name", with: ""
     fill_in "Email", with: ""
     fill_in "Phone", with: ""
 
-    click_button "Save"
+    click_button "Edit My Close Up"
 
     expect(page).to have_content("Edit My Close Up")
 
@@ -113,9 +101,10 @@ describe "manage resume" do
   it "allows adding project" do
     user = create(:user)
     create(:resume, user: user)
-    log_in user
 
+    log_in user
     visit dashboard_path
+
     click_link "New Project"
 
     select "Film Project", from: "Project Type"
@@ -138,7 +127,6 @@ describe "manage resume" do
     create(:project, user: user)
 
     log_in user
-
     visit dashboard_path
 
     click_link 'Edit Project'
@@ -154,7 +142,50 @@ describe "manage resume" do
     expect(page).to have_content("Industrial")
     expect(page).to have_content("Gopher")
     expect(page).to have_content("Tin Cup")
+  end
 
+  it "allows adding a school" do
+    user = create(:user)
+    create(:resume, user: user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "New School"
+
+    select "College", from: "Education Type"
+    fill_in "School", with: "Michigan Tech"
+    fill_in "Major", with: "Computer Science"
+    fill_in "Degree", with: "Masters"
+
+    click_button "Create School"
+
+    expect(page).to have_content("College")
+    expect(page).to have_content("Michigan Tech")
+    expect(page).to have_content("Computer Science")
+    expect(page).to have_content("Masters")
+  end
+
+  it "allows editing a school" do
+    user = create(:user)
+    create(:resume, user: user)
+    create(:school, user: user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "Edit School"
+
+    select "College", from: "Education Type"
+    fill_in "School", with: "Michigan Tech"
+    fill_in "Major", with: "Computer Science"
+    fill_in "Degree", with: "Masters"
+
+    click_button "Update School"
+
+    expect(page).to have_content("College")
+    expect(page).to have_content("Michigan Tech")
+    expect(page).to have_content("Computer Science")
+    expect(page).to have_content("Masters")
   end
 end
-

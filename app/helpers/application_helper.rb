@@ -59,4 +59,24 @@ module ApplicationHelper
       "industrial" => "Industrial Project"
     }[project_type]
   end
+
+  def education_type_select
+    [
+      ["University", "university"],
+      ["College", "college"],
+      ["Studio", "studio"],
+      ["Academy", "academy"],
+      ["Private Training", "private_training"]
+    ]
+  end
+
+  def education_type_name(education_type)
+    {
+      "university" => "University",
+      "college" => "College",
+      "studio" => "Studio",
+      "academy" => "Academy",
+      "private_training" => "Private Training"
+    }[education_type]
+  end
 end
