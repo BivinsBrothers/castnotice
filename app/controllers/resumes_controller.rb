@@ -22,9 +22,8 @@ class ResumesController < ApplicationController
 
   def update
     @resume = current_user.resume
-    @resume.update_attributes(resume_params)
 
-    if @resume.save
+    if @resume.update_attributes(resume_params)
       redirect_to dashboard_path
     else
       render :edit

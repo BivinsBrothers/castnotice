@@ -17,9 +17,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = current_user.projects.find(params[:id])
-    @project.update_attributes(project_params)
 
-    redirect_to dashboard_path
+    if @project.update_attributes(project_params)
+      redirect_to dashboard_path
+    else
+      render :edit
+    end
   end
 
   def project_params

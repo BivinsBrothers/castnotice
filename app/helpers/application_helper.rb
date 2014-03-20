@@ -8,15 +8,9 @@ module ApplicationHelper
   end
 
   def height_options
-    heights = Hash.new
-
-    for n in 48..84
-      feet = (n/12).floor
-      inches = n % 12
-      heights[n] = "#{feet}'#{inches}''"
+    48.upto(84).map do |inches|
+      [%{#{inches / 12}'#{inches % 12}"}, inches]
     end
-
-    return heights.to_a.sort.map { |h| h.reverse }
   end
 
   def eye_color_select

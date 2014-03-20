@@ -17,9 +17,12 @@ class SchoolsController < ApplicationController
 
   def update
     @school = current_user.schools.find(params[:id])
-    @school.update_attributes(school_params)
 
-    redirect_to dashboard_path
+    if @school.update_attributes(school_params)
+      redirect_to dashboard_path
+    else
+      render :edit
+    end
   end
 
   def school_params
