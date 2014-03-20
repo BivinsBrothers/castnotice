@@ -7,6 +7,12 @@ module ApplicationHelper
     end
   end
 
+  def height_options
+    48.upto(84).map do |inches|
+      [%{#{inches / 12}'#{inches % 12}"}, inches]
+    end
+  end
+
   def eye_color_select
     [
       ["Brown", "brown"],

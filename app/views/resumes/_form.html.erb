@@ -1,0 +1,26 @@
+<%= form_for @resume, :url => resume_path do |f| %>
+  <% if f.object.errors %>
+    <% f.object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% end %>
+  <%= f.label :phone %>
+  <%= f.phone_field :phone %>
+  <%= f.label :height %>
+  <%= f.select :height, height_options %>
+  <%= f.label :weight %>
+  <%= f.text_field :weight %>
+  <%= f.label :hair_color %>
+  <%= f.select :hair_color, hair_color_select %>
+  <%= f.label :eye_color %>
+  <%= f.select :eye_color, eye_color_select %>
+  <%= f.label :unions %>
+  <%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
+  <%= f.label :agent_name %>
+  <%= f.text_field :agent_name %>
+  <%= f.label :agent_phone %>
+  <%= f.phone_field :agent_phone %>
+  <%= f.label :additional_skills %>
+  <%= f.text_area :additional_skills %>
+  <%= f.submit "Save My Close Up" %>
+<% end %>

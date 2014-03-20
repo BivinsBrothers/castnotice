@@ -1,0 +1,14 @@
+<h1>Close Up</h1>
+<ul>
+  <li>Phone: <%= current_user.resume.phone %></li>
+  <li>Height: <%= current_user.resume.height %></li>
+  <li>Weight: <%= current_user.resume.weight %></li>
+  <li>Hair Color: <%= current_user.resume.hair_color %></li>
+  <li>Eye Color: <%= current_user.resume.eye_color %></li>
+  <li>Unions: <%= current_user.resume.unions %></li>
+  <li>Agent Name: <%= current_user.resume.agent_name %></li>
+  <li>Agent Phone: <%= current_user.resume.agent_phone %></li>
+  <li>Additional Skills: <%= current_user.resume.additional_skills %></li>
+</ul>
+
+<%= link_to 'Edit My Close Up', edit_resume_path %>

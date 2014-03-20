@@ -1,0 +1,19 @@
+<%= form_for user do |f| %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name, :autofocus => true %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.label :location_address %>
+  <%= f.text_field :location_address %>
+  <%= f.label :location_city %>
+  <%= f.text_field :location_city %>
+  <%= f.label :location_state %>
+  <%= f.select :location_state, us_states_select %>
+  <%= f.label :location_zip %>
+  <%= f.label :birthday %>
+  <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %>
+  <%= f.submit %>
+<% end %>

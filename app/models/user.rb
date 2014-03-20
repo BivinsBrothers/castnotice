@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :tos, acceptance: true, on: :create
-  validates :name, presence: true
+  validates :name, :email, :birthday, presence: true
+
 end

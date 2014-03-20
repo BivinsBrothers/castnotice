@@ -1,14 +1,30 @@
 class ResumesController < ApplicationController
   before_filter :authenticate_user!
 
+  def new
+    @resume = Resume.new
+  end
+
+  def create
+    @resume = Resume.new(resume_params)
+    @resume.user = current_user
+
+    if @resume.save
+      redirect_to dashboard_path
+    else
+      render :new
+    end
+  end
+
   def edit
-    @resume_form = ResumeForm.new(current_user, current_resume.resume_form_attributes)
+    @resume = current_user.resume
   end
 
   def update
-    @resume_form = ResumeForm.new(current_user, resume_form_params)
-    if @resume_form.save
-      redirect_to :dashboard
+    @resume = current_user.resume
+
+    if @resume.update_attributes(resume_params)
+      redirect_to dashboard_path
     else
       render :edit
     end
@@ -16,14 +32,10 @@ class ResumesController < ApplicationController
 
   private
 
-  def resume_form_params
-    params.require(:resume_form)
-          .permit(:name, :email, :phone, :weight, :hair_color, :eye_color, :agent_name,
-                  :agent_phone, :additional_skills, :height_feet, :height_inches, :birthday,
+  def resume_params
+    params.require(:resume)
+          .permit(:phone, :weight, :hair_color, :eye_color, :agent_name,
+                  :agent_phone, :additional_skills, :height,
                   { unions: [] })
-  end
-
-  def current_resume
-    current_user.resume || current_user.create_resume
   end
 end

@@ -1,0 +1,12 @@
+<h1>User Information</h1>
+<ul>
+  <li>Name: <%= current_user.name %></li>
+  <li>Email: <%= current_user.email %></li>
+  <li>Address: <%= current_user.location_address %></li>
+  <li>City: <%= current_user.location_city %></li>
+  <li>State: <%= current_user.location_state %></li>
+  <li>Zip Code: <%= current_user.location_zip %></li>
+  <li>Birthday: <%= current_user.birthday %></li>
+</ul>
+
+<%= link_to 'Edit My User Information', edit_user_path %>
