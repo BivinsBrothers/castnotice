@@ -17,6 +17,7 @@ gem "figaro"
 gem "jquery-rails"
 gem "turbolinks"
 gem "high_voltage"
+gem "carrierwave"
 
 group :production do
   gem "rails_12factor"
