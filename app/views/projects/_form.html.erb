@@ -1,11 +1,9 @@
-<%= form_for project do |f| %>
-  <%= f.label :project_type %>
-  <%= f.select :project_type, project_type_select %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :role %>
-  <%= f.text_field :role %>
-  <%= f.label :director_studio %>
-  <%= f.text_field :director_studio %>
-  <%= f.submit %>
-<% end %>
+<%= f.label :project_type %>
+<%= f.select :project_type, project_type_select %>
+<%= f.label :title %>
+<%= f.text_field :title %>
+<%= f.label :role %>
+<%= f.text_field :role %>
+<%= f.label :director_studio %>
+<%= f.text_field :director_studio %>
+<%= f.submit %>

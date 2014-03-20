@@ -1,6 +1,6 @@
-<h2>Edit My Close Up</h2>
+<h2>My Close Up</h2>
 
-<%= form_for @resume do |f| %>
+<%= form_for @resume, :url => resume_path do |f| %>
   <% if f.object.errors %>
     <% f.object.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>

@@ -1,9 +1,21 @@
 <h1>Dashboard</h1>
 
+<%= render template: 'users/show' %>
+
 <% if current_user.resume %>
-  <%= render 'resumes/close_up', resume: current_user.resume %>
-  <%= render 'resumes/projects', resume: current_user.resume %>
-  <%= render 'resumes/schools', resume: current_user.resume %>
+  <%= render template: 'resumes/show' %>
 <% else %>
-  <%= link_to 'Create Resume', edit_resume_path %>
+  <%= link_to 'Create Resume', new_resume_path %>
+<% end %>
+
+<% if current_user.projects %>
+  <%= render template: 'projects/show' %>
+<% else %>
+  <%= link_to 'New Project', new_project_path %>
+<% end %>
+
+<% if current_user.schools %>
+  <%= render template: 'schools/show' %>
+<% else %>
+  <%= link_to 'New School', new_school_path %>
 <% end %>
