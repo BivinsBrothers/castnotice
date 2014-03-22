@@ -1,4 +1,4 @@
-<%= form_for @resume, :url => resume_path do |f| %>
+<%= form_for @resume, :multiple => true, :url => resume_path do |f| %>
   <% if f.object.errors %>
     <% f.object.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -22,5 +22,14 @@
   <%= f.phone_field :agent_phone %>
   <%= f.label :additional_skills %>
   <%= f.text_area :additional_skills %>
+  <% if @resume.avatar? %>
+    <%= f.label :avatar, "My Hot Shot" %>
+    <%= image_tag @resume.avatar_url(:thumb) %>
+    <%= f.label :avatar, "Change Hot Shot" %>
+    <%= f.file_field :avatar %>
+  <% else %>
+    <%= f.label :avatar, "Upload Your Hot Shot" %>
+    <%= f.file_field :avatar %>
+  <% end %>
   <%= f.submit "Save My Close Up" %>
 <% end %>
