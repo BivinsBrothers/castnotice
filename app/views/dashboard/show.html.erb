@@ -3,8 +3,14 @@
 <h1><%= current_user.name %></h1>
 
   <% if current_user.resume && current_user.resume.avatar? %>
-    <h3>Your Head Shots</h3>
+    <h3>Your Hot Shot</h3>
     <%= image_tag(current_user.resume.avatar_url(:thumb)) %>
+  <% end %>
+
+  <% if current_user.resume %>
+    <%= link_to 'Upload Hot Shot', edit_resume_path %>
+  <% else %>
+    <%= link_to 'Upload Hot Shot', new_resume_path %>
   <% end %>
 
   <% if current_user.resume %>

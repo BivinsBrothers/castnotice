@@ -82,6 +82,27 @@ describe "manage resume" do
     expect(page).to have_content("Phone can't be blank")
   end
 
+  it "allows talent to upload an avatar" do
+    user = create(:user)
+    resume = create(:resume, user: user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "Upload Hot Shot"
+    expect(page).to have_content("Upload Hot Shot")
+    click_button "Save My Close Up"
+
+    resume.avatar = File.open(File.join(Rails.root, 'spec', 'fixtures', 'avatar.jpg'))
+    resume.save!
+
+    click_link "Upload Hot Shot"
+    expect(page).to have_content("Change Hot Shot")
+    click_button "Save My Close Up"
+
+    expect(page).to have_content("Your Hot Shot")
+  end
+
   it "displays validation errors for required attributes on a user" do
     user = create(:user)
 
