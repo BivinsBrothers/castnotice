@@ -1,0 +1,80 @@
+{
+    "filters": {
+        "union": {
+            "label": "Union",
+            "values":
+                    [
+                        "AAE",
+                        "ACTRA",
+                        "AEA",
+                        "AEA 99-SeatPlan",
+                        "AFTRA",
+                        "AGMA",
+                        "AGVA",
+                        "BAE",
+                        "CAEA",
+                        "SAG",
+                        "SAG-AFTRA",
+                        "ABCP",
+                        "AUDA",
+                        "Non-Union"
+                    ]
+        },
+        "project": {
+            "label": "Type of Project",
+            "values":
+                    [
+                        "Advertisement",
+                        "Cable",
+                        "Commercial",
+                        "Director's Reel",
+                        "Documentary",
+                        "Episodic",
+                        "Feature Film",
+                        "Fundraiser/Benefit",
+                        "Industrial",
+                        "Infomercial",
+                        "Interactive Project",
+                        "Internet Projects",
+                        "Miniseries",
+                        "Movie Of The Week",
+                        "Musical Theatre",
+                        "Music Video",
+                        "Non-Union Episodic",
+                        "Non Union Feature Film",
+                        "Non Unnion Musical Theatre",
+                        "Non Union Pilot",
+                        "Non Union Short Film",
+                        "Non Union Theatre",
+                        "Open Call",
+                        "Photo Shoot",
+                        "Pilot",
+                        "Pilot Presentation",
+                        "Print",
+                        "Promo",
+                        "PSA",
+                        "Radio",
+                        "Reality Televesion",
+                        "Short Film",
+                        "Stage Reading",
+                        "Still Photo Shoot",
+                        "Stock Photo Shoot",
+                        "Student Film",
+                        "Theatre",
+                        "Trailer",
+                        "Voice Over",
+                        "Webisode",
+                        "Webseries"
+                    ]
+        },
+        "region": {
+            "label": "Region",
+            "values": [
+                "Central",
+                "Eastern",
+                "Western",
+                "Canada"
+            ]
+        }
+    }
+}
