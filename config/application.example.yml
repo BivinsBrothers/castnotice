@@ -1,2 +1,5 @@
 SECRET_TOKEN: "my-secret-token" # Run `rake secret` to get a fresh new token
 DEVISE_SECRET: "devise-secret-token"
+AWS_ACCESS_KEY_ID: "test-data"
+AWS_SECRET_ACCESS_KEY: "test-key"
+AWS_S3_IMAGE_BUCKET: "bucket"
