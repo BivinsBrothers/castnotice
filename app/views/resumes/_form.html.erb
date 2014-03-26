@@ -22,15 +22,6 @@
   <%= f.phone_field :agent_phone %>
   <%= f.label :additional_skills %>
   <%= f.text_area :additional_skills %>
-  <% if @resume.avatar? %>
-    <%= image_tag @resume.avatar_url(:thumb) %>
-    <%= f.label :avatar, "Change Hot Shot" %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-  <% else %>
-    <%= f.label :avatar, "Upload Hot Shot" %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-  <% end %>
+
   <%= f.submit "Save My Close Up" %>
 <% end %>

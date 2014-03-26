@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 20140320160412) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "avatar"
   end
 
   create_table "schools", force: true do |t|
