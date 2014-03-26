@@ -33,6 +33,7 @@ group :development, :test do
   gem "pry"
   gem "rspec-rails"
   gem "launchy"
+  gem "domino"
 end
 
 group :test do

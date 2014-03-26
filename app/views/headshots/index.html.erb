@@ -1,0 +1,28 @@
+<h2>My Head Shots</h2>
+
+<ul>
+  <% current_user.headshots.each do |headshot| %>
+    <li class="headshot">
+      <%= image_tag(headshot.image_url(:thumb)) %>
+      <%= link_to "Delete", headshot_path(headshot), method: :delete %>
+
+      <% if headshot.current_background? %>
+        Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
+      <% else %>
+        <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<% unless current_user.at_maximum_headshots? %>
+  <h2>Upload Head Shot</h2>
+
+  <%= form_for @headshot do |p| %>
+    <%= p.label :image, "Image" %>
+    <%= p.file_field :image %>
+    <%= p.hidden_field :image_cache %>
+
+    <%= p.submit "Upload" %>
+  <% end %>
+<% end %>
