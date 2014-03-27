@@ -10,7 +10,7 @@ Castnotice::Application.routes.draw do
 
   get "/how_it_works" => "pages#how_it_works"
   get "/pricing"      => "pages#pricing"
-  get "/about_us"     => "pages#about_us"
+  get "/about"        => "pages#about"
   get "/contact"      => "pages#contact"
   get "/calendar"     => "pages#calendar"
   get "/privacy"      => "pages#privacy"

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   def pricing
   end
 
-  def about_us
+  def about
   end
 
   def contact
