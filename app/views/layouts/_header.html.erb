@@ -24,17 +24,17 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      	<li><%= link_to "How it works", how_it_works_path %></li>
-        <li><%= link_to "Pricing", pricing_path %></li>
-        <li><%= link_to "About us", about_path %></li>
-        <li><%= link_to "Contact", contact_path %></li>
-        <li class="lastnav"><%= link_to "Calendar", calendar_path %></li>
+      	<li><%= link_to "How it works", page_path("how_it_works") %></li>
+        <li><%= link_to "Pricing", page_path("pricing") %></li>
+        <li><%= link_to "About us", page_path("about") %></li>
+        <li><%= link_to "Contact", page_path("contact") %></li>
+        <li class="lastnav"><%= link_to "Calendar", page_path("calendar") %></li>
       </ul>
       <div class="login">
         <% if current_user %>
           <%= link_to "sign out", destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= link_to "register", pricing_path %> / <%= link_to "log in", new_user_session_path %>
+          <%= link_to "register", page_path("pricing") %> / <%= link_to "log in", new_user_session_path %>
         <% end %>
       </div>
     </div><!-- /.navbar-collapse -->
