@@ -11,7 +11,7 @@ module Dom
     end
 
     def background?
-      page.has_content?("Current background")
+      node.has_content?("Current background")
     end
   end
 end
