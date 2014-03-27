@@ -42,10 +42,11 @@ describe "managing headshots" do
     create(:headshot, user: user)
     click_link "edit-headshots"
 
-    headshot = Dom::Headshots.first
-    headshot.set_as_background
-
-    expect(headshot.background?).to be_true
+    expect {
+      click_link "Set as background"
+    }.to change {
+      Dom::Headshots.first.background?
+    }.from(false).to(true)
   end
 
   it "a user can remove the currently selected background" do
