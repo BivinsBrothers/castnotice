@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140326182950) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_background", default: false, null: false
   end
 
   create_table "projects", force: true do |t|

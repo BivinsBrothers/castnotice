@@ -1,17 +1,23 @@
 class Headshot < ActiveRecord::Base
-  before_destroy :remove_background_image
+  validates :is_background, uniqueness: { scope: :user }, if: :is_background
 
   mount_uploader :image, HeadshotUploader
 
   belongs_to :user
 
-  def current_background?
-    user.background_image == self
+  def set_as_background_image
+    if user.background_image
+      user.background_image.update_attributes(is_background: false)
+    end
+
+    self.is_background = true
+    self.save
   end
 
-  private
-
-  def remove_background_image
-    user.update_attributes(background_image: nil) if current_background?
+  def remove_as_background_image
+    if is_background?
+      self.is_background = false
+      self.save
+    end
   end
 end

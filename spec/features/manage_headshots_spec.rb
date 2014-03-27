@@ -50,8 +50,7 @@ describe "managing headshots" do
   end
 
   it "a user can remove the currently selected background" do
-    headshot = create(:headshot, user: user)
-    user.update_attributes!(background_image: headshot)
+    headshot = create(:headshot, user: user, is_background: true)
 
     click_link "edit-headshots"
 
@@ -63,22 +62,6 @@ describe "managing headshots" do
       Dom::Headshots.first.background?
     }.from(true).to(false)
   end
-
-  context "when a user deletes the current background head shot" do
-    it "sets user background image to nil" do
-      headshot = create(:headshot, user: user)
-      user.update_attributes!(background_image: headshot)
-
-      click_link "edit-headshots"
-
-      expect {
-        Dom::Headshots.first.delete!
-      }.to change {
-        user.reload.background_image_id
-      }.from(headshot.id).to(nil)
-    end
-  end
-
 
   it "a user can have a maximum of 10 headshots" do
     create_list(:headshot, 9, user: user)
