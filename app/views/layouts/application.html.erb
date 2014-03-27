@@ -19,7 +19,11 @@
 <body>
   <%= render "layouts/header" %>
 
-  <%= yield %>
+  <%= yield :background %>
+
+  <div class="main-content">
+  	<%= yield %>
+  </div>
 
   <%= render "layouts/footer" %>
 </body>
