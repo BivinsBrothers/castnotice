@@ -8,13 +8,13 @@ Castnotice::Application.routes.draw do
 
   get "/dashboard" => "dashboard#show", as: :dashboard
 
-  get "/how_it_works" => "pages#how_it_works"
-  get "/pricing"      => "pages#pricing"
-  get "/about"        => "pages#about"
-  get "/contact"      => "pages#contact"
-  get "/calendar"     => "pages#calendar"
-  get "/privacy"      => "pages#privacy"
-  get "/tos"          => "pages#tos"
+  get "/how_it_works" => "pages#show", id: "how_it_works"
+  get "/pricing"      => "pages#show", id: "pricing"
+  get "/about"        => "pages#show", id: "about"
+  get "/contact"      => "pages#show", id: "contact"
+  get "/calendar"     => "pages#show", id: "calendar"
+  get "/privacy"      => "pages#show", id: "privacy"
+  get "/tos"          => "pages#show", id: "tos"
 
   root to: "pages#index"
 end
