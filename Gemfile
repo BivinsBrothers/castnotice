@@ -16,6 +16,7 @@ gem "devise"
 gem "figaro"
 gem "jquery-rails"
 gem "turbolinks"
+gem "high_voltage"
 
 group :production do
   gem "rails_12factor"
