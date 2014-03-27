@@ -1,0 +1,42 @@
+<header>
+	<div class="logobar">
+    <div class="logo">
+      <%= link_to image_tag("logo.png", alt: "Cast Notice", class: "img-responsive"), root_path %></a>
+    </div>
+    <div class="social">
+    	<ul>
+        <li><%= link_to image_tag("social/facebook.png", alt: "Cast Notice on Facebook"), "https://www.facebook.com/pages/Newport-Credentialing-Solutions/153382638045084" %></li>
+        <li><%= link_to image_tag("social/twitter.png", alt: "Cast Notice on Twitter"), "https://twitter.com/newportcred" %></li>
+        <li><%= link_to image_tag("social/youtube.png", alt: "Cast Notice YouTube"), "https://www.youtube.com/watch?v=7Gv_fxdYJYI" %></li>
+      </ul>
+	  </div>
+  </div>
+
+	<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      	<li><%= link_to "How it works", how_it_works_path %></li>
+        <li><%= link_to "Pricing", pricing_path %></li>
+        <li><%= link_to "About us", about_path %></li>
+        <li><%= link_to "Contact", contact_path %></li>
+        <li class="lastnav"><%= link_to "Calendar", calendar_path %></li>
+      </ul>
+      <div class="login">
+        <% if current_user %>
+          <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "register", pricing_path %> / <%= link_to "log in", new_user_session_path %>
+        <% end %>
+      </div>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+</header>
