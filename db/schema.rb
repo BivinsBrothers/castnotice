@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20140326182950) do
     t.string   "location_state"
     t.string   "location_zip"
     t.date     "birthday"
-    t.integer  "background_image_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
