@@ -14,9 +14,12 @@ gem "uglifier", ">= 1.3.0"
 gem "countries"
 gem "devise"
 gem "figaro"
+gem "fog"
 gem "jquery-rails"
 gem "turbolinks"
 gem "high_voltage"
+gem "carrierwave"
+gem "mini_magick"
 
 group :production do
   gem "rails_12factor"
@@ -31,6 +34,7 @@ group :development, :test do
   gem "pry"
   gem "rspec-rails"
   gem "launchy"
+  gem "domino"
 end
 
 group :test do

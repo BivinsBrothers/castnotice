@@ -1,21 +1,31 @@
 <h1>Dashboard</h1>
 
-<%= render template: 'users/show' %>
+<h1><%= current_user.name %></h1>
 
-<% if current_user.resume %>
-  <%= render template: 'resumes/show' %>
-<% else %>
-  <%= link_to 'Create Resume', new_resume_path %>
+<h3>Your Head Shots</h3>
+<%= link_to 'Edit', headshots_path, id: "edit-headshots" %>
+
+<% current_user.headshots.each do |headshot| %>
+  <%= image_tag(headshot.image_url(:thumb)) %>
 <% end %>
 
-<% if current_user.projects %>
-  <%= render template: 'projects/show' %>
-<% else %>
-  <%= link_to 'New Project', new_project_path %>
-<% end %>
 
-<% if current_user.schools %>
-  <%= render template: 'schools/show' %>
-<% else %>
-  <%= link_to 'New School', new_school_path %>
-<% end %>
+  <% if current_user.resume %>
+    <%= render template: 'resumes/show' %>
+  <% else %>
+    <%= link_to 'Create Resume', new_resume_path %>
+  <% end %>
+
+  <%= render template: 'users/show' %>
+
+  <% if current_user.projects %>
+    <%= render template: 'projects/show' %>
+  <% else %>
+    <%= link_to 'New Project', new_project_path %>
+  <% end %>
+
+  <% if current_user.schools %>
+    <%= render template: 'schools/show' %>
+  <% else %>
+    <%= link_to 'New School', new_school_path %>
+  <% end %>
