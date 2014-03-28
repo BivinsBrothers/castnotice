@@ -13,10 +13,10 @@ class HeadshotsController < ApplicationController
   def update
     headshot = current_user.headshots.find(params[:id])
 
-    case params[:background].to_sym
-    when :true
+    case params[:background]
+    when "true"
       headshot.set_as_background_image
-    when :false
+    when "false"
       headshot.remove_as_background_image
     end
 
