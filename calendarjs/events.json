@@ -1,45 +1,28 @@
 {
     "events": {
         "0": {
-            "name": "",
-            "date": "2014-03- 08:::",
-            "unions": "",
-            "project": "",
-            "region": "",
-            "performer": "",
-            "paid": ""
+            "name": "Wicked: The Musical",
+            "date": "2014-4-01",
+            "project": "Musical Theater",
+            "region": "Central",
+            "performer": "Chorus Line Singers",
+            "paid": "1"
         },
         "1": {
-            "name": "",
-            "date": "2014-03- 08:::",
-            "description": "",
-            "unions": "",
-            "project": "",
-            "region": ""
+            "name": "Budweiser Commercial",
+            "date": "2014-04-05",
+            "project": "Musical Theater",
+            "region": "Central",
+            "performer": "Voice Over",
+            "paid": "1"
         },
         "2": {
-            "name": "",
-            "date": "2014-03- 08:::",
-            "description": "",
-            "unions": "",
-            "project": "",
-            "region": ""
-        },
-        "3": {
-            "name": "",
-            "date": "2014-03- 08:::",
-            "description": "",
-            "unions": "",
-            "project": "",
-            "region": ""
-        },
-        "4": {
-            "name": "",
-            "date": "2014-03- 08:::",
-            "description": "",
-            "unions": "",
-            "project": "",
-            "region": ""
+            "name": "New York Ballet",
+            "date": "2014-04-13",
+            "project": "Ballet",
+            "region": "East",
+            "performer": "Chorus Line Singers",
+            "paid": "0"
         }
     }
 }
