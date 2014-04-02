@@ -1,0 +1,78 @@
+.castnotice-calendar{}
+
+.castnotice-calendar h1{}
+
+.calendar-events{}
+
+.calendar-events .calendar-event{}
+
+.calendar-events .calendar-date{}
+
+.calendar-events .calendar-date .calendar-month{}
+
+.calendar-events .calendar-date .calendar-day{}
+
+.calendar-events .calendar-name{}
+
+.calendar-events calendar-paid-false:after {
+    content: url(calendar-paid-false.jpg);
+}
+
+.calendar-events calendar-paid-true:after {
+    content: url(calendar-paid-true.jpg);
+}
+
+.calendar-events .calendar-overview{}
+
+.calendar-events .calendar-overview .calendar-attribute{}
+
+.calendar-events .calendar-overview .calendar-attribute span{}
+
+.calendar-events .calendar-detail {
+    display: none;
+}
+
+.calendar-events .calendar-detail p {}
+
+.calendar-events .calendar-detail p a {}
+
+.calendar-events .calendar-detail calendar-description{}
+
+.calendar-events .calendar-detail calendar-description span{}
+
+.calendar-events .calendar-shrink:before {
+    content: "+";
+}
+
+.calendar-events .calendar-expand:before {
+    content: "-";
+}
+
+.calendar-controls{}
+
+.calendar-controls #date-picker{}
+
+.calendar-matched-event-date{
+    color: #ff6666;
+}
+
+.calendar-controls #date-filters{}
+
+.calendar-controls #date-filters h1{}
+
+.calendar-controls .calendar-filters{}
+
+.calendar-controls .calendar-filters .calendar-option{}
+
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox{}
+
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox input{}
+
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox label{}
+
+
+
+
+
+
+
