@@ -6,8 +6,8 @@
     <div class="social">
     	<ul>
         <li><%= link_to image_tag("social/facebook.png", alt: "Cast Notice on Facebook"), "https://www.facebook.com/pages/Newport-Credentialing-Solutions/153382638045084" %></li>
-        <li><%= link_to image_tag("social/twitter.png", alt: "Cast Notice on Twitter"), "https://twitter.com/newportcred" %></li>
         <li><%= link_to image_tag("social/youtube.png", alt: "Cast Notice YouTube"), "https://www.youtube.com/watch?v=7Gv_fxdYJYI" %></li>
+        <li><%= link_to image_tag("social/twitter.png", alt: "Cast Notice on Twitter"), "https://twitter.com/newportcred" %></li>
       </ul>
 	  </div>
   </div>
@@ -23,13 +23,21 @@
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-      	<li><%= link_to "How it works", page_path("how_it_works") %></li>
-        <li><%= link_to "Pricing", page_path("pricing") %></li>
-        <li><%= link_to "About us", page_path("about") %></li>
-        <li><%= link_to "Contact", page_path("contact") %></li>
-        <li class="lastnav"><%= link_to "Calendar", page_path("calendar") %></li>
-      </ul>
+      <% if current_user %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "Dashboard", page_path("dashboard") %></li>
+          <li><%= link_to "Edit Resume", edit_resume_path %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to "How it works", page_path("how_it_works") %></li>
+          <li><%= link_to "Pricing", page_path("pricing") %></li>
+          <li><%= link_to "About us", page_path("about") %></li>
+          <li><%= link_to "Contact", page_path("contact") %></li>
+          <li class="lastnav"><%= link_to "Calendar", page_path("calendar") %></li>
+        </ul>
+      <% end %>
+
       <div class="login">
         <% if current_user %>
           <%= link_to "sign out", destroy_user_session_path, method: :delete %>
