@@ -16,6 +16,14 @@ ActiveRecord::Schema.define(version: 20140327184511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "educations", force: true do |t|
+    t.string   "school"
+    t.string   "major"
+    t.string   "degree"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "headshots", force: true do |t|
     t.string   "image"
     t.integer  "user_id"
@@ -81,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140327184511) do
     t.string   "location_state"
     t.string   "location_zip"
     t.date     "birthday"
+    t.integer  "background_image_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
