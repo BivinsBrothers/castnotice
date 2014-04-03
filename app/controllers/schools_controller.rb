@@ -8,7 +8,7 @@ class SchoolsController < ApplicationController
   def create
     @school = current_user.schools.create(school_params)
 
-    redirect_to dashboard_path
+    redirect_to resume_path
   end
 
   def edit
@@ -19,7 +19,7 @@ class SchoolsController < ApplicationController
     @school = current_user.schools.find(params[:id])
 
     if @school.update_attributes(school_params)
-      redirect_to dashboard_path
+      redirect_to resume_path
     else
       render :edit
     end

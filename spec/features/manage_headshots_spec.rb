@@ -21,7 +21,7 @@ describe "managing headshots" do
     expect {
       click_button "Upload"
     }.to change {
-      Dom::Headshots.all.count
+      user.headshots.count
     }.from(0).to(1)
   end
 
@@ -29,12 +29,12 @@ describe "managing headshots" do
     create(:headshot, user: user)
     click_link "edit-headshots"
 
-    headshot = Dom::Headshots.first
+    headshot = user.headshots.first
 
     expect {
-      headshot.delete!
+      headshot.delete
     }.to change {
-      Dom::Headshots.all.count
+      user.headshots.count
     }.from(1).to(0)
   end
 
@@ -45,7 +45,7 @@ describe "managing headshots" do
     expect {
       click_link "Set as background"
     }.to change {
-      Dom::Headshots.first.background?
+      user.headshots.first.is_background?
     }.from(false).to(true)
   end
 
@@ -59,7 +59,7 @@ describe "managing headshots" do
     expect {
       click_link "Remove"
     }.to change {
-      Dom::Headshots.first.background?
+      user.headshots.first.is_background?
     }.from(true).to(false)
   end
 
@@ -68,12 +68,12 @@ describe "managing headshots" do
 
     click_link "edit-headshots"
 
-    expect(Dom::Headshots.all.count).to eq(9)
+    expect(user.headshots.count).to eq(9)
 
     attach_file "Image", "#{Rails.root}/spec/fixtures/image.jpg"
     click_button "Upload"
 
-    expect(Dom::Headshots.all.count).to eq(10)
+    expect(user.headshots.count).to eq(10)
 
     expect(page).not_to have_content("Upload Head Shot")
   end
