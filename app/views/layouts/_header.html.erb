@@ -21,13 +21,13 @@
         <span class="icon-bar"></span>
       </button>
     </div>
-
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <% if current_user %>
         <ul class="nav navbar-nav">
           <li><%= link_to "Dashboard", page_path("dashboard") %></li>
           <li><%= link_to "Edit Resume", edit_resume_path %></li>
           <li><%= link_to "Preview Resume", resume_path %></li>
+          <li><%= link_to "Account Information", edit_user_path %></li>
         </ul>
       <% else %>
         <ul class="nav navbar-nav">
@@ -38,7 +38,6 @@
           <li class="lastnav"><%= link_to "Calendar", page_path("calendar") %></li>
         </ul>
       <% end %>
-
       <div class="login">
         <% if current_user %>
           <%= link_to "sign out", destroy_user_session_path, method: :delete %>
