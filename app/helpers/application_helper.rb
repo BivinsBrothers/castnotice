@@ -85,4 +85,8 @@ module ApplicationHelper
       "private_training" => "Private Training"
     }[education_type]
   end
+
+  def background_image(user)
+    user.headshots.where(:is_background => true).first
+  end
 end

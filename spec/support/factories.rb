@@ -29,6 +29,7 @@ FactoryGirl.define do
     agent_name "Awesome Agent"
     agent_phone "1-616-667-8989"
     additional_skills "Improve"
+    descriptive_tag "Dancer, Actor"
   end
 
   factory :project do

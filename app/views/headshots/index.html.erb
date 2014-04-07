@@ -2,7 +2,7 @@
 
 <ul>
   <% @headshots.each do |headshot| %>
-    <li class="headshot">
+    <li>
       <%= image_tag(headshot.image_url(:thumb)) %>
       <%= link_to "Delete", headshot_path(headshot), method: :delete %>
 

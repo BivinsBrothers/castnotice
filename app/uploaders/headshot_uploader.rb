@@ -28,10 +28,22 @@ class HeadshotUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
-
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fit => [50, 50]
+    process :auto_orient
+    process :resize_to_fill => [75, 75]
+  end
+
+  version :background do
+    process :auto_orient
+    process :resize_to_fill => [1000, 1000]
+  end
+
+  def auto_orient
+    manipulate! do |img|
+      img.auto_orient
+      img
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

@@ -1,31 +1,37 @@
-<h1>Dashboard</h1>
+<% content_for :background do %>
+  <%= image_tag(background_image(current_user).image_url(:background), class: "bg-headshot") if background_image(current_user) %>
+<% end %>
 
 <h1><%= current_user.name %></h1>
+
+<% if current_user.resume %>
+  <%= link_to "Edit Personal Information", edit_resume_path %>
+<% else %>
+  <%= link_to "Edit Personal Information", new_resume_path %>
+<% end %>
 
 <h3>Your Head Shots</h3>
 <%= link_to 'Edit', headshots_path, id: "edit-headshots" %>
 
-<% current_user.headshots.each do |headshot| %>
-  <%= image_tag(headshot.image_url(:thumb)) %>
+<% if current_user.headshots.present? %>
+  <% current_user.headshots.each do |headshot| %>
+    <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+  <% end %>
+<% else %>
+  <div class="add-headshots"><%= link_to "Add Headshots", headshots_path %></div>
 <% end %>
 
+<h3>Your Videos</h3>
+<!--remove next two lines when video is implemented-->
+<p id="edit-videos">Edit</p>
+<div class="add-videos">Add Videos</div>
 
-  <% if current_user.resume %>
-    <%= render template: 'resumes/show' %>
-  <% else %>
-    <%= link_to 'Create Resume', new_resume_path %>
-  <% end %>
+<!--add next two lines when video is implemented-->
 
-  <%= render template: 'users/show' %>
+<%#= link_to 'Edit', videos_path, id: "edit-videos" %>
+<!--<div class="add-videos"><%#= link_to "Add Videos", videos_path %></div>-->
 
-  <% if current_user.projects %>
-    <%= render template: 'projects/show' %>
-  <% else %>
-    <%= link_to 'New Project', new_project_path %>
-  <% end %>
 
-  <% if current_user.schools %>
-    <%= render template: 'schools/show' %>
-  <% else %>
-    <%= link_to 'New School', new_school_path %>
-  <% end %>
+<h3>Experience</h3>
+<% current_user.projects %>
+<%= render template: 'projects/show' %>

@@ -22,6 +22,38 @@
   <%= f.phone_field :agent_phone %>
   <%= f.label :additional_skills %>
   <%= f.text_area :additional_skills %>
+  <%= f.label :descriptive_tag, "Descriptive Tags" %>
+  <%= f.text_field :descriptive_tag %>
 
-  <%= f.submit "Save My Close Up" %>
+  <%= f.submit "Save" %>
+
 <% end %>
+
+<h3>Schools</h3>
+<% current_user.schools.each do |school| %>
+  <ul>
+    <li>School Type: <%= education_type_name(school.education_type) %></li>
+    <li>School: <%= school.school %></li>
+    <li>Major: <%= school.major %></li>
+    <li>Degree: <%= school.degree %></li>
+    <li>Teacher: <%= school.teacher %></li>
+    <li>Years: <%= school.years %></li>
+    <li>Instrument: <%= school.instruments %></li>
+    <li><%= link_to 'Edit', edit_school_path(school) %></li>
+  </ul>
+<% end %>
+<li><%= link_to "Add School", new_school_path %></li>
+
+
+<h3>Projects</h3>
+<% current_user.projects.each do |project| %>
+  <ul>
+    <li>Project Type: <%= project_type_name(project.project_type) %></li>
+    <li>Title: <%= project.title %></li>
+    <li>Role: <%= project.role %></li>
+    <li>Director Studio: <%= project.director_studio %></li>
+    <li><%= link_to "Edit", edit_project_path(project) %></li>
+  </ul>
+<% end %>
+<li><%= link_to "Add Project", new_project_path %></li>
+
