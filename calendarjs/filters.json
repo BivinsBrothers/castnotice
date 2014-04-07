@@ -1,24 +1,13 @@
 {
     "filters": {
-        "union": {
-            "label": "Union",
-            "values":
-                    [
-                        "AAE",
-                        "ACTRA",
-                        "AEA",
-                        "AEA 99-SeatPlan",
-                        "AFTRA",
-                        "AGMA",
-                        "AGVA",
-                        "BAE",
-                        "CAEA",
-                        "SAG",
-                        "SAG-AFTRA",
-                        "ABCP",
-                        "AUDA",
-                        "Non-Union"
-                    ]
+        "region": {
+            "label": "Region",
+            "values": [
+                "Central",
+                "Eastern",
+                "Western",
+                "Canada"
+            ]
         },
         "project": {
             "label": "Type of Project",
@@ -42,7 +31,7 @@
                         "Music Video",
                         "Non-Union Episodic",
                         "Non Union Feature Film",
-                        "Non Unnion Musical Theatre",
+                        "Non Union Musical Theatre",
                         "Non Union Pilot",
                         "Non Union Short Film",
                         "Non Union Theatre",
@@ -67,14 +56,25 @@
                         "Webseries"
                     ]
         },
-        "region": {
-            "label": "Region",
-            "values": [
-                "Central",
-                "Eastern",
-                "Western",
-                "Canada"
-            ]
+        "union": {
+            "label": "Union",
+            "values":
+                    [
+                        "AAE",
+                        "ACTRA",
+                        "AEA",
+                        "AEA 99-SeatPlan",
+                        "AFTRA",
+                        "AGMA",
+                        "AGVA",
+                        "BAE",
+                        "CAEA",
+                        "SAG",
+                        "SAG-AFTRA",
+                        "ABCP",
+                        "AUDA",
+                        "Non-Union"
+                    ]
         }
     }
 }
