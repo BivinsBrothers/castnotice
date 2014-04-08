@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :schools
   has_many :headshots
+  has_many :videos
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
