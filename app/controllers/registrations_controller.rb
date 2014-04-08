@@ -1,4 +1,19 @@
 class RegistrationsController < Devise::RegistrationsController
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+
+    if @user.update_attributes(user_params)
+      redirect_to dashboard_path
+    else
+      render :edit
+    end
+  end
+
   def create
     user = User.new(user_params)
 

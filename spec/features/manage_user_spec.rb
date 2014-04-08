@@ -58,13 +58,20 @@ describe "managing user" do
     expect(find_field("user_birthday_3i").value).to eq("1")
 
     fill_in "Street", with: "3333 Lady Dr."
-    fill_in "City", with: "Grand Rapids"
+    fill_in "City",with: "Grand Rapids"
     select  "Michigan", from: "user[location_state]"
     fill_in "Zip Code", with: "49505"
 
     click_button "Save"
 
-    expect(page).to have_content("Edit")
+    expect(current_path).to eq(dashboard_path)
+
+    click_link "Account Information"
+
+    expect(find_field("Street").value).to eq("3333 Lady Dr.")
+    expect(find_field("City").value).to eq("Grand Rapids")
+    expect(find_field("Zip Code").value).to eq("49505")
+
   end
 
   it "displays validation errors for required attributes on a user" do
@@ -74,7 +81,6 @@ describe "managing user" do
     visit dashboard_path
 
     click_link "Account Information"
-
     fill_in "Name", with: ""
     fill_in "Email", with: ""
 
