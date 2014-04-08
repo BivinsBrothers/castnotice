@@ -19,7 +19,11 @@
 <body>
   <%= render "layouts/header" %>
 
-  <%= yield :background %>
+  <% if content_for?(:background) %>
+    <%= yield :background %>
+  <% else %>
+    <div class="bg-full" id="bg-about"></div>
+  <% end %>
 
   <div class="main-content">
   	<%= yield %>
