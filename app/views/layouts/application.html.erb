@@ -22,10 +22,12 @@
     <div class="bg-full" id="bg-about"></div>
   <% end %>
 
+  <%= yield :background %>
+<div class="container">	
   <div class="main-content">
   	<%= yield %>
   </div>
-
+</div>
   <%= render "layouts/footer" %>
   <script src="http://code.jquery.com/jquery-latest.js"></script> 
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>

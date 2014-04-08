@@ -25,3 +25,6 @@
 # Ignore app and db configuration
 /config/database.yml
 /config/application.yml
+
+/public/uploads
+.DS_Store

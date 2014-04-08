@@ -10,13 +10,13 @@
                         display:block;
                     }
                     }
-/* CSS Document #002F65 (blue) #660000 (maroon)*/
+/* CSS Document #FF2626 (red) #FFBF00 (yellow)*/
 html, body{
 	height:100%;
 	width:100%;
 	font-size:14px;
 	color:#FFF;
-	background-color:#777;
+	background-color:#111;
 	font-family: 'Open Sans', sans-serif;
 
 }
@@ -35,16 +35,14 @@ h1{
 
 }
 h2{
-
-}
-h2 .copyright{
-	font-size:15px;
+	font-size: 25px;
+	color: #FF2626;
+	font-weight:300;
 }
 h3{
-
-}
-h3 .copyright{
-	font-size:12px;
+	font-size: 25px;
+	color: #FFBF00;
+	font-weight:300;
 }
 h4{
 }
@@ -56,28 +54,52 @@ h4{
   background-color: #002F65;
   border: 1px solid transparent;
   text-transform:uppercase;
+	top: 2px;
 }
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: #660000;
+input, select, textarea, input[type="checkbox"]{
+	margin: 0 0 15px 0;
+	display: block;
+}
+input, select, textarea {
+	color: #444;
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	border: none;
+	border-radius: 15px;
+	padding: 5px 10px;
+	
+}
+.btn{
+	font-family: 'Open Sans', sans-serif;
+	color:#fff;
+	background-color: #FF2626;
+	border: none;
+	border-radius: 20px;
+	padding: 5px 15px;
+	margin: 15px 0 15px 0;
+	display: block;
+}
+.btn:hover, .btn:focus {
+  background-color: #FFBF00;
   background-position: 0 -15px;
-  border:1px solid #000;
+  border: none;
 }
 .btn, a{
 	-webkit-transition:0.8s all;
 	transition:0.8s all;
 }
 a{
-	color:#002F65;
+	color:#FF2626;
 }
 a:hover{
 	text-decoration:none;
-	color:#660000;
+	color:#FFBF00;
 
 }
 a.active{
-	color:#660000;
+	color:#FFBF00;
 }
+
 /* Header styles */
 
 header{
@@ -192,6 +214,10 @@ border-right:none;
 	background-size:cover;
 	height:100%;
 	width:100%;
+	position: fixed;
+top: 0;
+left: 0;
+
 }
 #bg-how-it-works{
 	background-image:url(<%= asset_path "bg-how-it-works.jpg" %>);
@@ -205,7 +231,7 @@ border-right:none;
 	background-image:url(<%= asset_path "bg-contact.jpg" %>);
 	background-position:top right;
 }
-#bg-about{
+#bg-about, #bg-general{
 	background-image:url(<%= asset_path "bg-about.jpg" %>);
 	background-position:top right;
 }
@@ -230,10 +256,11 @@ border-right:none;
 
 /*Main Content*/
 .main-content {
-	position: fixed;
-	top: 200px;
-	left: 100px;
-	width: 100%;
+	position: absolute;
+	top:200px;
+	left:100px;
+	width:35%;
+	padding-bottom: 150px;
 }
 
 .main-content-right{
@@ -241,6 +268,7 @@ border-right:none;
 	top:200px;
 	right:100px;
 	width:35%;
+	padding-bottom: 150px;
 }
 
 .subcontent-left  {

@@ -1,9 +1,10 @@
-<h2>My Head Shots</h2>
+<h1>My Head Shots</h1>
 
-<ul>
+<ul class="headshots">
   <% @headshots.each do |headshot| %>
     <li>
       <%= image_tag(headshot.image_url(:thumb)) %>
+	  <br>
       <%= link_to "Delete", headshot_path(headshot), method: :delete %>
 
       <% if headshot.is_background %>
