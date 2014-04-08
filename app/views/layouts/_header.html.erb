@@ -39,7 +39,7 @@
       <% end %>
       <div class="login">
         <% if current_user %>
-          <%= link_to "Account Information", edit_user_registration_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+          <%= link_to "Account Information", edit_accounts_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to "register", page_path("pricing") %> / <%= link_to "log in", new_user_session_path %>
         <% end %>

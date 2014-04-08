@@ -1,23 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  def edit
-    @user = current_user
-  end
-
-  def update
-    @user = current_user
-
-    if @user.update_attributes(user_params)
-      redirect_to dashboard_path
-    else
-      render :edit
-    end
-  end
-
   def create
-    user = User.new(user_params)
+    user = User.new(registration_params)
 
-    if user.save(user_params)
+    if user.save(registration_params)
       sign_in(user)
       redirect_to :dashboard
     else
@@ -28,9 +14,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def user_params
+  def registration_params
     params.require(:user)
-          .permit(:name, :email, :password, :password_confirmation, :location_address,
-                  :location_city, :location_state, :location_zip, :birthday, :tos)
+          .permit( :name, :email, :password, :password_confirmation, :location_address, :location_city, :location_state, :location_zip, :birthday, :tos)
   end
 end

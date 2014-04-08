@@ -1,10 +1,10 @@
 <h2>Edit Account Information</h2>
 
-<%= form_for @user, :url => user_registration_path, :method => :put do |f| %>
+<%= form_for @user, :url => accounts_path, :method => :put do |f| %>
   <ul>
-  <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
   </ul>
 
   <ul>
@@ -43,6 +43,6 @@
       <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %>
     </li>
 
-  <%= f.submit "Save" %>
+    <%= f.submit "Save" %>
   </ul>
 <% end %>
