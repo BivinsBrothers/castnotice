@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "user sign up" do
+describe "managing user" do
   it "allows a user to register" do
     visit new_user_registration_path
 
@@ -41,5 +41,52 @@ describe "user sign up" do
     expect(user.location_zip).to eq("49506")
 
     expect(user.birthday).to eq(Date.new(1987, 9, 17))
+  end
+
+  it "allows user to edit Account Information" do
+    user = create(:user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "Account Information"
+
+    expect(find_field("Name").value).to eq("Test Dummy")
+    expect(find_field("Email").value).to eq("test@fake.com")
+    expect(find_field("user_birthday_1i").value).to eq("1969")
+    expect(find_field("user_birthday_2i").value).to eq("1")
+    expect(find_field("user_birthday_3i").value).to eq("1")
+
+    fill_in "Street", with: "3333 Lady Dr."
+    fill_in "City",with: "Grand Rapids"
+    select  "Michigan", from: "user[location_state]"
+    fill_in "Zip Code", with: "49505"
+
+    click_button "Save"
+
+    expect(current_path).to eq(dashboard_path)
+
+    click_link "Account Information"
+
+    expect(find_field("Street").value).to eq("3333 Lady Dr.")
+    expect(find_field("City").value).to eq("Grand Rapids")
+    expect(find_field("Zip Code").value).to eq("49505")
+
+  end
+
+  it "displays validation errors for required attributes on a user" do
+    user = create(:user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "Account Information"
+    fill_in "Name", with: ""
+    fill_in "Email", with: ""
+
+    click_button "Save"
+
+    expect(page).to have_content("Email can't be blank")
+    expect(page).to have_content("Name can't be blank")
   end
 end

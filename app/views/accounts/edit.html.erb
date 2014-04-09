@@ -1,0 +1,48 @@
+<h2>Edit Account Information</h2>
+
+<%= form_for @user, :url => accounts_path, :method => :put do |f| %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+
+  <ul>
+    <li>
+      <%= f.label :name %>
+      <%= f.text_field :name, :autofocus => true %>
+    </li>
+
+    <li>
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+    </li>
+
+    <li>
+      <%= f.label :location_address, "Street" %>
+      <%= f.text_field :location_address %>
+    </li>
+
+    <li>
+      <%= f.label :location_city, "City" %>
+      <%= f.text_field :location_city %>
+    </li>
+
+    <li>
+      <%= f.label :location_state, "State" %>
+      <%= f.select :location_state, us_states_select %>
+    </li>
+
+    <li>
+      <%= f.label :location_zip, "Zip Code" %>
+      <%= f.text_field :location_zip %>
+    </li>
+
+    <li>
+      <%= f.label :birthday %>
+      <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %>
+    </li>
+
+    <%= f.submit "Save" %>
+  </ul>
+<% end %>
