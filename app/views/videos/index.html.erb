@@ -13,7 +13,7 @@
   <ul>
     <% @videos.each do |video| %>
       <li>
-        <%= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
+        <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
         <% if video.youtube_id.present? %>
           <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
         <% elsif video.vimeo_id.present? %>
