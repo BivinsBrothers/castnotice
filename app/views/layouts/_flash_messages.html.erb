@@ -1,0 +1,7 @@
+<% [:success, :notice, :warning, :failure].each do |m| %>
+  <% if flash[m] %>
+    <div class="flash <%= m %>">
+      <%= flash[m] %>
+    </div>
+  <% end %>
+<% end %>

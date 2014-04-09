@@ -22,15 +22,23 @@
 <% end %>
 
 <h3>Your Videos</h3>
-<!--remove next two lines when video is implemented-->
-<p id="edit-videos">Edit</p>
-<div class="add-videos">Add Videos</div>
+<%= link_to 'Edit', videos_path, id: "edit-videos" %>
 
-<!--add next two lines when video is implemented-->
-
-<%#= link_to 'Edit', videos_path, id: "edit-videos" %>
-<!--<div class="add-videos"><%#= link_to "Add Videos", videos_path %></div>-->
-
+<% if current_user.videos.present? %>
+    <% current_user.videos.each do |video| %>
+      <div class="video">
+        <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
+        <% if video.youtube_id.present? %>
+          <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
+        <% elsif video.vimeo_id.present? %>
+          <iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
+        <% end %>
+        <%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
+      </div>
+    <% end %>
+<% else %>
+  <div class="add-videos"><%= link_to "Add Videos", videos_path %></div>
+<% end %>
 
 <h3>Experience</h3>
 <% current_user.projects %>

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   MAXIMUM_HEADSHOTS = 10
+  MAXIMUM_VIDEOS = 10
 
   has_one :background_image, -> { where is_background: true }, class_name: Headshot
 
@@ -7,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :schools
   has_many :headshots
+  has_many :videos
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -16,5 +18,9 @@ class User < ActiveRecord::Base
 
   def at_maximum_headshots?
     headshots.count >= MAXIMUM_HEADSHOTS
+  end
+
+  def at_maximum_videos?
+    videos.count >= MAXIMUM_VIDEOS
   end
 end
