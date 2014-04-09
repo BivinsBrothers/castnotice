@@ -12,7 +12,7 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    @video = Video.find_by_id(params[:id])
+    @video = current_user.videos.find_by_id(params[:id])
 
     if @video && @video.delete
       flash[:success] = "Your video was deleted"
