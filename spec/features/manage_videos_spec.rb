@@ -25,21 +25,13 @@ describe "managing videos" do
     expect(page).to have_content("Delete")
   end
 
-  it "a user can play uploaded videos" do
-
-  end
-
   it "a user can delete a video" do
     create(:video, user: user)
     click_link "edit-videos"
 
-    video = user.videos.first
+    click_link "Delete"
 
-    expect {
-      video.delete
-    }.to change {
-      user.videos.count
-    }.from(1).to(0)
+    expect(user.videos.count).to eq(0)
   end
 
   it "a user can have a maximum of 10 videos" do

@@ -11,6 +11,18 @@ class VideosController < ApplicationController
     redirect_to videos_path
   end
 
+  def destroy
+    @video = Video.find_by_id(params[:id])
+
+    if @video && @video.delete
+      flash[:success] = "Your video was deleted"
+      redirect_to videos_path
+    else
+      flash[:failure] = "Video was not removed, please try again."
+      redirect_to videos_path
+    end
+  end
+
 
   private
 
