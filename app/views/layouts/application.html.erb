@@ -8,9 +8,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -22,17 +22,15 @@
     <div class="bg-full" id="bg-about"></div>
   <% end %>
 
-  <%= yield :background %>
   <div class="container">
     <%= render 'layouts/flash_messages' %>
-
     <div class="main-content">
-
       <%= yield %>
     </div>
   </div>
+
   <%= render "layouts/footer" %>
-  <script src="http://code.jquery.com/jquery-latest.js"></script> 
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
 </body>
 </html>
