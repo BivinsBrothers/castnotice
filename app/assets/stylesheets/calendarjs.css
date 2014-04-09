@@ -1,33 +1,79 @@
+.calendar-events{
+	width:73%;
+	float:left;	
+}
+.calendar-controls{
+	width:25%;
+	float:right;
+}
 .castnotice-calendar{}
 
-.castnotice-calendar h1{}
 
-.calendar-events{}
+.calendar-events .calendar-event{
+	background-image: url(../img/nav-bg.png);
+	background-repeat: repeat;
+	padding: 20px 0;
+	border-top: 1px solid #FF2626;
+	border-bottom: 1px solid #FF2626;
+	margin: 0;
+	}
 
-.calendar-events .calendar-event{}
+.calendar-events .calendar-date{
 
-.calendar-events .calendar-date{}
+	}
 
-.calendar-events .calendar-date .calendar-month{}
+.calendar-events .calendar-date .calendar-month{
+	color:#FF2626;
+	text-align:center;
+	font-size:20px;
+	}
 
-.calendar-events .calendar-date .calendar-day{}
+.calendar-events .calendar-date .calendar-day{
+	font-size:50px;
+	text-align:center;
+	}
 
-.calendar-events .calendar-name{}
-
-.calendar-events calendar-paid-false:after {
-    content: url(calendar-paid-false.jpg);
+.calendar-events .calendar-name{
+	color: #FFBF00;
+	font-size: 30px;
+	line-height: 35px;
+}
+.calendar-events .calendar-paid{
+	position: absolute;
+	right: 20px;
+	top: 0;
+	font-size: 20px;
+	line-height: 20px;
 }
 
-.calendar-events calendar-paid-true:after {
-    content: url(calendar-paid-true.jpg);
+.calendar-events .calendar-paid-false:after {
+    content: url(../img/calendar-paid-false.png);
+	padding-left: 5px;
 }
 
-.calendar-events .calendar-overview{}
+.calendar-events .calendar-paid-true:after {
+    content: url(../img/calendar-paid-true.png);
+	padding-left: 5px;
+}
 
-.calendar-events .calendar-overview .calendar-attribute{}
+.calendar-events .calendar-overview{
+	padding: 10px 0;
+	}
 
-.calendar-events .calendar-overview .calendar-attribute span{}
+.calendar-events .calendar-overview .calendar-attribute{
+	padding-bottom: 5px;
+	width: 49%;
+	float: left;
+	}
 
+.calendar-events .calendar-detail .calendar-description span, .calendar-events .calendar-overview .calendar-attribute span{
+	color: #999;
+	padding-right: 5px;
+
+	}
+.calendar-description {
+margin-bottom: 10px;
+}
 .calendar-events .calendar-detail {
     display: none;
 }
@@ -42,33 +88,103 @@
 
 .calendar-events .calendar-shrink:before {
     content: "+";
+padding: 0px 7px 2px 7px;
+width: 25px;
+height: 15px;
+border-radius: 20px;
+margin-right: 5px;
+background-color: #FF2626;
+cursor:pointer;
 }
 
 .calendar-events .calendar-expand:before {
     content: "-";
+padding: 0px 7px 2px 7px;
+width: 25px;
+height: 15px;
+border-radius: 20px;
+margin-right: 5px;
+background-color: #FF2626;
+cursor:pointer;
 }
 
-.calendar-controls{}
-
-.calendar-controls #date-picker{}
-
+.calendar-controls h2{
+	margin-top:0;
+	color:#fff;
+	font-size:20px;
+	}
+.calendar-controls h3{
+	margin: 5px 0 10px 0;
+	color:#FF2626;
+	font-size:15px;
+	font-weight:normal;
+	}
 .calendar-matched-event-date{
     color: #ff6666;
 }
 
-.calendar-controls #date-filters{}
+.calendar-controls #calendar-datepicker{
+	background-image:url(../img/nav-bg.png);
+	background-repeat:repeat;
+	padding: 20px;
+	margin-bottom:20px;
+	}
 
-.calendar-controls #date-filters h1{}
+.calendar-controls table.ui-datepicker-calendar{
+	width:100%;
+}
+.calendar-controls .ui-datepicker-header{
+	margin-bottom:10px;	
+}
+.calendar-controls .ui-datepicker-next{
+	float:right;
+	cursor:pointer;
+}
+.calendar-controls .ui-datepicker-prev{
+	float:left;
+	cursor:pointer;
+}
+.calendar-controls .ui-datepicker-title{
+	text-align:center;	
+}
+.calendar-controls .calendar-filters{
+	background-image:url(../img/nav-bg.png);
+	background-repeat:repeat;
+	padding: 20px;
+	margin-bottom:100px;
+	}
 
-.calendar-controls .calendar-filters{}
+.calendar-controls .calendar-filters .calendar-option{
+	float: left;
+	margin-bottom:20px;
+	width: 100%;
+	}
 
-.calendar-controls .calendar-filters .calendar-option{}
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox{
+	width: 50%;
+	float:left;
+	
+}
 
-.calendar-controls .calendar-filters .calendar-option .calendar-checkbox{}
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox input{
+	width: 14px;
+	height: 14px;
+	padding: 0;
+	margin: 0;
+	vertical-align: bottom;
+	position: relative;
+	top: -1px;
+	display: inline;
+	}
 
-.calendar-controls .calendar-filters .calendar-option .calendar-checkbox input{}
-
-.calendar-controls .calendar-filters .calendar-option .calendar-checkbox label{}
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox label{
+	font-weight: normal;
+	font-size: 12px;
+	padding-left: 0px;
+	padding-right:3px;
+	margin: 0;
+	display: inline;
+}
 
 
 

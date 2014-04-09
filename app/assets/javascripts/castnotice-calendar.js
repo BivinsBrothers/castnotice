@@ -20,7 +20,7 @@ function calendarBuild() {
         success: function(data) {
             $.each(data.filters, function(key, val) {
                 $('.calendar-filters').append(
-                        '<div class="calendar-option" id="filter-' + key + '" data-filter="' + key + '">' + val.label + '</div>'
+                        '<div class="calendar-option" id="filter-' + key + '" data-filter="' + key + '"><h3>' + val.label + '</h3></div>'
                         );
                 $.each(val.values, function(i, option) {
                     $("#filter-" + key).append('<div class="calendar-checkbox"><input type="checkbox" id="filter-' + key + '-' + i + '" name="' + key + '" value="' + option + '"> <label for="filter-' + key + '-' + i + '">' + option + "</label></div>");
@@ -63,14 +63,15 @@ function calendarUpdate() {
                 eventDates.push(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
                 eventCount++;
                 $('.calendar-events').append(
-                        '<div class="calendar-event" id="calendar-event-' + key + '" data-date="' + date.getMonth() + '-' + date.getDate() + '">' +
-                        '<div class="calendar-date">' +
+                        '<div class="calendar-event row" id="calendar-event-' + key + '" data-date="' + date.getMonth() + '-' + date.getDate() + '">' +
+                        '<div class="calendar-date col-sm-2">' +
                         '<div class="calendar-month">' + monthNames[date.getMonth()] + '</div>' +
                         '<div class="calendar-day">' + date.getDate() + '</div>' +
                         '</div>' +
-                        '<div class="calendar-name">' + val.name + '</h1>' +
+                        '<div class="col-sm-10">' +
+                        '<div class="calendar-name">' + val.name + '</div></h1>' +
                         '<div class="calendar-paid calendar-paid-' + val.paid + '">Paid?</div>' +
-                        '<div id="calendar-overview-' + key + '" class="calendar-overview">' +
+                        '<div id="calendar-overview-' + key + '" class="calendar-overview clearfix">' +
                         '<div class="calendar-attribute"><span>Region:</span> ' + val.region + '</div>' +
                         '<div class="calendar-attribute"><span>Project Type:</span> ' + val.project + '</div>' +
                         '<div class="calendar-attribute"><span>Performer Type:</span> ' + val.performer + '</div>' +
