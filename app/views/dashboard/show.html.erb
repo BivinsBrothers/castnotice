@@ -22,14 +22,9 @@
 <% end %>
 
 <h3>Your Videos</h3>
-<!--remove next two lines when video is implemented-->
-<p id="edit-videos">Edit</p>
-<div class="add-videos">Add Videos</div>
 
-<!--add next two lines when video is implemented-->
-
-<%#= link_to 'Edit', videos_path, id: "edit-videos" %>
-<!--<div class="add-videos"><%#= link_to "Add Videos", videos_path %></div>-->
+<%= link_to 'Edit', videos_path, id: "edit-videos" %>
+<div class="add-videos"><%= link_to "Add Videos", videos_path %></div>
 
 
 <h3>Experience</h3>

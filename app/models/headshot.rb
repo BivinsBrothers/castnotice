@@ -1,5 +1,6 @@
 class Headshot < ActiveRecord::Base
   validates :is_background, uniqueness: { scope: :user }, if: :is_background
+  validates_presence_of :image
 
   mount_uploader :image, HeadshotUploader
 
