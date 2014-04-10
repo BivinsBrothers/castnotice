@@ -1,5 +1,7 @@
-<% content_for :background do %>
-  <%= image_tag(background_image(current_user).image_url(:background), class: "bg-headshot") if background_image(current_user) %>
+<% if background_image(current_user) %>
+  <% content_for :background do %>
+    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= background_image(current_user).image_url(:background) %>)"></div>
+  <% end %>
 <% end %>
 
 <h1><%= current_user.name %></h1>
