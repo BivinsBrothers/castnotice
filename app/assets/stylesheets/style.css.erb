@@ -1,5 +1,4 @@
 
-
 @charset "iso-8859-1";
  #video-disc{
                         display:none;
@@ -15,7 +14,6 @@ html, body{
 	width:100%;
 	font-size:14px;
 	color:#FFF;
-	background-color:#111;
 	font-family: 'Open Sans', sans-serif;
 
 }
@@ -241,7 +239,8 @@ border-right:none;
 	background-size:cover;
 	height:100%;
 	width:100%;
-	position: fixed;
+	position: absolute;
+	z-index:-1;
 top: 0;
 left: 0;
 
@@ -287,11 +286,8 @@ left: 0;
 
 /*Main Content*/
 .main-content {
-	position: absolute;
-	top:200px;
-	left:100px;
-	width:35%;
-	padding-bottom: 150px;
+	width:100%;
+	padding: 200px 0 100px 0;
 }
 
 .main-content-left{
