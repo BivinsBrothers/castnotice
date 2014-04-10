@@ -92,7 +92,7 @@ input, select, textarea {
 	border: none;
 	border-radius: 15px;
 	padding: 5px 10px;
-	
+
 }
 .btn{
 	font-family: 'Open Sans', sans-serif;
@@ -239,11 +239,10 @@ border-right:none;
 	background-size:cover;
 	height:100%;
 	width:100%;
-	position: absolute;
+	position: fixed;
 	z-index:-1;
-top: 0;
-left: 0;
-
+  top: 0;
+  left: 0;
 }
 #bg-home{
 	background-image:url(<%= asset_path "bg-home.jpg" %>);
@@ -291,11 +290,11 @@ left: 0;
 }
 
 .main-content-left{
-	width:35%;
+	width:50%;
 	float:left;
 }
 .main-content-right{
-	width:35%;
+	width:50%;
 	float:right;
 }
 .subcontent-left  {
