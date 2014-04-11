@@ -4,16 +4,16 @@
   <% end %>
 <% end %>
 
-<h1><%= current_user.name %></h1>
-
-<% if current_user.resume %>
-  <%= link_to "Edit Personal Information", edit_resume_path %>
+<h1 class="dash-title"><%= current_user.name %> <span><% if current_user.resume %>
+  <%= link_to "Edit Personal Information", edit_resume_path, class: "btn" %>
 <% else %>
-  <%= link_to "Edit Personal Information", new_resume_path %>
-<% end %>
+  <%= link_to "Edit Personal Information", new_resume_path, class: "btn" %>
+<% end %></span></h1>
 
-<h3>Your Head Shots</h3>
-<%= link_to 'Edit', headshots_path, id: "edit-headshots" %>
+
+
+<h3>Your Head Shots <span><%= link_to 'Edit', headshots_path, id: "edit-headshots", class: "btn btn-small" %></span></h3>
+
 
 <% if current_user.headshots.present? %>
   <% current_user.headshots.each do |headshot| %>
@@ -23,8 +23,9 @@
   <div class="add-headshots"><%= link_to "Add Headshots", headshots_path %></div>
 <% end %>
 
-<h3>Your Videos</h3>
-<%= link_to 'Edit', videos_path, id: "edit-videos" %>
+
+<h3>Your Videos <span><%= link_to 'Edit', videos_path, id: "edit-videos", class: "btn btn-small" %></span></h3>
+
 
 <% if current_user.videos.present? %>
     <% current_user.videos.each do |video| %>
