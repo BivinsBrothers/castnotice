@@ -1,5 +1,5 @@
-var api_filters = "filters.json";
-var api_events = "events-member.json";
+var api_filters = "/calendar-json/filters.json";
+var api_events = "/calendar-json/events-member.json";
 var urlSignIn = '';
 var urlRegister = '';
 var monthNames = ["January", "February", "March", "April", "May", "June",
