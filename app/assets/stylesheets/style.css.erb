@@ -31,6 +31,9 @@ h1{
 	padding:0;
 
 }
+h1.pricing{
+	margin:0 0 10px 0;
+}
 h2{
 	font-size: 22px;
 	color: #FF2626;
@@ -40,78 +43,137 @@ h3{
 	font-size: 22px;
 	color: #FFBF00;
 	font-weight:300;
+	margin-bottom: 20px;
 }
 h4{
+	color:#fff;
+	font-weight:bold;
+	font-size:16px;
+	line-height: 16px;
+	margin: 0 0 12px 0;
 }
 .glyphicon {
   top: 2px;
+  color:#FF2626;
 }
 ol.how-it-works{
 	counter-reset: li;
-list-style: none;
+	list-style: none;
+	padding-left:30px;
 }
 ol li {
-position: relative;
-display: block;
-padding: 0px 0 3px 20px;
-margin: 0 0 20px 0;
-font-size: 14px;
+	position: relative;
+	display: block;
+	padding: 0px 0 3px 20px;
+	margin: 0 0 20px 0;
+	font-size: 14px;
 }
 ol.how-it-works li:before {
-content: counter(li);
-counter-increment: li;
-position: absolute;
-left: -25px;
-top: 0;
-margin-top: 0;
-background: #FF2626;
-height: 30px;
-width: 30px;
-line-height: 25px;
-text-align: center;
-padding: 2px 2px 1px 0px;
-border-radius: 2em;
-font-size: 20px;
-color: #FFF;
+	content: counter(li);
+	counter-increment: li;
+	position: absolute;
+	left: -25px;
+	top: 0;
+	margin-top: 0;
+	background: #FF2626;
+	height: 30px;
+	width: 30px;
+	line-height: 25px;
+	text-align: center;
+	padding: 2px 2px 1px 0px;
+	border-radius: 2em;
+	font-size: 20px;
+	color: #FFF;
 }
-
-.btn-primary, .btn {
-  background-color: #002F65;
-  border: 1px solid transparent;
-  text-transform:uppercase;
-	top: 2px;
+/*Form Styles*/
+.btn, a{
+	-webkit-transition:0.8s all;
+	transition:0.8s all;
 }
 input, select, textarea, input[type="checkbox"]{
 	margin: 0 0 15px 0;
-	display: block;
-}
-input, select, textarea {
 	color: #444;
+	background-color:#EEE;
 	font-family: 'Open Sans', sans-serif;
-	margin: 0;
 	border: none;
 	border-radius: 15px;
-	padding: 5px 10px;
+	padding: 4px 10px;
+	display: block;
 
 }
-.btn{
+
+input:focus, textarea:focus, isindex:focus, keygen:focus, select:focus {
+	outline:none;
+	background-color:#FFF;
+}
+input[type="checkbox"]{
+		margin: 0 0 15px 0;
+	color: #444;
+	background-color:#EEE;
 	font-family: 'Open Sans', sans-serif;
+	border: none;
+	border-radius: 15px;
+	padding: 4px 10px;
+	display: inline;
+
+}
+input[type="file"]{
+	background-color: transparent;
+	display: inline;
+	color:#fff;
+	padding: 0;
+}
+.btn-primary, .btn, input[type="submit"] {
+  	font-family: 'Open Sans', sans-serif;
 	color:#fff;
 	background-color: #FF2626;
 	border: none;
 	border-radius: 20px;
-	padding: 5px 15px;
+	padding: 10px 30px;
 	margin: 15px 0 15px 0;
-	display: block;
+	display: inline-block;
 }
-.btn:hover, .btn:focus {
-  background-color: #FFBF00;
-  background-position: 0 -15px;
-  border: none;
+.btn-small{
+	font-size: 12px;
+	padding: 0px 10px 1px 10px;
+	margin: 0 0 0 10px;
 }
-.btn, a{
-	-webkit-transition:0.8s all;
-	transition:0.8s all;
+.btn-add-new{
+	font-size: 14px;
+	color: #FF2626;
+}
+.btn-edit{
+	font-size: 14px;
+	color: #FF2626;
+}
+.btn:hover, .btn:focus, input[type="submit"]:hover, .btn-primary:hover {
+	outline: none;
+	background-color: #FFBF00;
+	background-position: 0 -15px;
+	border: none;
+}
+
+label {
+	display: inline;
+	margin-bottom: 2px;
+	font-weight: normal;
+	float: left;
+	width: 200px;
+}
+#user_birthday_1i, #user_birthday_2i, #user_birthday_3i{
+	display:inline;
+}
+
+/*Error Styles*/
+#error_explanation ul{
+	list-style:none;
+	margin: 10px 0 20px 0;
+	padding:0;
+}
+#error_explanation li{
+	background-color: #FF2626;
+	padding: 5px 10px;
+	border-radius: 15px;
 }
 a{
 	color:#FF2626;
@@ -263,20 +325,7 @@ border-right:none;
 #bg-headshot {
   opacity: 0.6;
 }
-.add-headshots {
-  width: 100px;
-  height: 100px;
-  border-style: solid;
-  border-width: 3px;
-  text-align: center;
-}
-.add-videos {
-  width: 100px;
-  height: 100px;
-  border-style: solid;
-  border-width: 3px;
-  text-align: center;
-}
+
 
 /*Main Content*/
 .main-content {
@@ -287,15 +336,43 @@ border-right:none;
 .main-content-left{
 	width:50%;
 	float:left;
+	padding-bottom: 100px;
 }
 .main-content-right{
 	width:50%;
 	float:right;
+	padding-bottom: 100px;
+}
+.repeatable-row{
+	padding-bottom:20px;
 }
 .subcontent-left  {
   width: 45%;
 }
+/*Dashboard Styles*/
+.dash-title a{
+	font-size:14px;
+	line-height: 20px;
+	width: 220px;
+	text-align: center;
+	float:right;
+}
+.add-headshots, .add-videos {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    background-image:url(<%= asset_path "nav-bg.png" %>);
+    background-repeat:repeat;
+	padding-top: 20px;
+}
+.new_headshot label, .new_video label{
+	width:100%;
+	margin-bottom: 0px;
+}
 
+#video_video_url{
+	display:inline;
+}
 /* Footer styles */
 footer{
 	position:fixed;

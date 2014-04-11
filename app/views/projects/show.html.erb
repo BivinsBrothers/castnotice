@@ -1,8 +1,17 @@
 <% current_user.projects.each do |project| %>
-  <ul>
-    <li>Project Type: <%= project_type_name(project.project_type) %></li>
-    <li>Title: <%= project.title %></li>
-    <li>Role: <%= project.role %></li>
-    <li>Director Studio: <%= project.director_studio %></li>
+	<div class="row repeatable-row">
+		<div class="col-md-12">
+	    	<h4>Title: <%= project.title %></h4>
+		</div>
+		<div class="col-md-4">
+    		<p>Project Type: <%= project_type_name(project.project_type) %></p>
+		</div>
+		<div class="col-md-4">
+    		<p>Role: <%= project.role %></p>
+		</div>
+		<div class="col-md-4">
+    		<p>Director Studio: <%= project.director_studio %></p>
+		</div>
+	</div>
   </ul>
 <% end %>

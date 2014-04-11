@@ -5,18 +5,23 @@
 <h3><%= current_user.resume.descriptive_tag %></h3>
 
 <h3>Personal Information</h3>
-<ul>
-  <li>Birthday: <%= current_user.birthday %></li>
-  <li>Height: <%= current_user.resume.height %></li>
-  <li>Weight: <%= current_user.resume.weight %></li>
-  <li>Hair Color: <%= current_user.resume.hair_color %></li>
-  <li>Eye Color: <%= current_user.resume.eye_color %></li>
-  <li>Phone: <%= current_user.resume.phone %></li>
-  <li>Email: <%= current_user.email %></li>
-  <li>Unions: <%= current_user.resume.unions %></li>
-  <li>Agent Name: <%= current_user.resume.agent_name %></li>
-  <li>Agent Phone: <%= current_user.resume.agent_phone %></li>
-</ul>
+	<div class="row repeatable-row">
+		<div class="col-md-6">
+		  <p>Birthday: <%= current_user.birthday %></p>
+		  <p>Height: <%= current_user.resume.height %></p>
+		  <p>Weight: <%= current_user.resume.weight %></p>
+		  <p>Hair Color: <%= current_user.resume.hair_color %></p>
+		  <p>Eye Color: <%= current_user.resume.eye_color %></p>
+		  
+		</div>
+		<div class="col-md-6">
+			<p>Phone: <%= current_user.resume.phone %></p>
+		  <p>Email: <%= current_user.email %></p>
+		  <p>Unions: <%= current_user.resume.unions %></p>
+		  <p>Agent Name: <%= current_user.resume.agent_name %></p>
+		  <p>Agent Phone: <%= current_user.resume.agent_phone %></p>
+		</div>
+	</div>
 
 <% if current_user.headshots.present? %>
   <h3>Head Shots</h3>

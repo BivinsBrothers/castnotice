@@ -1,5 +1,5 @@
 <% unless current_user.at_maximum_videos? %>
-  <h2>Upload Videos</h2>
+  <h1>Upload Videos</h1>
 
   <%= form_for @video do |p| %>
     <%= p.label :video_url, "Video" %>
