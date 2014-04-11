@@ -93,7 +93,7 @@ describe "manage resume" do
 
     click_link "Edit Personal Information"
 
-    click_link "Add Project"
+    click_link "Add a project"
 
     select "Film Project", from: "Project Type"
     fill_in "Title", with: "Once Upon A Time"
@@ -142,7 +142,7 @@ describe "manage resume" do
 
     click_link "Edit Personal Information"
 
-    click_link "Add School"
+    click_link "Add a school"
     select "College", from: "Education Type"
     fill_in "School", with: "Michigan Tech"
     fill_in "Major", with: "Computer Science"
