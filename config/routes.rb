@@ -1,6 +1,8 @@
 Castnotice::Application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
 
+  resources :events, only: [:index]
+
   resource :accounts, only: [:edit, :update]
   resource :resume, only: [:new, :create, :edit, :update, :show]
 

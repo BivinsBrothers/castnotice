@@ -17,6 +17,10 @@ FactoryGirl.define do
     password "goodpassword"
     birthday "1969-1-1"
     tos "1"
+
+    trait :admin do
+      admin true
+    end
   end
 
   factory :school do
@@ -44,5 +48,26 @@ FactoryGirl.define do
     title "Wizzard of OZ"
     role "Dorothy"
     director_studio "Disney Studios"
+  end
+
+  factory :event do
+    name "Big Event"
+    project_type "Cable"
+    region "Central"
+    performer_type "That Guy"
+    character "This Guy"
+    pay "$6.00"
+    union "GVSU"
+    director "The other guy"
+    story "All the things!"
+    description "Build all the things"
+    audition "Don't cry"
+    audition_date 7.days.from_now
+    start_date 1.month.from_now
+    end_date 2.months.from_now
+
+    trait :paid do
+      paid true
+    end
   end
 end

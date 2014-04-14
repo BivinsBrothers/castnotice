@@ -11,15 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409124817) do
+ActiveRecord::Schema.define(version: 20140410201656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "educations", force: true do |t|
-    t.string   "school"
-    t.string   "major"
-    t.string   "degree"
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.string   "project_type"
+    t.string   "region"
+    t.string   "performer_type"
+    t.string   "character"
+    t.string   "pay"
+    t.string   "union"
+    t.string   "director"
+    t.text     "story"
+    t.text     "description"
+    t.text     "audition"
+    t.datetime "audition_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.boolean  "paid",           default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,12 +84,12 @@ ActiveRecord::Schema.define(version: 20140409124817) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -90,7 +102,7 @@ ActiveRecord::Schema.define(version: 20140409124817) do
     t.string   "location_state"
     t.string   "location_zip"
     t.date     "birthday"
-    t.integer  "background_image_id"
+    t.boolean  "admin",                  default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
