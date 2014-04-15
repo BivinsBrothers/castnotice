@@ -18,8 +18,11 @@ module Dom
   class CalendarEvent < Domino
     selector ".calendar-event"
 
-    attribute :audition_date, ".calendar-date"
     attribute :name, ".calendar-name"
+
+    def audition_date
+      "#{node.find(".calendar-month").text} #{node.find(".calendar-day").text}"
+    end
 
     def paid?
       node.has_css? ".calendar-paid-true"
@@ -79,6 +82,14 @@ module Dom
 
     def toggle_more_information
       node.find(".calendar-shrink").click
+    end
+
+    def click_edit
+      node.click_link("Edit")
+    end
+
+    def click_delete
+      node.click_link("Delete")
     end
   end
 end

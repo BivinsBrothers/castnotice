@@ -1,0 +1,44 @@
+<%= e.label :name, "Name of Project"%>
+<%= e.text_field :name %>
+
+<%= e.label :project_type, "Project Type" %>
+<%= e.text_field :project_type %>
+
+<%= e.label :region, "Region"%>
+<%= e.text_field :region %>
+
+<%= e.label :performer_type, "Type of Performer Needed" %>
+<%= e.text_field :performer_type %>
+
+<%= e.label :character, "Character in Event" %>
+<%= e.text_field :character %>
+
+<%= e.label :pay, "Wage" %>
+<%= e.text_field :pay %>
+
+<%= e.label :union, "Union" %>
+<%= e.text_field :union %>
+
+<%= e.label :director, "Director" %>
+<%= e.text_field :director %>
+
+<%= e.label :story, "Story" %>
+<%= e.text_area :story %>
+
+<%= e.label :description, "Description" %>
+<%= e.text_area :description %>
+
+<%= e.label :audition, "Audition Details" %>
+<%= e.text_area :audition %>
+
+<%= e.label :audition_date, "Date of Audition" %>
+<%= e.date_select :audition_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
+
+<%= e.label :start_date, "Start of Event" %>
+<%= e.date_select :start_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
+
+<%= e.label :end_date, "End of Event" %>
+<%= e.date_select :end_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
+
+<%= e.label :paid, "Paid?" %>
+<%= e.check_box :paid %>

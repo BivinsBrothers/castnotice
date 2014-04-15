@@ -4,8 +4,11 @@
 
 <div class="castnotice-calendar">
   <h1>Calendar</h1>
+  <%= link_to "Add Event", new_admin_event_path if current_user.try(:admin) %><br>
+
   <div class="calendar-events">
   </div>
+
   <div class="calendar-controls">
     <div id="calendar-datepicker">
       <h2>Monthly</h2>

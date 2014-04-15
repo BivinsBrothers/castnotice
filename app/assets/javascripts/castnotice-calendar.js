@@ -1,7 +1,7 @@
 var api_filters = "/calendar-json/filters.json";
 var api_events = "/events";
-var urlSignIn = '';
-var urlRegister = '';
+var urlSignIn = '/users/sign_in';
+var urlRegister = '/pricing';
 var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
 var date = new Date();
@@ -35,6 +35,15 @@ function calendarBuild() {
     });
 }
 
+function addAdminEventLinks(event_id, admin) {
+  if (admin) {
+    return '<div class="edit-event"><a href="/admin/events/' + event_id + '/edit">Edit</a></div>' +
+           '<div class="delete-event"><a href="/admin/events/' + event_id + '" data-method="delete">Delete</a></div>'
+  } else {
+    return ""
+  }
+}
+
 function calendarUpdate() {
     $.ajax({
         url: api_events,
@@ -66,7 +75,7 @@ function calendarUpdate() {
                         '<div class="calendar-event row" id="calendar-event-' + key + '" data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '">' +
                         '<div class="calendar-date col-sm-2">' +
                         '<div class="calendar-month">' + monthNames[date.getUTCMonth()] + '</div>' +
-                        '<div class="calendar-day">' + date.getUTCDate() + '</div>' +
+                        '<div class="calendar-day">' + date.getUTCDate() + '</div>' + addAdminEventLinks(val.id, data.meta.admin) +
                         '</div>' +
                         '<div class="col-sm-10">' +
                         '<div class="calendar-name">' + val.name + '</div></h1>' +

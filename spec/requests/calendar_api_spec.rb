@@ -2,6 +2,7 @@ require "spec_helper"
 
 def event_hash(event)
   {
+     id: event.id,
      name: event.name,
      project_type: event.project_type,
      region: event.region,

@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :name, :project_type, :region, :performer_type, :character, :pay, :union,
+  attributes :id, :name, :project_type, :region, :performer_type, :character, :pay, :union,
     :director, :story, :description, :audition, :audition_date, :start_date, :end_date, :paid
 
   def audition_date

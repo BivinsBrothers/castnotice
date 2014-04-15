@@ -1,6 +1,10 @@
 Castnotice::Application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
 
+  namespace :admin do
+    resources :events, except: [:show, :index]
+  end
+
   resources :events, only: [:index]
 
   resource :accounts, only: [:edit, :update]
