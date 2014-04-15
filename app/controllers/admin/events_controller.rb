@@ -19,9 +19,8 @@ class Admin::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update_attributes!(event_params)
 
-    if @event.save
+    if @event.update_attributes(event_params)
       redirect_to page_path("calendar")
     else
       render :edit
