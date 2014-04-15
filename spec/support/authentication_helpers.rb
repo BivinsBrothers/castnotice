@@ -4,6 +4,9 @@ module Authentication
       password = user.password || "goodpassword"
 
       case example.metadata[:type]
+      when :request
+        Warden.test_mode!
+        login_as(user, :scope => :user)
       when :feature
         visit new_user_session_path
         fill_in "Email", with: user.email

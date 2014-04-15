@@ -2,15 +2,12 @@ class EventsController < ApplicationController
   def index
     @events = Event.all.order("audition_date ASC").limit(20)
 
-    meta = {}
-    meta[:member] = current_user.present?
-
     if current_user.present?
-      meta[:admin] = current_user.admin
+      meta = {member: true}
+      meta[:admin] = current_user.admin?
+      render json: @events, meta: meta
     else
-      meta[:admin] = false
+      render json: @events, meta: {member: false, admin: false}, each_serializer: LimitedEventSerializer
     end
-
-    render json: @events, meta: meta
   end
 end
