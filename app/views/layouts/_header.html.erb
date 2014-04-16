@@ -32,11 +32,9 @@
             <li><%= link_to "Edit Resume", new_resume_path %></li>
           <% end %>
 
-        <li><%= link_to "Preview Resume", resume_path %></li>
+          <li><%= link_to "Preview Resume", resume_path %></li>
 
-        </ul>
-      <% else %>
-        <ul class="nav navbar-nav">
+        <% else %>
           <li><%= link_to "How it works", page_path("how_it_works") %></li>
           <li><%= link_to "Pricing", page_path("pricing") %></li>
           <li><%= link_to "About us", page_path("about") %></li>
