@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.1.1"
+ruby "2.0.0"
 
 gem "rails", "4.1"
 
@@ -22,6 +22,7 @@ gem "high_voltage"
 gem "carrierwave"
 gem "mini_magick"
 gem "pry-rails"
+gem "tzinfo-data" if RUBY_PLATFORM =~ /win32/
 
 group :production do
   gem "rails_12factor"
