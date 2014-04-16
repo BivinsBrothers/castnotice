@@ -36,6 +36,50 @@ module ApplicationHelper
     ]
   end
 
+  def hair_length_select
+    [
+      ["Short", "short"],
+      ["Medium", "medium"],
+      ["Long", "long"],
+    ]
+  end
+
+  def gender_select
+    [
+      ["Male", "male"],
+      ["Female", "female"]
+    ]
+  end
+
+  def piercing_select
+    [
+      ["Yes", "yes"],
+      ["No", "no"]
+    ]
+  end
+
+  def tatoo_select
+    [
+      ["Yes", "yes"],
+      ["No", "no"]
+    ]
+  end
+
+  def nudity_select
+    [
+      ["Full", "full"],
+      ["Partial", "partial"],
+      ["None", "none"]
+    ]
+  end
+
+  def citizen_select
+    [
+      ["US Citizen", "us citizen"],
+      ["Resident Alien", "resident alien"]
+    ]
+  end
+
   def resume_unions
     [
       "Screen Actors Guild"

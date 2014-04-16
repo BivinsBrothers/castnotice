@@ -4,27 +4,50 @@
       <li><%= msg %></li>
     <% end %>
   <% end %>
-  <%= f.label :phone %>
-  <%= f.phone_field :phone %>
-  <%= f.label :height %>
-  <%= f.select :height, height_options %>
-  <%= f.label :weight %>
-  <%= f.text_field :weight %>
-  <%= f.label :hair_color %>
-  <%= f.select :hair_color, hair_color_select %>
-  <%= f.label :eye_color %>
-  <%= f.select :eye_color, eye_color_select %>
-  <%= f.label :unions %>
-  <%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
-  <br>
-  <%= f.label :agent_name %>
-  <%= f.text_field :agent_name %>
-  <%= f.label :agent_phone %>
-  <%= f.phone_field :agent_phone %>
-  <%= f.label :additional_skills %>
-  <%= f.text_area :additional_skills %>
-  <%= f.label :descriptive_tag, "Descriptive Tags" %>
-  <%= f.text_field :descriptive_tag %>
+  <ul>
+    <%= f.label :phone %>
+    <%= f.phone_field :phone %>
+    <%= f.label :height %>
+    <%= f.select :height, height_options %>
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+    <%= f.label :hair_color %>
+    <%= f.select :hair_color, hair_color_select %>
+    <%= f.label :eye_color %>
+    <%= f.select :eye_color, eye_color_select %>
+    <%= f.label :gender %>
+    <%= f.select :gender, gender_select %>
+    <%= f.label :hair_length %>
+    <%= f.select :hair_length, hair_length_select %>
+    <%= f.label :piercing, "Do you have Piercings" %>
+    <%= f.select :piercing, piercing_select %>
+    <%= f.label :tattoo, "Do you have Tattoos?" %>
+    <%= f.select :tattoo, tatoo_select %>
+    <%= f.label :nudity, "What level of nudity are you comfortable with?" %>
+    <%= f.select :nudity, nudity_select %>
+    <%= f.label :citizenship %>
+    <%= f.select :citizen, citizen_select %>
+    <p>Do you have a current passport?</p>
+      <%= f.label :passport, "Yes", :value => "true" %>
+    <li>
+      <%= f.radio_button :passport, true %>
+    </li>
+      <%= f.label :passport, "No", :value => "false" %>
+    <li>
+      <%= f.radio_button :passport, false %>
+    </li>
+    <%= f.label :unions %>
+    <%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
+    <br>
+    <%= f.label :agent_name %>
+    <%= f.text_field :agent_name %>
+    <%= f.label :agent_phone %>
+    <%= f.phone_field :agent_phone %>
+    <%= f.label :additional_skills %>
+    <%= f.text_area :additional_skills %>
+    <%= f.label :descriptive_tag, "Descriptive Tags" %>
+    <%= f.text_field :descriptive_tag %>
+  </ul>
 
   <%= f.submit "Save" %>
 
