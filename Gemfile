@@ -38,6 +38,11 @@ group :development, :test do
   gem "domino"
 end
 
+group :development do
+  gem "spring"
+  gem "spring-commands-rspec"
+end
+
 group :test do
   gem "codeclimate-test-reporter", require: nil
 end
