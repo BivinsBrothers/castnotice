@@ -1,0 +1,5 @@
+<%= form_for @event, url: admin_events_path do |e| %>
+  <%= render "form_fields", e: e %>
+
+  <%= e.submit "Create Event" %>
+<% end %>

@@ -1,13 +1,13 @@
-var api_filters = "filters.json";
-var api_events = "events-member.json";
-var urlSignIn = '';
-var urlRegister = '';
+var api_filters = "/calendar-json/filters.json";
+var api_events = "<%= Rails.application.routes.url_helpers.events_path %>";
+var urlSignIn = '<%= Rails.application.routes.url_helpers.new_user_session_path %>';
+var urlRegister = '<%= Rails.application.routes.url_helpers.page_path("pricing") %>';
 var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
 var date = new Date();
-var date = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-var from = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + 1;
-var to = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(0);
+var date = new Date(date.getUTCFullYear(), date.getUTCMonth() + 1, 0);
+var from = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + 1;
+var to = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate(0);
 var search = {"date": {"start": from, "end": to}};
 var eventDates = [""];
 var eventCount;
@@ -35,6 +35,15 @@ function calendarBuild() {
     });
 }
 
+function addAdminEventLinks(event_id, admin) {
+  if (admin) {
+    return '<div class="edit-event"><a href="/admin/events/' + event_id + '/edit">Edit</a></div>' +
+           '<div class="delete-event"><a href="/admin/events/' + event_id + '" data-method="delete">Delete</a></div>'
+  } else {
+    return ""
+  }
+}
+
 function calendarUpdate() {
     $.ajax({
         url: api_events,
@@ -59,22 +68,22 @@ function calendarUpdate() {
             $('.calendar-events').html('');
             eventCount = 0;
             $.each(data.events, function(key, val) {
-                date = new Date(val.date);
-                eventDates.push(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate());
+                date = new Date(val.audition_date);
+                eventDates.push(date.getUTCFullYear() + '-' + (date.getUTCMonth() + 1) + '-' + date.getUTCDate());
                 eventCount++;
                 $('.calendar-events').append(
-                        '<div class="calendar-event row" id="calendar-event-' + key + '" data-date="' + date.getMonth() + '-' + date.getDate() + '">' +
+                        '<div class="calendar-event row" id="calendar-event-' + key + '" data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '">' +
                         '<div class="calendar-date col-sm-2">' +
-                        '<div class="calendar-month">' + monthNames[date.getMonth()] + '</div>' +
-                        '<div class="calendar-day">' + date.getDate() + '</div>' +
+                        '<div class="calendar-month">' + monthNames[date.getUTCMonth()] + '</div>' +
+                        '<div class="calendar-day">' + date.getUTCDate() + '</div>' + addAdminEventLinks(val.id, data.meta.admin) +
                         '</div>' +
                         '<div class="col-sm-10">' +
                         '<div class="calendar-name">' + val.name + '</div></h1>' +
                         '<div class="calendar-paid calendar-paid-' + val.paid + '">Paid?</div>' +
                         '<div id="calendar-overview-' + key + '" class="calendar-overview clearfix">' +
-                        '<div class="calendar-attribute"><span>Region:</span> ' + val.region + '</div>' +
-                        '<div class="calendar-attribute"><span>Project Type:</span> ' + val.project + '</div>' +
-                        '<div class="calendar-attribute"><span>Performer Type:</span> ' + val.performer + '</div>' +
+                        '<div class="calendar-attribute region"><span>Region:</span> ' + val.region + '</div>' +
+                        '<div class="calendar-attribute project-type"><span>Project Type:</span> ' + val.project_type + '</div>' +
+                        '<div class="calendar-attribute performer-type"><span>Performer Type:</span> ' + val.performer_type + '</div>' +
                         '</div>' +
                         '<div id="calendar-detail-' + key + '" class="calendar-detail"></div>' +
                         '<div id="calendar-expand-' + key + '" class="calendar-shrink ">More Information</div>' +
@@ -84,19 +93,19 @@ function calendarUpdate() {
                     $('#calendar-detail-' + key).slideToggle("slow");
                     $(this).toggleClass('calendar-expand');
                 });
-                if (data.member == true) {
+                if (data.meta.member == true) {
                     $('#calendar-detail-' + key).append(
-                            '<div class="calendar-description"><span>Storyline:</span> ' + val.story + '</div>',
-                            '<div class="calendar-description"><span>Description:</span> ' + val.description + '</div>',
-                            '<div class="calendar-description"><span>How to Audition:</span> ' + val.audition + '</div>'
+                            '<div class="calendar-description story"><span>Storyline:</span> ' + val.story + '</div>',
+                            '<div class="calendar-description description"><span>Description:</span> ' + val.description + '</div>',
+                            '<div class="calendar-description audition"><span>How to Audition:</span> ' + val.audition + '</div>'
                             );
                     $('#calendar-overview-' + key).append(
-                            '<div class="calendar-attribute"><span>Shoot/Start Date:</span> ' + val.start + '</div>',
-                            '<div class="calendar-attribute"><span>Character:</span> ' + val.character + '</div>',
-                            '<div class="calendar-attribute"><span>Pay Rate:</span> ' + val.pay + '</div>',
-                            '<div class="calendar-attribute"><span>Union Status:</span> ' + val.union + '</div>',
-                            '<div class="calendar-attribute"><span>Casting Director:</span> ' + val.director + '</div>',
-                            '<div class="calendar-attribute"><span>Shoot/End Date:</span> ' + val.end + '</div>'
+                            '<div class="calendar-attribute start-date"><span>Shoot/Start Date:</span> ' + val.start_date + '</div>',
+                            '<div class="calendar-attribute character"><span>Character:</span> ' + val.character + '</div>',
+                            '<div class="calendar-attribute pay"><span>Pay Rate:</span> ' + val.pay + '</div>',
+                            '<div class="calendar-attribute union"><span>Union Status:</span> ' + val.union + '</div>',
+                            '<div class="calendar-attribute director"><span>Casting Director:</span> ' + val.director + '</div>',
+                            '<div class="calendar-attribute end-date"><span>Shoot/End Date:</span> ' + val.end_date + '</div>'
                             );
                 } else {
                     $('#calendar-detail-' + key).append(
@@ -109,13 +118,13 @@ function calendarUpdate() {
             }
             $("#calendar-datepicker").datepicker({"onChangeMonthYear": function(year, month) {
                     from = new Date(year, month - 1);
-                    to = new Date(from.getFullYear(), from.getMonth() + 1, 0);
-                    search.date.start = from.getFullYear() + "-" + (from.getMonth() + 1) + "-" + from.getDate();
-                    search.date.end = to.getFullYear() + "-" + (to.getMonth() + 1) + "-" + to.getDate();
+                    to = new Date(from.getUTCFullYear(), from.getUTCMonth() + 1, 0);
+                    search.date.start = from.getUTCFullYear() + "-" + (from.getUTCMonth() + 1) + "-" + from.getUTCDate();
+                    search.date.end = to.getUTCFullYear() + "-" + (to.getUTCMonth() + 1) + "-" + to.getUTCDate();
                     calendarUpdate();
                 },
                 beforeShowDay: function(date) {
-                    var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+                    var m = date.getUTCMonth(), d = date.getUTCDate(), y = date.getUTCFullYear();
                     for (i = 0; i < eventDates.length; i++) {
                         if ($.inArray(y + '-' + (m + 1) + '-' + d, eventDates) != -1) {
                             return [true, 'calendar-matched-event-date'];
@@ -125,7 +134,7 @@ function calendarUpdate() {
                 },
                 onSelect: function(date) {
                     date = new Date(date)
-                    target = $('[data-date="' + date.getMonth() + '-' + date.getDate() + '"]');
+                    target = $('[data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '"]');
                     $("html,body").animate({scrollTop: target.offset().top}, 500);
                 }
             });

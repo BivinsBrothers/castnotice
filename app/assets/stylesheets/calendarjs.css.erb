@@ -1,6 +1,6 @@
 .calendar-events{
 	width:73%;
-	float:left;	
+	float:left;
 }
 .calendar-controls{
 	width:25%;
@@ -10,7 +10,7 @@
 
 
 .calendar-events .calendar-event{
-	background-image: url(../img/nav-bg.png);
+	background-image: url(<%= asset_path("nav-bg.png") %>);
 	background-repeat: repeat;
 	padding: 20px 0;
 	border-top: 1px solid #FF2626;
@@ -47,12 +47,12 @@
 }
 
 .calendar-events .calendar-paid-false:after {
-    content: url(../img/calendar-paid-false.png);
+    content: url(<%= asset_path("calendar-paid-false.png") %>);
 	padding-left: 5px;
 }
 
 .calendar-events .calendar-paid-true:after {
-    content: url(../img/calendar-paid-true.png);
+    content: url(<%= asset_path("calendar-paid-true.png") %>);
 	padding-left: 5px;
 }
 
@@ -124,7 +124,7 @@ cursor:pointer;
 }
 
 .calendar-controls #calendar-datepicker{
-	background-image:url(../img/nav-bg.png);
+	background-image:url(<%= asset_path("nav-bg.png") %>);
 	background-repeat:repeat;
 	padding: 20px;
 	margin-bottom:20px;
@@ -134,7 +134,7 @@ cursor:pointer;
 	width:100%;
 }
 .calendar-controls .ui-datepicker-header{
-	margin-bottom:10px;	
+	margin-bottom:10px;
 }
 .calendar-controls .ui-datepicker-next{
 	float:right;
@@ -145,10 +145,10 @@ cursor:pointer;
 	cursor:pointer;
 }
 .calendar-controls .ui-datepicker-title{
-	text-align:center;	
+	text-align:center;
 }
 .calendar-controls .calendar-filters{
-	background-image:url(../img/nav-bg.png);
+	background-image:url(<%= asset_path("nav-bg.png") %>);
 	background-repeat:repeat;
 	padding: 20px;
 	margin-bottom:100px;
@@ -163,7 +163,7 @@ cursor:pointer;
 .calendar-controls .calendar-filters .calendar-option .calendar-checkbox{
 	width: 50%;
 	float:left;
-	
+
 }
 
 .calendar-controls .calendar-filters .calendar-option .calendar-checkbox input{
