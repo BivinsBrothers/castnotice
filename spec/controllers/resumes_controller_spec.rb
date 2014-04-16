@@ -2,10 +2,14 @@ require "spec_helper"
 
 describe ResumesController do
   describe "#show" do
-    it "allow user to preview resume that has a resume" do
-      user = create(:user)
-      create(:resume, user: user)
+    let(:user) { create(:user) }
+
+    before do
       log_in user
+    end
+
+    it "allow user to preview resume that has a resume" do
+      create(:resume, user: user)
 
       get :show
 
@@ -13,9 +17,6 @@ describe ResumesController do
     end
 
     it "redirect user to new resume when they do not have one" do
-      user = create(:user)
-      log_in user
-
       get :show
 
       expect(response).to redirect_to(new_resume_path)
