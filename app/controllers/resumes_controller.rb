@@ -1,6 +1,14 @@
 class ResumesController < ApplicationController
   before_filter :authenticate_user!
 
+  def show
+    if current_user.resume.present?
+      render :show
+    else
+      flash[:notice] = "Fill in the information you wish to appear on your resume."
+      redirect_to new_resume_path
+    end
+  end
 
   def new
     @resume = Resume.new

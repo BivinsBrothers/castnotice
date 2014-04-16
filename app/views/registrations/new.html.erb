@@ -1,3 +1,5 @@
+<h1>Create an account</h1>
+
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -25,11 +27,11 @@
   <%= f.label :location_zip, "Zip code" %>
   <%= f.text_field :location_zip %>
 
-  <%= f.label :birthday %>
-  <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %>
+  <div class="input-wrapper"><%= f.label :birthday %>
+  <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %></div>
 
-  <%= f.label :tos, "Accept our Terms of Service" %>
-  <%= f.check_box :tos %>
+  <div><%= f.label :tos, "Accept our Terms of Service" %>
+  <%= f.check_box :tos %></div>
 
   <%= f.submit "Sign up" %>
 <% end %>
