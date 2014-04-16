@@ -9,15 +9,19 @@
                     }
                     }
 /* CSS Document #FF2626 (red) #FFBF00 (yellow)*/
+html {
+  background-color:#000;
+}
 html, body{
 	height:100%;
 	width:100%;
 	font-size:14px;
 	color:#FFF;
 	font-family: 'Open Sans', sans-serif;
-
 }
-
+body{
+  background-color:transparent;
+}
 h1, h2, h3, h4, h5, h6, p{
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Open Sans', sans-serif;
@@ -323,7 +327,9 @@ border-right:none;
 	background-image:url(<%= asset_path "bg-about.jpg" %>);
 }
 #bg-headshot {
-  opacity: 0.6;
+  opacity: 0.4;
+  -webkit-filter:grayscale(0.9);
+  filter:grayscale(0.9);
 }
 
 

@@ -36,7 +36,7 @@ class HeadshotUploader < CarrierWave::Uploader::Base
 
   version :background do
     process :auto_orient
-    process :resize_to_fill => [1000, 1000]
+    process :resize_to_fill => [1920, 1080]
   end
 
   def auto_orient
