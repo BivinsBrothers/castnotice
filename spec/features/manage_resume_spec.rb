@@ -14,6 +14,15 @@ describe "manage resume" do
     fill_in "Weight", with: "140"
     select "Blond", from: "resume_hair_color"
     select "Blue", from: "resume_eye_color"
+
+    select "Male", from: "resume_gender"
+    select "Medium", from: "resume_hair_length"
+    select "No", from: "resume_piercing"
+    select "No", from: "resume_tattoo"
+    select "Full", from: "resume_nudity"
+    select "US Citizen", from: "resume_citizen"
+    choose("No")
+
     check "Screen Actors Guild"
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
@@ -31,6 +40,14 @@ describe "manage resume" do
     expect(page).to have_content("Screen Actors Guild")
     expect(page).to have_content("Awesome Agent")
     expect(page).to have_content("1-616-456-7890")
+
+    expect(user.resume.gender).to eq("male")
+    expect(user.resume.hair_length).to eq("medium")
+    expect(user.resume.piercing).to eq("no")
+    expect(user.resume.tattoo).to eq("no")
+    expect(user.resume.nudity).to eq("full")
+    expect(user.resume.citizen).to eq("us citizen")
+    expect(user.resume.passport).to eq(false)
 
   end
 
