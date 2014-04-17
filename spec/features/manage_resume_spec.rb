@@ -24,6 +24,7 @@ describe "manage resume" do
     choose("No")
 
     check "Screen Actors Guild"
+
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
@@ -31,15 +32,18 @@ describe "manage resume" do
 
     click_button "Save"
 
-    expect(page).to have_content("Test Dummy")
-    expect(page).to have_content("Actor, Dancer, and just plain fabulous!")
-    expect(page).to have_content("1-616-123-4567")
-    expect(page).to have_content("140")
-    expect(page).to have_content("blond")
-    expect(page).to have_content("blue")
-    expect(page).to have_content("Screen Actors Guild")
-    expect(page).to have_content("Awesome Agent")
-    expect(page).to have_content("1-616-456-7890")
+
+    expect(find_field("resume_phone").value).to eq("1-616-123-4567")
+    expect(find_field("resume_height").value).to eq("75")
+    expect(find_field("Weight").value).to eq("140")
+    expect(find_field("resume_hair_color").value).to eq("blond")
+    expect(find_field("resume_eye_color").value).to eq("blue")
+    expect(find_field("resume_agent_name").value).to eq("Awesome Agent")
+    expect(find_field("resume_agent_phone").value).to eq("1-616-456-7890")
+    expect(find_field("resume_additional_skills").value).to eq("Many years of improve from Disney Stages.")
+    expect(find_field("resume_descriptive_tag").value).to eq("Actor, Dancer, and just plain fabulous!")
+
+
 
     expect(user.resume.gender).to eq("male")
     expect(user.resume.hair_length).to eq("medium")
@@ -48,6 +52,20 @@ describe "manage resume" do
     expect(user.resume.nudity).to eq("full")
     expect(user.resume.citizen).to eq("us citizen")
     expect(user.resume.passport).to eq(false)
+
+    click_link "Add a project"
+
+    select "Television", from: "project_project_type"
+    fill_in "Title", with: "Gossip Girl"
+    fill_in "Role", with: "Blair"
+    fill_in "Director/Studio", with: "Star Studios"
+
+    click_button "Save Project"
+
+    expect(page).to have_content("Television")
+    expect(page).to have_content("Gossip Girl")
+    expect(page).to have_content("Blair")
+    expect(page).to have_content("Star Studios")
 
   end
 

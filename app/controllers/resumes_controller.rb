@@ -12,6 +12,7 @@ class ResumesController < ApplicationController
 
   def new
     @resume = Resume.new
+    @project = Project.new
   end
 
   def create
@@ -19,7 +20,7 @@ class ResumesController < ApplicationController
     @resume.user = current_user
 
     if @resume.save
-      redirect_to resume_path
+      redirect_to edit_resume_path
     else
       render :new
     end
@@ -27,12 +28,13 @@ class ResumesController < ApplicationController
 
   def edit
     @resume = current_user.resume
+    @project = Project.new
   end
 
   def update
     @resume = current_user.resume
     if @resume.update_attributes(resume_params)
-      redirect_to resume_path
+      redirect_to edit_resume_path
     else
       render :edit
     end
