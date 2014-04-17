@@ -76,4 +76,29 @@ feature "calendar", js: true do
       expect(event.more_information).to eq("To find out detailed information about this event, you must be logged into CastNotice. Please Sign in or Register")
     end
   end
+
+  it "filters by month in sidebar" do
+    Timecop.travel("2014-04-15")
+
+    create(:event, audition_date: Date.parse("2014-04-10"))
+    create(:event, audition_date: Date.parse("2014-05-18"))
+    create(:event, audition_date: Date.parse("2014-05-19"))
+
+    visit page_path("calendar")
+    expect(Dom::CalendarEvent.all.count).to eq(1)
+
+    april_event = Dom::CalendarEvent.first
+    expect(april_event.audition_date).to eq("April 10")
+
+    find(".ui-datepicker-next").click
+    expect(Dom::CalendarEvent.all.count).to eq(2)
+
+    may_event1 = Dom::CalendarEvent.first
+    may_event2 = Dom::CalendarEvent.all.last
+
+    expect(may_event1.audition_date).to eq("May 18")
+    expect(may_event2.audition_date).to eq("May 19")
+
+    Timecop.return
+  end
 end
