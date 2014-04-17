@@ -38,42 +38,62 @@ end
 
 describe "Calendar API" do
   describe "GET /events" do
-    it "returns full event json ordered by audition date when a member" do
-      user = create(:user)
-      login_as user
+    context "when a member" do
+      before do
+        Timecop.freeze(Date.parse("2014-04-17"))
 
-      event2 = create(:event, created_at: 1.day.ago, audition_date: 2.days.from_now)
-      event1 = create(:event, created_at: 2.days.ago, audition_date: 1.day.from_now)
+        user = create(:user)
+        login_as user
+      end
 
-      get events_path
+      after do
+        Timecop.return
+      end
 
-      expect(response.status).to eq(200)
-      expect(response.body).to eq({
-        "events" => [event_hash(event1), event_hash(event2)],
-        "meta" => {member: true, admin: false}
-      }.to_json)
+      let!(:may_event) { create(:event, name: "May Flowers!", audition_date: 1.month.from_now) }
+      let!(:april_event1) { create(:event, created_at: 1.day.ago, audition_date: 2.days.from_now) }
+      let!(:april_event2) { create(:event, created_at: 2.days.ago, audition_date: 1.day.from_now) }
+
+      context "when given a date range" do
+        it "returns events within date range" do
+          get events_path, {date: {start: "2014-05-01", end: "2014-05-30" }}
+
+          expect(response.status).to eq(200)
+          expect(response.body).to eq({
+            "events" => [event_hash(may_event)],
+            "meta" => {member: true, admin: false}
+          }.to_json)
+
+          event = JSON.parse(response.body)["events"].first
+          expect(event["name"]).to eq("May Flowers!")
+        end
+      end
+
+      context "when not given a date range" do
+        it "returns full event json ordered by audition date for the current month" do
+          get events_path
+
+          expect(response.status).to eq(200)
+          expect(response.body).to eq({
+            "events" => [event_hash(april_event2), event_hash(april_event1)],
+            "meta" => {member: true, admin: false}
+          }.to_json)
+        end
+      end
     end
 
-    it "returns a maximum of a 20 events" do
-      create_list(:event, 21)
+    context "when not a member" do
+      it "returns limited json when not a member" do
+        event = create(:event)
 
-      get events_path
+        get events_path
 
-      expect(response.status).to eq(200)
-      response_json = JSON.parse(response.body)
-      expect(response_json["events"].count).to eq(20)
-    end
-
-    it "returns limited json when not a member" do
-      event = create(:event)
-
-      get events_path
-
-      expect(response.status).to eq(200)
-      expect(response.body).to eq({
-        "events" => [limited_event_hash(event)],
-        "meta" => {member: false, admin: false}
-      }.to_json)
+        expect(response.status).to eq(200)
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
     end
   end
 end
