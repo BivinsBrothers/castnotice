@@ -22,7 +22,8 @@ gem "high_voltage"
 gem "carrierwave"
 gem "mini_magick"
 gem "pry-rails"
-gem "tzinfo-data" if RUBY_PLATFORM =~ /win32/
+gem "tzinfo", platforms: [:mingw, :mswin]
+gem "tzinfo-data", platforms: [:mingw, :mswin]
 
 group :production do
   gem "rails_12factor"
