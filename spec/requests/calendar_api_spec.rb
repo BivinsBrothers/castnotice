@@ -50,9 +50,9 @@ describe "Calendar API" do
         Timecop.return
       end
 
-      let!(:may_event) { create(:event, name: "May Flowers!", audition_date: 1.month.from_now) }
-      let!(:april_event1) { create(:event, created_at: 1.day.ago, audition_date: 2.days.from_now) }
-      let!(:april_event2) { create(:event, created_at: 2.days.ago, audition_date: 1.day.from_now) }
+      let!(:may_event) { create(:event, audition_date: 1.month.from_now) }
+      let!(:april_event1) { create(:event, audition_date: 2.days.from_now) }
+      let!(:april_event2) { create(:event, audition_date: 1.day.from_now) }
 
       context "when given a date range" do
         it "returns events within date range" do
@@ -63,9 +63,6 @@ describe "Calendar API" do
             "events" => [event_hash(may_event)],
             "meta" => {member: true, admin: false}
           }.to_json)
-
-          event = JSON.parse(response.body)["events"].first
-          expect(event["name"]).to eq("May Flowers!")
         end
       end
 
