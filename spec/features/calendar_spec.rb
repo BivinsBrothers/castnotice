@@ -10,7 +10,7 @@ feature "calendar", js: true do
     it "displays full event information" do
       create(:event, :paid,
         name: "Extravaganza!",
-        audition_date: Date.parse("2014-04-18"),
+        audition_date: "2014-04-18",
         region: "Canada",
         performer_type: "Clowns",
         project_type: "PSA",
@@ -21,8 +21,8 @@ feature "calendar", js: true do
         story: "Happy people become ghosts, have good times",
         description: "Chris is getting google glass",
         audition: "Wears glasses",
-        start_date: Date.parse("2014-06-01"),
-        end_date: Date.parse("2014-06-15")
+        start_date: "2014-06-01",
+        end_date: "2014-06-15"
       )
 
       visit page_path("calendar")
@@ -54,7 +54,7 @@ feature "calendar", js: true do
     it "displays limited event information" do
       create(:event, :paid,
         name: "Extravaganza!",
-        audition_date: Date.parse("2014-04-18"),
+        audition_date: "2014-04-18",
         region: "Canada",
         performer_type: "Clowns",
         project_type: "PSA"
@@ -80,18 +80,18 @@ feature "calendar", js: true do
   it "filters by month in sidebar" do
     Timecop.travel("2014-04-15")
 
-    create(:event, audition_date: Date.parse("2014-04-10"))
-    create(:event, audition_date: Date.parse("2014-05-18"))
-    create(:event, audition_date: Date.parse("2014-05-19"))
+    create(:event, audition_date: "2014-04-10")
+    create(:event, audition_date: "2014-05-18")
+    create(:event, audition_date: "2014-05-19")
 
     visit page_path("calendar")
-    expect(Dom::CalendarEvent.all.count).to eq(1)
+    expect(Dom::CalendarEvent.count).to eq(1)
 
     april_event = Dom::CalendarEvent.first
     expect(april_event.audition_date).to eq("April 10")
 
     find(".ui-datepicker-next").click
-    expect(Dom::CalendarEvent.all.count).to eq(2)
+    expect(Dom::CalendarEvent.count).to eq(2)
 
     may_event1 = Dom::CalendarEvent.first
     may_event2 = Dom::CalendarEvent.all.last
