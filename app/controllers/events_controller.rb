@@ -8,7 +8,7 @@ class EventsController < ApplicationController
       end_date = DateTime.now.in_time_zone("UTC").end_of_month
     end
 
-    @events = Event.where("audition_date >= ?", start_date).where("audition_date <= ?", end_date).order("audition_date ASC")
+    @events = Event.where(audition_date: (start_date..end_date)).order("audition_date ASC")
 
     if current_user.present?
       meta = {member: true}
