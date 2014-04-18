@@ -25,6 +25,10 @@ feature "an admin can manage events", js: true do
     fill_in "Story", with: "Happy people become ghosts, have good times"
     fill_in "Description", with: "We need you to have telekentic powers and be willing to yoyo upside down"
     fill_in "Audition Details", with: "In person, there will be a gorilla"
+    fill_in "Casting Director", with: "Nic Lindstrom"
+    fill_in "Location", with: "Detroit"
+    fill_in "Writers", with: "Gordy Howe"
+    fill_in "Producers", with: "Wayne Gretzky"
 
     select "1", from: "event_audition_date_3i"
     select "September", from: "event_audition_date_2i"
@@ -56,6 +60,11 @@ feature "an admin can manage events", js: true do
     expect(event.pay).to eq("1000 Dogecoin/hour")
     expect(event.union).to eq("Extraverts United")
     expect(event.director).to eq("Karl McSweeney")
+    expect(event.casting_director).to eq("Nic Lindstrom")
+    expect(event.writers).to eq("Gordy Howe")
+    expect(event.producers).to eq("Wayne Gretzky")
+    expect(event.location).to eq("Detroit")
+
     expect(event.start_date).to eq("12-01-14")
     expect(event.end_date).to eq("12-15-14")
 

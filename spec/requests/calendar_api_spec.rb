@@ -17,7 +17,11 @@ def event_hash(event)
      audition_date: event.audition_date.strftime("%Y-%m-%d"),
      start_date: event.start_date.strftime("%m-%d-%y"),
      end_date: event.end_date.strftime("%m-%d-%y"),
-     paid: event.paid
+     paid: event.paid,
+     location: event.location,
+     casting_director: event.casting_director,
+     writers: event.writers,
+     producers: event.producers
   }
 end
 
