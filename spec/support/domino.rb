@@ -15,6 +15,18 @@ module Dom
     end
   end
 
+  class CalendarDatepicker < Domino
+    selector "#calendar-datepicker"
+
+    def month
+      node.find(".ui-datepicker-month").text
+    end
+
+    def year
+      node.find(".ui-datepicker-year").text
+    end
+  end
+
   class CalendarEvent < Domino
     selector ".calendar-event"
 
