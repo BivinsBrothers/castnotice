@@ -1,1 +1,7 @@
-$(".something").html("<%= escape_javascript(render('_project', :project => @project)) %>");
+$(".project-list").append("<%= escape_javascript(render('resumes/project', :project => @project)) %>");
+var form = $(".new-project-form")
+form.slideUp();
+form.find("#project_title").val("");
+form.find("#project_role").val("");
+form.find("#project_director_studio").val("");
+$("html, body").animate({ scrollTop: $(document).height() }, "slow");

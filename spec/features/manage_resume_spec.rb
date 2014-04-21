@@ -79,7 +79,6 @@ describe "manage resume" do
     click_link('Edit Personal Information')
 
     expect(find_field("Phone").value).to eq("1-616-555-4567")
-    expect(find_field("resume_height").value).to eq("69")
     expect(find_field("Weight").value).to eq("140")
     expect(find_field("resume_hair_color").value).to eq("blond")
     expect(find_field("resume_eye_color").value).to eq("blue")
@@ -96,11 +95,11 @@ describe "manage resume" do
 
     click_button "Save"
 
-    expect(page).to have_content("70")
-    expect(page).to have_content(155)
-    expect(page).to have_content("brown")
-    expect(page).to have_content("green")
-    expect(page).to have_content("Singer")
+    expect(find_field("resume_height").value).to eq("70")
+    expect(find_field("resume_weight").value).to eq("155")
+    expect(find_field("resume_hair_color").value).to eq("brown")
+    expect(find_field("resume_eye_color").value).to eq("green")
+    expect(find_field("resume_descriptive_tag").value).to eq("Singer")
   end
 
   it "displays validation errors for required resume information" do
@@ -135,7 +134,7 @@ describe "manage resume" do
     fill_in "Role", with: "Cinderella"
     fill_in "Director/Studio", with: "Disney Studios"
 
-    click_button "Save"
+    click_button "Save Project"
 
     expect(page).to have_content("Film Project")
     expect(page).to have_content("Once Upon A Time")

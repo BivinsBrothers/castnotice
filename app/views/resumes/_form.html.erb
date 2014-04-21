@@ -79,22 +79,23 @@
 
 
 <h3>Projects</h3>
-<% current_user.projects.each do |project| %>
-	<%= render 'project', :project => project %>
-<% end %>
-
-<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#", class: "btn-add-new show-project-form" %>
-<div class="is-hidden new-project-form">
-  <%= form_for @project, :remote => true do |f| %>
-    <%= f.label :project_type %>
-    <%= f.select :project_type, project_type_select %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :role %>
-    <%= f.text_field :role %>
-    <%= f.label :director_studio %>
-    <%= f.text_field :director_studio %>
-    <%= f.submit "Save Project", :class => "project-save" %>
+<div class="project-list">
+  <% current_user.projects.each do |project| %>
+    <%= render 'project', :project => project %>
   <% end %>
 </div>
 
+<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#", class: "btn-add-new show-project-form" %>
+<div class="is-hidden new-project-form">
+<%= form_for @project, :remote => true do |f| %>
+  <%= f.label :project_type %>
+  <%= f.select :project_type, project_type_select %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :role %>
+  <%= f.text_field :role %>
+  <%= f.label :director_studio %>
+  <%= f.text_field :director_studio %>
+  <%= f.submit "Save Project", :class => "project-save" %>
+<% end %>
+</div>

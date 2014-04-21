@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
             <%= @project.errors.full_message.to_sentence %>."
           redirect_to edit_resume_path
         end
-        format.js { render "create_project" }
+        format.js { render "projects/create_project" }
       end
     end
   end
