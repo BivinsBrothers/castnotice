@@ -53,7 +53,23 @@ module Dom
     end
 
     def director
-      node.find(".director").text.partition("Casting Director: ").last
+      node.find(".director").text.partition("Director: ").last
+    end
+
+    def casting_director
+      node.find(".casting-director").text.partition("Casting Director: ").last
+    end
+
+    def producers
+      node.find(".producers").text.partition("Producers: ").last
+    end
+
+    def writers
+      node.find(".writers").text.partition("Writers: ").last
+    end
+
+    def location
+      node.find(".location").text.partition("Location: ").last
     end
 
     def story
