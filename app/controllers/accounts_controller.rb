@@ -5,7 +5,6 @@ class AccountsController < ApplicationController
 
   def update
     @user = current_user
-
     if @user.update_attributes(account_params)
       redirect_to dashboard_path
     else
