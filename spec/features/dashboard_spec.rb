@@ -7,6 +7,8 @@ describe "user dashboard" do
     log_in user
     visit dashboard_path
 
+    expect(page).to have_content("My Stage")
+    expect(page).to have_content("Now staring you.")
     expect(page).to have_content("Test Dummy")
     expect(page).to have_content("Edit Personal Information")
     expect(page).to have_content("Your Head Shots")
