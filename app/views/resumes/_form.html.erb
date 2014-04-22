@@ -55,27 +55,33 @@
 
 <h3>Schools</h3>
 
-<% current_user.schools.each do |school| %>
-	<div class="row repeatable-row">
-    	<div class="col-md-12">
-			<h4><%= school.school %> <span><%= link_to 'Edit', edit_school_path(school), class: "btn-edit" %></span></h4>
-		</div>
-		<div class="col-md-4">
-			<p>School Type: <%= education_type_name(school.education_type) %></p>
-			<p>Major: <%= school.major %></p>
-		</div>
-		<div class="col-md-4">
-			<p>Degree: <%= school.degree %></p>
-			<p>Years: <%= school.years %></p>
-		</div>
-		<div class="col-md-4">
-			<p>Teacher: <%= school.teacher %></p>
-			<p>Instrument: <%= school.instruments %></p>
-		</div>
-	</div>
-<% end %>
-<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a school", new_school_path, class: "btn-add-new" %>
+<div class="school-list">
+  <% current_user.schools.each do |school| %>
+    <%= render 'school', :school => school %>
+  <% end %>
+</div>
 
+
+<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a school", "#new-school-form", class: "btn-add-new show-school-form" %>
+<div class="is-hidden new-school-form" id="new-school-form">
+  <%= form_for @school, :remote => true do |f| %>
+    <%= f.label :education_type %>
+    <%= f.select :education_type, education_type_select %>
+    <%= f.label :school %>
+    <%= f.text_field :school %>
+    <%= f.label :major %>
+    <%= f.text_field :major %>
+    <%= f.label :degree %>
+    <%= f.text_field :degree %>
+    <%= f.label :teacher %>
+    <%= f.text_field :teacher %>
+    <%= f.label :years %>
+    <%= f.text_field :years %>
+    <%= f.label :instruments %>
+    <%= f.text_field :instruments %>
+    <%= f.submit "Save school", :class => "school-save" %>
+  <% end %>
+</div>
 
 
 <h3>Projects</h3>
@@ -85,8 +91,8 @@
   <% end %>
 </div>
 
-<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#", class: "btn-add-new show-project-form" %>
-<div class="is-hidden new-project-form">
+<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#new-project-form", class: "btn-add-new show-project-form" %>
+<div class="is-hidden new-project-form" id="new-project-form">
   <%= form_for @project, :remote => true do |f| %>
     <%= f.label :project_type %>
     <%= f.select :project_type, project_type_select %>
@@ -99,3 +105,4 @@
     <%= f.submit "Save Project", :class => "project-save" %>
   <% end %>
 </div>
+
