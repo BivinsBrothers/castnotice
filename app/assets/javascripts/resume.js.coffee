@@ -10,3 +10,7 @@ $ ->
   $(".show-headshot-form").on 'click', (e) ->
     e.preventDefault
     $(".new-headshot-form").slideDown()
+
+  $(".show-video-form").on 'click', (e) ->
+    e.preventDefault
+    $(".new-video-form").slideDown()
