@@ -182,7 +182,7 @@ describe "manage resume" do
     fill_in "Major", with: "Computer Science"
     fill_in "Degree", with: "Masters"
 
-    click_button "Save"
+    click_button "Save school"
 
     expect(page).to have_content("College")
     expect(page).to have_content("Michigan Tech")

@@ -1,5 +1,5 @@
 $(".project-list").append("<%= escape_javascript(render('resumes/project', :project => @project)) %>");
-var form = $(".new-project-form")
+var form = $(".new-project-form");
 form.slideUp();
 form.find("#project_title").val("");
 form.find("#project_role").val("");
