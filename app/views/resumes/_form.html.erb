@@ -53,6 +53,32 @@
 
 <% end %>
 
+<h3>Your Head Shots</h3>
+<span class="glyphicon glyphicon-plus"></span> <%= link_to 'Add a Head Shot', '#new-headshot-form', class: "btn-add-new show-headshot-form" %>
+<div class="is-hidden new-headshot-form" id="new-headshot-form">
+  <%= form_for @headshot, :multipart => true do |f| %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+
+    <%= f.submit "Upload Head Shot" %>
+  <% end %>
+</div>
+
+<div class="headshot-list">
+  <% current_user.headshots.each do |headshot| %>
+    <div class="headshot">
+      <%= image_tag(headshot.image_url(:thumb)) %>
+      <%= link_to "Delete", headshot_path(headshot), method: :delete %>
+      <% if headshot.is_background %>
+        Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
+      <% else %>
+        <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
 <h3>Schools</h3>
 
 <div class="school-list">

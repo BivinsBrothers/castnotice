@@ -14,6 +14,7 @@ class ResumesController < ApplicationController
     @resume = Resume.new
     @project = Project.new
     @school = School.new
+    @headshot = Headshot.new
   end
 
   def create
@@ -21,6 +22,7 @@ class ResumesController < ApplicationController
     @resume.user = current_user
     @project = Project.new
     @school = School.new
+    @headshot = Headshot.new
 
 
     if @resume.save
@@ -34,13 +36,14 @@ class ResumesController < ApplicationController
     @resume = current_user.resume
     @project = Project.new
     @school = School.new
-
+    @headshot = Headshot.new
   end
 
   def update
     @resume = current_user.resume
     @project = Project.new
     @school = School.new
+    @headshot = Headshot.new
 
     if @resume.update_attributes(resume_params)
       redirect_to edit_resume_path

@@ -12,7 +12,7 @@ Castnotice::Application.routes.draw do
 
   resources :projects, only: [:new, :create, :edit, :update]
   resources :schools, only: [:new, :create, :edit, :update]
-  resources :headshots, only: [:index, :create, :update, :destroy]
+  resources :headshots, only: [:new, :index, :create, :update, :destroy]
   resources :videos, only: [:index, :create, :destroy]
 
   get "/dashboard" => "dashboard#show", as: :dashboard

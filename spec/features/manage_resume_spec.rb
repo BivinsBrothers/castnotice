@@ -118,6 +118,27 @@ describe "manage resume" do
     expect(page).to have_content("Phone can't be blank")
   end
 
+  it "a user can upload a headshot" do
+    user = create(:user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "Edit Personal Information"
+
+    expect(page).to have_content("Add a Head Shot")
+
+    click_link "Add a Head Shot"
+
+    attach_file "Image", "#{Rails.root}/spec/fixtures/image.jpg"
+
+    expect {
+      click_button "Upload"
+    }.to change {
+      user.headshots.count
+    }.from(0).to(1)
+  end
+
   it "allows adding project" do
     user = create(:user)
     create(:resume, user: user)
