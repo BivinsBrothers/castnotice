@@ -74,8 +74,8 @@
   <% current_user.headshots.each do |headshot| %>
     <div class="headshot">
       <%= image_tag(headshot.image_url(:thumb)) %>
-      <%= link_to "Delete", headshot_path(headshot), method: :delete %>
-      <% if headshot.is_background %>
+      <%= link_to "Delete", headshot_path(headshot), method: :delete %> |
+      <% if headshot.background? %>
         Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
       <% else %>
         <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>

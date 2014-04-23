@@ -12,17 +12,11 @@ class HeadshotsController < ApplicationController
   def create
     @headshot = current_user.headshots.build(headshot_params)
     if @headshot.save
-      respond_to do |format|
-        format.html { redirect_to edit_resume_path }
-      end
+      redirect_to edit_resume_path
     else
-      respond_to do |format|
-        format.html do
-          flash[:failure] = "Sorry unable to save your Head Shot please correct errors:
-            #{@headshot.errors.full_message.to_sentence}"
-          redirect_to edit_resume_path
-        end
-      end
+      flash[:failure] = "Sorry unable to save your Head Shot please correct errors:
+        #{@headshot.errors.full_message.to_sentence}"
+      redirect_to edit_resume_path
     end
   end
 

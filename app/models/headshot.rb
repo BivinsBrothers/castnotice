@@ -1,5 +1,5 @@
 class Headshot < ActiveRecord::Base
-  validates :is_background, uniqueness: { scope: :user }, if: :is_background
+  validates :background, uniqueness: { scope: :user }, if: :background?
   validates_presence_of :image
 
   mount_uploader :image, HeadshotUploader
@@ -8,16 +8,16 @@ class Headshot < ActiveRecord::Base
 
   def set_as_background_image
     if user.background_image
-      user.background_image.update_attributes(is_background: false)
+      user.background_image.update_attributes(background: false)
     end
 
-    self.is_background = true
+    self.background = true
     self.save
   end
 
   def remove_as_background_image
-    if is_background?
-      self.is_background = false
+    if background?
+      self.background = false
       self.save
     end
   end

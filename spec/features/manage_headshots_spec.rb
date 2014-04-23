@@ -46,12 +46,12 @@ describe "managing headshots" do
     expect {
       click_link "Set as background"
     }.to change {
-      user.headshots.first.is_background?
+      user.headshots.first.background?
     }.from(false).to(true)
   end
 
   it "a user can remove the currently selected background" do
-    headshot = create(:headshot, user: user, is_background: true)
+    headshot = create(:headshot, user: user, background: true)
 
     click_link "edit-headshots"
 
@@ -60,7 +60,7 @@ describe "managing headshots" do
     expect {
       click_link "Remove"
     }.to change {
-      user.headshots.first.is_background?
+      user.headshots.first.background?
     }.from(true).to(false)
   end
 
