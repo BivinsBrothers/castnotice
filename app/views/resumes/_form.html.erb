@@ -86,21 +86,25 @@
 
 <h3>Your Videos</h3>
 
+<% if current_user.at_maximum_videos? %>
+  <h2>Maximum videos please delete to add.</h2>
+<% else %>
+  <span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
+<% end %>
+
+<div class="is-hidden new-video-form" id="new-video-form">
+  <%= form_for @video, :multipart => true do |f| %>
+    <%= f.text_field :video_url %>
+    <%= f.submit "Upload Video", :class => "video-save" %>
+  <% end %>
+</div>
+
 <div class="video-list">
   <% current_user.videos.each do |video| %>
     <%= render 'video', :video => video %>
   <% end %>
 </div>
 
-<span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
-<div class="is-hidden new-video-form" id="new-video-form">
-  <%= form_for @video, :remote => true do |f| %>
-    <%= f.label :video_url, "Video" %>
-    <%= f.text_field :video_url %>
-
-    <%= f.submit "Upload video", :class => "video-save" %>
-  <% end %>
-</div>
 
 <h3>Schools</h3>
 

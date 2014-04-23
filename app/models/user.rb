@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   MAXIMUM_HEADSHOTS = 10
-  MAXIMUM_VIDEOS = 10
+  MAXIMUM_VIDEOS = 5
 
   has_one :background_image, -> { where background: true }, class_name: Headshot
 

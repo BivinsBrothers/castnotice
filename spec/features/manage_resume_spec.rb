@@ -134,15 +134,30 @@ describe "manage resume" do
 
     click_link "Add a video"
 
-    fill_in "Video", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
+    fill_in "video_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
 
     expect {
-      click_button "Upload"
+      click_button "Upload Video"
     }.to change {
       user.videos.count
     }.from(0).to(1)
 
     expect(page).to have_content("Delete")
+  end
+
+  it "allow deleting videos" do
+    user = create(:user)
+    create(:resume, user: user)
+    create(:video, user: user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "Edit Personal Information"
+
+    click_link "Delete"
+
+    expect(page).to_not have_content("http://www.youtube.com/watch?v=m8u8Z3bUQfs")
   end
 
   it "allows adding project" do
