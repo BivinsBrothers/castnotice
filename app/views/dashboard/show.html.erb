@@ -24,7 +24,7 @@
 <% end %>
 
 
-<h3>Your Videos <span><%= link_to 'Edit', videos_path, id: "edit-videos", class: "btn btn-small" %></span></h3>
+<h3>Your Videos <span><%= link_to 'Edit', edit_resume_path, id: "edit-videos", class: "btn btn-small" %></span></h3>
 
 
 <% if current_user.videos.present? %>
@@ -40,7 +40,7 @@
       </div>
     <% end %>
 <% else %>
-  <div class="add-videos"><%= link_to "Add Videos", videos_path %></div>
+  <div class="add-videos"><%= link_to "Add Videos", edit_resume_path %></div>
 <% end %>
 
 <h3>Experience</h3>

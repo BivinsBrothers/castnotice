@@ -1,14 +1,22 @@
 class VideosController < ApplicationController
 
+  def new
+    @video = Video.new
+  end
+
   def index
     @video = Video.new
     @videos = current_user.videos
   end
 
   def create
-    current_user.videos.create(video_params)
-
-    redirect_to videos_path
+    @video = current_user.videos.build(video_params)
+    if @video.save
+    else
+      flash[:failure] = "Sorry unable to save your Video please correct errors:
+        #{@video.errors.full_message.to_sentence}"
+    end
+    redirect_to edit_resume_path
   end
 
   def destroy
@@ -16,11 +24,10 @@ class VideosController < ApplicationController
 
     if @video && @video.delete
       flash[:success] = "Your video was deleted"
-      redirect_to videos_path
     else
       flash[:failure] = "Video was not removed, please try again."
-      redirect_to videos_path
     end
+    redirect_to edit_resume_path
   end
 
 

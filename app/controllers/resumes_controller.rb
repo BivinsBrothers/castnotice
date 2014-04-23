@@ -15,6 +15,7 @@ class ResumesController < ApplicationController
     @project = Project.new
     @school = School.new
     @headshot = Headshot.new
+    @video = Video.new
   end
 
   def update

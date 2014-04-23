@@ -16,7 +16,7 @@ class SchoolsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:failure] = "Sorry unable to save your School please correct errors:
-            #{@project.errors.full_message.to_sentence}"
+            #{@school.errors.full_message.to_sentence}"
           redirect_to edit_resume_path
         end
         format.js
