@@ -35,17 +35,17 @@ describe "managing videos" do
   end
 
   it "a user can have a maximum of 5 videos" do
-    create_list(:video, 4, user: user)
+    create_list(:video, 7, user: user)
 
     click_link "edit-videos"
 
-    expect(user.videos.count).to eq(4)
+    expect(user.videos.count).to eq(7)
 
     fill_in "video_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
 
     click_button "Upload Video"
 
-    expect(user.videos.count).to eq(5)
+    expect(user.videos.count).to eq(8)
 
     expect(page).not_to have_content("Add a video")
     expect(page).to have_content("Maximum videos please delete to add.")

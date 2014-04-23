@@ -6,7 +6,7 @@ class ResumesController < ApplicationController
       render :show
     else
       flash[:notice] = "Fill in the information you wish to appear on your resume."
-      redirect_to new_resume_path
+      redirect_to edit_resume_path
     end
   end
 

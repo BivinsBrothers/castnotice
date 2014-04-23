@@ -8,7 +8,7 @@ Castnotice::Application.routes.draw do
   resources :events, only: [:index]
 
   resource :accounts, only: [:edit, :update]
-  resource :resume, only: [:new, :create, :edit, :update, :show]
+  resource :resume, only: [:edit, :update, :show]
 
   resources :projects, only: [:new, :create, :edit, :update]
   resources :schools, only: [:new, :create, :edit, :update]

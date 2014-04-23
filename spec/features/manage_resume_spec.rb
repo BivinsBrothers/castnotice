@@ -117,7 +117,7 @@ describe "manage resume" do
     attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
     expect {
-      click_button "Upload"
+      click_button "Upload Head Shot"
     }.to change {
       user.headshots.count
     }.from(0).to(1)
