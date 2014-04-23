@@ -6,41 +6,19 @@ class ResumesController < ApplicationController
       render :show
     else
       flash[:notice] = "Fill in the information you wish to appear on your resume."
-      redirect_to new_resume_path
-    end
-  end
-
-  def new
-    @resume = Resume.new
-    @project = Project.new
-    @school = School.new
-  end
-
-  def create
-    @resume = Resume.new(resume_params)
-    @resume.user = current_user
-    @project = Project.new
-    @school = School.new
-
-
-    if @resume.save
       redirect_to edit_resume_path
-    else
-      render :new
     end
   end
 
   def edit
-    @resume = current_user.resume
+    @resume = current_user.resume || Resume.create(:user => current_user)
     @project = Project.new
     @school = School.new
-
+    @headshot = Headshot.new
   end
 
   def update
     @resume = current_user.resume
-    @project = Project.new
-    @school = School.new
 
     if @resume.update_attributes(resume_params)
       redirect_to edit_resume_path

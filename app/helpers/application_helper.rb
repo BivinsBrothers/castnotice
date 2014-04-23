@@ -131,6 +131,6 @@ module ApplicationHelper
   end
 
   def background_image(user)
-    user.headshots.where(:is_background => true).first
+    user.background_image
   end
 end

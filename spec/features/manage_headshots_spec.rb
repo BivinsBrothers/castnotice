@@ -16,10 +16,11 @@ describe "managing headshots" do
   it "a user can upload a headshot" do
     click_link "edit-headshots"
 
-    attach_file "Image", "#{Rails.root}/spec/fixtures/image.jpg"
+
+    attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
     expect {
-      click_button "Upload"
+      click_button "Upload Head Shot"
     }.to change {
       user.headshots.count
     }.from(0).to(1)
@@ -45,12 +46,12 @@ describe "managing headshots" do
     expect {
       click_link "Set as background"
     }.to change {
-      user.headshots.first.is_background?
+      user.headshots.first.background?
     }.from(false).to(true)
   end
 
   it "a user can remove the currently selected background" do
-    headshot = create(:headshot, user: user, is_background: true)
+    headshot = create(:headshot, user: user, background: true)
 
     click_link "edit-headshots"
 
@@ -59,7 +60,7 @@ describe "managing headshots" do
     expect {
       click_link "Remove"
     }.to change {
-      user.headshots.first.is_background?
+      user.headshots.first.background?
     }.from(true).to(false)
   end
 
@@ -70,11 +71,11 @@ describe "managing headshots" do
 
     expect(user.headshots.count).to eq(9)
 
-    attach_file "Image", "#{Rails.root}/spec/fixtures/image.jpg"
-    click_button "Upload"
+    attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
+    click_button "Upload Head Shot"
 
     expect(user.headshots.count).to eq(10)
 
-    expect(page).not_to have_content("Upload Head Shot")
+    expect(page).not_to have_content("Add Head Shot")
   end
 end

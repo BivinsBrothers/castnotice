@@ -3,5 +3,4 @@ class Resume < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :phone, presence: true
 end

@@ -7,12 +7,12 @@
 <h1 class="dash-title"><%= current_user.name %> <span><% if current_user.resume %>
   <%= link_to "Edit Personal Information", edit_resume_path, class: "btn" %>
 <% else %>
-  <%= link_to "Edit Personal Information", new_resume_path, class: "btn" %>
+  <%= link_to "Edit Personal Information", edit_resume_path, class: "btn" %>
 <% end %></span></h1>
 
 <h3>Now staring you.</h3>
 
-<h3>Your Head Shots <span><%= link_to 'Edit', headshots_path, id: "edit-headshots", class: "btn btn-small" %></span></h3>
+<h3>Your Head Shots <span><%= link_to 'Edit', edit_resume_path, id: "edit-headshots", class: "btn btn-small" %></span></h3>
 
 
 <% if current_user.headshots.present? %>
@@ -20,7 +20,7 @@
     <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
   <% end %>
 <% else %>
-  <div class="add-headshots"><%= link_to "Add Headshots", headshots_path %></div>
+  <div class="add-headshots"><%= link_to "Add Headshots", edit_resume_path %></div>
 <% end %>
 
 
