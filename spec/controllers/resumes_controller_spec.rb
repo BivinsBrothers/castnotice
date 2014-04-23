@@ -19,7 +19,7 @@ describe ResumesController do
     it "redirect user to new resume when they do not have one" do
       get :show
 
-      expect(response).to redirect_to(new_resume_path)
+      expect(response).to redirect_to(edit_resume_path)
 
       expect(flash[:notice]).to eq("Fill in the information you wish to appear on your resume.")
     end

@@ -102,22 +102,6 @@ describe "manage resume" do
     expect(find_field("resume_descriptive_tag").value).to eq("Singer")
   end
 
-  it "displays validation errors for required resume information" do
-    user = create(:user)
-
-    log_in user
-    visit dashboard_path
-
-    click_link('Edit Personal Information')
-
-
-    fill_in "Phone", with: ""
-
-    click_button "Save"
-
-    expect(page).to have_content("Phone can't be blank")
-  end
-
   it "a user can upload a headshot" do
     user = create(:user)
 
@@ -126,11 +110,11 @@ describe "manage resume" do
 
     click_link "Edit Personal Information"
 
-    expect(page).to have_content("Add a Head Shot")
+    expect(page).to have_content("Add Head Shot")
 
-    click_link "Add a Head Shot"
+    click_link "Add Head Shot"
 
-    attach_file "Image", "#{Rails.root}/spec/fixtures/image.jpg"
+    attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
     expect {
       click_button "Upload"

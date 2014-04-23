@@ -54,7 +54,13 @@
 <% end %>
 
 <h3>Your Head Shots</h3>
-<span class="glyphicon glyphicon-plus"></span> <%= link_to 'Add a Head Shot', '#new-headshot-form', class: "btn-add-new show-headshot-form" %>
+
+<% if current_user.at_maximum_headshots? %>
+  <h2>Maximum Head Shots delete to add.</h2>
+<% else %>
+  <span class="glyphicon glyphicon-plus"></span> <%= link_to 'Add Head Shot', '#new-headshot-form', class: "btn-add-new show-headshot-form" %>
+<% end %>
+
 <div class="is-hidden new-headshot-form" id="new-headshot-form">
   <%= form_for @headshot, :multipart => true do |f| %>
     <%= f.file_field :image %>
