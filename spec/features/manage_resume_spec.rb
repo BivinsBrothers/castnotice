@@ -102,7 +102,7 @@ describe "manage resume" do
     expect(find_field("resume_descriptive_tag").value).to eq("Singer")
   end
 
-  it "a user can upload a headshot" do
+  it "a user can upload a headshot", :js => true do
     user = create(:user)
 
     log_in user
@@ -123,7 +123,7 @@ describe "manage resume" do
     }.from(0).to(1)
   end
 
-  it "allows adding videos" do
+  it "allows adding videos", :js => true do
     user = create(:user)
     create(:resume, user: user)
 

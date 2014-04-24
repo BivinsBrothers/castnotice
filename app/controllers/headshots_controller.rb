@@ -14,8 +14,7 @@ class HeadshotsController < ApplicationController
     if @headshot.save
       redirect_to edit_resume_path
     else
-      flash[:failure] = "Sorry unable to save your Head Shot please correct errors:
-        #{@headshot.errors.full_message.to_sentence}"
+      flash[:failure] = "Sorry unable to save your Head Shot please correct errors: #{@headshot.errors.full_messages.to_sentence}"
       redirect_to edit_resume_path
     end
   end
