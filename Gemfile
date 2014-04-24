@@ -24,6 +24,7 @@ gem "mini_magick"
 gem "pry-rails"
 gem "tzinfo", platforms: [:mingw, :mswin]
 gem "tzinfo-data", platforms: [:mingw, :mswin]
+gem "honeybadger"
 
 group :production do
   gem "rails_12factor"

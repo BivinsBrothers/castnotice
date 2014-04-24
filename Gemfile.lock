@@ -108,6 +108,8 @@ GEM
     formatador (0.2.4)
     high_voltage (2.1.0)
     hike (1.2.3)
+    honeybadger (1.10.1)
+      json
     i18n (0.6.9)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
@@ -254,6 +256,7 @@ DEPENDENCIES
   figaro
   fog
   high_voltage
+  honeybadger
   jquery-rails
   jquery-ui-rails
   launchy
