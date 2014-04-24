@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "managing videos" do
+describe "managing videos", :js => true do
   let(:user) { create(:user) }
 
   before do
@@ -8,10 +8,9 @@ describe "managing videos" do
     visit dashboard_path
   end
 
-  it "a user can upload a video" do
+  it "a user can upload a video", :js => true do
     click_link "edit-videos"
-
-    expect(page).to have_content("Add a video")
+    click_link "Add a video"
 
     fill_in "video_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
 
@@ -34,10 +33,11 @@ describe "managing videos" do
     expect(user.videos.count).to eq(0)
   end
 
-  it "a user can have a maximum of 5 videos" do
+  it "a user can have a maximum of 8 videos", :js => true do
     create_list(:video, 7, user: user)
 
     click_link "edit-videos"
+    click_link "Add a video"
 
     expect(user.videos.count).to eq(7)
 

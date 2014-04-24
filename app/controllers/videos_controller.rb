@@ -13,8 +13,7 @@ class VideosController < ApplicationController
     @video = current_user.videos.build(video_params)
     if @video.save
     else
-      flash[:failure] = "Sorry unable to save your Video please correct errors:
-        #{@video.errors.full_message.to_sentence}"
+      flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
     end
     redirect_to edit_resume_path
   end

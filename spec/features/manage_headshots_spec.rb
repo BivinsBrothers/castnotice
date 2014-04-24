@@ -13,9 +13,9 @@ describe "managing headshots" do
     FileUtils.rm_rf(Dir["#{HeadshotUploader.cache_dir}"])
   end
 
-  it "a user can upload a headshot" do
+  it "a user can upload a headshot", :js => true do
     click_link "edit-headshots"
-
+    click_link "Add Head Shot"
 
     attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
@@ -64,10 +64,11 @@ describe "managing headshots" do
     }.from(true).to(false)
   end
 
-  it "a user can have a maximum of 10 headshots" do
+  it "a user can have a maximum of 10 headshots", :js => true do
     create_list(:headshot, 9, user: user)
 
     click_link "edit-headshots"
+    click_link "Add Head Shot"
 
     expect(user.headshots.count).to eq(9)
 
