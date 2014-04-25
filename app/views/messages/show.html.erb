@@ -5,7 +5,8 @@
   <h3>Conversation with <%= @with %></h3>
 
   <div class="messages">
-    <% @messages.each do |message| %>
+
+        <% @messages.each do |message| %>
       <div class="message <% if message.to == current_user.id %>reply<% end %>">
         <div>
           <%= message.created_at %>
@@ -13,7 +14,6 @@
           <div>
             <%= message.body %>
           </div>
-          
   
       </div>
     <% end %>
