@@ -51,9 +51,14 @@
       </ul>
       <div class="login">
         <% if current_user %>
-          <%= link_to "Account Information", edit_accounts_path %> / <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "register", page_path("pricing") %> / <%= link_to "log in", new_user_session_path %>
+
+            <%= link_to "Messages (" + new_messages + ")", messages_path %>
+            /
+            <%= link_to "Account Information", edit_accounts_path %>
+            /
+            <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "register", page_path("pricing") %> / <%= link_to "log in", new_user_session_path %>
         <% end %>
       </div>
     </div><!-- /.navbar-collapse -->

@@ -16,6 +16,15 @@ ActiveRecord::Schema.define(version: 20140528144940) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "conversations", force: true do |t|
+    t.string   "subject"
+    t.integer  "from",       null: false
+    t.integer  "to",         null: false
+    t.datetime "closed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "critique_responses", force: true do |t|
     t.text     "response"
     t.integer  "critique_id"
@@ -83,6 +92,15 @@ ActiveRecord::Schema.define(version: 20140528144940) do
 
   add_index "headshots", ["imageable_id", "imageable_type"], name: "index_headshots_on_imageable_id_and_imageable_type", using: :btree
   add_index "headshots", ["imageable_id"], name: "index_headshots_on_imageable_id", using: :btree
+
+  create_table "messages", force: true do |t|
+    t.integer  "conversation_id",                 null: false
+    t.integer  "to",                              null: false
+    t.boolean  "read",            default: false
+    t.text     "body",                            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "project_types", force: true do |t|
     t.string   "name"

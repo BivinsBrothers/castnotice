@@ -107,4 +107,10 @@ module ApplicationHelper
   def sentence_for_category_collection(category)
     category.map(&:name).to_sentence
   end
+
+  def new_messages
+    new_messages = Message.where(:read=>false, :to=>current_user.id).count().to_s
+  end
+
+
 end

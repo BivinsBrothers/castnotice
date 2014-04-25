@@ -1,0 +1,16 @@
+<% content_for :background do %>
+  <div class="bg-full" id="bg-about"></div>
+<% end %>
+
+  <h3>My Messages</h3>
+
+  <div class="conversations">
+    <% @conversations.each do |conversation| %>
+      <div class="conversations">
+  
+          <%= link_to '<span class="message-name">' + conversation.with.to_s + '</span><span class="message-subject">' + conversation.subject.to_s + '</span>', message_path(conversation.id) %>
+  
+        </div>
+    <% end %>
+
+  </div>

@@ -1,5 +1,19 @@
 class User < ActiveRecord::Base
+  MAXIMUM_HEADSHOTS = 10
+  MAXIMUM_VIDEOS = 10
+
   has_one :resume
+  has_one :background_image, -> { where is_background: true }, class_name: Headshot
+
+  has_one :resume
+  has_many :projects
+  has_many :schools
+  has_many :headshots
+  has_many :videos
+
+  has_many :received_messages, :class_name => 'Conversation', :foreign_key => 'to'
+  has_many :sent_messages, :class_name => 'Conversation', :foreign_key => 'from'
+  has_many :messages, :through => :conversations
   has_many :critiques
 
   devise :database_authenticatable, :registerable,
