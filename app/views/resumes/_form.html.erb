@@ -4,62 +4,67 @@
       <li><%= msg %></li>
     <% end %>
   <% end %>
-  <ul>
-    <%= f.label :phone %>
-    <%= f.phone_field :phone %>
-    <%= f.label :height %>
-    <%= f.select :height, height_options %>
-    <%= f.label :weight %>
-    <%= f.text_field :weight %>
-    <%= f.label :hair_color %>
-    <%= f.select :hair_color, hair_color_select %>
-    <%= f.label :eye_color %>
-    <%= f.select :eye_color, eye_color_select %>
-    <%= f.label :gender %>
-    <%= f.select :gender, gender_select %>
-    <%= f.label :hair_length %>
-    <%= f.select :hair_length, hair_length_select %>
-    <%= f.label :piercing, "Do you have Piercings" %>
-    <%= f.select :piercing, piercing_select %>
-    <%= f.label :tattoo, "Do you have Tattoos?" %>
-    <%= f.select :tattoo, tatoo_select %>
-    <%= f.label :nudity, "What level of nudity are you comfortable with?" %>
-    <%= f.select :nudity, nudity_select %>
-    <%= f.label :citizen, "Citizenship?" %>
-    <%= f.select :citizen, citizen_select %>
-    <p>Do you have a current passport?</p>
-      <%= f.label :passport, "Yes", :value => "true" %>
-    <li>
-      <%= f.radio_button :passport, true %>
-    </li>
-      <%= f.label :passport, "No", :value => "false" %>
-    <li>
-      <%= f.radio_button :passport, false %>
-    </li>
-    <%= f.label :unions %>
-    <%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
-    <br>
-    <%= f.label :agent_name %>
-    <%= f.text_field :agent_name %>
-    <%= f.label :agent_phone %>
-    <%= f.phone_field :agent_phone %>
-    <%= f.label :additional_skills %>
-    <%= f.text_area :additional_skills %>
-    <%= f.label :descriptive_tag, "Descriptive Tags" %>
-    <%= f.text_field :descriptive_tag %>
-  </ul>
+<div class="row">
+	<div class="col-md-6">
+		<h2>Personal Information</h2>
 
+			<%= f.label :phone %>
+			<%= f.phone_field :phone %>
+			<%= f.label :gender %>
+			<%= f.select :gender, gender_select %>
+			<%= f.label :citizen, "Citizenship?" %>
+			<%= f.select :citizen, citizen_select %>
+			<p>Do you have a current passport?</p>
+			  <div class="radio-box-group">
+				  <%= f.label :passport, "Yes", :value => "true" %>
+				  <%= f.radio_button :passport, true %>
+				  <%= f.label :passport, "No", :value => "false" %>
+				  <%= f.radio_button :passport, false %>
+			  </div>
+			 <%= f.label :unions %>
+			<%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
+			<br>
+			<%= f.label :agent_name %>
+			<%= f.text_field :agent_name %>
+			<%= f.label :agent_phone %>
+			<%= f.phone_field :agent_phone %>
+			<%= f.label :additional_skills %>
+			<%= f.text_area :additional_skills %>
+			<%= f.label :descriptive_tag, "Descriptive Tags" %>
+			<%= f.text_field :descriptive_tag %>
+		</div>
+		<div class="col-md-6">
+			<%= f.label :height %>
+			<%= f.select :height, height_options %>
+			<%= f.label :weight %>
+			<%= f.text_field :weight %>
+			<%= f.label :hair_color %>
+			<%= f.select :hair_color, hair_color_select %>
+			<%= f.label :eye_color %>
+			<%= f.select :eye_color, eye_color_select %>
+			<%= f.label :hair_length %>
+			<%= f.select :hair_length, hair_length_select %>
+			<%= f.label :piercing, "Do you have Piercings" %>
+			<%= f.select :piercing, piercing_select %>
+			<%= f.label :tattoo, "Do you have Tattoos?" %>
+			<%= f.select :tattoo, tatoo_select %>
+			<%= f.label :nudity, "What level of nudity are you comfortable with?" %>
+			<%= f.select :nudity, nudity_select %>
+			
+		</div>
+	</div>
   <%= f.submit "Save" %>
 
 <% end %>
 
-<h3>Your Head Shots</h3>
-
+<h2>Head Shots</h2>
+<div class="add-new-btn-wrapper">
 <% if current_user.at_maximum_headshots? %>
-  <h2>Maximum Head Shots delete to add.</h2>
+  <h3>You have already uploaded the maximum number of head shots. Please delete an existing head shot before trying to add a new one.</h3>
 <% else %>
   <span class="glyphicon glyphicon-plus"></span> <%= link_to 'Add Head Shot', '#new-headshot-form', class: "btn-add-new show-headshot-form" %>
 <% end %>
+</div>
 
 <div class="is-hidden new-headshot-form" id="new-headshot-form">
   <%= form_for @headshot, :multipart => true do |f| %>
@@ -73,24 +78,29 @@
 <div class="headshot-list">
   <% current_user.headshots.each do |headshot| %>
     <div class="headshot">
-      <%= image_tag(headshot.image_url(:thumb)) %>
-      <%= link_to "Delete", headshot_path(headshot), method: :delete %> |
-      <% if headshot.background? %>
-        Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
-      <% else %>
-        <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
-      <% end %>
+		<div class="headshot-image">
+      		<%= image_tag(headshot.image_url(:thumb)) %>
+	  	</div>
+		<div class="headshot-links">
+		    <%= link_to "Delete", headshot_path(headshot), method: :delete %> |
+		    <% if headshot.background? %>
+			  Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
+		    <% else %>
+			  <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
+		    <% end %>
+	  	</div>
     </div>
   <% end %>
 </div>
 
-<h3>Your Videos</h3>
-
+<h2>Videos</h2>
+<div class="add-new-btn-wrapper">
 <% if current_user.at_maximum_videos? %>
-  <h2>Maximum videos please delete to add.</h2>
+  <h2>You have already uploaded the maximum videos, please delete and existing video to add a new one.</h2>
 <% else %>
-  <span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
+  <div class="add-new-btn-wrapper"><span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
 <% end %>
+</div>
 
 <div class="is-hidden new-video-form" id="new-video-form">
   <%= form_for @video, :multipart => true do |f| %>
@@ -106,15 +116,10 @@
 </div>
 
 
-<h3>Schools</h3>
-
-<div class="school-list">
-  <% current_user.schools.each do |school| %>
-    <%= render 'school', :school => school %>
-  <% end %>
-</div>
-
+<h2>Schools</h2>
+<div class="add-new-btn-wrapper">
 <span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a school", "#new-school-form", class: "btn-add-new show-school-form" %>
+</div>
 <div class="is-hidden new-school-form" id="new-school-form">
   <%= form_for @school, :remote => true do |f| %>
     <%= f.label :education_type %>
@@ -135,15 +140,21 @@
   <% end %>
 </div>
 
-
-<h3>Projects</h3>
-<div class="project-list">
-  <% current_user.projects.each do |project| %>
-    <%= render 'project', :project => project %>
+  <% current_user.schools.each do |school| %>
+  	<div class="school-list">
+    <%= render 'school', :school => school %>
+	</div>
   <% end %>
-</div>
 
+
+
+
+
+<h2>Projects</h2>
+
+<div class="add-new-btn-wrapper">
 <span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#new-project-form", class: "btn-add-new show-project-form" %>
+</div>
 <div class="is-hidden new-project-form" id="new-project-form">
   <%= form_for @project, :remote => true do |f| %>
     <%= f.label :project_type %>
@@ -157,4 +168,13 @@
     <%= f.submit "Save Project", :class => "project-save" %>
   <% end %>
 </div>
+
+
+  <% current_user.projects.each do |project| %>
+  	<div class="project-list">
+    	<%= render 'project', :project => project %>
+	</div>
+  <% end %>
+
+
 
