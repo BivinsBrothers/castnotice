@@ -15,6 +15,8 @@ Castnotice::Application.routes.draw do
   resources :headshots, only: [:new, :index, :create, :update, :destroy]
   resources :videos, only: [:new, :index, :create, :destroy]
 
+  get "/contact" => "contacts#new", :as => "contact"
+  resource :contacts, only: [:new, :create]
 
   get "/dashboard" => "dashboard#show", as: :dashboard
 end
