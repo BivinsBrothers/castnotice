@@ -32,7 +32,7 @@ class ResumesController < ApplicationController
 
   def resume_params
     params.require(:resume)
-          .permit(:phone, :weight, :hair_color, :eye_color, :agent_name,
+          .permit(:phone, :phone_two, :weight, :hair_color, :eye_color, :agent_name,
                   :agent_phone, :manager_name, :manager_phone, :additional_skills, :descriptive_tag, :height,
                   :gender, :hair_length, :piercing, :tattoo, :citizen,
                   :passport, { unions: [] })

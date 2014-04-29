@@ -10,6 +10,7 @@ describe "manage resume" do
     click_link 'dashboard-edit-resume'
 
     fill_in "Phone", with: "1-616-123-4567"
+    fill_in "Second Phone", with: "1-616-234-9090"
     select "6'3", from: "resume_height"
     fill_in "Weight", with: "140"
     select "Blond", from: "resume_hair_color"
@@ -35,6 +36,7 @@ describe "manage resume" do
 
 
     expect(find_field("resume_phone").value).to eq("1-616-123-4567")
+    expect(find_field("resume_phone_two").value).to eq("1-616-234-9090")
     expect(find_field("resume_height").value).to eq("75")
     expect(find_field("Weight").value).to eq("140")
     expect(find_field("resume_hair_color").value).to eq("blond")
@@ -81,6 +83,7 @@ describe "manage resume" do
     click_link('dashboard-edit-resume')
 
     expect(find_field("Phone").value).to eq("1-616-555-4567")
+    expect(find_field("Second Phone").value).to eq("1-616-234-9090")
     expect(find_field("Weight").value).to eq("140")
     expect(find_field("resume_hair_color").value).to eq("blond")
     expect(find_field("resume_eye_color").value).to eq("blue")
