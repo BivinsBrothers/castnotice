@@ -2,6 +2,7 @@ require "spec_helper"
 
 feature "an admin can manage events", js: true do
   let(:admin) { create(:user, :admin) }
+  let(:current_date) { Date.current }
 
   before do
     log_in admin
@@ -14,7 +15,6 @@ feature "an admin can manage events", js: true do
     click_link "Add Event"
     visit new_admin_event_path
 
-    current_date = Date.today
     current_month = current_date.strftime("%B")
     audition_date = "#{current_month} #{current_date.day}"
 
@@ -83,7 +83,7 @@ feature "an admin can manage events", js: true do
   end
 
   scenario "editing an event" do
-    create(:event, name: "Boring Times")
+    create(:event, name: "Boring Times", audition_date: Date.current)
 
     visit page_path("calendar")
     click_link "Calendar"
@@ -103,7 +103,7 @@ feature "an admin can manage events", js: true do
 
 
   scenario "deleting an event" do
-    create(:event)
+     create(:event, audition_date: Date.current)
 
     visit page_path("calendar")
     click_link "Calendar"

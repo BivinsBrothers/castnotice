@@ -25,6 +25,14 @@ module Dom
     def year
       node.find(".ui-datepicker-year").text
     end
+
+    def next_month
+      node.find(".ui-datepicker-next").click
+    end
+
+    def previous_month
+      node.find(".ui-datepicker-prev").click
+    end
   end
 
   class CalendarEvent < Domino

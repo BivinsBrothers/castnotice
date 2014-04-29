@@ -1,6 +1,8 @@
 require "spec_helper"
 
 feature "calendar", js: true do
+  let(:this_month) { Date.current }
+
   context "as a member" do
     before do
       user = create(:user)
@@ -10,7 +12,7 @@ feature "calendar", js: true do
     it "displays full event information" do
       create(:event, :paid,
         name: "Extravaganza!",
-        audition_date: "2014-04-18",
+        audition_date: this_month,
         region: "Canada",
         performer_type: "Clowns",
         project_type: "PSA",
@@ -30,7 +32,7 @@ feature "calendar", js: true do
       event = Dom::CalendarEvent.first
 
       expect(event.name).to eq("Extravaganza!")
-      expect(event.audition_date).to eq("April 18")
+      expect(event.audition_date).to eq(this_month.strftime('%B %-d'))
       expect(event.paid?).to be_true
       expect(event.region).to eq("Canada")
       expect(event.performer_type).to eq("Clowns")
@@ -54,7 +56,7 @@ feature "calendar", js: true do
     it "displays limited event information" do
       create(:event, :paid,
         name: "Extravaganza!",
-        audition_date: "2014-04-18",
+        audition_date: this_month,
         region: "Canada",
         performer_type: "Clowns",
         project_type: "PSA"
@@ -65,7 +67,7 @@ feature "calendar", js: true do
       event = Dom::CalendarEvent.first
 
       expect(event.name).to eq("Extravaganza!")
-      expect(event.audition_date).to eq("April 18")
+      expect(event.audition_date).to eq(this_month.strftime('%B %-d'))
       expect(event.paid?).to be_true
       expect(event.region).to eq("Canada")
       expect(event.performer_type).to eq("Clowns")
@@ -78,27 +80,23 @@ feature "calendar", js: true do
   end
 
   it "filters by month in sidebar" do
-    Timecop.travel("2014-04-15")
+    next_month = this_month.next_month
 
-    create(:event, audition_date: "2014-04-10")
-    create(:event, audition_date: "2014-05-18")
-    create(:event, audition_date: "2014-05-19")
+    create(:event, audition_date: this_month)
+    create(:event, audition_date: next_month)
 
     visit page_path("calendar")
-    expect(Dom::CalendarEvent.count).to eq(1)
 
-    april_event = Dom::CalendarEvent.first
-    expect(april_event.audition_date).to eq("April 10")
+    first_event = Dom::CalendarEvent.first
+    expect(first_event.audition_date).to eq(this_month.strftime('%B %-d'))
 
-    find(".ui-datepicker-next").click
-    expect(Dom::CalendarEvent.count).to eq(2)
+    datepicker = Dom::CalendarDatepicker.first
 
-    may_event1 = Dom::CalendarEvent.first
-    may_event2 = Dom::CalendarEvent.all.last
+    expect(datepicker.month).to eq(this_month.strftime("%B"))
+    datepicker.next_month
+    expect(datepicker.month).to eq(next_month.strftime("%B"))
 
-    expect(may_event1.audition_date).to eq("May 18")
-    expect(may_event2.audition_date).to eq("May 19")
-
-    Timecop.return
+    next_event = Dom::CalendarEvent.first
+    expect(next_event.audition_date).to eq(next_month.strftime('%B %-d'))
   end
 end

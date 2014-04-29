@@ -80,8 +80,16 @@ describe "Calendar API" do
     end
 
     context "when not a member" do
+      before do
+        Timecop.freeze(Date.parse("2014-04-17"))
+      end
+
+      after do
+        Timecop.return
+      end
+
       it "returns limited json when not a member" do
-        event = create(:event)
+        event = create(:event, audition_date: 2.days.from_now)
 
         get events_path
 
