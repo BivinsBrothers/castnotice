@@ -4,11 +4,11 @@ var urlSignIn = '<%= Rails.application.routes.url_helpers.new_user_session_path 
 var urlRegister = '<%= Rails.application.routes.url_helpers.page_path("pricing") %>';
 var monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"];
-var date = new Date();
-var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-var lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-var from = firstDay.getUTCFullYear() + "-" + (firstDay.getUTCMonth() + 1) + "-" + 1;
-var to = lastDay.getUTCFullYear() + "-" + (lastDay.getUTCMonth() + 1) + "-" + lastDay.getUTCDate();
+
+var m = moment();
+var from = m.startOf("month").format("YYYY-MM-DD");
+var to = m.endOf("month").format("YYYY-MM-DD");
+
 var search = {"date": {"start": from, "end": to}};
 var eventDates = [""];
 var eventCount;
@@ -122,10 +122,9 @@ function calendarUpdate() {
                 $('.calendar-events').html('<p>Sorry, no events match your search criteria, please change your selection.</p>');
             }
             $("#calendar-datepicker").datepicker({"onChangeMonthYear": function(year, month) {
-                    from = new Date(year, month - 1);
-                    to = new Date(from.getUTCFullYear(), from.getUTCMonth() + 1, 0);
-                    search.date.start = from.getUTCFullYear() + "-" + (from.getUTCMonth() + 1) + "-" + from.getUTCDate();
-                    search.date.end = to.getUTCFullYear() + "-" + (to.getUTCMonth() + 1) + "-" + to.getUTCDate();
+                    m = moment().month(month - 1).year(year);
+                    search.date.start = m.startOf("month").format("YYYY-MM-DD");
+                    search.date.end   = m.endOf("month").format("YYYY-MM-DD");
                     calendarUpdate();
                 },
                 beforeShowDay: function(date) {
