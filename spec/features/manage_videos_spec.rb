@@ -48,6 +48,6 @@ describe "managing videos", :js => true do
     expect(user.videos.count).to eq(8)
 
     expect(page).not_to have_content("Add a video")
-    expect(page).to have_content("Maximum videos please delete to add.")
+    expect(page).to have_content("You have already uploaded the maximum videos, please delete and existing video to add a new one.")
   end
 end

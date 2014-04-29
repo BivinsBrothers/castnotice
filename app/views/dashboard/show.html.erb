@@ -4,21 +4,19 @@
   <% end %>
 <% end %>
 
-<h1>My Stage: <%= current_user.name %></h1> 
+<h1>My Stage: <%= current_user.name %></h1>
 <h3>Now starring you.</h3>
 
-<% if current_user.resume %>
-  <%= link_to "Edit Resume", edit_resume_path, class: "btn" %>
-<% else %>
-  <%= link_to "Edit Resume", edit_resume_path, class: "btn" %>
-<% end %>
+
+<%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
+
 
 <div class="row">
 	<div class="col-md-8">
 
 		<h2>Your Head Shots <span><%= link_to 'Edit', edit_resume_path, id: "edit-headshots", class: "btn btn-small" %></span></h2>
 		<p>You can upload a maximum of 10 head shots to your resume and you can set one as the main background image</p>
-		
+
 		<% if current_user.headshots.present? %>
 		  <% current_user.headshots.each do |headshot| %>
 			<div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
@@ -26,11 +24,11 @@
 		<% else %>
 		  <div class="add-headshots"><%= link_to "Add Headshots", edit_resume_path %></div>
 		<% end %>
-		
-		
+
+
 		<h2>Your Videos <span><%= link_to 'Edit', edit_resume_path, id: "edit-videos", class: "btn btn-small" %></span></h2>
 		<p>Add YouTube or Vimeo links to embed video into your resume.</p>
-		
+
 		<% if current_user.videos.present? %>
 			<% current_user.videos.each do |video| %>
 			  <div class="video">

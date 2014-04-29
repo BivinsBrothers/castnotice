@@ -7,7 +7,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link('Edit Personal Information')
+    click_link 'dashboard-edit-resume'
 
     fill_in "Phone", with: "1-616-123-4567"
     select "6'3", from: "resume_height"
@@ -76,7 +76,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link('Edit Personal Information')
+    click_link('dashboard-edit-resume')
 
     expect(find_field("Phone").value).to eq("1-616-555-4567")
     expect(find_field("Weight").value).to eq("140")
@@ -108,7 +108,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
 
     expect(page).to have_content("Add Head Shot")
 
@@ -130,7 +130,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
 
     click_link "Add a video"
 
@@ -153,7 +153,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
 
     click_link "Delete"
 
@@ -167,7 +167,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
 
     click_link "Add a project"
 
@@ -193,7 +193,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
     click_link "Edit"
 
     select "Industrial Project", from: "Project Type"
@@ -216,7 +216,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
 
     click_link "Add a school"
     select "College", from: "Education Type"
@@ -240,7 +240,7 @@ describe "manage resume" do
     log_in user
     visit dashboard_path
 
-    click_link "Edit Personal Information"
+    click_link "dashboard-edit-resume"
 
     click_link "Edit"
 
