@@ -10,6 +10,7 @@ describe "managing user" do
     fill_in "Password confirmation", with: "superpass"
 
     fill_in "user[location_address]", with: "123 Somewhere"
+    fill_in "user[location_address_two]", with: "PO BOX 105"
     fill_in "user[location_city]", with: "Grand Rapids"
     select  "Michigan", from: "user[location_state]"
     fill_in "user[location_zip]", with: "49506"
@@ -36,6 +37,7 @@ describe "managing user" do
     expect(user.email).to eq("test@fake.com")
 
     expect(user.location_address).to eq("123 Somewhere")
+    expect(user.location_address_two).to eq("PO BOX 105")
     expect(user.location_city).to eq("Grand Rapids")
     expect(user.location_state).to eq("MI")
     expect(user.location_zip).to eq("49506")
@@ -57,7 +59,8 @@ describe "managing user" do
     expect(find_field("user_birthday_2i").value).to eq("1")
     expect(find_field("user_birthday_3i").value).to eq("1")
 
-    fill_in "Street", with: "3333 Lady Dr."
+    fill_in "Address One", with: "3333 Lady Dr."
+    fill_in "Address Two", with: "APT. 109"
     fill_in "City",with: "Grand Rapids"
     select  "Michigan", from: "user[location_state]"
     fill_in "Zip Code", with: "49505"
@@ -68,7 +71,8 @@ describe "managing user" do
 
     click_link "Account Information"
 
-    expect(find_field("Street").value).to eq("3333 Lady Dr.")
+    expect(find_field("Address One").value).to eq("3333 Lady Dr.")
+    expect(find_field("Address Two").value).to eq("APT. 109")
     expect(find_field("City").value).to eq("Grand Rapids")
     expect(find_field("Zip Code").value).to eq("49505")
 
