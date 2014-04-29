@@ -1,12 +1,12 @@
 <div class="video">
-  <div class="row repeatable-row">
-    <div class="col-md-12">
+	<div class="video-iframe">
       <% if video.youtube_id.present? %>
-        <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
+        <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
       <% elsif video.vimeo_id.present? %>
         <iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
       <% end %>
-      <%= link_to "Delete", video_path(video), method: :delete %>
-    </div>
-  </div>
+	</div>
+	<div class="video-links">
+      <span class="glyphicon glyphicon-trash"></span> <%= link_to "Delete", video_path(video), method: :delete %>
+	 </div>
 </div>

@@ -1,10 +1,13 @@
-<div class="row repeatable-row">
+
   <% if @headshot %>
     <% @headshots.each do |headshot| %>
-      <div class="col-md-4">
-        <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
-        <%= link_to "Delete", headshot_path(headshot), method: :delete %>
-      </div>
+        <div class="headshot">
+			<div class="headshot-image">
+				<%= image_tag(headshot.image_url(:thumb)) %>
+			</div>
+			<div class="headshot-links">
+        		<span class="glyphicon glyphicon-trash"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete %>
+			</div>
+        </div>
     <% end %>
   <% end %>
-</div>
