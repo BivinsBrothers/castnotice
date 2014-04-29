@@ -26,6 +26,8 @@ describe "manage resume" do
 
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
+    fill_in "Manager name", with: "Keith Smith"
+    fill_in "Manager phone", with: "1-616-555-1212"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
     fill_in "Descriptive Tag", with: "Actor, Dancer, and just plain fabulous!"
 
@@ -39,6 +41,8 @@ describe "manage resume" do
     expect(find_field("resume_eye_color").value).to eq("blue")
     expect(find_field("resume_agent_name").value).to eq("Awesome Agent")
     expect(find_field("resume_agent_phone").value).to eq("1-616-456-7890")
+    expect(find_field("resume_manager_name").value).to eq("Keith Smith")
+    expect(find_field("resume_manager_phone").value).to eq("1-616-555-1212")
     expect(find_field("resume_additional_skills").value).to eq("Many years of improve from Disney Stages.")
     expect(find_field("resume_descriptive_tag").value).to eq("Actor, Dancer, and just plain fabulous!")
 
@@ -82,6 +86,9 @@ describe "manage resume" do
     expect(find_field("resume_eye_color").value).to eq("blue")
     expect(find_field("resume_agent_name").value).to eq("Awesome Agent")
     expect(find_field("resume_agent_phone").value).to eq("1-616-667-8989")
+    expect(find_field("resume_manager_name").value).to eq("Keith Smith")
+    expect(find_field("resume_manager_phone").value).to eq("1-616-222-3333")
+
     expect(find_field("resume_descriptive_tag").value).to eq("Dancer, Actor")
 
     select "5'10", from: "resume_height"
