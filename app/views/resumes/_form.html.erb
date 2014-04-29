@@ -7,8 +7,6 @@
 <div class="row">
 	<h2>Personal Information</h2>
 	<div class="col-md-6">
-		
-
 			<%= f.label :phone %>
 			<%= f.phone_field :phone %>
 			<%= f.label :gender %>
@@ -22,7 +20,7 @@
 				  <%= f.label :passport, "No", :value => "false" %>
 				  <%= f.radio_button :passport, false %>
 			  </div>
-			 <%= f.label :unions %>
+			<%= f.label :unions %>
 			<%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
 			<br>
 			<%= f.label :agent_name %>
@@ -49,9 +47,6 @@
 			<%= f.select :piercing, piercing_select %>
 			<%= f.label :tattoo, "Do you have Tattoos?" %>
 			<%= f.select :tattoo, tatoo_select %>
-			<%= f.label :nudity, "What level of nudity are you comfortable with?" %>
-			<%= f.select :nudity, nudity_select %>
-			
 		</div>
 	</div>
   <%= f.submit "Save" %>
