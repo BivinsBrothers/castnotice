@@ -14,6 +14,6 @@ class AccountsController < ApplicationController
 
   def account_params
     params.require(:user)
-    .permit(:name, :email, :location_address, :location_city, :location_state, :location_zip, :birthday, :tos)
+    .permit(:name, :email, :location_address, :location_address_two, :location_city, :location_state, :location_zip, :birthday, :tos)
   end
 end
