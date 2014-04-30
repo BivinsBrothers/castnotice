@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429185416) do
+ActiveRecord::Schema.define(version: 20140430111522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 20140429185416) do
     t.string   "hair_length"
     t.string   "piercing"
     t.string   "tattoo"
-    t.string   "nudity"
     t.string   "citizen"
     t.boolean  "passport"
   end
