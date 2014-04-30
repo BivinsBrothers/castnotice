@@ -122,6 +122,7 @@ function calendarUpdate() {
                 $('.calendar-events').html('<p>Sorry, no events match your search criteria, please change your selection.</p>');
             }
             $("#calendar-datepicker").datepicker({"onChangeMonthYear": function(year, month) {
+                    // Moment.month() expects zero-based month, datepicker callback returns typical month integer, thus subtract by 1
                     m = moment().month(month - 1).year(year);
                     search.date.start = m.startOf("month").format("YYYY-MM-DD");
                     search.date.end   = m.endOf("month").format("YYYY-MM-DD");
