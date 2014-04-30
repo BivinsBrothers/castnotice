@@ -82,8 +82,8 @@ feature "calendar", js: true do
   it "filters by month in sidebar" do
     next_month = this_month.next_month
 
-    create(:event, audition_date: this_month)
-    create(:event, audition_date: next_month)
+    create(:event, audition_date: this_month, paid: false)
+    create(:event, audition_date: next_month, paid: true)
 
     visit page_path("calendar")
 
@@ -95,6 +95,8 @@ feature "calendar", js: true do
     expect(datepicker.month).to eq(this_month.strftime("%B"))
     datepicker.next_month
     expect(datepicker.month).to eq(next_month.strftime("%B"))
+
+    find(".calendar-paid-true")
 
     next_event = Dom::CalendarEvent.first
     expect(next_event.audition_date).to eq(next_month.strftime('%B %-d'))
