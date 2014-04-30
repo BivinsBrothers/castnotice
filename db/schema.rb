@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20140430111522) do
     t.string   "location_zip"
     t.date     "birthday"
     t.boolean  "admin",                  default: false, null: false
-    t.string   "location_address_two"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
