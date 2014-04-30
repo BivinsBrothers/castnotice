@@ -5,8 +5,9 @@
     <% end %>
   <% end %>
 <div class="row">
+	<h2>Personal Information</h2>
 	<div class="col-md-6">
-		<h2>Personal Information</h2>
+		
 
 			<%= f.label :phone %>
 			<%= f.phone_field :phone %>
@@ -56,125 +57,137 @@
   <%= f.submit "Save" %>
 
 <% end %>
-
-<h2>Head Shots</h2>
-<div class="add-new-btn-wrapper">
-<% if current_user.at_maximum_headshots? %>
-  <h3>You have already uploaded the maximum number of head shots. Please delete an existing head shot before trying to add a new one.</h3>
-<% else %>
-  <span class="glyphicon glyphicon-plus"></span> <%= link_to 'Add Head Shot', '#new-headshot-form', class: "btn-add-new show-headshot-form" %>
-<% end %>
-</div>
-
-<div class="is-hidden new-headshot-form" id="new-headshot-form">
-  <%= form_for @headshot, :multipart => true do |f| %>
-    <%= f.file_field :image, :id => "headshot_image" %>
-    <%= f.hidden_field :image_cache %>
-
-    <%= f.submit "Upload Head Shot", :disabled => "disabled", :id => "upload-headshot-button" %>
-  <% end %>
-</div>
-
-<div class="headshot-list">
-  <% current_user.headshots.each do |headshot| %>
-    <div class="headshot">
-		<div class="headshot-image">
-      		<%= image_tag(headshot.image_url(:thumb)) %>
-	  	</div>
-		<div class="headshot-links">
-		    <%= link_to "Delete", headshot_path(headshot), method: :delete %> |
-		    <% if headshot.background? %>
-			  Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
-		    <% else %>
-			  <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
-		    <% end %>
-	  	</div>
-    </div>
-  <% end %>
-</div>
-
-<h2>Videos</h2>
-<div class="add-new-btn-wrapper">
-<% if current_user.at_maximum_videos? %>
-  <h2>You have already uploaded the maximum videos, please delete and existing video to add a new one.</h2>
-<% else %>
-  <div class="add-new-btn-wrapper"><span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
-<% end %>
-</div>
-
-<div class="is-hidden new-video-form" id="new-video-form">
-  <%= form_for @video, :multipart => true do |f| %>
-    <%= f.text_field :video_url %>
-    <%= f.submit "Upload Video", :disabled => "disabled", :class => "video-save", :id => "upload-video-button" %>
-  <% end %>
-</div>
-
-<div class="video-list">
-  <% current_user.videos.each do |video| %>
-    <%= render 'video', :video => video %>
-  <% end %>
-</div>
-
-
-<h2>Schools</h2>
-<div class="add-new-btn-wrapper">
-<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a school", "#new-school-form", class: "btn-add-new show-school-form" %>
-</div>
-<div class="is-hidden new-school-form" id="new-school-form">
-  <%= form_for @school, :remote => true do |f| %>
-    <%= f.label :education_type %>
-    <%= f.select :education_type, education_type_select %>
-    <%= f.label :school %>
-    <%= f.text_field :school %>
-    <%= f.label :major %>
-    <%= f.text_field :major %>
-    <%= f.label :degree %>
-    <%= f.text_field :degree %>
-    <%= f.label :teacher %>
-    <%= f.text_field :teacher %>
-    <%= f.label :years %>
-    <%= f.text_field :years %>
-    <%= f.label :instruments %>
-    <%= f.text_field :instruments %>
-    <%= f.submit "Save school", :class => "school-save" %>
-  <% end %>
-</div>
-
-  <% current_user.schools.each do |school| %>
-  	<div class="school-list">
-    <%= render 'school', :school => school %>
+<div class="row">
+	<div class="col-md-12">
+		<h2>Head Shots</h2>
+		<div class="add-new-btn-wrapper">
+		<% if current_user.at_maximum_headshots? %>
+		  <h3>You have already uploaded the maximum number of head shots. Please delete an existing head shot before trying to add a new one.</h3>
+		<% else %>
+		  <span class="glyphicon glyphicon-plus"></span> <%= link_to 'Add Head Shot', '#new-headshot-form', class: "btn-add-new show-headshot-form" %>
+		<% end %>
+		</div>
+		
+		<div class="is-hidden new-headshot-form" id="new-headshot-form">
+		  <%= form_for @headshot, :multipart => true do |f| %>
+			<%= f.file_field :image, :id => "headshot_image" %>
+			<%= f.hidden_field :image_cache %>
+		
+			<%= f.submit "Upload Head Shot", :disabled => "disabled", :id => "upload-headshot-button" %>
+		  <% end %>
+		</div>
+		
+		<div class="headshot-list">
+		  <% current_user.headshots.each do |headshot| %>
+			<div class="headshot">
+				<div class="headshot-image">
+					<%= image_tag(headshot.image_url(:thumb)) %>
+				</div>
+				<div class="headshot-links">
+					<%= link_to "Delete", headshot_path(headshot), method: :delete %> |
+					<% if headshot.background? %>
+					  Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
+					<% else %>
+					  <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
+					<% end %>
+				</div>
+			</div>
+		  <% end %>
+		</div>
 	</div>
-  <% end %>
-
-
-
-
-
-<h2>Projects</h2>
-
-<div class="add-new-btn-wrapper">
-<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#new-project-form", class: "btn-add-new show-project-form" %>
-</div>
-<div class="is-hidden new-project-form" id="new-project-form">
-  <%= form_for @project, :remote => true do |f| %>
-    <%= f.label :project_type %>
-    <%= f.select :project_type, project_type_select %>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-    <%= f.label :role %>
-    <%= f.text_field :role %>
-    <%= f.label :director_studio %>
-    <%= f.text_field :director_studio %>
-    <%= f.submit "Save Project", :class => "project-save" %>
-  <% end %>
 </div>
 
+<div class="row">
+	<div class="col-md-12">
+		<h2>Videos</h2>
+		<div class="add-new-btn-wrapper">
+		<% if current_user.at_maximum_videos? %>
+		  <h2>You have already uploaded the maximum videos, please delete and existing video to add a new one.</h2>
+		<% else %>
+		  <div class="add-new-btn-wrapper"><span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
+		<% end %>
+		</div>
+		
+		<div class="is-hidden new-video-form" id="new-video-form">
+		  <%= form_for @video, :multipart => true do |f| %>
+			<%= f.text_field :video_url %>
+			<%= f.submit "Upload Video", :disabled => "disabled", :class => "video-save", :id => "upload-video-button" %>
+		  <% end %>
+		</div>
+		
+		<div class="video-list">
+		  <% current_user.videos.each do |video| %>
+			<%= render 'video', :video => video %>
+		  <% end %>
+		</div>
 
-  <% current_user.projects.each do |project| %>
-  	<div class="project-list">
-    	<%= render 'project', :project => project %>
 	</div>
-  <% end %>
+</div>
 
+<div class="row">
+	<div class="col-md-12">
+
+		<h2>Schools</h2>
+		<div class="add-new-btn-wrapper">
+		<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a school", "#new-school-form", class: "btn-add-new show-school-form" %>
+		</div>
+		<div class="is-hidden new-school-form" id="new-school-form">
+		  <%= form_for @school, :remote => true do |f| %>
+			<%= f.label :education_type %>
+			<%= f.select :education_type, education_type_select %>
+			<%= f.label :school %>
+			<%= f.text_field :school %>
+			<%= f.label :major %>
+			<%= f.text_field :major %>
+			<%= f.label :degree %>
+			<%= f.text_field :degree %>
+			<%= f.label :teacher %>
+			<%= f.text_field :teacher %>
+			<%= f.label :years %>
+			<%= f.text_field :years %>
+			<%= f.label :instruments %>
+			<%= f.text_field :instruments %>
+			<%= f.submit "Save school", :class => "school-save" %>
+		  <% end %>
+		</div>
+		
+		  <% current_user.schools.each do |school| %>
+			<div class="school-list">
+			<%= render 'school', :school => school %>
+			</div>
+		  <% end %>
+
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<h2>Projects</h2>
+		<div class="add-new-btn-wrapper">
+		<span class="glyphicon glyphicon-plus"></span> <%= link_to "Add a project", "#new-project-form", class: "btn-add-new show-project-form" %>
+		</div>
+		<div class="is-hidden new-project-form" id="new-project-form">
+		  <%= form_for @project, :remote => true do |f| %>
+			<%= f.label :project_type %>
+			<%= f.select :project_type, project_type_select %>
+			<%= f.label :title %>
+			<%= f.text_field :title %>
+			<%= f.label :role %>
+			<%= f.text_field :role %>
+			<%= f.label :director_studio %>
+			<%= f.text_field :director_studio %>
+			<%= f.submit "Save Project", :class => "project-save" %>
+		  <% end %>
+		</div>
+		
+		  <% current_user.projects.each do |project| %>
+			<div class="project-list">
+				<%= render 'project', :project => project %>
+			</div>
+		  <% end %>
+	</div>
+</div>
 
 
