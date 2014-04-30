@@ -27,6 +27,12 @@ describe "manage resume" do
 
     fill_in "Agent name", with: "Awesome Agent"
     fill_in "Agent phone", with: "1-616-456-7890"
+    fill_in "Agent email", with: "agent@fake.com"
+    fill_in "resume[agent_location]", with: "100 Agent St."
+    fill_in "resume[agent_location_two]", with: "Villa 2"
+    fill_in "resume[agent_city]", with: "Detroit"
+    select  "Michigan", from: "resume[agent_state]"
+    fill_in "resume[agent_zip]", with: "49506"
     fill_in "Manager name", with: "Keith Smith"
     fill_in "Manager phone", with: "1-616-555-1212"
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
@@ -43,6 +49,11 @@ describe "manage resume" do
     expect(find_field("resume_eye_color").value).to eq("blue")
     expect(find_field("resume_agent_name").value).to eq("Awesome Agent")
     expect(find_field("resume_agent_phone").value).to eq("1-616-456-7890")
+    expect(find_field("resume_agent_email").value).to eq("agent@fake.com")
+    expect(find_field("resume_agent_location").value).to eq("100 Agent St.")
+    expect(find_field("resume_agent_location_two").value).to eq("Villa 2")
+    expect(find_field("resume_agent_city").value).to eq("Detroit")
+    expect(find_field("resume_agent_zip").value).to eq("49506")
     expect(find_field("resume_manager_name").value).to eq("Keith Smith")
     expect(find_field("resume_manager_phone").value).to eq("1-616-555-1212")
     expect(find_field("resume_additional_skills").value).to eq("Many years of improve from Disney Stages.")

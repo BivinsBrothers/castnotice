@@ -21,3 +21,7 @@ $ ->
   $('#video_video_url').on 'change', ->
     if $(this).val().length
       $("#upload-video-button").prop('disabled', false)
+
+  $(".agent-extra").on 'click', (e) ->
+    e.preventDefault
+    $(".show-agent-fields").slideDown()

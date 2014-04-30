@@ -26,9 +26,25 @@
 			<%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
 			<br>
 			<%= f.label :agent_name %>
-			<%= f.text_field :agent_name %>
-			<%= f.label :agent_phone %>
-			<%= f.phone_field :agent_phone %>
+			<%= f.text_field :agent_name, :class => "agent-extra" %>
+
+      <div class="is-hidden show-agent-fields">
+        <%= f.label :agent_phone %>
+        <%= f.phone_field :agent_phone %>
+        <%= f.label :agent_email %>
+        <%= f.text_field :agent_email %>
+        <%= f.label :agent_location %>
+        <%= f.text_field :agent_location %>
+        <%= f.label :agent_location_two %>
+        <%= f.text_field :agent_location_two %>
+        <%= f.label :agent_city %>
+        <%= f.text_field :agent_city %>
+        <%= f.label :agent_state %>
+        <%= f.select :agent_state, us_states_select %>
+        <%= f.label :agent_zip %>
+        <%= f.text_field :agent_zip %>
+      </div>
+
 			<%= f.label :manager_name %>
 			<%= f.text_field :manager_name %>
       <%= f.label :manager_phone %>
