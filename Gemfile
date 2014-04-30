@@ -39,6 +39,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "launchy"
   gem "domino"
+  gem "timecop"
 end
 
 group :development do

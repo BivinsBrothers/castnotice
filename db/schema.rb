@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140430111522) do
     t.string   "casting_director"
   end
 
+  add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
+
   create_table "headshots", force: true do |t|
     t.string   "image"
     t.integer  "user_id"

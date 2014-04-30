@@ -1,6 +1,8 @@
 require "spec_helper"
 
 feature "calendar", js: true do
+  let(:this_month) { Date.current }
+
   context "as a member" do
     before do
       user = create(:user)
@@ -10,7 +12,7 @@ feature "calendar", js: true do
     it "displays full event information" do
       create(:event, :paid,
         name: "Extravaganza!",
-        audition_date: Date.parse("2014-04-18"),
+        audition_date: this_month,
         region: "Canada",
         performer_type: "Clowns",
         project_type: "PSA",
@@ -21,8 +23,8 @@ feature "calendar", js: true do
         story: "Happy people become ghosts, have good times",
         description: "Chris is getting google glass",
         audition: "Wears glasses",
-        start_date: Date.parse("2014-06-01"),
-        end_date: Date.parse("2014-06-15")
+        start_date: "2014-06-01",
+        end_date: "2014-06-15"
       )
 
       visit page_path("calendar")
@@ -30,7 +32,7 @@ feature "calendar", js: true do
       event = Dom::CalendarEvent.first
 
       expect(event.name).to eq("Extravaganza!")
-      expect(event.audition_date).to eq("April 18")
+      expect(event.audition_date).to eq(this_month.strftime('%B %-d'))
       expect(event.paid?).to be_true
       expect(event.region).to eq("Canada")
       expect(event.performer_type).to eq("Clowns")
@@ -54,7 +56,7 @@ feature "calendar", js: true do
     it "displays limited event information" do
       create(:event, :paid,
         name: "Extravaganza!",
-        audition_date: Date.parse("2014-04-18"),
+        audition_date: this_month,
         region: "Canada",
         performer_type: "Clowns",
         project_type: "PSA"
@@ -65,7 +67,7 @@ feature "calendar", js: true do
       event = Dom::CalendarEvent.first
 
       expect(event.name).to eq("Extravaganza!")
-      expect(event.audition_date).to eq("April 18")
+      expect(event.audition_date).to eq(this_month.strftime('%B %-d'))
       expect(event.paid?).to be_true
       expect(event.region).to eq("Canada")
       expect(event.performer_type).to eq("Clowns")
@@ -75,5 +77,28 @@ feature "calendar", js: true do
 
       expect(event.more_information).to eq("To find out detailed information about this event, you must be logged into CastNotice. Please Sign in or Register")
     end
+  end
+
+  it "filters by month in sidebar" do
+    next_month = this_month.next_month
+
+    create(:event, audition_date: this_month, paid: false)
+    create(:event, audition_date: next_month, paid: true)
+
+    visit page_path("calendar")
+
+    first_event = Dom::CalendarEvent.first
+    expect(first_event.audition_date).to eq(this_month.strftime('%B %-d'))
+
+    datepicker = Dom::CalendarDatepicker.first
+
+    expect(datepicker.month).to eq(this_month.strftime("%B"))
+    datepicker.next_month
+    expect(datepicker.month).to eq(next_month.strftime("%B"))
+
+    find(".calendar-paid-true")
+
+    next_event = Dom::CalendarEvent.first
+    expect(next_event.audition_date).to eq(next_month.strftime('%B %-d'))
   end
 end

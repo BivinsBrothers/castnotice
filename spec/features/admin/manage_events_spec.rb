@@ -2,6 +2,7 @@ require "spec_helper"
 
 feature "an admin can manage events", js: true do
   let(:admin) { create(:user, :admin) }
+  let(:current_date) { Date.current }
 
   before do
     log_in admin
@@ -13,6 +14,9 @@ feature "an admin can manage events", js: true do
 
     click_link "Add Event"
     visit new_admin_event_path
+
+    current_month = current_date.strftime("%B")
+    audition_date = "#{current_month} #{current_date.day}"
 
     fill_in "Name of Project", with: "Extravaganza!"
     fill_in "Project Type", with: "Poodle show"
@@ -30,9 +34,9 @@ feature "an admin can manage events", js: true do
     fill_in "Writers", with: "Gordy Howe"
     fill_in "Producers", with: "Wayne Gretzky"
 
-    select "1", from: "event_audition_date_3i"
-    select "September", from: "event_audition_date_2i"
-    select "2014", from: "event_audition_date_1i"
+    select current_date.day.to_s, from: "event_audition_date_3i"
+    select current_month, from: "event_audition_date_2i"
+    select current_date.year, from: "event_audition_date_1i"
 
     select "1", from: "event_start_date_3i"
     select "December", from: "event_start_date_2i"
@@ -48,10 +52,13 @@ feature "an admin can manage events", js: true do
 
     expect(page).to have_content("Calendar")
 
+    datepicker = Dom::CalendarDatepicker.first
+    expect(datepicker.month).to eq(current_month)
+
     event = Dom::CalendarEvent.first
 
     expect(event.name).to eq("Extravaganza!")
-    expect(event.audition_date).to eq("September 1")
+    expect(event.audition_date).to eq(audition_date)
     expect(event.paid?).to be_true
     expect(event.project_type).to eq("Poodle show")
     expect(event.region).to eq("Middle West")
@@ -76,7 +83,7 @@ feature "an admin can manage events", js: true do
   end
 
   scenario "editing an event" do
-    create(:event, name: "Boring Times")
+    create(:event, name: "Boring Times", audition_date: Date.current)
 
     visit page_path("calendar")
     click_link "Calendar"
@@ -96,7 +103,7 @@ feature "an admin can manage events", js: true do
 
 
   scenario "deleting an event" do
-    create(:event)
+     create(:event, audition_date: Date.current)
 
     visit page_path("calendar")
     click_link "Calendar"
