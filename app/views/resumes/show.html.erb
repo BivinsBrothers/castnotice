@@ -24,33 +24,52 @@
 		  <p>Agent Phone: <%= current_user.resume.agent_phone %></p>
 		</div>
 	</div>
+	
+<div class="row">
+	<div class="col-md-12">
+		<% if current_user.headshots.present? %>
+		  <h3>Head Shots</h3>
+		
+					<% current_user.headshots.each do |headshot| %>
+					<div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+					<% end %>
+				
+		<% end %>
+	</div>
+</div>
 
-<% if current_user.headshots.present? %>
-  <h3>Head Shots</h3>
-  <% current_user.headshots.each do |headshot| %>
-    <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
-  <% end %>
-<% end %>
+<div class="row">
+	<div class="col-md-12">
+		<% if current_user.videos.present? %>
+		  <h3>Your Videos</h3>
+		
+		  <% current_user.videos.each do |video| %>
+			<div class="video">
+			  <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
+			  <% if video.youtube_id.present? %>
+				<iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
+			  <% elsif video.vimeo_id.present? %>
+				<iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
+			  <% end %>
+			  <%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
+			</div>
+		  <% end %>
+		<% end %>
+	</div>
+</div>
 
-<% if current_user.videos.present? %>
-  <h3>Your Videos</h3>
-  <% current_user.videos.each do |video| %>
-    <div class="video">
-      <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
-      <% if video.youtube_id.present? %>
-        <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
-      <% elsif video.vimeo_id.present? %>
-        <iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
-      <% end %>
-      <%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
-    </div>
-  <% end %>
-<% end %>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Experience</h3>
+		<% current_user.projects %>
+		<%= render template: 'projects/show' %>
+	</div>
+</div>
 
-<h3>Experience</h3>
-<% current_user.projects %>
-<%= render template: 'projects/show' %>
-
-<h3>Schools</h3>
-<% current_user.schools %>
-<%= render template: 'schools/show' %>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Schools</h3>
+		<% current_user.schools %>
+		<%= render template: 'schools/show' %>
+	</div>
+</div>

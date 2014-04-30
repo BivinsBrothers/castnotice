@@ -4,8 +4,8 @@
       <li><%= msg %></li>
     <% end %>
   <% end %>
+<h2>Personal Information</h2>
 <div class="row">
-	<h2>Personal Information</h2>
 	<div class="col-md-6">
 			<%= f.label :phone %>
 			<%= f.phone_field :phone %>
@@ -99,7 +99,7 @@
 		<% if current_user.at_maximum_videos? %>
 		  <h2>You have already uploaded the maximum videos, please delete and existing video to add a new one.</h2>
 		<% else %>
-		  <div class="add-new-btn-wrapper"><span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
+		  <span class="glyphicon glyphicon-plus"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form" %>
 		<% end %>
 		</div>
 		
