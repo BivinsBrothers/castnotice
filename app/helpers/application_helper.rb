@@ -65,14 +65,6 @@ module ApplicationHelper
     ]
   end
 
-  def nudity_select
-    [
-      ["Full", "full"],
-      ["Partial", "partial"],
-      ["None", "none"]
-    ]
-  end
-
   def citizen_select
     [
       ["US Citizen", "us citizen"],

@@ -19,7 +19,6 @@ describe "manage resume" do
     select "Medium", from: "resume_hair_length"
     select "No", from: "resume_piercing"
     select "No", from: "resume_tattoo"
-    select "Full", from: "resume_nudity"
     select "US Citizen", from: "resume_citizen"
     choose("No")
 
@@ -49,7 +48,6 @@ describe "manage resume" do
     expect(user.resume.hair_length).to eq("medium")
     expect(user.resume.piercing).to eq("no")
     expect(user.resume.tattoo).to eq("no")
-    expect(user.resume.nudity).to eq("full")
     expect(user.resume.citizen).to eq("us citizen")
     expect(user.resume.passport).to eq(false)
 
