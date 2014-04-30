@@ -39,6 +39,8 @@ FactoryGirl.define do
     unions ["Awesome Union"]
     agent_name "Awesome Agent"
     agent_phone "1-616-667-8989"
+    manager_name "Keith Smith"
+    manager_phone "1-616-222-3333"
     additional_skills "Improve"
     descriptive_tag "Dancer, Actor"
   end

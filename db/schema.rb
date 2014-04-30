@@ -78,6 +78,9 @@ ActiveRecord::Schema.define(version: 20140430111522) do
     t.string   "tattoo"
     t.string   "citizen"
     t.boolean  "passport"
+    t.string   "phone_two"
+    t.string   "manager_name"
+    t.string   "manager_phone"
   end
 
   create_table "schools", force: true do |t|
