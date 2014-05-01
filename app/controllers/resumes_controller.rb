@@ -34,7 +34,7 @@ class ResumesController < ApplicationController
     params.require(:resume)
           .permit(:phone, :phone_two, :weight, :hair_color, :eye_color, :agent_name,
                   :agent_phone, :agent_email, :agent_location, :agent_location_two, :agent_city, :agent_state, :agent_zip,
-                  :manager_name, :manager_phone, :additional_skills, :descriptive_tag, :height,
+                  :agent_type, :manager_name, :manager_phone, :additional_skills, :descriptive_tag, :height,
                   :gender, :hair_length, :piercing, :tattoo, :citizen,
                   :passport, { unions: [] })
   end

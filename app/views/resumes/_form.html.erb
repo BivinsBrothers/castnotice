@@ -76,6 +76,8 @@
         <%= f.select :agent_state, us_states_select %>
         <%= f.label :agent_zip, "Zip code" %>
         <%= f.text_field :agent_zip %>
+        <%= f.label :agent_type %>
+        <%= f.select :agent_type, agent_type_select %>
       </div>
     </div>
 
