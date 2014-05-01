@@ -80,6 +80,21 @@ module ApplicationHelper
     end
   end
 
+  def agent_type_select
+    [
+      ["Theatrical", "theatrical"],
+      ["Television", "television"],
+      ["Film", "film"],
+      ["Commercial", "commercial"],
+      ["Dance", "dance"],
+      ["Modeling/Print", "modeling_print"],
+      ["Modeling/High Fashion", "modeling_high_fashion"],
+      ["Modeling/Editorial", "modeling_editorial"],
+      ["Modeling/Commercial", "modeling_commercial"],
+      ["Children's Talent Agent", "childrens_talent_agent"],
+    ]
+  end
+
   def project_type_select
     [
       ["Film Project", "film"],

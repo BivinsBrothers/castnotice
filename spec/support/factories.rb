@@ -40,6 +40,12 @@ FactoryGirl.define do
     unions ["Awesome Union"]
     agent_name "Awesome Agent"
     agent_phone "1-616-667-8989"
+    agent_email "agenttest@fake.com"
+    agent_location "100 Grandville"
+    agent_location_two "Apt. 1"
+    agent_city "Grand Rapids"
+    agent_state "Michigan"
+    agent_zip "49505"
     manager_name "Keith Smith"
     manager_phone "1-616-222-3333"
     additional_skills "Improve"
