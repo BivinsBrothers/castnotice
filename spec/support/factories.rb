@@ -62,7 +62,7 @@ FactoryGirl.define do
   factory :event do
     name "Big Event"
     project_type "Cable"
-    region "Central"
+    region
     performer_type "That Guy"
     character "This Guy"
     pay "$6.00"
@@ -78,5 +78,11 @@ FactoryGirl.define do
     trait :paid do
       paid true
     end
+  end
+
+  # Category Factories
+
+  factory :region do
+    name "Central"
   end
 end

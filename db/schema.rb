@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20140501185120) do
   create_table "events", force: true do |t|
     t.string   "name"
     t.string   "project_type"
-    t.string   "region"
     t.string   "performer_type"
     t.string   "character"
     t.string   "pay"
@@ -38,9 +37,11 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.string   "writers"
     t.string   "location"
     t.string   "casting_director"
+    t.integer  "region_id"
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
+  add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
 
   create_table "headshots", force: true do |t|
     t.string   "image"
@@ -56,6 +57,12 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.string   "role"
     t.string   "director_studio"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "regions", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
