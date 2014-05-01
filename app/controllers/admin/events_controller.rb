@@ -41,7 +41,7 @@ class Admin::EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :name, :project_type, :region, :performer_type, :character, :pay, :union, :paid,
+      :name, :project_type, :region_id, :performer_type, :character, :pay, :union, :paid,
       :director, :story, :description, :audition, :audition_date, :start_date, :end_date,
       :location, :casting_director, :writers, :producers
     )

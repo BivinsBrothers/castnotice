@@ -4,8 +4,8 @@
 <%= e.label :project_type, "Project Type" %>
 <%= e.text_field :project_type %>
 
-<%= e.label :region, "Region"%>
-<%= e.text_field :region %>
+<%= e.label :region_id, "Region"%>
+<%= e.select :region_id, Region.for_select %>
 
 <%= e.label :performer_type, "Type of Performer Needed" %>
 <%= e.text_field :performer_type %>
