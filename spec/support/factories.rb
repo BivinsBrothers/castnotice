@@ -36,6 +36,7 @@ FactoryGirl.define do
     hair_color "blond"
     eye_color "blue"
     phone "1-616-555-4567"
+    phone_two "1-616-234-9090"
     unions ["Awesome Union"]
     agent_name "Awesome Agent"
     agent_phone "1-616-667-8989"
