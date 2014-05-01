@@ -9,7 +9,8 @@ feature "an admin can manage events", js: true do
   end
 
   scenario "adding an event" do
-    create(:region)
+    create(:region, name: "Central")
+    create(:project_type, name: "Episodic")
 
     visit page_path("calendar")
     click_link "Calendar"
@@ -21,7 +22,7 @@ feature "an admin can manage events", js: true do
     audition_date = "#{current_month} #{current_date.day}"
 
     fill_in "Name of Project", with: "Extravaganza!"
-    fill_in "Project Type", with: "Poodle show"
+    select "Episodic", from: "Project Type"
     select "Central", from: "Region"
     fill_in "Type of Performer Needed", with: "Generally happy people"
     fill_in "Character in Event", with: "Floating ghost"
@@ -62,7 +63,7 @@ feature "an admin can manage events", js: true do
     expect(event.name).to eq("Extravaganza!")
     expect(event.audition_date).to eq(audition_date)
     expect(event.paid?).to be_true
-    expect(event.project_type).to eq("Poodle show")
+    expect(event.project_type).to eq("Episodic")
     expect(event.region).to eq("Central")
     expect(event.performer_type).to eq("Generally happy people")
     expect(event.character).to eq("Floating ghost")

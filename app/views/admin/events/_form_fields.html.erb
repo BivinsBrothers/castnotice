@@ -1,8 +1,8 @@
 <%= e.label :name, "Name of Project"%>
 <%= e.text_field :name %>
 
-<%= e.label :project_type, "Project Type" %>
-<%= e.text_field :project_type %>
+<%= e.label :project_type_id, "Project Type" %>
+<%= e.select :project_type_id, ProjectType.for_select %>
 
 <%= e.label :region_id, "Region"%>
 <%= e.select :region_id, Region.for_select %>

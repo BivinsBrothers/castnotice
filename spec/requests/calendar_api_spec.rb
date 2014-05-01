@@ -4,7 +4,7 @@ def event_hash(event)
   {
      id: event.id,
      name: event.name,
-     project_type: event.project_type,
+     project_type: event.project_type.name,
      region: event.region.name,
      performer_type: event.performer_type,
      character: event.character,
@@ -28,7 +28,7 @@ end
 def limited_event_hash(event)
   {
      name: event.name,
-     project_type: event.project_type,
+     project_type: event.project_type.name,
      region: event.region.name,
      performer_type: event.performer_type,
      audition_date: event.audition_date.strftime("%Y-%m-%d"),

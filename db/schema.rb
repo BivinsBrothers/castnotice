@@ -18,11 +18,9 @@ ActiveRecord::Schema.define(version: 20140501185120) do
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.string   "project_type"
     t.string   "performer_type"
     t.string   "character"
     t.string   "pay"
-    t.string   "union"
     t.string   "director"
     t.text     "story"
     t.text     "description"
@@ -38,10 +36,20 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.string   "location"
     t.string   "casting_director"
     t.integer  "region_id"
+    t.integer  "project_type_id"
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
+  add_index "events", ["project_type_id"], name: "index_events_on_project_type_id", using: :btree
   add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
+
+  create_table "events_unions", id: false, force: true do |t|
+    t.integer "event_id", null: false
+    t.integer "union_id", null: false
+  end
+
+  add_index "events_unions", ["event_id", "union_id"], name: "index_events_unions_on_event_id_and_union_id", using: :btree
+  add_index "events_unions", ["union_id", "event_id"], name: "index_events_unions_on_union_id_and_event_id", using: :btree
 
   create_table "headshots", force: true do |t|
     t.string   "image"
@@ -49,6 +57,12 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "background", default: false, null: false
+  end
+
+  create_table "project_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", force: true do |t|
@@ -87,9 +101,9 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.string   "tattoo"
     t.string   "citizen"
     t.boolean  "passport"
-    t.string   "phone_two"
     t.string   "manager_name"
     t.string   "manager_phone"
+    t.string   "phone_two"
     t.string   "agent_email"
     t.string   "agent_location"
     t.string   "agent_location_two"
@@ -110,6 +124,12 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.integer  "years"
     t.string   "education_type"
     t.string   "instruments"
+  end
+
+  create_table "unions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

@@ -61,7 +61,7 @@ FactoryGirl.define do
 
   factory :event do
     name "Big Event"
-    project_type "Cable"
+    project_type
     region
     performer_type "That Guy"
     character "This Guy"
@@ -84,5 +84,9 @@ FactoryGirl.define do
 
   factory :region do
     name "Central"
+  end
+
+  factory :project_type do
+    name "Episodic"
   end
 end

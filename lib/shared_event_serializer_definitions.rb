@@ -6,4 +6,8 @@ module SharedEventSerializerDefinitions
   def region
     object.region.name
   end
+
+  def project_type
+    object.project_type.name
+  end
 end

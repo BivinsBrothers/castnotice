@@ -3,6 +3,7 @@ require "spec_helper"
 feature "calendar", js: true do
   let(:this_month) { Date.current }
   let(:region) { create(:region, name: "Canada") }
+  let(:project_type) { create(:project_type, name: "PSA") }
 
   context "as a member" do
     before do
@@ -16,7 +17,7 @@ feature "calendar", js: true do
         audition_date: this_month,
         region: region,
         performer_type: "Clowns",
-        project_type: "PSA",
+        project_type: project_type,
         character: "Floating ghost",
         pay: "$40/hour",
         union: "Extraverts United",
@@ -60,7 +61,7 @@ feature "calendar", js: true do
         audition_date: this_month,
         region: region,
         performer_type: "Clowns",
-        project_type: "PSA"
+        project_type: project_type
       )
 
       visit page_path("calendar")
