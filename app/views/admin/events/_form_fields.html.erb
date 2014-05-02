@@ -16,8 +16,8 @@
 <%= e.label :pay, "Wage" %>
 <%= e.text_field :pay %>
 
-<%= e.label :union, "Union" %>
-<%= e.text_field :union %>
+<%= e.label :union_ids, "Union" %>
+<%= e.collection_check_boxes :union_ids, Union.all, :id, :name %>
 
 <%= e.label :location, "Location" %>
 <%= e.text_field :location %>

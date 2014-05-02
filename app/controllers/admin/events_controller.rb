@@ -43,7 +43,7 @@ class Admin::EventsController < ApplicationController
     params.require(:event).permit(
       :name, :project_type_id, :region_id, :performer_type, :character, :pay,
       :director, :story, :description, :audition, :audition_date, :start_date, :end_date,
-      :location, :casting_director, :writers, :producers, :union, :paid
+      :location, :casting_director, :writers, :producers, :paid, union_ids: []
     )
   end
 end

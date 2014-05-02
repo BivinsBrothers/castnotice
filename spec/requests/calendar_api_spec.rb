@@ -9,7 +9,7 @@ def event_hash(event)
      performer_type: event.performer_type,
      character: event.character,
      pay: event.pay,
-     union: event.union,
+     unions: event.unions_sentence,
      director: event.director,
      story: event.story,
      description: event.description,

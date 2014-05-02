@@ -11,6 +11,7 @@ feature "an admin can manage events", js: true do
   scenario "adding an event" do
     create(:region, name: "Central")
     create(:project_type, name: "Episodic")
+    create(:union, name: "Extraverts United")
 
     visit page_path("calendar")
     click_link "Calendar"
@@ -27,7 +28,7 @@ feature "an admin can manage events", js: true do
     fill_in "Type of Performer Needed", with: "Generally happy people"
     fill_in "Character in Event", with: "Floating ghost"
     fill_in "Wage", with: "1000 Dogecoin/hour"
-    fill_in "Union", with: "Extraverts United"
+    check "Extraverts United"
     fill_in "Director", with: "Karl McSweeney"
     fill_in "Story", with: "Happy people become ghosts, have good times"
     fill_in "Description", with: "We need you to have telekentic powers and be willing to yoyo upside down"
@@ -68,7 +69,7 @@ feature "an admin can manage events", js: true do
     expect(event.performer_type).to eq("Generally happy people")
     expect(event.character).to eq("Floating ghost")
     expect(event.pay).to eq("1000 Dogecoin/hour")
-    expect(event.union).to eq("Extraverts United")
+    expect(event.unions).to eq("Extraverts United")
     expect(event.director).to eq("Karl McSweeney")
     expect(event.casting_director).to eq("Nic Lindstrom")
     expect(event.writers).to eq("Gordy Howe")

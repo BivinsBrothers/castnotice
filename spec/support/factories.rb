@@ -66,7 +66,7 @@ FactoryGirl.define do
     performer_type "That Guy"
     character "This Guy"
     pay "$6.00"
-    union "GVSU"
+    unions { [create(:union)] }
     director "The other guy"
     story "All the things!"
     description "Build all the things"
@@ -88,5 +88,9 @@ FactoryGirl.define do
 
   factory :project_type do
     name "Episodic"
+  end
+
+  factory :union do
+    name "UEA"
   end
 end
