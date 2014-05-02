@@ -1,26 +1,23 @@
+class CategorySeed
+  require "csv"
+
+  def self.generate_from_csv(klasses)
+    klasses.each do |klass|
+      filename = klass.name.underscore.pluralize
+      CSV.foreach(Rails.root.join("db/categories/#{filename}.csv"), headers: true) do |row|
+        attrs = row.to_hash
+        klass.create_with(attrs.except(:name)).find_or_create_by(name: attrs[:name])
+      end
+    end
+  end
+end
+
 # Generate Regions
 Region::DEFAULTS.each do |r|
-  unless Region.find_by_name(r)
-    Region.create(name: r)
-  end
+  Region.find_or_create_by!(name: r)
 end
 
-# Generate Project Types
-File.open("#{Rails.root}/db/categories/project_types.txt", "r") do |f|
-  f.each_line do |line|
-    project_type = line.chomp
-    unless ProjectType.find_by_name(project_type)
-      ProjectType.create(name: project_type)
-    end
-  end
-end
-
-# Generate Unions
-File.open("#{Rails.root}/db/categories/unions.txt", "r") do |f|
-  f.each_line do |line|
-    union = line.chomp
-    unless Union.find_by_name(union)
-      Union.create(name: union)
-    end
-  end
-end
+CategorySeed.generate_from_csv([
+  ProjectType,
+  Union
+])
