@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501185120) do
+ActiveRecord::Schema.define(version: 20140502152848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "event_unions", force: true do |t|
+    t.integer  "event_id",   null: false
+    t.integer  "union_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "event_unions", ["event_id"], name: "index_event_unions_on_event_id", using: :btree
+  add_index "event_unions", ["union_id"], name: "index_event_unions_on_union_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -42,14 +52,6 @@ ActiveRecord::Schema.define(version: 20140501185120) do
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
   add_index "events", ["project_type_id"], name: "index_events_on_project_type_id", using: :btree
   add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
-
-  create_table "events_unions", id: false, force: true do |t|
-    t.integer "event_id", null: false
-    t.integer "union_id", null: false
-  end
-
-  add_index "events_unions", ["event_id"], name: "index_events_unions_on_event_id", using: :btree
-  add_index "events_unions", ["union_id"], name: "index_events_unions_on_union_id", using: :btree
 
   create_table "headshots", force: true do |t|
     t.string   "image"
