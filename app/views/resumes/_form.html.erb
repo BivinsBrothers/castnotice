@@ -26,6 +26,7 @@
         <%= f.label :passport, "No", :value => "false", :class => "radio-label" %>
         <%= f.radio_button :passport, false, :class => "radio-button" %>
       </div>
+    </div>
 
     </div>
 
@@ -53,21 +54,22 @@
 		
         <%= f.label :additional_skills %>
         <%= f.text_area :additional_skills %>
-      
+
 	</div>
   </div>
   <%= f.submit "Save" %>
   <h2>Management & Union Information</h2>
   <div class="row">
     <div class="col-md-12">
-		<div class="union-checkbox">
-        	<%= f.label :unions %>
-        	<%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
-      	</div>
-	  	<%= f.label :manager_name %>
-      	<%= f.text_field :manager_name %>
-     	 <%= f.label :manager_phone %>
-      	<%= f.phone_field :manager_phone %>
+    <div class="union-checkbox">
+      <%= f.label :unions %>
+      <%= f.collection_check_boxes :union_ids, Union.all, :id, :name %>
+    </div>
+
+    <%= f.label :manager_name %>
+    <%= f.text_field :manager_name %>
+    <%= f.label :manager_phone %>
+    <%= f.phone_field :manager_phone %>
 	</div>
   </div>
   <%= f.submit "Save" %>

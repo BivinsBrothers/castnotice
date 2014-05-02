@@ -37,7 +37,7 @@ FactoryGirl.define do
     eye_color "blue"
     phone "1-616-555-4567"
     phone_two "1-616-234-9090"
-    unions ["Awesome Union"]
+    unions { [create(:union, name: "Awesome Union")] }
     agent_name "Awesome Agent"
     agent_phone "1-616-667-8989"
     agent_email "agenttest@fake.com"

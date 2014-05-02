@@ -3,6 +3,7 @@ require "spec_helper"
 describe "manage resume" do
   it 'allows talent to create a resume' do
     user = create(:user)
+    create(:union, name: "Screen Actors Guild")
 
     log_in user
     visit dashboard_path

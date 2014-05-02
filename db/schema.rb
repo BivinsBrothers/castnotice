@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502152848) do
+ActiveRecord::Schema.define(version: 20140505094710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,14 +68,16 @@ ActiveRecord::Schema.define(version: 20140502152848) do
   end
 
   create_table "projects", force: true do |t|
-    t.string   "project_type"
     t.string   "title"
     t.string   "role"
     t.string   "director_studio"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_type_id"
   end
+
+  add_index "projects", ["project_type_id"], name: "index_projects_on_project_type_id", using: :btree
 
   create_table "regions", force: true do |t|
     t.string   "name"
@@ -83,13 +85,22 @@ ActiveRecord::Schema.define(version: 20140502152848) do
     t.datetime "updated_at"
   end
 
+  create_table "resume_unions", force: true do |t|
+    t.integer  "resume_id",  null: false
+    t.integer  "union_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resume_unions", ["resume_id"], name: "index_resume_unions_on_resume_id", using: :btree
+  add_index "resume_unions", ["union_id"], name: "index_resume_unions_on_union_id", using: :btree
+
   create_table "resumes", force: true do |t|
     t.integer  "height"
     t.integer  "weight"
     t.string   "hair_color"
     t.string   "eye_color"
     t.string   "phone"
-    t.string   "unions"
     t.string   "agent_name"
     t.string   "agent_phone"
     t.string   "additional_skills"
