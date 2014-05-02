@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.integer "union_id", null: false
   end
 
-  add_index "events_unions", ["event_id", "union_id"], name: "index_events_unions_on_event_id_and_union_id", using: :btree
-  add_index "events_unions", ["union_id", "event_id"], name: "index_events_unions_on_union_id_and_event_id", using: :btree
+  add_index "events_unions", ["event_id"], name: "index_events_unions_on_event_id", using: :btree
+  add_index "events_unions", ["union_id"], name: "index_events_unions_on_union_id", using: :btree
 
   create_table "headshots", force: true do |t|
     t.string   "image"
@@ -101,9 +101,9 @@ ActiveRecord::Schema.define(version: 20140501185120) do
     t.string   "tattoo"
     t.string   "citizen"
     t.boolean  "passport"
+    t.string   "phone_two"
     t.string   "manager_name"
     t.string   "manager_phone"
-    t.string   "phone_two"
     t.string   "agent_email"
     t.string   "agent_location"
     t.string   "agent_location_two"
