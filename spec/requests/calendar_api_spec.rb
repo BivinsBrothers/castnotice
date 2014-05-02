@@ -9,7 +9,6 @@ def event_hash(event)
      performer_type: event.performer_type,
      character: event.character,
      pay: event.pay,
-     unions: event.unions_sentence,
      director: event.director,
      story: event.story,
      description: event.description,
@@ -21,7 +20,8 @@ def event_hash(event)
      location: event.location,
      casting_director: event.casting_director,
      writers: event.writers,
-     producers: event.producers
+     producers: event.producers,
+     unions: (event.unions.map {|u| {name: u.name} })
   }
 end
 

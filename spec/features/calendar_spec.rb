@@ -43,7 +43,7 @@ feature "calendar", js: true do
       expect(event.project_type).to eq("PSA")
       expect(event.character).to eq("Floating ghost")
       expect(event.pay).to eq("$40/hour")
-      expect(event.unions).to eq("Extraverts United and UEA")
+      expect(event.unions).to eq("Extraverts United, UEA")
       expect(event.director).to eq("Karl McSweeney")
 
       event.toggle_more_information
