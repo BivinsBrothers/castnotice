@@ -72,14 +72,6 @@ module ApplicationHelper
     ]
   end
 
-  def resume_unions
-    [
-      "Screen Actors Guild"
-    ].map do |value|
-      OpenStruct.new(id: value, text: value)
-    end
-  end
-
   def agent_type_select
     [
       ["Theatrical", "theatrical"],
