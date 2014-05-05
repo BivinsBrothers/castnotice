@@ -1,11 +1,11 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :project_type, :region, :performer_type, :character, :pay, :union,
+  include SharedEventSerializerDefinitions
+
+  attributes :id, :name, :project_type, :region, :performer_type, :character, :pay,
     :director, :story, :description, :audition, :audition_date, :start_date, :end_date, :paid,
     :location, :casting_director, :writers, :producers
-  
-  def audition_date
-    object.audition_date.strftime("%Y-%m-%d")
-  end
+
+  has_many :unions
 
   def start_date
     object.start_date.strftime("%m-%d-%y")

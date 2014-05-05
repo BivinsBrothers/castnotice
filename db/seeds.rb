@@ -1,7 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+class CategorySeed
+  require "csv"
+
+  def self.generate_from_csv(klasses)
+    klasses.each do |klass|
+      filename = klass.name.underscore.pluralize
+      CSV.foreach(Rails.root.join("db/categories/#{filename}.csv"), headers: true) do |row|
+        attrs = row.to_hash
+        klass.create_with(attrs.except(:name)).find_or_create_by(name: attrs[:name])
+      end
+    end
+  end
+end
+
+# Generate Regions
+Region::DEFAULTS.each do |r|
+  Region.find_or_create_by!(name: r)
+end
+
+CategorySeed.generate_from_csv([
+  ProjectType,
+  Union
+])

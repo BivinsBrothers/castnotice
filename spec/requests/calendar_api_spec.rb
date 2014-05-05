@@ -4,12 +4,11 @@ def event_hash(event)
   {
      id: event.id,
      name: event.name,
-     project_type: event.project_type,
-     region: event.region,
+     project_type: event.project_type.name,
+     region: event.region.name,
      performer_type: event.performer_type,
      character: event.character,
      pay: event.pay,
-     union: event.union,
      director: event.director,
      story: event.story,
      description: event.description,
@@ -21,15 +20,16 @@ def event_hash(event)
      location: event.location,
      casting_director: event.casting_director,
      writers: event.writers,
-     producers: event.producers
+     producers: event.producers,
+     unions: (event.unions.map {|u| {name: u.name} })
   }
 end
 
 def limited_event_hash(event)
   {
      name: event.name,
-     project_type: event.project_type,
-     region: event.region,
+     project_type: event.project_type.name,
+     region: event.region.name,
      performer_type: event.performer_type,
      audition_date: event.audition_date.strftime("%Y-%m-%d"),
      paid: event.paid

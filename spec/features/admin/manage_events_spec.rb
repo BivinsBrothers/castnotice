@@ -9,6 +9,10 @@ feature "an admin can manage events", js: true do
   end
 
   scenario "adding an event" do
+    create(:region, name: "Central")
+    create(:project_type, name: "Episodic")
+    create(:union, name: "Extraverts United")
+
     visit page_path("calendar")
     click_link "Calendar"
 
@@ -19,12 +23,12 @@ feature "an admin can manage events", js: true do
     audition_date = "#{current_month} #{current_date.day}"
 
     fill_in "Name of Project", with: "Extravaganza!"
-    fill_in "Project Type", with: "Poodle show"
-    fill_in "Region", with: "Middle West"
+    select "Episodic", from: "Project Type"
+    select "Central", from: "Region"
     fill_in "Type of Performer Needed", with: "Generally happy people"
     fill_in "Character in Event", with: "Floating ghost"
     fill_in "Wage", with: "1000 Dogecoin/hour"
-    fill_in "Union", with: "Extraverts United"
+    check "Extraverts United"
     fill_in "Director", with: "Karl McSweeney"
     fill_in "Story", with: "Happy people become ghosts, have good times"
     fill_in "Description", with: "We need you to have telekentic powers and be willing to yoyo upside down"
@@ -60,12 +64,12 @@ feature "an admin can manage events", js: true do
     expect(event.name).to eq("Extravaganza!")
     expect(event.audition_date).to eq(audition_date)
     expect(event.paid?).to be_true
-    expect(event.project_type).to eq("Poodle show")
-    expect(event.region).to eq("Middle West")
+    expect(event.project_type).to eq("Episodic")
+    expect(event.region).to eq("Central")
     expect(event.performer_type).to eq("Generally happy people")
     expect(event.character).to eq("Floating ghost")
     expect(event.pay).to eq("1000 Dogecoin/hour")
-    expect(event.union).to eq("Extraverts United")
+    expect(event.unions).to eq("Extraverts United")
     expect(event.director).to eq("Karl McSweeney")
     expect(event.casting_director).to eq("Nic Lindstrom")
     expect(event.writers).to eq("Gordy Howe")

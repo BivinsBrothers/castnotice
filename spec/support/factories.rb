@@ -61,12 +61,12 @@ FactoryGirl.define do
 
   factory :event do
     name "Big Event"
-    project_type "Cable"
-    region "Central"
+    project_type
+    region
     performer_type "That Guy"
     character "This Guy"
     pay "$6.00"
-    union "GVSU"
+    unions { [create(:union)] }
     director "The other guy"
     story "All the things!"
     description "Build all the things"
@@ -78,5 +78,19 @@ FactoryGirl.define do
     trait :paid do
       paid true
     end
+  end
+
+  # Category Factories
+
+  factory :region do
+    name "Central"
+  end
+
+  factory :project_type do
+    name "Episodic"
+  end
+
+  factory :union do
+    name "UEA"
   end
 end

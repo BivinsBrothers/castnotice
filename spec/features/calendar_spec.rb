@@ -2,6 +2,10 @@ require "spec_helper"
 
 feature "calendar", js: true do
   let(:this_month) { Date.current }
+  let(:region) { create(:region, name: "Canada") }
+  let(:project_type) { create(:project_type, name: "PSA") }
+  let(:union1) { create(:union, name: "Extraverts United") }
+  let(:union2) { create(:union, name: "UEA") }
 
   context "as a member" do
     before do
@@ -13,12 +17,12 @@ feature "calendar", js: true do
       create(:event, :paid,
         name: "Extravaganza!",
         audition_date: this_month,
-        region: "Canada",
+        region: region,
         performer_type: "Clowns",
-        project_type: "PSA",
+        project_type: project_type,
         character: "Floating ghost",
         pay: "$40/hour",
-        union: "Extraverts United",
+        unions: [union1, union2],
         director: "Karl McSweeney",
         story: "Happy people become ghosts, have good times",
         description: "Chris is getting google glass",
@@ -39,7 +43,7 @@ feature "calendar", js: true do
       expect(event.project_type).to eq("PSA")
       expect(event.character).to eq("Floating ghost")
       expect(event.pay).to eq("$40/hour")
-      expect(event.union).to eq("Extraverts United")
+      expect(event.unions).to eq("Extraverts United, UEA")
       expect(event.director).to eq("Karl McSweeney")
 
       event.toggle_more_information
@@ -57,9 +61,9 @@ feature "calendar", js: true do
       create(:event, :paid,
         name: "Extravaganza!",
         audition_date: this_month,
-        region: "Canada",
+        region: region,
         performer_type: "Clowns",
-        project_type: "PSA"
+        project_type: project_type
       )
 
       visit page_path("calendar")

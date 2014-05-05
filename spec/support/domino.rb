@@ -68,8 +68,8 @@ module Dom
       node.find(".pay").text.partition("Pay Rate: ").last
     end
 
-    def union
-      node.find(".union").text.partition("Union Status: ").last
+    def unions
+      node.find(".unions").text.partition("Unions: ").last
     end
 
     def director
