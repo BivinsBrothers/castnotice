@@ -47,12 +47,7 @@ function addAdminEventLinks(event_id, admin) {
 
 function sentenceForUnions(unions) {
   union_names = unions.map(function(union) { return union.name });
-
-  if (union_names.lenth === 1) {
-    return union_names[0];
-  } else {
-    return union_names.join(', ');
-  }
+  return union_names.join(', ');
 }
 
 function calendarUpdate() {
