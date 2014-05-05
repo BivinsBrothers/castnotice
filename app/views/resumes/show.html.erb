@@ -19,7 +19,7 @@
 		<div class="col-md-6">
 			<p>Phone: <%= current_user.resume.phone %></p>
 		  <p>Email: <%= current_user.email %></p>
-		  <p>Unions: <%= current_user.resume.unions %></p>
+		  <p>Unions: <%= (current_user.resume.unions.map(&:name)).to_sentence %></p>
 		  <p>Agent Name: <%= current_user.resume.agent_name %></p>
 		  <p>Agent Phone: <%= current_user.resume.agent_phone %></p>
 		</div>
