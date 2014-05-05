@@ -140,4 +140,8 @@ module ApplicationHelper
   def background_image(user)
     user.background_image
   end
+
+  def for_select_by_model(klass)
+    klass.all.map { |r| [r.name, r.id] }
+  end
 end
