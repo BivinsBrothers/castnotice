@@ -53,7 +53,7 @@ FactoryGirl.define do
   end
 
   factory :project do
-    project_type "Film Project"
+    project_type
     title "Wizzard of OZ"
     role "Dorothy"
     director_studio "Disney Studios"

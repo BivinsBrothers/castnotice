@@ -95,28 +95,6 @@ module ApplicationHelper
     ]
   end
 
-  def project_type_select
-    [
-      ["Film Project", "film"],
-      ["Television Project", "television"],
-      ["Theater Project", "theater"],
-      ["Commercial Project", "commercial"],
-      ["Voice Over Project", "voice_over"],
-      ["Industrial Project", "industrial"],
-    ]
-  end
-
-  def project_type_name(project_type)
-    {
-      "film" => "Film Project",
-      "television" => "Television Project",
-      "theater" => "Theater Project",
-      "commercial" => "Commercial Project",
-      "voice_over" => "Voice Over Project",
-      "industrial" => "Industrial Project"
-    }[project_type]
-  end
-
   def education_type_select
     [
       ["University", "university"],

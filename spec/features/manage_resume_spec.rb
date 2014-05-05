@@ -4,6 +4,7 @@ describe "manage resume" do
   it 'allows talent to create a resume' do
     user = create(:user)
     create(:union, name: "Screen Actors Guild")
+    create(:project_type, name: "Television")
 
     log_in user
     visit dashboard_path
@@ -68,7 +69,7 @@ describe "manage resume" do
 
     click_link "Add a project"
 
-    select "Television", from: "project_project_type"
+    select "Television", from: "Project Type"
     fill_in "Title", with: "Gossip Girl"
     fill_in "Role", with: "Blair"
     fill_in "Director/Studio", with: "Star Studios"
@@ -179,6 +180,7 @@ describe "manage resume" do
   it "allows adding project" do
     user = create(:user)
     create(:resume, user: user)
+    create(:project_type, name: "Film Project")
 
     log_in user
     visit dashboard_path
@@ -186,6 +188,8 @@ describe "manage resume" do
     click_link "dashboard-edit-resume"
 
     click_link "Add a project"
+
+    sleep 2
 
     select "Film Project", from: "Project Type"
     fill_in "Title", with: "Once Upon A Time"
@@ -204,12 +208,15 @@ describe "manage resume" do
     user = create(:user)
     create(:resume, user: user)
     create(:project, user: user)
+    create(:project_type, name: "Industrial Project")
 
     log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
     click_link "Edit"
+
+    sleep 2
 
     select "Industrial Project", from: "Project Type"
     fill_in "Title", with: "Industrial"

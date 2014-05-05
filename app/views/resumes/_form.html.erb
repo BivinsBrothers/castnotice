@@ -215,8 +215,8 @@
 		</div>
 		<div class="is-hidden new-project-form" id="new-project-form">
 		  <%= form_for @project, :remote => true do |f| %>
-			<%= f.label :project_type %>
-			<%= f.select :project_type, project_type_select %>
+			<%= f.label :project_type_id, "Project Type" %>
+			<%= f.select :project_type_id, for_select_by_model(ProjectType) %>
 			<%= f.label :title %>
 			<%= f.text_field :title %>
 			<%= f.label :role %>
