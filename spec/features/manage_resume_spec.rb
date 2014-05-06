@@ -189,7 +189,7 @@ describe "manage resume" do
 
     click_link "Add a project"
 
-    sleep 2
+    expect(page).to have_content("Director/Studio")
 
     select "Film Project", from: "Project Type"
     fill_in "Title", with: "Once Upon A Time"
@@ -207,7 +207,7 @@ describe "manage resume" do
   it "allows editing a project" do
     user = create(:user)
     create(:resume, user: user)
-    create(:project, user: user)
+    create(:project, title: "Over You", user: user)
     create(:project_type, name: "Industrial Project")
 
     log_in user
@@ -215,8 +215,6 @@ describe "manage resume" do
 
     click_link "dashboard-edit-resume"
     click_link "Edit"
-
-    sleep 2
 
     select "Industrial Project", from: "Project Type"
     fill_in "Title", with: "Industrial"

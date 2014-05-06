@@ -114,4 +114,8 @@ module ApplicationHelper
   def for_select_by_model(klass)
     klass.all.map { |r| [r.name, r.id] }
   end
+
+  def sentence_for_category_collection(category)
+    category.map(&:name).to_sentence
+  end
 end
