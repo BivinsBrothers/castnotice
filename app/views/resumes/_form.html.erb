@@ -7,6 +7,8 @@
   <h2>Personal Information</h2>
   <div class="row">
     <div class="col-md-6">
+	<%= f.label :descriptive_tag, "Descriptive Tags" %>
+        <%= f.text_field :descriptive_tag %>
       <%= f.label :phone %>
       <%= f.phone_field :phone %>
       <%= f.label :phone_two, "Second Phone" %>
@@ -24,22 +26,9 @@
         <%= f.label :passport, "No", :value => "false", :class => "radio-label" %>
         <%= f.radio_button :passport, false, :class => "radio-button" %>
       </div>
-      <div class="union-checkbox">
-        <%= f.label :unions %>
-        <%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
-      </div>
+
     </div>
 
-    <div class="col-md-6">
-      <%= f.label :manager_name %>
-      <%= f.text_field :manager_name %>
-      <%= f.label :manager_phone %>
-      <%= f.phone_field :manager_phone %>
-      <%= f.label :additional_skills %>
-      <%= f.text_area :additional_skills %>
-      <%= f.label :descriptive_tag, "Descriptive Tags" %>
-      <%= f.text_field :descriptive_tag %>
-    </div>
     <div class="col-md-6">
       <%= f.label :height %>
       <%= f.select :height, height_options %>
@@ -56,8 +45,34 @@
       <%= f.label :tattoo, "Do you have Tattoos?" %>
       <%= f.select :tattoo, tatoo_select %>
     </div>
-
-    <h4>Agent Information</h4>
+  </div>
+  <%= f.submit "Save", class: "resume-save" %>
+  <h2>Skills</h2>
+  <div class="row">
+    <div class="col-md-12">
+		
+        <%= f.label :additional_skills %>
+        <%= f.text_area :additional_skills %>
+      
+	</div>
+  </div>
+  <%= f.submit "Save" %>
+  <h2>Management & Union Information</h2>
+  <div class="row">
+    <div class="col-md-12">
+		<div class="union-checkbox">
+        	<%= f.label :unions %>
+        	<%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
+      	</div>
+	  	<%= f.label :manager_name %>
+      	<%= f.text_field :manager_name %>
+     	 <%= f.label :manager_phone %>
+      	<%= f.phone_field :manager_phone %>
+	</div>
+  </div>
+  <%= f.submit "Save" %>
+  <h4>Agent Information</h4>
+  <div class="row">
     <div class="col-md-12">
       <%= f.label :agent_name, "Full name" %>
       <%= f.text_field :agent_name, :class => "agent-extra" %>
@@ -80,7 +95,7 @@
         <%= f.select :agent_type, agent_type_select %>
       </div>
     </div>
-
+	</div>
     <%= f.submit "Save" %>
   </div>
 <% end %>
@@ -112,9 +127,9 @@
 					<%= image_tag(headshot.image_url(:thumb)) %>
 				</div>
 				<div class="headshot-links">
-					<%= link_to "Delete", headshot_path(headshot), method: :delete %> |
+					<span class="glyphicon glyphicon-trash"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete %> |
 					<% if headshot.background? %>
-					  Current background – <%= link_to "Remove", headshot_path(headshot, background: false), method: :put %>
+					  <%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put %>
 					<% else %>
 					  <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put %>
 					<% end %>
