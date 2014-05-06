@@ -11,7 +11,7 @@ class ResumesController < ApplicationController
   end
 
   def edit
-    @resume = current_user.resume || Resume.create(:user => current_user)
+    @resume = current_user.resume || Resume.create(user: current_user)
     @project = Project.new
     @school = School.new
     @headshot = Headshot.new

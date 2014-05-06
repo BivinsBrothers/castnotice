@@ -16,13 +16,12 @@ describe "manage resume" do
     fill_in "Weight", with: "140"
     select "Blond", from: "resume_hair_color"
     select "Blue", from: "resume_eye_color"
-
-    select "Male", from: "resume_gender"
+    select "Female", from: "resume_gender"
     select "Medium", from: "resume_hair_length"
     select "No", from: "resume_piercing"
     select "No", from: "resume_tattoo"
     select "US Citizen", from: "resume_citizen"
-    choose("No")
+    choose("Yes")
 
     check "Screen Actors Guild"
 
@@ -40,7 +39,7 @@ describe "manage resume" do
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
     fill_in "Descriptive Tag", with: "Actor, Dancer, and just plain fabulous!"
 
-    find(".resume-save").click
+    first("input[class=resume-save]").click
 
     expect(find_field("resume_phone").value).to eq("1-616-123-4567")
     expect(find_field("resume_phone_two").value).to eq("1-616-234-9090")
@@ -60,12 +59,12 @@ describe "manage resume" do
     expect(find_field("resume_additional_skills").value).to eq("Many years of improve from Disney Stages.")
     expect(find_field("resume_descriptive_tag").value).to eq("Actor, Dancer, and just plain fabulous!")
 
-    expect(user.resume.gender).to eq("male")
-    expect(user.resume.hair_length).to eq("medium")
-    expect(user.resume.piercing).to eq("no")
-    expect(user.resume.tattoo).to eq("no")
-    expect(user.resume.citizen).to eq("us citizen")
-    expect(user.resume.passport).to eq(false)
+    expect(find_field("resume_gender").value).to eq("female")
+    expect(find_field("resume_hair_length").value).to eq("medium")
+    expect(find_field("resume_piercing").value).to eq("no")
+    expect(find_field("resume_tattoo").value).to eq("no")
+    expect(find_field("resume_citizen").value).to eq("us citizen")
+    expect(find_field("resume_passport_true")).to be_checked
 
     click_link "Add a project"
 
