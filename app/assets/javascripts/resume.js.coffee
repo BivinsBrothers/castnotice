@@ -4,15 +4,11 @@
     year = $('#user_birthday_1i').val()
     month = $('#user_birthday_2i').val()
     day = $('#user_birthday_3i').val()
-    bday = new Date(year, month, day)
-    today = Date.now()
-    age_ms = today - bday
-    eighteen_years_ms = 568025136000.0
-    if age_ms < eighteen_years_ms
+    yearsDiff = moment().diff(new Date("#{year}-#{month}-#{day}"), "years")
+    if yearsDiff < 18
       $('.parent-questions').slideDown()
     else
       $('.parent-questions').slideUp()
-
 
 $ ->
   $(".show-project-form").on 'click', (e) ->
