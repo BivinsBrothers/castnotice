@@ -61,7 +61,7 @@ describe "managing user" do
 
     select "17", from: "user_birthday_3i"
     select "September", from: "user_birthday_2i"
-    select "1998", from: "user_birthday_1i"
+    select "2014", from: "user_birthday_1i"
 
     fill_in "Parents Fullname", with: "Mommy Dummy"
     fill_in "Parents Email", with: "mommydummy@fake.com"
@@ -115,7 +115,7 @@ describe "managing user" do
 
     select "17", from: "user_birthday_3i"
     select "September", from: "user_birthday_2i"
-    select "1998", from: "user_birthday_1i"
+    select "2014", from: "user_birthday_1i"
 
     fill_in "Parents Fullname", with: "Mommy Dummy"
     fill_in "Parents Email", with: "mommydummy@fake.com"

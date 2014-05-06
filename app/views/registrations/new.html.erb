@@ -31,7 +31,7 @@
   <%= f.text_field :location_zip %>
 
   <div class="input-wrapper"><%= f.label :birthday %>
-  <%= f.date_select :birthday, start_year: 1910, end_year: Time.now.year - 16 %></div>
+  <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
 
   <%= render 'parent_fields', :f => f %>
 
