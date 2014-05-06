@@ -38,8 +38,7 @@ describe "manage resume" do
     fill_in "Additional skills", with: "Many years of improve from Disney Stages."
     fill_in "Descriptive Tag", with: "Actor, Dancer, and just plain fabulous!"
 
-    click_button "Save"
-
+    find(".resume-save").click
 
     expect(find_field("resume_phone").value).to eq("1-616-123-4567")
     expect(find_field("resume_phone_two").value).to eq("1-616-234-9090")
@@ -58,8 +57,6 @@ describe "manage resume" do
     expect(find_field("resume_manager_phone").value).to eq("1-616-555-1212")
     expect(find_field("resume_additional_skills").value).to eq("Many years of improve from Disney Stages.")
     expect(find_field("resume_descriptive_tag").value).to eq("Actor, Dancer, and just plain fabulous!")
-
-
 
     expect(user.resume.gender).to eq("male")
     expect(user.resume.hair_length).to eq("medium")
@@ -111,8 +108,7 @@ describe "manage resume" do
     select "Green", from: "resume_eye_color"
     fill_in "Descriptive Tag", with: "Singer"
 
-
-    click_button "Save"
+    find(".resume-save").click
 
     expect(find_field("resume_height").value).to eq("70")
     expect(find_field("resume_weight").value).to eq("155")
@@ -201,7 +197,6 @@ describe "manage resume" do
     expect(page).to have_content("Once Upon A Time")
     expect(page).to have_content("Cinderella")
     expect(page).to have_content("Disney Studios")
-
   end
 
   it "allows editing a project" do
@@ -262,7 +257,6 @@ describe "manage resume" do
     click_link "dashboard-edit-resume"
 
     click_link "Edit"
-
 
     select "College", from: "Education Type"
     fill_in "School", with: "Michigan Tech"
