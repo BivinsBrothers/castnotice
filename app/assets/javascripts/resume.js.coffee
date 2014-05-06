@@ -27,5 +27,15 @@ $ ->
     $(".show-agent-fields").slideDown()
 
   $('#user_birthday_1i, #user_birthday_2i, #user_birthday_3i').on 'change', (e) ->
-    e.preventDefault
-    $('.parent-questions').slideDown()
+    e.preventDefault()
+    year = $('#user_birthday_1i').val()
+    month = $('#user_birthday_2i').val()
+    day = $('#user_birthday_3i').val()
+    bday = new Date(year, month, day)
+    today = Date.now()
+    age_ms = today - bday
+    eighteen_years_ms = 568025136000.0
+    if age_ms < eighteen_years_ms
+      $('.parent-questions').slideDown()
+    else
+      $('.parent-questions').slideUp()
