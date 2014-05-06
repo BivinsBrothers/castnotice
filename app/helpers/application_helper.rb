@@ -72,14 +72,6 @@ module ApplicationHelper
     ]
   end
 
-  def resume_unions
-    [
-      "Screen Actors Guild"
-    ].map do |value|
-      OpenStruct.new(id: value, text: value)
-    end
-  end
-
   def agent_type_select
     [
       ["Theatrical", "theatrical"],
@@ -93,28 +85,6 @@ module ApplicationHelper
       ["Modeling/Commercial", "modeling_commercial"],
       ["Children's Talent Agent", "childrens_talent_agent"],
     ]
-  end
-
-  def project_type_select
-    [
-      ["Film Project", "film"],
-      ["Television Project", "television"],
-      ["Theater Project", "theater"],
-      ["Commercial Project", "commercial"],
-      ["Voice Over Project", "voice_over"],
-      ["Industrial Project", "industrial"],
-    ]
-  end
-
-  def project_type_name(project_type)
-    {
-      "film" => "Film Project",
-      "television" => "Television Project",
-      "theater" => "Theater Project",
-      "commercial" => "Commercial Project",
-      "voice_over" => "Voice Over Project",
-      "industrial" => "Industrial Project"
-    }[project_type]
   end
 
   def education_type_select
@@ -143,5 +113,9 @@ module ApplicationHelper
 
   def for_select_by_model(klass)
     klass.all.map { |r| [r.name, r.id] }
+  end
+
+  def sentence_for_category_collection(category)
+    category.map(&:name).to_sentence
   end
 end

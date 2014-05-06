@@ -26,6 +26,7 @@
         <%= f.label :passport, "No", :value => "false", :class => "radio-label" %>
         <%= f.radio_button :passport, false, :class => "radio-button" %>
       </div>
+    </div>
 
     </div>
 
@@ -50,24 +51,24 @@
   <h2>Skills</h2>
   <div class="row">
     <div class="col-md-12">
-		
-        <%= f.label :additional_skills %>
-        <%= f.text_area :additional_skills %>
-      
-	</div>
+      <%= f.label :additional_skills %>
+      <%= f.text_area :additional_skills %>
+    </div>
   </div>
   <%= f.submit "Save" %>
+
   <h2>Management & Union Information</h2>
   <div class="row">
     <div class="col-md-12">
-		<div class="union-checkbox">
-        	<%= f.label :unions %>
-        	<%= f.collection_check_boxes :unions, resume_unions, :id, :text %>
-      	</div>
-	  	<%= f.label :manager_name %>
-      	<%= f.text_field :manager_name %>
-     	 <%= f.label :manager_phone %>
-      	<%= f.phone_field :manager_phone %>
+    <div class="union-checkbox">
+      <%= f.label :unions %>
+      <%= f.collection_check_boxes :union_ids, Union.all, :id, :name %>
+    </div>
+
+    <%= f.label :manager_name %>
+    <%= f.text_field :manager_name %>
+    <%= f.label :manager_phone %>
+    <%= f.phone_field :manager_phone %>
 	</div>
   </div>
   <%= f.submit "Save" %>
@@ -213,8 +214,8 @@
 		</div>
 		<div class="is-hidden new-project-form" id="new-project-form">
 		  <%= form_for @project, :remote => true do |f| %>
-			<%= f.label :project_type %>
-			<%= f.select :project_type, project_type_select %>
+			<%= f.label :project_type_id, "Project Type" %>
+			<%= f.select :project_type_id, for_select_by_model(ProjectType) %>
 			<%= f.label :title %>
 			<%= f.text_field :title %>
 			<%= f.label :role %>

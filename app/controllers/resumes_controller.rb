@@ -11,7 +11,7 @@ class ResumesController < ApplicationController
   end
 
   def edit
-    @resume = current_user.resume || Resume.create(:user => current_user)
+    @resume = current_user.resume || Resume.create(user: current_user)
     @project = Project.new
     @school = School.new
     @headshot = Headshot.new
@@ -36,6 +36,6 @@ class ResumesController < ApplicationController
                   :agent_phone, :agent_email, :agent_location, :agent_location_two, :agent_city, :agent_state, :agent_zip,
                   :agent_type, :manager_name, :manager_phone, :additional_skills, :descriptive_tag, :height,
                   :gender, :hair_length, :piercing, :tattoo, :citizen,
-                  :passport, { unions: [] })
+                  :passport, union_ids: [])
   end
 end

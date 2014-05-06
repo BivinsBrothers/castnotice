@@ -6,7 +6,7 @@ class CategorySeed
       filename = klass.name.underscore.pluralize
       CSV.foreach(Rails.root.join("db/categories/#{filename}.csv"), headers: true) do |row|
         attrs = row.to_hash
-        klass.create_with(attrs.except(:name)).find_or_create_by(name: attrs[:name])
+        klass.create_with(attrs.except(:name)).find_or_create_by!(name: attrs["name"])
       end
     end
   end
