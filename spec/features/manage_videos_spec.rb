@@ -16,7 +16,7 @@ describe "managing videos", :js => true do
 
 
     expect {
-      click_button "Upload Video"
+      click_button "Save Video"
     }.to change {
       user.videos.count
     }.from(0).to(1)
@@ -43,7 +43,7 @@ describe "managing videos", :js => true do
 
     fill_in "video_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
 
-    click_button "Upload Video"
+    click_button "Save Video"
 
     expect(user.videos.count).to eq(8)
 
