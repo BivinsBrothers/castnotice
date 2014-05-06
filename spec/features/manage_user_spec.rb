@@ -61,21 +61,34 @@ describe "managing user" do
 
     select "17", from: "user_birthday_3i"
     select "September", from: "user_birthday_2i"
-    select "1987", from: "user_birthday_1i"
+    select "1998", from: "user_birthday_1i"
 
-    fill_in "parent_name", with: "Mommy Dummy"
-    fill_in "parent_email", with: "mommydummy@fake.com"
-    fill_in "parent_location", with: "123 Somewhere"
-    fill_in "parent_location_two", with: "PO BOX 105"
-    fill_in "parent_city", with: "Grand Rapids"
-    select  "Michigan", from: "parent[location_state]"
-    fill_in "parent_zip", with: "49506"
+    fill_in "Parents Fullname", with: "Mommy Dummy"
+    fill_in "Parents Email", with: "mommydummy@fake.com"
+    fill_in "Parents Street Address", with: "456 Somewhere Else"
+    fill_in "Parents Suite/Apt", with: "PO BOX 205"
+    fill_in "Parents City", with: "Grand Rapids"
+    select  "Michigan", from: "user[parent_state]"
+    fill_in "Parents Zip code", with: "49506"
+    fill_in "Parents Phone", with: "616-234-4567"
 
     check "Accept our Terms of Service"
 
     click_button "Sign up"
 
     expect(page).to have_content("My Stage")
+
+    user = User.last
+
+    expect(user.parent_name).to eq("Mommy Dummy")
+    expect(user.parent_email).to eq("mommydummy@fake.com")
+
+    expect(user.parent_location).to eq("456 Somewhere Else")
+    expect(user.parent_location_two).to eq("PO BOX 205")
+    expect(user.parent_city).to eq("Grand Rapids")
+    expect(user.parent_state).to eq("MI")
+    expect(user.parent_zip).to eq("49506")
+    expect(user.parent_phone).to eq("616-234-4567")
   end
 
   it "allows user to edit Account Information" do
@@ -85,6 +98,8 @@ describe "managing user" do
     visit dashboard_path
 
     click_link "Account Information"
+
+    expect(page).to_not have_content("Parent Fullname")
 
     expect(find_field("Name").value).to eq("Test Dummy")
     expect(find_field("Email").value).to eq("test@fake.com")
@@ -97,6 +112,18 @@ describe "managing user" do
     fill_in "City",with: "Grand Rapids"
     select  "Michigan", from: "user[location_state]"
     fill_in "Zip Code", with: "49505"
+
+    select "17", from: "user_birthday_3i"
+    select "September", from: "user_birthday_2i"
+    select "1998", from: "user_birthday_1i"
+
+    fill_in "Parents Fullname", with: "Mommy Dummy"
+    fill_in "Parents Email", with: "mommydummy@fake.com"
+    fill_in "Parents Street Address", with: "456 Somewhere Else"
+    fill_in "Parents Suite/Apt", with: "PO BOX 205"
+    fill_in "Parents City", with: "Grand Rapids"
+    select  "Michigan", from: "user[parent_state]"
+    fill_in "Parents Zip code", with: "49506"
 
     click_button "Save"
 
