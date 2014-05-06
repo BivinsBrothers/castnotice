@@ -45,6 +45,39 @@ describe "managing user" do
     expect(user.birthday).to eq(Date.new(1987, 9, 17))
   end
 
+  it "shows parent questions when minor is registering" do
+    visit new_user_registration_path
+
+    fill_in "Name", with: "Test Dummy"
+    fill_in "Email", with: "test@fake.com"
+    fill_in "Password", with: "superpass"
+    fill_in "Password confirmation", with: "superpass"
+
+    fill_in "user[location_address]", with: "123 Somewhere"
+    fill_in "user[location_address_two]", with: "PO BOX 105"
+    fill_in "user[location_city]", with: "Grand Rapids"
+    select  "Michigan", from: "user[location_state]"
+    fill_in "user[location_zip]", with: "49506"
+
+    select "17", from: "user_birthday_3i"
+    select "September", from: "user_birthday_2i"
+    select "1987", from: "user_birthday_1i"
+
+    fill_in "parent_name", with: "Mommy Dummy"
+    fill_in "parent_email", with: "mommydummy@fake.com"
+    fill_in "parent_location", with: "123 Somewhere"
+    fill_in "parent_location_two", with: "PO BOX 105"
+    fill_in "parent_city", with: "Grand Rapids"
+    select  "Michigan", from: "parent[location_state]"
+    fill_in "parent_zip", with: "49506"
+
+    check "Accept our Terms of Service"
+
+    click_button "Sign up"
+
+    expect(page).to have_content("My Stage")
+  end
+
   it "allows user to edit Account Information" do
     user = create(:user)
 

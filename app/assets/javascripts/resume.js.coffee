@@ -25,3 +25,7 @@ $ ->
   $(".agent-extra").on 'click', (e) ->
     e.preventDefault
     $(".show-agent-fields").slideDown()
+
+  $('#user_birthday_1i, #user_birthday_2i, #user_birthday_3i').on 'change', (e) ->
+    e.preventDefault
+    $('.parent-questions').slideDown()
