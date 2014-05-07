@@ -126,14 +126,12 @@ describe "manage resume" do
 
     click_link "dashboard-edit-resume"
 
-    expect(page).to have_content("Add Head Shot")
-
-    click_link "Add Head Shot"
+    click_link "Add a photo"
 
     attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
     expect {
-      click_button "Upload Head Shot"
+      click_button "Save Photo"
     }.to change {
       user.headshots.count
     }.from(0).to(1)
@@ -243,7 +241,7 @@ describe "manage resume" do
     fill_in "Major", with: "Computer Science"
     fill_in "Degree", with: "Masters"
 
-    click_button "Save school"
+    click_button "Save School"
 
     expect(page).to have_content("College")
     expect(page).to have_content("Michigan Tech")

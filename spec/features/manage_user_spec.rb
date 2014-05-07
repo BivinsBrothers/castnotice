@@ -29,7 +29,7 @@ describe "managing user" do
       User.count
     }.from(0).to(1)
 
-    expect(page).to have_content("My Stage")
+    expect(page).to have_content("My Close Up")
 
     user = User.last
 

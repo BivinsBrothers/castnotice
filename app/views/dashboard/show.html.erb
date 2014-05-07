@@ -8,54 +8,53 @@
   <h3>Happy Birthday!</h3>
 <% end %>
 
-<h1>My Stage: <%= current_user.name %></h1>
+<h3>Hello <%= current_user.name %></h3>
+<h1>My Close Up</h1>
 <h3>Now starring you.</h3>
 
-
 <%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
-
 
 <div class="row">
 	<div class="col-md-8">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Your Head Shots <span><%= link_to 'Manage', edit_resume_path, id: "edit-headshots", class: "btn btn-small" %></span></h2>
+				<h2>Your Photos <span><%= link_to 'Manage', edit_resume_path, id: "edit-headshots", class: "btn btn-small" %></span></h2>
 				<p>You can upload a maximum of 10 head shots to your resume and you can set one as the main background image</p>
 		
 				<% if current_user.headshots.present? %>
 				  <% current_user.headshots.each do |headshot| %>
-					<div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+					  <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
 				  <% end %>
 				<% else %>
-				  <div class="add-headshots"><%= link_to "Add Headshots", edit_resume_path %></div>
+				  <div class="add-headshots"><%= link_to "Add a photo", edit_resume_path %></div>
 				<% end %>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h2>Your Videos <span><%= link_to 'Manage', edit_resume_path, id: "edit-videos", class: "btn btn-small" %></span></h2>
+				<h2>Your Videos <span><%= link_to 'Manage', edit_resume_path, id: "edit-videos", class: "btn btn-small edit-videos" %></span></h2>
 				<p>Add YouTube or Vimeo links to embed video into your resume.</p>
 		
 				<% if current_user.videos.present? %>
 					<% current_user.videos.each do |video| %>
 					  <div class="video">
-						<%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
-						<% if video.youtube_id.present? %>
-						  <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
-						<% elsif video.vimeo_id.present? %>
-						  <iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
-						<% end %>
-						<%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
+						  <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
+						  <% if video.youtube_id.present? %>
+						    <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
+						  <% elsif video.vimeo_id.present? %>
+						    <iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
+						  <% end %>
+						  <%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
 					  </div>
 					<% end %>
 				<% else %>
-				  <div class="add-videos"><%= link_to "Add Videos", edit_resume_path %></div>
+				  <div class="add-videos"><%= link_to "Add a video", edit_resume_path %></div>
 				<% end %>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-4">
-		<h2>Experience <span><%= link_to 'Edit', edit_resume_path, class: "btn btn-small" %></span></h2>
+		<h2>Experience <span><%= link_to 'Manage', edit_resume_path, class: "btn btn-small" %></span></h2>
 		<% current_user.projects %>
 		<%= render template: 'projects/show' %>
 	</div>

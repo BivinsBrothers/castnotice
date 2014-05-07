@@ -9,7 +9,8 @@ describe "managing videos", :js => true do
   end
 
   it "a user can upload a video", :js => true do
-    click_link "edit-videos"
+
+    click_link 'dashboard-edit-resume'
     click_link "Add a video"
 
     fill_in "video_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
@@ -26,7 +27,7 @@ describe "managing videos", :js => true do
 
   it "a user can delete a video" do
     create(:video, user: user)
-    click_link "edit-videos"
+    click_link 'dashboard-edit-resume'
 
     click_link "Delete"
 
@@ -36,7 +37,7 @@ describe "managing videos", :js => true do
   it "a user can have a maximum of 8 videos", :js => true do
     create_list(:video, 7, user: user)
 
-    click_link "edit-videos"
+    click_link 'dashboard-edit-resume'
     click_link "Add a video"
 
     expect(user.videos.count).to eq(7)

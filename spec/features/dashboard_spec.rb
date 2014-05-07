@@ -7,10 +7,11 @@ describe "user dashboard" do
     log_in user
     visit dashboard_path
 
-    expect(page).to have_content("My Stage: Test Dummy")
+    expect(page).to have_content("Hello Test Dummy")
+    expect(page).to have_content("My Close Up")
     expect(page).to have_content("Now starring you.")
     expect(page).to have_content("Edit Resume")
-    expect(page).to have_content("Your Head Shots")
+    expect(page).to have_content("Your Photos")
     expect(page).to have_content("Your Videos")
   end
   it 'sends birthday wishes on users birthday' do

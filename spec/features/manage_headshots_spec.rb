@@ -15,12 +15,12 @@ describe "managing headshots" do
 
   it "a user can upload a headshot", :js => true do
     click_link "edit-headshots"
-    click_link "Add Head Shot"
+    click_link "Add a photo"
 
     attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
     expect {
-      click_button "Upload Head Shot"
+      click_button "Save Photo"
     }.to change {
       user.headshots.count
     }.from(0).to(1)
@@ -68,15 +68,15 @@ describe "managing headshots" do
     create_list(:headshot, 9, user: user)
 
     click_link "edit-headshots"
-    click_link "Add Head Shot"
+    click_link "Add a photo"
 
     expect(user.headshots.count).to eq(9)
 
     attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
-    click_button "Upload Head Shot"
+    click_button "Save Photo"
 
     expect(user.headshots.count).to eq(10)
 
-    expect(page).not_to have_content("Add Head Shot")
+    expect(page).not_to have_content("Add a photo")
   end
 end
