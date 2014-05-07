@@ -1,4 +1,4 @@
-var api_filters = "/calendar-json/filters.json";
+var api_filters = "<%= Rails.application.routes.url_helpers.categories_path %>";
 var api_events = "<%= Rails.application.routes.url_helpers.events_path %>";
 var urlSignIn = '<%= Rails.application.routes.url_helpers.new_user_session_path %>';
 var urlRegister = '<%= Rails.application.routes.url_helpers.page_path("pricing") %>';

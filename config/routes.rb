@@ -6,6 +6,7 @@ Castnotice::Application.routes.draw do
   end
 
   resources :events, only: [:index]
+  resources :categories, only: [:index]
 
   resource :accounts, only: [:edit, :update]
   resource :resume, only: [:edit, :update, :show]

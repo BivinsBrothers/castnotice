@@ -83,6 +83,22 @@ feature "calendar", js: true do
     end
   end
 
+  it "displays filtering categories" do
+    create(:region, name: "New Zealand")
+    create(:project_type, name: "Lorde cover")
+    create(:union, name: "Crystal")
+
+    visit page_path("calendar")
+
+    region  = Dom::CalendarRegion.first
+    project = Dom::CalendarProjectType.first
+    union   = Dom::CalendarUnion.first
+
+    expect(region.name).to eq("New Zealand")
+    expect(project.name).to eq("Lorde cover")
+    expect(union.name).to eq("Crystal")
+  end
+
   it "filters by month in sidebar" do
     next_month = this_month.next_month
 

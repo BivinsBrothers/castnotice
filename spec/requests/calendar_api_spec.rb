@@ -101,4 +101,30 @@ describe "Calendar API" do
       end
     end
   end
+
+  describe "GET /categories" do
+    it "returns list of calendar categories that can be filtered" do
+      create(:region, name: "Ile-de-France")
+      create(:region, name: "Dordogne")
+
+      create(:project_type, name: "Coworking")
+      create(:project_type, name: "Dance")
+
+      create(:union, name: "UEA")
+      create(:union, name: "IPSA")
+
+      get categories_path
+
+      filters = JSON.parse(response.body)["filters"]
+
+      expect(filters["region"]["label"]).to eq("Region")
+      expect(filters["region"]["values"]).to eq(["Ile-de-France", "Dordogne"])
+
+      expect(filters["project"]["label"]).to eq("Type of Project")
+      expect(filters["project"]["values"]).to eq(["Coworking", "Dance"])
+
+      expect(filters["union"]["label"]).to eq("Union")
+      expect(filters["union"]["values"]).to eq(["UEA", "IPSA"])
+    end
+  end
 end

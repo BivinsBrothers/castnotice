@@ -35,6 +35,30 @@ module Dom
     end
   end
 
+  class CalendarRegion < Domino
+    selector "#filter-region .calendar-checkbox"
+
+    def name
+      node.find("label").text
+    end
+  end
+
+  class CalendarProjectType < Domino
+    selector "#filter-project .calendar-checkbox"
+
+    def name
+      node.find("label").text
+    end
+  end
+
+  class CalendarUnion < Domino
+    selector "#filter-union .calendar-checkbox"
+
+    def name
+      node.find("label").text
+    end
+  end
+
   class CalendarEvent < Domino
     selector ".calendar-event"
 
