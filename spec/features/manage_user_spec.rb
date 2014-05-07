@@ -45,6 +45,52 @@ describe "managing user" do
     expect(user.birthday).to eq(Date.new(1987, 9, 17))
   end
 
+  it "shows parent questions when minor is registering" do
+    visit new_user_registration_path
+
+    fill_in "Name", with: "Test Dummy"
+    fill_in "Email", with: "test@fake.com"
+    fill_in "Password", with: "superpass"
+    fill_in "Password confirmation", with: "superpass"
+
+    fill_in "user[location_address]", with: "123 Somewhere"
+    fill_in "user[location_address_two]", with: "PO BOX 105"
+    fill_in "user[location_city]", with: "Grand Rapids"
+    select  "Michigan", from: "user[location_state]"
+    fill_in "user[location_zip]", with: "49506"
+
+    select "17", from: "user_birthday_3i"
+    select "September", from: "user_birthday_2i"
+    select "2014", from: "user_birthday_1i"
+
+    fill_in "Parents Fullname", with: "Mommy Dummy"
+    fill_in "Parents Email", with: "mommydummy@fake.com"
+    fill_in "Parents Street Address", with: "456 Somewhere Else"
+    fill_in "Parents Suite/Apt", with: "PO BOX 205"
+    fill_in "Parents City", with: "Grand Rapids"
+    select  "Michigan", from: "user[parent_state]"
+    fill_in "Parents Zip code", with: "49506"
+    fill_in "Parents Phone", with: "616-234-4567"
+
+    check "Accept our Terms of Service"
+
+    click_button "Sign up"
+
+    expect(page).to have_content("My Stage")
+
+    user = User.last
+
+    expect(user.parent_name).to eq("Mommy Dummy")
+    expect(user.parent_email).to eq("mommydummy@fake.com")
+
+    expect(user.parent_location).to eq("456 Somewhere Else")
+    expect(user.parent_location_two).to eq("PO BOX 205")
+    expect(user.parent_city).to eq("Grand Rapids")
+    expect(user.parent_state).to eq("MI")
+    expect(user.parent_zip).to eq("49506")
+    expect(user.parent_phone).to eq("616-234-4567")
+  end
+
   it "allows user to edit Account Information" do
     user = create(:user)
 
@@ -52,6 +98,8 @@ describe "managing user" do
     visit dashboard_path
 
     click_link "Account Information"
+
+    expect(page).to_not have_content("Parent Fullname")
 
     expect(find_field("Name").value).to eq("Test Dummy")
     expect(find_field("Email").value).to eq("test@fake.com")
@@ -64,6 +112,18 @@ describe "managing user" do
     fill_in "City",with: "Grand Rapids"
     select  "Michigan", from: "user[location_state]"
     fill_in "Zip Code", with: "49505"
+
+    select "17", from: "user_birthday_3i"
+    select "September", from: "user_birthday_2i"
+    select "2014", from: "user_birthday_1i"
+
+    fill_in "Parents Fullname", with: "Mommy Dummy"
+    fill_in "Parents Email", with: "mommydummy@fake.com"
+    fill_in "Parents Street Address", with: "456 Somewhere Else"
+    fill_in "Parents Suite/Apt", with: "PO BOX 205"
+    fill_in "Parents City", with: "Grand Rapids"
+    select  "Michigan", from: "user[parent_state]"
+    fill_in "Parents Zip code", with: "49506"
 
     click_button "Save"
 
