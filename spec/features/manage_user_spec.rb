@@ -76,7 +76,7 @@ describe "managing user" do
 
     click_button "Sign up"
 
-    expect(page).to have_content("My Stage")
+    expect(page).to have_content("My Close Up")
 
     user = User.last
 

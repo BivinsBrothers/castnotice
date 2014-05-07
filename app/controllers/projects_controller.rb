@@ -32,10 +32,16 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find(params[:id])
 
     if @project.update_attributes(project_params)
+      flash[:success] = "Your project saved."
       redirect_to edit_resume_path
     else
       flash[:failure] = "Sorry unable to save your Project please try again."
     end
+  end
+
+  def destroy
+    current_user.projects.find(params[:id]).destroy
+    redirect_to edit_resume_path
   end
 
   def project_params

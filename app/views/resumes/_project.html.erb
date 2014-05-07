@@ -1,14 +1,8 @@
-<div class="row repeatable-row">
-  <div class="col-md-12">
-    <h4>Title: <%= project.title %> <%= link_to "Edit", edit_project_path(project) %></h4>
-  </div>
-  <div class="col-md-4">
-    <p>Project Type: <%= project.project_type.name %></p>
-  </div>
-  <div class="col-md-4">
-    <p>Role: <%= project.role %></p>
-  </div>
-  <div class="col-md-4">
-    <p>Director Studio: <%= project.director_studio %></p>
-  </div>
+<div class="col-md-4">
+  <h4>Title: <%= project.title %>
+  <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", project_path(project), method: :delete, :class => "mini-link" %>
+  | <%= link_to "Edit", edit_project_path(project), :class => "mini-link" %></h4>
+  <p>Project Type: <%= project.project_type.name if project.project_type.present? %></p>
+  <p>Role: <%= project.role %></p>
+  <p>Director Studio: <%= project.director_studio %></p>
 </div>

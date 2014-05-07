@@ -11,8 +11,8 @@ Castnotice::Application.routes.draw do
   resource :accounts, only: [:edit, :update]
   resource :resume, only: [:edit, :update, :show]
 
-  resources :projects, only: [:new, :create, :edit, :update]
-  resources :schools, only: [:new, :create, :edit, :update]
+  resources :projects, only: [:new, :create, :edit, :update, :destroy]
+  resources :schools, only: [:new, :create, :edit, :update, :destroy]
   resources :headshots, only: [:new, :index, :create, :update, :destroy]
   resources :videos, only: [:new, :index, :create, :destroy]
 
