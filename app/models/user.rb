@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
   def at_maximum_videos?
     videos.count >= MAXIMUM_VIDEOS
   end
+
+  def happy_birthday?
+    birthday.day == Date.current.day && birthday.month == Date.current.month
+  end
 end
