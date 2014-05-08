@@ -295,4 +295,38 @@ describe "manage resume" do
     expect(page).to_not have_content("Masters")
 
   end
+
+  it "allows talent to print a resume" do
+    user = create(:user)
+    create(:resume, user: user)
+    create(:school, user: user)
+    create(:project, user: user)
+    create(:project_type, name: "Feature Film")
+    create(:headshot, user: user)
+
+    log_in user
+    visit dashboard_path
+
+    click_link "dashboard-edit-resume"
+
+    click_link "Printable Resume"
+
+    expect(page).to have_content("Test Dummy")
+    expect(page).to have_content("Awesome Union")
+    expect(page).to have_content("1-616-555-4567")
+    expect(page).to have_content("test@fake.com")
+    expect(page).to have_content("Experience")
+    expect(page).to have_content("Feature Film")
+    expect(page).to have_content("Wizzard of OZ")
+    expect(page).to have_content("Dorothy")
+    expect(page).to have_content("Disney Studios")
+    expect(page).to have_content("Education")
+    expect(page).to have_content("University of Michigan")
+    expect(page).to have_content("Acting")
+    expect(page).to have_content("Associates Degree in Creative Dance")
+    expect(page).to have_content("Special Skills")
+    expect(page).to have_content("Improve")
+
+    expect(page).to have_content("Resume created by CastNotice.com")
+  end
 end
