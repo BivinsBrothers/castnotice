@@ -4,6 +4,10 @@
   <% end %>
 <% end %>
 
+<% if current_user.happy_birthday? %>
+  <h3>Happy Birthday!</h3>
+<% end %>
+
 <h1>My Stage: <%= current_user.name %></h1>
 <h3>Now starring you.</h3>
 

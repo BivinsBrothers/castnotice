@@ -13,4 +13,11 @@ describe "user dashboard" do
     expect(page).to have_content("Your Head Shots")
     expect(page).to have_content("Your Videos")
   end
+  it 'sends birthday wishes on users birthday' do
+    user = create(:user, :birthday => Date.current)
+
+    log_in user
+    visit dashboard_path
+    expect(page).to have_content("Happy Birthday!")
+  end
 end
