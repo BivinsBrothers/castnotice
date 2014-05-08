@@ -1,4 +1,4 @@
-<%= form_for @school, :remote => true do |f| %>
+<%= form_for @school do |f| %>
   <%= f.label :education_type %>
   <%= f.select :education_type, education_type_select %>
   <%= f.label :school %>
@@ -15,4 +15,3 @@
   <%= f.text_field :instruments %>
   <%= f.submit "Save" %>
 <% end %>
-<%= link_to 'New School', new_school_path %>

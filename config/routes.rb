@@ -11,9 +11,9 @@ Castnotice::Application.routes.draw do
   resource :accounts, only: [:edit, :update]
   resource :resume, only: [:edit, :update, :show]
 
-  resources :projects, only: [:new, :create, :edit, :update]
-  resources :schools, only: [:new, :create, :edit, :update]
-  resources :headshots, only: [:new, :index, :create, :update, :destroy]
+  resources :projects, except: [:new, :show, :index]
+  resources :schools, except: [:new, :show, :index]
+  resources :headshots, except: [:show, :edit]
   resources :videos, only: [:new, :index, :create, :destroy]
 
   get "/contact" => "contacts#new", :as => "contact"

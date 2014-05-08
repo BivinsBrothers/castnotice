@@ -32,10 +32,16 @@ class SchoolsController < ApplicationController
     @school = current_user.schools.find(params[:id])
 
     if @school.update_attributes(school_params)
-      redirect_to resume_path
+      flash[:success] = "Your school has been saved."
+      redirect_to edit_resume_path
     else
       render :edit
     end
+  end
+
+  def destroy
+    current_user.schools.find(params[:id]).destroy
+    redirect_to edit_resume_path
   end
 
   def school_params

@@ -1,4 +1,4 @@
-<%= form_for @project, :remote => true do |f| %>
+<%= form_for @project do |f| %>
   <%= f.label :project_type_id, "Project Type" %>
   <%= f.select :project_type_id, for_select_by_model(ProjectType) %>
   <%= f.label :title %>
@@ -7,7 +7,6 @@
   <%= f.text_field :role %>
   <%= f.label :director_studio %>
   <%= f.text_field :director_studio %>
-  <%= f.submit "Save" %>
+  <%= f.submit "Save"  %>
 <% end %>
 
-<%= link_to 'New Project', new_project_path %>

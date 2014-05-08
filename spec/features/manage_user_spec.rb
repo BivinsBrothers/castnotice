@@ -29,7 +29,7 @@ describe "managing user" do
       User.count
     }.from(0).to(1)
 
-    expect(page).to have_content("My Stage")
+    expect(page).to have_content("My Close Up")
 
     user = User.last
 
@@ -48,7 +48,7 @@ describe "managing user" do
   it "shows parent questions when minor is registering" do
     visit new_user_registration_path
 
-    fill_in "Name", with: "Test Dummy"
+    fill_in "Full Name", with: "Test Dummy"
     fill_in "Email", with: "test@fake.com"
     fill_in "Password", with: "superpass"
     fill_in "Password confirmation", with: "superpass"
@@ -76,7 +76,7 @@ describe "managing user" do
 
     click_button "Sign up"
 
-    expect(page).to have_content("My Stage")
+    expect(page).to have_content("My Close Up")
 
     user = User.last
 
