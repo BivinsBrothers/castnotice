@@ -48,7 +48,7 @@ describe "managing user" do
   it "shows parent questions when minor is registering" do
     visit new_user_registration_path
 
-    fill_in "Name", with: "Test Dummy"
+    fill_in "Full Name", with: "Test Dummy"
     fill_in "Email", with: "test@fake.com"
     fill_in "Password", with: "superpass"
     fill_in "Password confirmation", with: "superpass"
