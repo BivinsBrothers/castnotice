@@ -177,7 +177,7 @@ describe "manage resume" do
   it "allows adding project" do
     user = create(:user)
     create(:resume, user: user)
-    create(:project_type, name: "Film Project")
+    create(:project_type, name: "Industrial Project")
 
     log_in user
     visit dashboard_path
@@ -186,44 +186,54 @@ describe "manage resume" do
 
     click_link "Add a project"
 
-    expect(page).to have_content("Director/Studio")
-
-    select "Film Project", from: "Project Type"
+    select "Industrial Project", from: "Project Type"
     fill_in "Title", with: "Once Upon A Time"
     fill_in "Role", with: "Cinderella"
     fill_in "Director/Studio", with: "Disney Studios"
 
     click_button "Save Project"
 
-    expect(page).to have_content("Film Project")
+    expect(page).to have_content("Industrial Project")
     expect(page).to have_content("Once Upon A Time")
     expect(page).to have_content("Cinderella")
     expect(page).to have_content("Disney Studios")
   end
 
-  it "allows editing a project" do
+  it "allows editing/deleting a project" do
     user = create(:user)
     create(:resume, user: user)
-    create(:project, title: "Over You", user: user)
+    create(:project, user: user)
     create(:project_type, name: "Industrial Project")
 
     log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
+
+    expect(page).to have_content("Industrial Project")
+    expect(page).to have_content("Wizzard of OZ")
+    expect(page).to have_content("Dorothy")
+    expect(page).to have_content("Disney Studios")
+
     click_link "Edit"
 
     select "Industrial Project", from: "Project Type"
-    fill_in "Title", with: "Industrial"
-    fill_in "Role", with: "Gopher"
-    fill_in "Director/Studio", with: "Tin Cup"
+    fill_in "Title", with: "Ford Pickup"
+    fill_in "Role", with: "Driver"
+    fill_in "Director/Studio", with: "Ford Studios"
 
     click_button "Save"
 
-    expect(page).to have_content("Industrial Project")
-    expect(page).to have_content("Industrial")
-    expect(page).to have_content("Gopher")
-    expect(page).to have_content("Tin Cup")
+    expect(page).to have_content("Ford Pickup")
+    expect(page).to have_content("Driver")
+    expect(page).to have_content("Ford Studios")
+
+    click_link "Delete"
+
+    expect(page).to_not have_content("Ford Pickup")
+    expect(page).to_not have_content("Driver")
+    expect(page).to_not have_content("Ford Studios")
+
   end
 
   it "allows adding a school" do
@@ -249,7 +259,7 @@ describe "manage resume" do
     expect(page).to have_content("Masters")
   end
 
-  it "allows editing a school" do
+  it "allows editing/deleting a school" do
     user = create(:user)
     create(:resume, user: user)
     create(:school, user: user)
@@ -258,6 +268,11 @@ describe "manage resume" do
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
+
+    expect(page).to have_content("University")
+    expect(page).to have_content("University of Michigan")
+    expect(page).to have_content("Acting")
+    expect(page).to have_content("Associates Degree in Creative Dance")
 
     click_link "Edit"
 
@@ -268,9 +283,16 @@ describe "manage resume" do
 
     click_button "Save"
 
-    expect(page).to have_content("College")
+
     expect(page).to have_content("Michigan Tech")
     expect(page).to have_content("Computer Science")
     expect(page).to have_content("Masters")
+
+    click_link "Delete"
+
+    expect(page).to_not have_content("Michigan Tech")
+    expect(page).to_not have_content("Computer Science")
+    expect(page).to_not have_content("Masters")
+
   end
 end
