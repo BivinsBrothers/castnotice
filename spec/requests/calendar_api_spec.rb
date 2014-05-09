@@ -1,6 +1,6 @@
 require "spec_helper"
 
-def event_hash(event)
+def full_event_hash(event)
   {
      id: event.id,
      name: event.name,
@@ -38,57 +38,34 @@ end
 
 describe "Calendar API" do
   describe "GET /events" do
+    before do
+      Timecop.freeze(Date.parse("2014-04-17"))
+    end
+
+    after do
+      Timecop.return
+    end
+
     context "when a member" do
       before do
-        Timecop.freeze(Date.parse("2014-04-17"))
-
         user = create(:user)
         login_as user
       end
 
-      after do
-        Timecop.return
-      end
+      it "returns full event json" do
+        event = create(:event, audition_date: 2.days.from_now)
 
-      let!(:may_event) { create(:event, audition_date: 1.month.from_now) }
-      let!(:april_event1) { create(:event, audition_date: 2.days.from_now) }
-      let!(:april_event2) { create(:event, audition_date: 1.day.from_now) }
+        get events_path
 
-      context "when given a date range" do
-        it "returns events within date range" do
-          get events_path, {date: {start: "2014-05-01", end: "2014-05-30" }}
-
-          expect(response.status).to eq(200)
-          expect(response.body).to eq({
-            "events" => [event_hash(may_event)],
-            "meta" => {member: true, admin: false}
-          }.to_json)
-        end
-      end
-
-      context "when not given a date range" do
-        it "returns full event json ordered by audition date for the current month" do
-          get events_path
-
-          expect(response.status).to eq(200)
-          expect(response.body).to eq({
-            "events" => [event_hash(april_event2), event_hash(april_event1)],
-            "meta" => {member: true, admin: false}
-          }.to_json)
-        end
+        expect(response.body).to eq({
+          "events" => [full_event_hash(event)],
+          "meta" => {member: true, admin: false}
+        }.to_json)
       end
     end
 
     context "when not a member" do
-      before do
-        Timecop.freeze(Date.parse("2014-04-17"))
-      end
-
-      after do
-        Timecop.return
-      end
-
-      it "returns limited json when not a member" do
+      it "returns limited event json" do
         event = create(:event, audition_date: 2.days.from_now)
 
         get events_path
@@ -98,6 +75,51 @@ describe "Calendar API" do
           "events" => [limited_event_hash(event)],
           "meta" => {member: false, admin: false}
         }.to_json)
+      end
+    end
+
+    context "when given a date range" do
+      let!(:may_event) { create(:event, audition_date: 1.month.from_now) }
+      let!(:april_event1) { create(:event, audition_date: 2.days.from_now) }
+      let!(:april_event2) { create(:event, audition_date: 1.day.from_now) }
+      let!(:march_event) { create(:event, audition_date: 1.month.ago) }
+      let!(:feb_event) { create(:event, audition_date: 2.months.ago) }
+      let!(:jan_event) { create(:event, audition_date: 3.months.ago) }
+
+      it "returns events within date range" do
+        get events_path, {date: {start: "2014-05-01", end: "2014-05-30" }}
+
+        expect(response.status).to eq(200)
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(may_event)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events up to 60 days into the past" do
+        get events_path, {date: {start: "2014-02-01", end: "2014-02-28"}}
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(feb_event)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+
+        get events_path, {date: {start: "2014-01-01", end: "2014-01-31"}}
+        expect(response.body).to eq({
+          "events" => [],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      context "when not given a date range" do
+        it "returns full event json ordered by audition date for the current month" do
+          get events_path
+
+          expect(response.status).to eq(200)
+          expect(response.body).to eq({
+            "events" => [limited_event_hash(april_event2), limited_event_hash(april_event1)],
+            "meta" => {member: false, admin: false}
+          }.to_json)
+        end
       end
     end
   end
