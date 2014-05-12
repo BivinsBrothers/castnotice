@@ -121,18 +121,66 @@ describe "Calendar API" do
         end
       end
     end
+
+    context "when given filtering attributes" do
+      let(:dordogne) { create(:region, name: "Dordogne") }
+      let(:ile)      { create(:region, name: "Ile-de-France") }
+      let(:lavazza)  { create(:project_type, name: "Lavazza") }
+      let(:orange)   { create(:project_type, name: "Oranage Juice") }
+      let(:sncf)     { create(:union, name: "SNCF") }
+      let(:ratp)     { create(:union, name: "RATP") }
+
+      let!(:event1) { create(:event, audition_date: Date.today, project_type: orange, region: dordogne, unions: [ratp]) }
+      let!(:event2) { create(:event, audition_date: 1.day.from_now, project_type: lavazza, region: ile) }
+      let!(:event3) { create(:event, audition_date: 2.days.from_now, project_type: orange, unions: [sncf]) }
+      let!(:event4) { create(:event, audition_date: 3.days.from_now, unions: [sncf, ratp]) }
+
+      it "returns events filtered by region" do
+        get events_path, {filters: {region: [dordogne.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event1)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by project" do
+        get events_path, {filters: {project: [lavazza.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event2)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by multiple values for the same category" do
+        get events_path, {filters: {project: [lavazza.id, orange.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event1), limited_event_hash(event2), limited_event_hash(event3)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by union" do
+        get events_path, {filters: {union: [sncf.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event3), limited_event_hash(event4)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by different categories" do
+        get events_path, {filters: {project: [orange.id], union: [sncf.id, ratp.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event1), limited_event_hash(event3)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+    end
   end
-
-  describe "GET /categories" do
-    it "returns list of calendar categories that can be filtered" do
-      create(:region, name: "Ile-de-France")
-      create(:region, name: "Dordogne")
-
-      create(:project_type, name: "Coworking")
-      create(:project_type, name: "Dance")
-
-      create(:union, name: "UEA")
-      create(:union, name: "IPSA")
 
   describe "GET /categories" do
     let!(:ile) { create(:region, name: "Ile-de-France") }
