@@ -66,7 +66,7 @@ module Dom
   class CalendarEvent < Domino
     selector ".calendar-event"
 
-    attribute :name, ".calendar-name"
+    attribute :project_title, ".calendar-name"
 
     def audition_date
       "#{node.find(".calendar-month").text} #{node.find(".calendar-day").text}"
@@ -80,64 +80,52 @@ module Dom
       node.find(".region").text.partition("Region: ").last
     end
 
-    def performer_type
-      node.find(".performer-type").text.partition("Performer Type: ").last
-    end
-
     def project_type
       node.find(".project-type").text.partition("Project Type: ").last
-    end
-
-    def character
-      node.find(".character").text.partition("Character: ").last
-    end
-
-    def pay
-      node.find(".pay").text.partition("Pay Rate: ").last
     end
 
     def unions
       node.find(".unions").text.partition("Unions: ").last
     end
 
-    def director
-      node.find(".director").text.partition("Director: ").last
-    end
-
     def casting_director
       node.find(".casting-director").text.partition("Casting Director: ").last
-    end
-
-    def producers
-      node.find(".producers").text.partition("Producers: ").last
-    end
-
-    def writers
-      node.find(".writers").text.partition("Writers: ").last
     end
 
     def location
       node.find(".location").text.partition("Location: ").last
     end
 
-    def story
-      node.find(".story").text.partition("Storyline: ").last
+    def gender
+      node.find(".gender").text.partition("Gender: ").last
     end
 
-    def description
-      node.find(".description").text.partition("Description: ").last
+    def storyline
+      node.find(".storyline").text.partition("Storyline: ").last
     end
 
-    def audition
-      node.find(".audition").text.partition("How to Audition: ").last
+    def character_description
+      node.find(".character-description").text.partition("Description: ").last
+    end
+
+    def how_to_audition
+      node.find(".how-to-audition").text.partition("How to Audition: ").last
+    end
+
+    def special_notes
+      node.find(".special-notes").text.partition("Special Notes: ").last
+    end
+
+    def additional_project_info
+      node.find(".additional-project-info").text.partition("Additional Project Info: ").last
+    end
+
+    def project_type_details
+      node.find(".project-type-details").text.partition("Project Type Details: ").last
     end
 
     def start_date
       node.find(".start-date").text.partition("Shoot/Start Date: ").last
-    end
-
-    def end_date
-      node.find(".end-date").text.partition("Shoot/End Date: ").last
     end
 
     def more_information

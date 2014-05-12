@@ -78,12 +78,11 @@ function calendarUpdate() {
                         '<div class="calendar-day">' + date.getUTCDate() + '</div>' + addAdminEventLinks(val.id, data.meta.admin) +
                         '</div>' +
                         '<div class="col-sm-10">' +
-                        '<div class="calendar-name">' + val.name + '</div></h1>' +
+                        '<div class="calendar-name">' + val.project_title + '</div></h1>' +
                         '<div class="calendar-paid calendar-paid-' + val.paid + '">Paid?</div>' +
                         '<div id="calendar-overview-' + key + '" class="calendar-overview clearfix">' +
                         '<div class="calendar-attribute region"><span>Region:</span> ' + val.region + '</div>' +
                         '<div class="calendar-attribute project-type"><span>Project Type:</span> ' + val.project_type + '</div>' +
-                        '<div class="calendar-attribute performer-type"><span>Performer Type:</span> ' + val.performer_type + '</div>' +
                         '</div>' +
                         '<div id="calendar-detail-' + key + '" class="calendar-detail"></div>' +
                         '<div id="calendar-expand-' + key + '" class="calendar-shrink ">More Information</div>' +
@@ -95,21 +94,19 @@ function calendarUpdate() {
                 });
                 if (data.meta.member == true) {
                     $('#calendar-detail-' + key).append(
-                            '<div class="calendar-description story"><span>Storyline:</span> ' + val.story + '</div>',
-                            '<div class="calendar-description description"><span>Description:</span> ' + val.description + '</div>',
-                            '<div class="calendar-description audition"><span>How to Audition:</span> ' + val.audition + '</div>'
+                            '<div class="calendar-description storyline"><span>Storyline:</span> ' + val.storyline + '</div>',
+                            '<div class="calendar-description character-description"><span>Description:</span> ' + val.character_description + '</div>',
+                            '<div class="calendar-description how-to-audition"><span>How to Audition:</span> ' + val.how_to_audition + '</div>',
+                            '<div class="calendar-description special-notes"><span>Special Notes:</span> ' + val.special_notes + '</div>',
+                            '<div class="calendar-description additional-project-info"><span>Additional Project Info:</span> ' + val.additional_project_info + '</div>',
+                            '<div class="calendar-description project-type-details"><span>Project Type Details:</span> ' + val.project_type_details + '</div>'
                             );
                     $('#calendar-overview-' + key).append(
                             '<div class="calendar-attribute start-date"><span>Shoot/Start Date:</span> ' + val.start_date + '</div>',
-                            '<div class="calendar-attribute character"><span>Character:</span> ' + val.character + '</div>',
-                            '<div class="calendar-attribute pay"><span>Pay Rate:</span> ' + val.pay + '</div>',
+                            '<div class="calendar-attribute gender"><span>Gender:</span> ' + val.gender + '</div>',
                             '<div class="calendar-attribute unions"><span>Unions:</span> ' + sentenceForUnions(val.unions) + '</div>',
-                            '<div class="calendar-attribute director"><span>Director:</span> ' + val.director + '</div>',
                             '<div class="calendar-attribute casting-director"><span>Casting Director:</span> ' + val.casting_director + '</div>',
-                            '<div class="calendar-attribute writers"><span>Writers:</span> ' + val.writers + '</div>',
-                            '<div class="calendar-attribute producers"><span>Producers:</span> ' + val.producers + '</div>',
-                            '<div class="calendar-attribute location"><span>Location:</span> ' + val.location + '</div>',
-                            '<div class="calendar-attribute end-date"><span>Shoot/End Date:</span> ' + val.end_date + '</div>'
+                            '<div class="calendar-attribute location"><span>Location:</span> ' + val.location + '</div>'
                             );
                 } else {
                     $('#calendar-detail-' + key).append(

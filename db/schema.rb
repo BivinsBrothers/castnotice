@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506132356) do
+ActiveRecord::Schema.define(version: 20140512185300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,26 +27,23 @@ ActiveRecord::Schema.define(version: 20140506132356) do
   add_index "event_unions", ["union_id"], name: "index_event_unions_on_union_id", using: :btree
 
   create_table "events", force: true do |t|
-    t.string   "name"
-    t.string   "performer_type"
-    t.string   "character"
-    t.string   "pay"
-    t.string   "director"
-    t.text     "story"
-    t.text     "description"
-    t.text     "audition"
+    t.string   "project_title"
+    t.text     "storyline"
+    t.text     "character_description"
+    t.text     "how_to_audition"
     t.datetime "audition_date"
     t.datetime "start_date"
-    t.datetime "end_date"
-    t.boolean  "paid",             default: false, null: false
+    t.boolean  "paid",                    default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "producers"
-    t.string   "writers"
     t.string   "location"
     t.string   "casting_director"
     t.integer  "region_id"
     t.integer  "project_type_id"
+    t.string   "gender"
+    t.text     "project_type_details"
+    t.text     "special_notes"
+    t.text     "additional_project_info"
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
