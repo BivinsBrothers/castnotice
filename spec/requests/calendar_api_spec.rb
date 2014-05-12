@@ -82,7 +82,6 @@ describe "Calendar API" do
       let!(:may_event) { create(:event, audition_date: 1.month.from_now) }
       let!(:april_event1) { create(:event, audition_date: 2.days.from_now) }
       let!(:april_event2) { create(:event, audition_date: 1.day.from_now) }
-      let!(:march_event) { create(:event, audition_date: 1.month.ago) }
       let!(:feb_event) { create(:event, audition_date: 2.months.ago) }
       let!(:jan_event) { create(:event, audition_date: 3.months.ago) }
 
@@ -135,18 +134,36 @@ describe "Calendar API" do
       create(:union, name: "UEA")
       create(:union, name: "IPSA")
 
+  describe "GET /categories" do
+    let!(:ile) { create(:region, name: "Ile-de-France") }
+    let!(:dordogne) { create(:region, name: "Dordogne") }
+    let!(:coworking) { create(:project_type, name: "Coworking") }
+    let!(:dance) { create(:project_type, name: "Dance") }
+    let!(:uea) { create(:union, name: "UEA") }
+    let!(:ipsa) { create(:union, name: "IPSA") }
+
+    it "returns list of calendar categories that can be filtered" do
       get categories_path
 
       filters = JSON.parse(response.body)["filters"]
 
       expect(filters["region"]["label"]).to eq("Region")
-      expect(filters["region"]["values"]).to eq(["Ile-de-France", "Dordogne"])
+      expect(filters["region"]["values"]).to eq({
+        ile.id.to_s =>"Ile-de-France",
+        dordogne.id.to_s => "Dordogne"
+      })
 
       expect(filters["project"]["label"]).to eq("Type of Project")
-      expect(filters["project"]["values"]).to eq(["Coworking", "Dance"])
+      expect(filters["project"]["values"]).to eq({
+        coworking.id.to_s => "Coworking",
+        dance.id.to_s => "Dance"
+      })
 
       expect(filters["union"]["label"]).to eq("Union")
-      expect(filters["union"]["values"]).to eq(["UEA", "IPSA"])
+      expect(filters["union"]["values"]).to eq({
+        uea.id.to_s => "UEA",
+        ipsa.id.to_s => "IPSA"
+      })
     end
   end
 end

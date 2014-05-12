@@ -17,14 +17,13 @@ function calendarBuild() {
 
     $.ajax({
         url: api_filters,
-//        data: {// am I passing any data to get the filters data?},
         success: function(data) {
             $.each(data.filters, function(key, val) {
                 $('.calendar-filters').append(
                         '<div class="calendar-option" id="filter-' + key + '" data-filter="' + key + '"><h3>' + val.label + '</h3></div>'
                         );
                 $.each(val.values, function(i, option) {
-                    $("#filter-" + key).append('<div class="calendar-checkbox"><input type="checkbox" id="filter-' + key + '-' + i + '" name="' + key + '" value="' + option + '"> <label for="filter-' + key + '-' + i + '">' + option + "</label></div>");
+                    $("#filter-" + key).append('<div class="calendar-checkbox"><input type="checkbox" id="filter-' + key + '-' + i + '" name="' + key + '" value="' + i + '"> <label for="filter-' + key + '-' + i + '">' + option + "</label></div>");
                 });
             });
             $('.calendar-checkbox input').change(function() {
