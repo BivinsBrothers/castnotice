@@ -121,4 +121,22 @@ feature "calendar", js: true do
     next_event = Dom::CalendarEvent.first
     expect(next_event.audition_date).to eq(next_month.strftime('%B %-d'))
   end
+
+  it "filters by selected categories" do
+    oxford    = create(:event, region: create(:region, name: "Oxford"))
+    cambridge = create(:event, name: "Beatles Reunion", region: create(:region, name: "Cambridge"))
+
+    visit page_path("calendar")
+
+    events = Dom::CalendarEvent.all
+    expect(events.count).to eq(2)
+
+    Dom::CalendarRegion.select_region_id(oxford.id)
+
+    expect(page).not_to have_content("Beatles Reunion")
+
+    events = Dom::CalendarEvent.all
+    expect(events.count).to eq(1)
+    expect(Dom::CalendarEvent.first.region).to eq("Oxford")
+  end
 end

@@ -38,6 +38,10 @@ module Dom
   class CalendarRegion < Domino
     selector "#filter-region .calendar-checkbox"
 
+    def self.select_region_id(region_id)
+      page.find("#filter-region-#{region_id}").trigger('click')
+    end
+
     def name
       node.find("label").text
     end
