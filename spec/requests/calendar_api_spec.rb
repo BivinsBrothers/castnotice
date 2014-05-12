@@ -82,7 +82,6 @@ describe "Calendar API" do
       let!(:may_event) { create(:event, audition_date: 1.month.from_now) }
       let!(:april_event1) { create(:event, audition_date: 2.days.from_now) }
       let!(:april_event2) { create(:event, audition_date: 1.day.from_now) }
-      let!(:march_event) { create(:event, audition_date: 1.month.ago) }
       let!(:feb_event) { create(:event, audition_date: 2.months.ago) }
       let!(:jan_event) { create(:event, audition_date: 3.months.ago) }
 
@@ -122,31 +121,97 @@ describe "Calendar API" do
         end
       end
     end
+
+    context "when given filtering attributes" do
+      let(:dordogne) { create(:region, name: "Dordogne") }
+      let(:ile)      { create(:region, name: "Ile-de-France") }
+      let(:lavazza)  { create(:project_type, name: "Lavazza") }
+      let(:orange)   { create(:project_type, name: "Oranage Juice") }
+      let(:sncf)     { create(:union, name: "SNCF") }
+      let(:ratp)     { create(:union, name: "RATP") }
+
+      let!(:event1) { create(:event, audition_date: Date.today, project_type: orange, region: dordogne, unions: [ratp]) }
+      let!(:event2) { create(:event, audition_date: 1.day.from_now, project_type: lavazza, region: ile) }
+      let!(:event3) { create(:event, audition_date: 2.days.from_now, project_type: orange, unions: [sncf]) }
+      let!(:event4) { create(:event, audition_date: 3.days.from_now, unions: [sncf, ratp]) }
+
+      it "returns events filtered by region" do
+        get events_path, {filters: {region: [dordogne.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event1)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by project" do
+        get events_path, {filters: {project: [lavazza.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event2)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by multiple values for the same category" do
+        get events_path, {filters: {project: [lavazza.id, orange.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event1), limited_event_hash(event2), limited_event_hash(event3)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by union" do
+        get events_path, {filters: {union: [sncf.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event3), limited_event_hash(event4)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by different categories" do
+        get events_path, {filters: {project: [orange.id], union: [sncf.id, ratp.id]}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event1), limited_event_hash(event3)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+    end
   end
 
   describe "GET /categories" do
+    let!(:ile) { create(:region, name: "Ile-de-France") }
+    let!(:dordogne) { create(:region, name: "Dordogne") }
+    let!(:coworking) { create(:project_type, name: "Coworking") }
+    let!(:dance) { create(:project_type, name: "Dance") }
+    let!(:uea) { create(:union, name: "UEA") }
+    let!(:ipsa) { create(:union, name: "IPSA") }
+
     it "returns list of calendar categories that can be filtered" do
-      create(:region, name: "Ile-de-France")
-      create(:region, name: "Dordogne")
-
-      create(:project_type, name: "Coworking")
-      create(:project_type, name: "Dance")
-
-      create(:union, name: "UEA")
-      create(:union, name: "IPSA")
-
       get categories_path
 
       filters = JSON.parse(response.body)["filters"]
 
       expect(filters["region"]["label"]).to eq("Region")
-      expect(filters["region"]["values"]).to eq(["Ile-de-France", "Dordogne"])
+      expect(filters["region"]["values"]).to eq({
+        ile.id.to_s =>"Ile-de-France",
+        dordogne.id.to_s => "Dordogne"
+      })
 
       expect(filters["project"]["label"]).to eq("Type of Project")
-      expect(filters["project"]["values"]).to eq(["Coworking", "Dance"])
+      expect(filters["project"]["values"]).to eq({
+        coworking.id.to_s => "Coworking",
+        dance.id.to_s => "Dance"
+      })
 
       expect(filters["union"]["label"]).to eq("Union")
-      expect(filters["union"]["values"]).to eq(["UEA", "IPSA"])
+      expect(filters["union"]["values"]).to eq({
+        uea.id.to_s => "UEA",
+        ipsa.id.to_s => "IPSA"
+      })
     end
   end
 end

@@ -16,12 +16,12 @@ gem "countries"
 gem "devise"
 gem "figaro"
 gem "fog"
-gem "interactor"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "high_voltage"
 gem "carrierwave"
 gem "mini_magick"
+gem "periscope-activerecord"
 gem "pry-rails"
 gem "tzinfo", platforms: [:mingw, :mswin]
 gem "tzinfo-data", platforms: [:mingw, :mswin]

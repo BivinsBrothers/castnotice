@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   def index
-    events = Event.where(audition_date: query_date_range).order("audition_date ASC")
+    events = Event.where(audition_date: query_date_range)
+                  .order("audition_date ASC")
+                  .periscope(event_params.fetch(:filters, {}))
 
     if current_user.present?
       render json: events, meta: {member: true, admin: current_user.admin?}
@@ -27,5 +29,9 @@ class EventsController < ApplicationController
     else
       start_date..end_date
     end
+  end
+
+  def event_params
+    params.permit(date: [:start, :end], filters: [union: [], project: [], region: []])
   end
 end

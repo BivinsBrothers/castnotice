@@ -113,7 +113,6 @@ GEM
     honeybadger (1.13.0)
       json
     i18n (0.6.9)
-    interactor (2.1.0)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -138,6 +137,10 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    periscope (2.1.0)
+    periscope-activerecord (2.1.0)
+      activerecord (>= 3, < 5)
+      periscope (~> 2.1.0)
     pg (0.17.1)
     poltergeist (1.5.0)
       capybara (~> 2.1)
@@ -250,11 +253,11 @@ DEPENDENCIES
   fog
   high_voltage
   honeybadger
-  interactor
   jquery-rails
   jquery-ui-rails
   launchy
   mini_magick
+  periscope-activerecord
   pg
   poltergeist
   pry-rails

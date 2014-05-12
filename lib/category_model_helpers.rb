@@ -5,7 +5,11 @@ module CategoryModelHelpers
 
   module ClassMethods
     def names
-      self.all.map &:name
+      Hash[
+        self.all.map do |object|
+          [object.id, object.name]
+        end
+      ]
     end
   end
 end

@@ -71,7 +71,7 @@ FactoryGirl.define do
     story "All the things!"
     description "Build all the things"
     audition "Don't cry"
-    audition_date 7.days.from_now
+    audition_date Date.today
     start_date 1.month.from_now
     end_date 2.months.from_now
 
