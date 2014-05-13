@@ -49,6 +49,12 @@ function sentenceForUnions(unions) {
   return union_names.join(', ');
 }
 
+function escapeHtml(str) {
+  var div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 function calendarUpdate() {
     $('.calendar-option').each(function() {
         var filterName = ($(this).attr('data-filter'));
@@ -78,7 +84,7 @@ function calendarUpdate() {
                         '<div class="calendar-day">' + date.getUTCDate() + '</div>' + addAdminEventLinks(val.id, data.meta.admin) +
                         '</div>' +
                         '<div class="col-sm-10">' +
-                        '<div class="calendar-name">' + val.project_title + '</div></h1>' +
+                        '<div class="calendar-name">' + escapeHtml(val.project_title) + '</div></h1>' +
                         '<div class="calendar-paid calendar-paid-' + val.paid + '">Paid?</div>' +
                         '<div id="calendar-overview-' + key + '" class="calendar-overview clearfix">' +
                         '<div class="calendar-attribute region"><span>Region:</span> ' + val.region + '</div>' +
@@ -94,19 +100,19 @@ function calendarUpdate() {
                 });
                 if (data.meta.member == true) {
                     $('#calendar-detail-' + key).append(
-                            '<div class="calendar-description storyline"><span>Storyline:</span> ' + val.storyline + '</div>',
-                            '<div class="calendar-description character-description"><span>Description:</span> ' + val.character_description + '</div>',
-                            '<div class="calendar-description how-to-audition"><span>How to Audition:</span> ' + val.how_to_audition + '</div>',
-                            '<div class="calendar-description special-notes"><span>Special Notes:</span> ' + val.special_notes + '</div>',
-                            '<div class="calendar-description additional-project-info"><span>Additional Project Info:</span> ' + val.additional_project_info + '</div>',
-                            '<div class="calendar-description project-type-details"><span>Project Type Details:</span> ' + val.project_type_details + '</div>'
+                            '<div class="calendar-description storyline"><span>Storyline:</span> ' + escapeHtml(val.storyline) + '</div>',
+                            '<div class="calendar-description character-description"><span>Description:</span> ' + escapeHtml(val.character_description) + '</div>',
+                            '<div class="calendar-description how-to-audition"><span>How to Audition:</span> ' + escapeHtml(val.how_to_audition) + '</div>',
+                            '<div class="calendar-description special-notes"><span>Special Notes:</span> ' + escapeHtml(val.special_notes) + '</div>',
+                            '<div class="calendar-description additional-project-info"><span>Additional Project Info:</span> ' + escapeHtml(val.additional_project_info) + '</div>',
+                            '<div class="calendar-description project-type-details"><span>Project Type Details:</span> ' + escapeHtml(val.project_type_details) + '</div>'
                             );
                     $('#calendar-overview-' + key).append(
                             '<div class="calendar-attribute start-date"><span>Shoot/Start Date:</span> ' + val.start_date + '</div>',
-                            '<div class="calendar-attribute gender"><span>Gender:</span> ' + val.gender + '</div>',
+                            '<div class="calendar-attribute gender"><span>Gender:</span> ' + escapeHtml(val.gender) + '</div>',
                             '<div class="calendar-attribute unions"><span>Unions:</span> ' + sentenceForUnions(val.unions) + '</div>',
-                            '<div class="calendar-attribute casting-director"><span>Casting Director:</span> ' + val.casting_director + '</div>',
-                            '<div class="calendar-attribute location"><span>Location:</span> ' + val.location + '</div>'
+                            '<div class="calendar-attribute casting-director"><span>Casting Director:</span> ' + escapeHtml(val.casting_director) + '</div>',
+                            '<div class="calendar-attribute location"><span>Location:</span> ' + escapeHtml(val.location) + '</div>'
                             );
                 } else {
                     $('#calendar-detail-' + key).append(

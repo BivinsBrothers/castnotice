@@ -137,4 +137,13 @@ feature "calendar", js: true do
     expect(events.count).to eq(1)
     expect(Dom::CalendarEvent.first.region).to eq("Oxford")
   end
+
+  it "escapes HTML from user input" do
+    create(:event, project_title: "<i>Dungeons & Dragons</i>")
+
+    visit page_path("calendar")
+
+    event = Dom::CalendarEvent.first
+    expect(event.project_title).to eq("<i>Dungeons & Dragons</i>")
+  end
 end
