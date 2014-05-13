@@ -34,6 +34,7 @@ end
 group :development, :test do
   gem "capybara"
   gem "capybara-ui", github: "collectiveidea/capybara-ui"
+  gem "capybara-email"
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem "poltergeist"

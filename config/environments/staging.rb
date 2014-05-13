@@ -83,4 +83,5 @@ Castnotice::Application.configure do
   config.domain = "castnotice-staging.herokuapp.com"
 
   config.action_mailer.default_url_options = { :protocol => "https", :host => config.domain }
+  config.action_mailer.delivery_method = :smtp
 end

@@ -11,6 +11,7 @@ require "rspec/autorun"
 
 require "capybara/rspec"
 require "capybara/poltergeist"
+require "capybara/email/rspec"
 require "email_spec"
 
 Capybara.register_driver :poltergeist do |app|
