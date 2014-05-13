@@ -28,6 +28,18 @@ class ResumesController < ApplicationController
     end
   end
 
+  def determine_layout
+
+  end
+
+  def print
+    @resume = current_user.resume || Resume.create(user: current_user)
+    respond_to do |format|
+      format.html { render "print" }
+    end
+    # render "print", :layout => print
+  end
+
   private
 
   def resume_params

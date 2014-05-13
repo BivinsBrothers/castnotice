@@ -1,0 +1,30 @@
+
+<div class="main-content">
+  <% if current_user.headshots.present? %>
+    <% current_user.headshots.each do |headshot| %>
+      <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+    <% end %>
+  <% end %>
+  <h1><%= current_user.name %></h1>
+  <p><%= sentence_for_category_collection(current_user.resume.unions) %></p>
+  <p><%= current_user.resume.phone %></p>
+  <p><%= current_user.email %></p>
+  <%= current_user.resume.additional_skills %>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Experience</h3>
+      <% current_user.projects %>
+      <%= render template: 'projects/show' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Schools</h3>
+      <% current_user.schools %>
+      <%= render template: 'schools/show' %>
+    </div>
+  </div>
+
+  <h3>Resume created by CastNotice</h3>
+</div>

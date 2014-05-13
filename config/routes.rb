@@ -11,6 +11,8 @@ Castnotice::Application.routes.draw do
   resource :accounts, only: [:edit, :update]
   resource :resume, only: [:edit, :update, :show]
 
+  get "/resume/print" => "resumes#print", as: :print_resume
+
   resources :projects, except: [:new, :show, :index]
   resources :schools, except: [:new, :show, :index]
   resources :headshots, except: [:show, :edit]
