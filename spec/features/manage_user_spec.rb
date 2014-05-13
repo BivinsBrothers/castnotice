@@ -153,4 +153,19 @@ describe "managing user" do
     expect(page).to have_content("Email can't be blank")
     expect(page).to have_content("Name can't be blank")
   end
+
+  it "allows a user to request a new password" do
+    user = create(:user)
+
+    visit new_user_session_path
+
+    click_link "Forgot your password?"
+
+    fill_in "Email", with: user.email
+    click_button "Send me reset password instructions"
+
+    open_email user.email
+
+    expect(current_email).to have_content("Change my password")
+  end
 end

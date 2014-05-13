@@ -11,7 +11,7 @@ require "rspec/autorun"
 
 require "capybara/rspec"
 require "capybara/poltergeist"
-require "email_spec"
+require "capybara/email/rspec"
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, inspector: true, timeout: 60)
@@ -32,8 +32,6 @@ RSpec.configure do |config|
   config.include(Authentication::Helpers)
   config.include Devise::TestHelpers, :type => :controller
   config.include Warden::Test::Helpers
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
 
   # ## Mock Framework
   #
