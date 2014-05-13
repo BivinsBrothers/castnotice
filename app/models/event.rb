@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
 
   scope_accessible :region, :project, :union
 
-  validates :name, presence: true
+  validates :project_title, :region, :project_type, :gender, :unions, presence: true
 
   belongs_to :region
   belongs_to :project_type

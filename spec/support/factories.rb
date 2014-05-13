@@ -60,20 +60,23 @@ FactoryGirl.define do
   end
 
   factory :event do
-    name "Big Event"
+    project_title "Big Event"
     project_type
     region
-    performer_type "That Guy"
-    character "This Guy"
-    pay "$6.00"
     unions { [create(:union)] }
-    director "The other guy"
-    story "All the things!"
-    description "Build all the things"
-    audition "Don't cry"
     audition_date Date.today
-    start_date 1.month.from_now
-    end_date 2.months.from_now
+    gender "Male"
+
+    trait :full do
+      storyline "Eurovision"
+      character_description "Austrian in drag"
+      how_to_audition "Grow a beard"
+      start_date 2.months.from_now
+      location "Stockholm"
+      casting_director "That guy"
+      project_type_details "It involves people"
+      special_notes "Avoid the caviar"
+    end
 
     trait :paid do
       paid true

@@ -3,34 +3,30 @@ require "spec_helper"
 def full_event_hash(event)
   {
      id: event.id,
-     name: event.name,
+     project_title: event.project_title,
      project_type: event.project_type.name,
      region: event.region.name,
-     performer_type: event.performer_type,
-     character: event.character,
-     pay: event.pay,
-     director: event.director,
-     story: event.story,
-     description: event.description,
-     audition: event.audition,
+     storyline: event.storyline,
+     character_description: event.character_description,
+     how_to_audition: event.how_to_audition,
      audition_date: event.audition_date.strftime("%Y-%m-%d"),
      start_date: event.start_date.strftime("%m-%d-%y"),
-     end_date: event.end_date.strftime("%m-%d-%y"),
      paid: event.paid,
      location: event.location,
      casting_director: event.casting_director,
-     writers: event.writers,
-     producers: event.producers,
+     gender: event.gender,
+     project_type_details: event.project_type_details,
+     special_notes: event.special_notes,
+     additional_project_info: event.additional_project_info,
      unions: (event.unions.map {|u| {name: u.name} })
   }
 end
 
 def limited_event_hash(event)
   {
-     name: event.name,
+     project_title: event.project_title,
      project_type: event.project_type.name,
      region: event.region.name,
-     performer_type: event.performer_type,
      audition_date: event.audition_date.strftime("%Y-%m-%d"),
      paid: event.paid
   }
@@ -53,7 +49,7 @@ describe "Calendar API" do
       end
 
       it "returns full event json" do
-        event = create(:event, audition_date: 2.days.from_now)
+        event = create(:event, :full, audition_date: 2.days.from_now)
 
         get events_path
 
