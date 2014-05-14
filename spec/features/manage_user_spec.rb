@@ -92,7 +92,8 @@ describe "managing user" do
   end
 
   it "allows user to edit Account Information" do
-    user = create(:user)
+    birthday = 27.years.ago
+    user = create(:user, birthday: birthday)
 
     log_in user
     visit dashboard_path
@@ -102,10 +103,10 @@ describe "managing user" do
     expect(page).to_not have_content("Parent Fullname")
 
     expect(find_field("Name").value).to eq("Test Dummy")
-    expect(find_field("Email").value).to eq("test@fake.com")
-    expect(find_field("user_birthday_1i").value).to eq("1969")
-    expect(find_field("user_birthday_2i").value).to eq("1")
-    expect(find_field("user_birthday_3i").value).to eq("1")
+    expect(find_field("Email").value).to eq(user.email)
+    expect(find_field("user_birthday_1i").value).to eq(birthday.year.to_s)
+    expect(find_field("user_birthday_2i").value).to eq(birthday.month.to_s)
+    expect(find_field("user_birthday_3i").value).to eq(birthday.day.to_s)
 
     fill_in "Address One", with: "3333 Lady Dr."
     fill_in "Address Two", with: "APT. 109"

@@ -26,4 +26,15 @@ describe User do
     expect(user.save).to be_true
     expect(user.name).to eq("New Name")
   end
+
+  it "requires parental information when under 18" do
+    user = build(:user, birthday: 17.years.ago)
+
+    expect(user.save).to be_false
+    expect(user).to have(1).error_on(:parent_name)
+
+    user.birthday = 19.years.ago
+
+    expect(user.save).to be_true
+  end
 end

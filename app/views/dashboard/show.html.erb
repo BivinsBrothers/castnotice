@@ -13,7 +13,9 @@
 <h3>Now starring you.</h3>
 
 <%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
-<h2>Your public resume URL: <%= current_user.resume.public_url %></h2>
+<% if current_user.resume %>
+  <h2>Your public resume URL: <%= current_user.resume.public_url %></h2>
+<% end %>
 
 <div class="row">
 	<div class="col-md-8">
@@ -56,6 +58,6 @@
 	</div>
 	<div class="col-md-4">
 		<h2>Experience <span><%= link_to 'Manage', edit_resume_path, class: "btn btn-small" %></span></h2>
-    <%= render template: 'projects/show', projects: current_user.projects if current_user.projects.present? %>
+    <%= render template: 'projects/show', locals: { projects: current_user.projects } if current_user.projects.present? %>
 	</div>
 </div>

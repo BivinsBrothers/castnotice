@@ -16,7 +16,7 @@ describe "manage resume" do
     fill_in "Weight", with: "140"
     select "Blond", from: "resume_hair_color"
     select "Blue", from: "resume_eye_color"
-    select "Female", from: "resume_gender"
+    fill_in "resume_gender", with: "Female"
     select "Medium", from: "resume_hair_length"
     select "No", from: "resume_piercing"
     select "No", from: "resume_tattoo"
@@ -59,7 +59,7 @@ describe "manage resume" do
     expect(find_field("resume_additional_skills").value).to eq("Many years of improve from Disney Stages.")
     expect(find_field("resume_descriptive_tag").value).to eq("Actor, Dancer, and just plain fabulous!")
 
-    expect(find_field("resume_gender").value).to eq("female")
+    expect(find_field("resume_gender").value).to eq("Female")
     expect(find_field("resume_hair_length").value).to eq("medium")
     expect(find_field("resume_piercing").value).to eq("no")
     expect(find_field("resume_tattoo").value).to eq("no")
@@ -207,7 +207,6 @@ describe "manage resume" do
 
     log_in user
     visit dashboard_path
-
     click_link "dashboard-edit-resume"
 
     expect(page).to have_content("Industrial Project")

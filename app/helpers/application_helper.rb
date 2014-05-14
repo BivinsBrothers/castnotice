@@ -44,13 +44,6 @@ module ApplicationHelper
     ]
   end
 
-  def gender_select
-    [
-      ["Male", "male"],
-      ["Female", "female"]
-    ]
-  end
-
   def piercing_select
     [
       ["Yes", "yes"],

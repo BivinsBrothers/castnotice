@@ -6,6 +6,23 @@
 <h1><%= @resume.user.name %></h1>
 <h3><%= @resume.descriptive_tag %></h3>
 
+<% if @resume.user.under_18? %>
+  <h3>Parental Information</h3>
+  <div class="row repeatable-row">
+    <div class="col-md-6">
+      <p>Name: <%= @resume.user.parent_name %></p>
+      <p>Email: <%= @resume.user.parent_email %></p>
+      <p>Location: <%= @resume.user.parent_location %></p>
+      <p>Location 2: <%= @resume.user.parent_location_two %></p>
+    </div>
+    <div class="col-md-6">
+      <p>City: <%= @resume.user.parent_city %></p>
+      <p>State: <%= @resume.user.parent_state %></p>
+      <p>Zip: <%= @resume.user.parent_zip %></p>
+      <p>Phone: <%= @resume.user.parent_phone %></p>
+    </div>
+  </div>
+<% end %>
 
 <h3>Personal Information</h3>
 
@@ -59,18 +76,15 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="col-md-12">
-      <h3>Experience</h3>
-      <%= render template: 'projects/show', projects: @resume.user.projects if @resume.user.projects.present? %>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<h3>Experience</h3>
+    <%= render template: 'projects/show', locals: { projects: @resume.user.projects } if @resume.user.projects.present? %>
+	</div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <h3>Schools</h3>
-      <%= render template: 'schools/show', schools: @resume.user.schools if @resume.user.schools.present?  %>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<h3>Schools</h3>
+    <%= render template: 'schools/show', locals: { schools: @resume.user.schools } if @resume.user.schools.present?  %>
+	</div>
 </div>
