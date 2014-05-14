@@ -1,40 +1,72 @@
 <div class="print-content">
-  <div class="header row" style="min-height:315px;">
-    <% if resume_photo(current_user) %>
-        <div class="resume-photo" style="float:left">
+  <div class="row">
+    <div class="col-md-12 row">
+      <% if resume_photo(current_user) %>
+        <div class="resume-photo col-md-4">
           <%= image_tag(current_user.resume_photo.image_url(:resume_print)) %>
         </div>
-    <% end %>
-    <div class="contact-info" style="float:right">
-      <h1><%= current_user.name %></h1>
-      <p><%= sentence_for_category_collection(current_user.resume.unions) %></p>
-      <p><%= current_user.resume.phone %></p>
-      <p><%= current_user.email %></p>
+      <% end %>
+      <div class="contact-info col-md-8">
+        <h1><%= current_user.name %></h1>
+        <p><%= sentence_for_category_collection(current_user.resume.unions) %></p>
+        <p><%= current_user.resume.phone %></p>
+        <p><%= current_user.email %></p>
+      </div>
     </div>
   </div>
-  <div>
-
-    <% if current_user.projects.present? %>
-      <h3>Experience</h3>
-      <% current_user.projects %>
-      <%= render template: 'projects/show' %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <% if current_user.projects.present? %>
+        <h3>Experience</h3>
+        <div class="project-list row">
+          <% current_user.projects.each do |project| %>
+            <div class="col-md-4">
+              <h4>Title: <%= project.title %></h4>
+              <p>Project Type: <%= project.project_type.name if project.project_type.present? %></p>
+              <p>Role: <%= project.role %></p>
+              <p>Director Studio: <%= project.director_studio %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% if current_user.schools.present? %>
+        <h3>Education</h3>
+        <div class="school-list row">
+          <% current_user.schools.each do |school| %>
+            <div class="col-md-4">
+              <h4>School: <%= school.school %></h4>
+              <p>School Type: <%= education_type_name(school.education_type) %></p>
+              <p>Years: <%= school.years %></p>
+              <p>Major: <%= school.major %></p>
+              <p>Degree: <%= school.degree %></p>
+              <p>Teacher: <%= school.teacher %></p>
+              <p>Instrument: <%= school.instruments %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div>
-    <% if current_user.schools.present? %>
-      <h3>Education</h3>
-      <% current_user.schools %>
-      <%= render template: 'schools/show' %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4">
+        <% if current_user.resume.additional_skills? %>
+          <h3>Special Skills</h3>
+          <%= current_user.resume.additional_skills %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <% if current_user.resume.additional_skills? %>
-      <h3>Special Skills</h3>
-      <%= current_user.resume.additional_skills %>
-    <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-12 row">
+        <h5>Resume created by CastNotice</h5>
+      </div>
+    </div>
   </div>
-
-  <h3>Resume created by CastNotice</h3>
 </div>

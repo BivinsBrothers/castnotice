@@ -1,24 +1,29 @@
-/*The styles set here are for the user to see when they click printable resume*/
-/*To set styles for actual print they need to be inline*/
+/*The styles set here are for the user to see when your in print preview*/
 
 .print-content {
-  height: 100%;
-  width: 100%;
-  font-size: 12px;
-  font-family: serif;
-  margin: 30px;
+}
+
+h1 {
+}
+
+h5 {
 }
 
 .resume_photo {
-  float: left;
-  border-color: #000000;
-  border-width: 2px;
-  height: 150px;
-  width:  75px;
+  /*float: left;*/
 }
 
 .contact-info {
-  float: right;
+  position: absolute;
+  left: 300px;
+  top: -10px;
+}
+
+.school-list {
+}
+
+.project-list {
+
 }
 
 
