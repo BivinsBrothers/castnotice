@@ -301,7 +301,6 @@ describe "manage resume" do
     create(:resume, user: user)
     create(:school, user: user)
     create(:project, user: user)
-    create(:project_type, name: "Feature Film")
     create(:headshot, user: user)
 
     log_in user
@@ -316,7 +315,6 @@ describe "manage resume" do
     expect(page).to have_content("1-616-555-4567")
     expect(page).to have_content("test@fake.com")
     expect(page).to have_content("Experience")
-    expect(page).to have_content("Feature Film")
     expect(page).to have_content("Wizzard of OZ")
     expect(page).to have_content("Dorothy")
     expect(page).to have_content("Disney Studios")
@@ -327,6 +325,6 @@ describe "manage resume" do
     expect(page).to have_content("Special Skills")
     expect(page).to have_content("Improve")
 
-    expect(page).to have_content("Resume created by CastNotice.com")
+    expect(page).to have_content("Resume created by CastNotice")
   end
 end

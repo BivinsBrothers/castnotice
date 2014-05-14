@@ -29,11 +29,9 @@
 	<div class="col-md-12">
 		<% if current_user.headshots.present? %>
 		  <h3>Photos</h3>
-		
-					<% current_user.headshots.each do |headshot| %>
-					<div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
-					<% end %>
-				
+        <% current_user.headshots.each do |headshot| %>
+          <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+        <% end %>
 		<% end %>
 	</div>
 </div>
@@ -59,17 +57,23 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-		<h3>Experience</h3>
-		<% current_user.projects %>
-		<%= render template: 'projects/show' %>
-	</div>
+  <div class="col-md-12">
+    <h3>Experience</h3>
+    <div class="project-list row">
+      <% current_user.projects.each do |project| %>
+        <%= render 'project', :project => project %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-		<h3>Schools</h3>
-		<% current_user.schools %>
-		<%= render template: 'schools/show' %>
-	</div>
+  <div class="col-md-12">
+    <h3>Schools</h3>
+    <div class="school-list row">
+      <% current_user.schools.each do |school| %>
+        <%= render 'school', :school => school %>
+      <% end %>
+    </div>
+  </div>
 </div>

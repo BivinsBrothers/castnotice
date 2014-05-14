@@ -1,29 +1,39 @@
-
-<div class="main-content">
-  <% if current_user.headshots.present? %>
-    <% current_user.headshots.each do |headshot| %>
-      <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+<div class="print-content">
+  <div class="header row" style="min-height:315px;">
+    <% if resume_photo(current_user) %>
+        <div class="resume-photo" style="float:left">
+          <%= image_tag(current_user.resume_photo.image_url(:resume_print)) %>
+        </div>
     <% end %>
-  <% end %>
-  <h1><%= current_user.name %></h1>
-  <p><%= sentence_for_category_collection(current_user.resume.unions) %></p>
-  <p><%= current_user.resume.phone %></p>
-  <p><%= current_user.email %></p>
-  <%= current_user.resume.additional_skills %>
-  <div class="row">
-    <div class="col-md-12">
+    <div class="contact-info" style="float:right">
+      <h1><%= current_user.name %></h1>
+      <p><%= sentence_for_category_collection(current_user.resume.unions) %></p>
+      <p><%= current_user.resume.phone %></p>
+      <p><%= current_user.email %></p>
+    </div>
+  </div>
+  <div>
+
+    <% if current_user.projects.present? %>
       <h3>Experience</h3>
       <% current_user.projects %>
       <%= render template: 'projects/show' %>
-    </div>
+    <% end %>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Schools</h3>
+  <div>
+    <% if current_user.schools.present? %>
+      <h3>Education</h3>
       <% current_user.schools %>
       <%= render template: 'schools/show' %>
-    </div>
+    <% end %>
+  </div>
+
+  <div>
+    <% if current_user.resume.additional_skills? %>
+      <h3>Special Skills</h3>
+      <%= current_user.resume.additional_skills %>
+    <% end %>
   </div>
 
   <h3>Resume created by CastNotice</h3>
