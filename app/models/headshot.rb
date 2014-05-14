@@ -21,4 +21,20 @@ class Headshot < ActiveRecord::Base
       self.save
     end
   end
+
+  def set_as_resume_photo
+    if user.resume_photo
+      user.resume_photo.update_attributes(resume_photo: false)
+    end
+
+    self.resume_photo = true
+    self.save
+  end
+
+  def remove_as_resume_photo
+    if resume_photo?
+      self.resume_photo = false
+      self.save
+    end
+  end
 end

@@ -29,6 +29,13 @@ class HeadshotsController < ApplicationController
       @headshot.remove_as_background_image
     end
 
+    case params[:resume_photo]
+    when "true"
+      @headshot.set_as_resume_photo
+    when "false"
+      @headshot.remove_as_resume_photo
+    end
+
     redirect_to edit_resume_path
   end
 
