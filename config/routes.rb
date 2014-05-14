@@ -10,6 +10,7 @@ Castnotice::Application.routes.draw do
 
   resource :accounts, only: [:edit, :update]
   resource :resume, only: [:edit, :update, :show]
+  get "/r/:resume_slug" => "public_resumes#show", as: :public_resume
 
   get "/resume/print" => "resumes#print", as: :print_resume
 

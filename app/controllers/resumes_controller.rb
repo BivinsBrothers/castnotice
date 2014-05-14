@@ -3,6 +3,7 @@ class ResumesController < ApplicationController
 
   def show
     if current_user.resume.present?
+      @resume = current_user.resume
       render :show
     else
       flash[:notice] = "Fill in the information you wish to appear on your resume."
