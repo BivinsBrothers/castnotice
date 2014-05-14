@@ -1,5 +1,7 @@
 class HeadshotsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def new
     @headshot = Headshot.new
   end

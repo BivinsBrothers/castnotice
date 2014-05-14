@@ -1,93 +1,103 @@
 require "spec_helper"
 
 describe "managing headshots" do
-  let(:user) { create(:user) }
 
-  before do
-    log_in user
-    visit dashboard_path
-  end
+  context "when a user is logged in" do
+    let(:user) { create(:user) }
 
-  after(:all) do
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/#{HeadshotUploader.store_dir}"])
-    FileUtils.rm_rf(Dir["#{HeadshotUploader.cache_dir}"])
-  end
+    before do
+      log_in user
+      visit dashboard_path
+    end
 
-  it "a user can upload a headshot", :js => true do
-    click_link "edit-headshots"
-    click_link "Add a photo"
+    after(:all) do
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/#{HeadshotUploader.store_dir}"])
+      FileUtils.rm_rf(Dir["#{HeadshotUploader.cache_dir}"])
+    end
 
-    attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
+    it "a user can upload a headshot", :js => true do
+      click_link "edit-headshots"
+      click_link "Add a photo"
 
-    expect {
+      attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
+
+      expect {
+        click_button "Save Photo"
+      }.to change {
+        user.headshots.count
+      }.from(0).to(1)
+    end
+
+    it "a user can delete a headshot" do
+      create(:headshot, user: user)
+      click_link "edit-headshots"
+
+      headshot = user.headshots.first
+
+      expect {
+        headshot.delete
+      }.to change {
+        user.headshots.count
+      }.from(1).to(0)
+    end
+
+    it "a user can select a background from headshots" do
+      create(:headshot, user: user)
+      click_link "edit-headshots"
+
+      expect {
+        click_link "Set as background"
+      }.to change {
+        user.headshots.first.background?
+      }.from(false).to(true)
+    end
+
+    it "a user can select a resume photo from headshots" do
+      create(:headshot, user: user)
+      click_link "edit-headshots"
+
+      expect {
+        click_link "Set as resume photo"
+      }.to change {
+        user.headshots.first.resume_photo?
+      }.from(false).to(true)
+    end
+
+    it "a user can remove the currently selected background" do
+      create(:headshot, user: user, background: true)
+      click_link "edit-headshots"
+
+      expect(page).to have_content("Remove")
+
+      expect {
+        click_link "Remove"
+      }.to change {
+        user.headshots.first.background?
+      }.from(true).to(false)
+    end
+
+    it "a user can have a maximum of 10 headshots", :js => true do
+      create_list(:headshot, 9, user: user)
+
+      click_link "edit-headshots"
+      click_link "Add a photo"
+
+      expect(user.headshots.count).to eq(9)
+
+      attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
       click_button "Save Photo"
-    }.to change {
-      user.headshots.count
-    }.from(0).to(1)
+
+      expect(user.headshots.count).to eq(10)
+
+      expect(page).not_to have_content("Add a photo")
+    end
   end
 
-  it "a user can delete a headshot" do
-    create(:headshot, user: user)
-    click_link "edit-headshots"
+  context "when a user is not logged in" do
+    it "they are redirected to the login page" do
+      visit dashboard_path
 
-    headshot = user.headshots.first
-
-    expect {
-      headshot.delete
-    }.to change {
-      user.headshots.count
-    }.from(1).to(0)
-  end
-
-  it "a user can select a background from headshots" do
-    create(:headshot, user: user)
-    click_link "edit-headshots"
-
-    expect {
-      click_link "Set as background"
-    }.to change {
-      user.headshots.first.background?
-    }.from(false).to(true)
-  end
-
-  it "a user can select a resume photo from headshots" do
-    create(:headshot, user: user)
-    click_link "edit-headshots"
-
-    expect {
-      click_link "Set as resume photo"
-    }.to change {
-      user.headshots.first.resume_photo?
-    }.from(false).to(true)
-  end
-
-  it "a user can remove the currently selected background" do
-    headshot = create(:headshot, user: user, background: true)
-
-    click_link "edit-headshots"
-
-    expect(page).to have_content("Remove")
-
-    expect {
-      click_link "Remove"
-    }.to change {
-      user.headshots.first.background?
-    }.from(true).to(false)
-  end
-
-  it "a user can have a maximum of 10 headshots", :js => true do
-    create_list(:headshot, 9, user: user)
-
-    click_link "edit-headshots"
-    click_link "Add a photo"
-
-    expect(user.headshots.count).to eq(9)
-
-    attach_file "headshot_image", "#{Rails.root}/spec/fixtures/image.jpg"
-    click_button "Save Photo"
-
-    expect(user.headshots.count).to eq(10)
-
-    expect(page).not_to have_content("Add a photo")
+      expect(current_path).to eq(new_user_session_path)
+    end
   end
 end
