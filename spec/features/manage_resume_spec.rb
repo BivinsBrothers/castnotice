@@ -328,12 +328,8 @@ describe "manage resume" do
   end
 
   it "talent can add a custom slug to their public profile" do
-    env = double(:env, castnotice_domain: "fake.location")
-    Figaro.stub(env: env)
-
     user = create(:user)
     create(:resume, user: user)
-
 
     log_in user
     visit edit_resume_path
@@ -342,7 +338,7 @@ describe "manage resume" do
     find(".resume-save").click
 
     visit dashboard_path
-    expect(page).to have_content("Your public resume URL: http://fake.location/r/castnotice")
+    expect(page).to have_content("Your public resume URL: http://www.example.com/r/castnotice")
 
     log_out
 

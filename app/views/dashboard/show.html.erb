@@ -14,7 +14,7 @@
 
 <%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
 <% if current_user.resume %>
-  <h2>Your public resume URL: <%= current_user.resume.public_url %></h2>
+  <h2>Your public resume URL: <%= public_resume_url(current_user.resume.slug) %></h2>
 <% end %>
 
 <div class="row">

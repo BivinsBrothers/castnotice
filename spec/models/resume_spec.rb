@@ -1,22 +1,19 @@
 require "spec_helper"
 
 describe Resume do
-  describe "#public_url" do
-    before do
-      env = double(:env, castnotice_domain: "fake.location")
-      Figaro.stub(env: env)
-    end
+  let!(:user) { create(:user, name: "iggy") }
 
-    it "uses friendly id as slug by default" do
-      resume = create(:resume)
+  it "triggers friendly_id slug auto build if slug is empty string" do
+    resume = build(:resume, user: user, slug: "")
 
-      expect(resume.public_url).to eq("http://fake.location/r/#{resume.friendly_id}")
-    end
+    expect(resume.save).to be_true
+    expect(resume.slug).to eq("iggy")
+  end
 
-    it "uses slug when one is set" do
-      resume = create(:resume, slug: "backpack")
+  it "saves custom slug if given a value" do
+    resume = build(:resume, user: user, slug: "flow")
 
-      expect(resume.public_url).to eq("http://fake.location/r/backpack")
-    end
+    expect(resume.save).to be_true
+    expect(resume.slug).to eq("flow")
   end
 end
