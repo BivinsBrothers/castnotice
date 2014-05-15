@@ -8,7 +8,12 @@ class Resume < ActiveRecord::Base
   validates :slug, uniqueness: true
 
   def slug=(slug)
-    slug = nil if slug.empty?
+    if slug.empty?
+      slug = nil
+    else
+      slug = slug.parameterize
+    end
+
     super(slug)
   end
 

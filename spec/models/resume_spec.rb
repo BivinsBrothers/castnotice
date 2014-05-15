@@ -16,4 +16,11 @@ describe Resume do
     expect(resume.save).to be_true
     expect(resume.slug).to eq("flow")
   end
+
+  it "paramertizes the slug if given something non-URL friendly" do
+    resume = build(:resume, user: user, slug: "flow & control")
+
+    expect(resume.save).to be_true
+    expect(resume.slug).to eq("flow-control")
+  end
 end
