@@ -11,7 +11,7 @@ class ResumesController < ApplicationController
   end
 
   def edit
-    @resume = current_user.resume || Resume.create(user: current_user)
+    @resume = current_user.resume || current_user.create_resume
     @project = Project.new
     @school = School.new
     @headshot = Headshot.new
@@ -29,10 +29,8 @@ class ResumesController < ApplicationController
   end
 
   def print
-    @resume = current_user.resume || Resume.create(user: current_user)
-    respond_to do |format|
-      format.html { render "print", layout: "print" }
-    end
+    @resume = current_user.resume || current_user.create_resume
+    render "print", layout: "print"
   end
 
   private
