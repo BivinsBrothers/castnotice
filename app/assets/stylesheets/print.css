@@ -1,0 +1,29 @@
+/*The styles set here are for the user to see when your in print preview*/
+
+.print-content {
+}
+
+h1 {
+}
+
+h5 {
+}
+
+.resume_photo {
+  /*float: left;*/
+}
+
+.contact-info {
+  position: absolute;
+  left: 300px;
+  top: -10px;
+}
+
+.school-list {
+}
+
+.project-list {
+
+}
+
+

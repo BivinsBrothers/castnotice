@@ -11,7 +11,7 @@ class ResumesController < ApplicationController
   end
 
   def edit
-    @resume = current_user.resume || Resume.create(user: current_user)
+    @resume = current_user.resume || current_user.create_resume
     @project = Project.new
     @school = School.new
     @headshot = Headshot.new
@@ -26,6 +26,11 @@ class ResumesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def print
+    @resume = current_user.resume || current_user.create_resume
+    render "print", layout: "print"
   end
 
   private

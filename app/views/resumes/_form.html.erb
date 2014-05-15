@@ -123,9 +123,14 @@
         <div class="headshot-link">
           <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
           <% if headshot.background? %>
-            <%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %>
+            <%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %> |
           <% else %>
-            <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %>
+            <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %> |
+          <% end %>
+          <% if headshot.resume_photo? %>
+            <%= link_to "Remove as resume photo", headshot_path(headshot, resume_photo: false), method: :put, :class => "mini-link" %>
+          <% else %>
+            <%= link_to "Set as resume photo", headshot_path(headshot, resume_photo: true), method: :put, :class => "mini-link" %>
           <% end %>
         </div>
       <% end %>
@@ -215,10 +220,9 @@
 		</div>
     <div class="project-list row">
       <% current_user.projects.each do |project| %>
-          <%= render 'project', :project => project %>
+        <%= render 'project', :project => project %>
       <% end %>
     </div>
 	</div>
 </div>
-
-
+<%= link_to "Printable Resume", print_resume_path %>

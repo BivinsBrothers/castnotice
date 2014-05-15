@@ -50,6 +50,17 @@ describe "managing headshots" do
     }.from(false).to(true)
   end
 
+  it "a user can select a resume photo from headshots" do
+    create(:headshot, user: user)
+    click_link "edit-headshots"
+
+    expect {
+      click_link "Set as resume photo"
+    }.to change {
+      user.headshots.first.resume_photo?
+    }.from(false).to(true)
+  end
+
   it "a user can remove the currently selected background" do
     headshot = create(:headshot, user: user, background: true)
 
