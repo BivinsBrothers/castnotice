@@ -1,47 +1,66 @@
-<% if current_user.background_image %>
+<% if @resume.user.background_image %>
   <% content_for :background do %>
-    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= current_user.background_image.image_url(:background) %>)"></div>
+    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= @resume.user.background_image.image_url(:background) %>)"></div>
   <% end %>
 <% end %>
-<h1><%= current_user.name %></h1>
-<h3><%= current_user.resume.descriptive_tag %></h3>
+<h1><%= @resume.user.name %></h1>
+<h3><%= @resume.descriptive_tag %></h3>
+
+<% if @resume.user.under_18? %>
+  <h3>Parental Information</h3>
+  <div class="row repeatable-row">
+    <div class="col-md-6">
+      <p>Name: <%= @resume.user.parent_name %></p>
+      <p>Email: <%= @resume.user.parent_email %></p>
+      <p>Location: <%= @resume.user.parent_location %></p>
+      <p>Location 2: <%= @resume.user.parent_location_two %></p>
+    </div>
+    <div class="col-md-6">
+      <p>City: <%= @resume.user.parent_city %></p>
+      <p>State: <%= @resume.user.parent_state %></p>
+      <p>Zip: <%= @resume.user.parent_zip %></p>
+      <p>Phone: <%= @resume.user.parent_phone %></p>
+    </div>
+  </div>
+<% end %>
 
 <h3>Personal Information</h3>
-	<div class="row repeatable-row">
-		<div class="col-md-6">
-		  <p>Birthday: <%= current_user.birthday %></p>
-		  <p>Height: <%= current_user.resume.height %></p>
-		  <p>Weight: <%= current_user.resume.weight %></p>
-		  <p>Hair Color: <%= current_user.resume.hair_color %></p>
-		  <p>Eye Color: <%= current_user.resume.eye_color %></p>
-		  
-		</div>
-		<div class="col-md-6">
-			<p>Phone: <%= current_user.resume.phone %></p>
-		  <p>Email: <%= current_user.email %></p>
-		  <p>Unions: <%= sentence_for_category_collection(current_user.resume.unions) %></p>
-		  <p>Agent Name: <%= current_user.resume.agent_name %></p>
-		  <p>Agent Phone: <%= current_user.resume.agent_phone %></p>
-		</div>
+
+<div class="row repeatable-row">
+	<div class="col-md-6">
+	  <p>Birthday: <%= @resume.user.birthday %></p>
+	  <p>Height: <%= @resume.height %></p>
+	  <p>Weight: <%= @resume.weight %></p>
+	  <p>Hair Color: <%= @resume.hair_color %></p>
+	  <p>Eye Color: <%= @resume.eye_color %></p>
+	  
 	</div>
-	
-<div class="row">
-	<div class="col-md-12">
-		<% if current_user.headshots.present? %>
-		  <h3>Photos</h3>
-        <% current_user.headshots.each do |headshot| %>
-          <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
-        <% end %>
-		<% end %>
+	<div class="col-md-6">
+		<p>Phone: <%= @resume.phone %></p>
+	  <p>Email: <%= @resume.user.email %></p>
+	  <p>Unions: <%= sentence_for_category_collection(@resume.unions) %></p>
+	  <p>Agent Name: <%= @resume.agent_name %></p>
+	  <p>Agent Phone: <%= @resume.agent_phone %></p>
 	</div>
 </div>
 
 <div class="row">
+  <div class="col-md-12">
+  <% if @resume.user.headshots.present? %>
+    <h3>Photos</h3>
+    <% @resume.user.headshots.each do |headshot| %>
+      <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<div class="row">
 	<div class="col-md-12">
-		<% if current_user.videos.present? %>
+		<% if @resume.user.videos.present? %>
 		  <h3>Your Videos</h3>
 		
-		  <% current_user.videos.each do |video| %>
+		  <% @resume.user.videos.each do |video| %>
 			<div class="video">
 			  <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
 			  <% if video.youtube_id.present? %>
@@ -57,23 +76,15 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <h3>Experience</h3>
-    <div class="project-list row">
-      <% current_user.projects.each do |project| %>
-        <%= render 'project', :project => project %>
-      <% end %>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<h3>Experience</h3>
+    <%= render template: 'projects/show', locals: { projects: @resume.user.projects } if @resume.user.projects.present? %>
+	</div>
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <h3>Schools</h3>
-    <div class="school-list row">
-      <% current_user.schools.each do |school| %>
-        <%= render 'school', :school => school %>
-      <% end %>
-    </div>
-  </div>
+	<div class="col-md-12">
+		<h3>Schools</h3>
+    <%= render template: 'schools/show', locals: { schools: @resume.user.schools } if @resume.user.schools.present?  %>
+	</div>
 </div>

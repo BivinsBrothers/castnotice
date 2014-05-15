@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe "user dashboard" do
-  it 'allows user to view their dashboard' do
+  it "allows user to view their dashboard" do
     user = create(:user)
 
     log_in user
@@ -14,8 +14,9 @@ describe "user dashboard" do
     expect(page).to have_content("Your Photos")
     expect(page).to have_content("Your Videos")
   end
-  it 'sends birthday wishes on users birthday' do
-    user = create(:user, :birthday => Date.current)
+
+  it "sends birthday wishes on users birthday" do
+    user = create(:user, :with_parent, birthday: Date.current)
 
     log_in user
     visit dashboard_path

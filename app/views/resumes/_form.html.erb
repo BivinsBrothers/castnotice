@@ -14,6 +14,8 @@
     <div class="col-md-12">
       <h2>Personal Information</h2>
         <div class="col-md-6">
+          <%= f.label :slug, "Public Resume URL" %>
+          <%= f.text_field :slug %>
           <%= f.label :descriptive_tag, "Descriptive Tags" %>
           <%= f.text_field :descriptive_tag %>
           <%= f.label :phone %>
@@ -21,7 +23,7 @@
           <%= f.label :phone_two, "Second Phone" %>
           <%= f.phone_field :phone_two %>
           <%= f.label :gender %>
-          <%= f.select :gender, gender_select %>
+          <%= f.text_field :gender %>
           <%= f.label :citizen, "Citizenship?" %>
           <%= f.select :citizen, citizen_select %>
           <p>Do you have a current passport?</p>

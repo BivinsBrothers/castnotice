@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140513174127) do
+ActiveRecord::Schema.define(version: 20140514132645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,7 +122,10 @@ ActiveRecord::Schema.define(version: 20140513174127) do
     t.string   "agent_state"
     t.string   "agent_zip"
     t.string   "agent_type"
+    t.string   "slug"
   end
+
+  add_index "resumes", ["slug"], name: "index_resumes_on_slug", unique: true, using: :btree
 
   create_table "schools", force: true do |t|
     t.string   "school"

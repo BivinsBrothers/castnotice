@@ -13,13 +13,23 @@ FactoryGirl.define do
 
   factory :user do
     name "Test Dummy"
-    email "test@fake.com"
+    sequence(:email) {|n| "test#{n}@fake.com" }
     password "goodpassword"
-    birthday "1969-1-1"
+    birthday 27.years.ago
     tos "1"
 
     trait :admin do
       admin true
+    end
+
+    trait :with_parent do
+      parent_name "Joe Boxer"
+      parent_email "parent@fake.com"
+      parent_location "Narnia"
+      parent_city "Elsewhere"
+      parent_state "Awesome"
+      parent_zip "12345"
+      parent_phone "5551231234"
     end
   end
 
@@ -31,6 +41,7 @@ FactoryGirl.define do
   end
 
   factory :resume do
+    user
     height 69
     weight 140
     hair_color "blond"

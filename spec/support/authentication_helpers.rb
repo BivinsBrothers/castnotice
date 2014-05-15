@@ -16,5 +16,12 @@ module Authentication
         sign_in user
       end
     end
+
+    def log_out
+      case example.metadata[:type]
+      when :feature
+        click_link "sign out"
+      end
+    end
   end
 end
