@@ -20,6 +20,7 @@ addons:
 cache: bundler
 deploy:
   provider: heroku
+  buildpack: https://github.com/heroku/heroku-buildpack-ruby
   api_key:
     secure: Wa7cU7phnmdDMGRZDK4B7giMFwgj0pPEhClkRRb/DLpHTjofaBpp681E8EoOWbQz0IFkRYxHB/akTT/AQGI9uSMtQGdigDFZ7Er8dc/gAXQsoxFly3dNpcLOsQR93wR3zzDQeivdIatHaVvvUn4FcNkLMKAiKANFWMJly5BmYvQ=
   app:
@@ -28,5 +29,5 @@ deploy:
     repo: collectiveidea/castnotice
     branch: master
   run:
-    - rake db:migrate
+    - "rake db:migrate"
     - restart
