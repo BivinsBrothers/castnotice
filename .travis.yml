@@ -20,14 +20,13 @@ addons:
 cache: bundler
 deploy:
   provider: heroku
-  strategy: git
   api_key:
-    secure: "EVx7Nk5wvVS7O6ZdKDFpgEX2P63WGf/l5TYz019fEn4dh7urMP1t7Sbk65QvkPRx8PZLgkIOZXJ2qUTumm7IJzRNEwN5iw6YumgfkZEh36SS9ExUH+ZIxOLWB9Tufe19rmYQxdjUoK2+3XS/HhlP8EAOeZay3Ry0ubb2ab3mB7g="
+    secure: Wa7cU7phnmdDMGRZDK4B7giMFwgj0pPEhClkRRb/DLpHTjofaBpp681E8EoOWbQz0IFkRYxHB/akTT/AQGI9uSMtQGdigDFZ7Er8dc/gAXQsoxFly3dNpcLOsQR93wR3zzDQeivdIatHaVvvUn4FcNkLMKAiKANFWMJly5BmYvQ=
   app:
     master: castnotice-staging
   on:
     repo: collectiveidea/castnotice
     branch: master
   run:
-    - "rake db:migrate"
+    - rake db:migrate
     - restart
