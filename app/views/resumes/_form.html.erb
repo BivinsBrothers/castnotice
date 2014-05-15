@@ -14,6 +14,8 @@
     <div class="col-md-12">
       <h2>Personal Information</h2>
         <div class="col-md-6">
+          <%= f.label :slug, "Public Resume URL" %>
+          <%= f.text_field :slug %>
           <%= f.label :descriptive_tag, "Descriptive Tags" %>
           <%= f.text_field :descriptive_tag %>
           <%= f.label :phone %>

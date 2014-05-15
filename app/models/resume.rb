@@ -1,4 +1,8 @@
 class Resume < ActiveRecord::Base
+  extend FriendlyId
+
+  friendly_id :slug_versions, use: :slugged
+
   serialize :unions
 
   belongs_to :user

@@ -312,7 +312,7 @@ describe "manage resume" do
     expect(page).to have_content("Test Dummy")
     expect(page).to have_content("Awesome Union")
     expect(page).to have_content("1-616-555-4567")
-    expect(page).to have_content("test@fake.com")
+    expect(page).to have_content(user.email)
     expect(page).to have_content("Experience")
     expect(page).to have_content("Wizzard of OZ")
     expect(page).to have_content("Dorothy")
