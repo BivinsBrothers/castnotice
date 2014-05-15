@@ -1,5 +1,5 @@
 <%= form_for @event, url: [:admin, @event], method: :put do |e| %>
   <%= render "form_fields", e: e %>
 
-  <%= e.submit "Update Event" %>
+  <%= e.submit "Update Event", id: "update-event" %>
 <% end %>

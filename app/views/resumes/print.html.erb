@@ -1,7 +1,7 @@
 <div class="print-content">
   <div class="row">
     <div class="col-md-12 row">
-      <% if resume_photo(current_user) %>
+      <% if current_user.resume_photo %>
         <div class="resume-photo col-md-4">
           <%= image_tag(current_user.resume_photo.image_url(:resume_print)) %>
         </div>

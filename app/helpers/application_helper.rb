@@ -107,14 +107,6 @@ module ApplicationHelper
     }[education_type]
   end
 
-  def background_image(user)
-    user.background_image
-  end
-
-  def resume_photo(user)
-    user.resume_photo
-  end
-
   def for_select_by_model(klass)
     klass.all.map { |r| [r.name, r.id] }
   end

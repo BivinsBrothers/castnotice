@@ -46,7 +46,7 @@ feature "an admin can manage events", js: true do
 
     check "Paid"
 
-    click_button "Create Event"
+    find("#create-event").trigger("click")
 
     expect(page).to have_content("Calendar")
 
@@ -89,12 +89,13 @@ feature "an admin can manage events", js: true do
     event.click_edit
 
     fill_in "Name of Project", with: "Extravaganza!"
-    click_button "Update Event"
+    find("#update-event").trigger("click")
+
+    expect(page).to have_content("Extravaganza!")
 
     updated_event = Dom::CalendarEvent.first
     expect(updated_event.project_title).to eq("Extravaganza!")
   end
-
 
   scenario "deleting an event" do
      create(:event, audition_date: Date.current)
