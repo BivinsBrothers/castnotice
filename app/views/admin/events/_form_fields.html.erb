@@ -1,47 +1,66 @@
-<%= e.label :project_title, "Name of Project"%>
+<h1>Create an event</h1>
+<p>Fill out the fields below to create a new celendar event. * Denotes a required field.</p>
+<div class="form-group">
+<%= e.label :project_title, "Name of Project"%>*
 <%= e.text_field :project_title %>
-
-<%= e.label :project_type_id, "Project Type" %>
+</div
+<div class="form-group">
+<%= e.label :project_type_id, "Project Type" %>*
 <%= e.select :project_type_id, for_select_by_model(ProjectType) %>
-
+</div
+<div class="form-group">
 <%= e.label :project_type_details, "Project Type Details" %>
 <%= e.text_area :project_type_details %>
-
-<%= e.label :region_id, "Region"%>
+</div
+<div class="form-group">
+<%= e.label :region_id, "Region"%>*
 <%= e.select :region_id, for_select_by_model(Region) %>
-
-<%= e.label :union_ids, "Union" %>
+</div
+<div class="checkbox">
+<%= e.label :union_ids, "Union" %>*
 <%= e.collection_check_boxes :union_ids, Union.all, :id, :name %>
-
-<%= e.label :gender, "Gender" %>
+</div
+<div class="form-group">
+<%= e.label :gender, "Gender" %>*
 <%= e.text_field :gender %>
-
+</div
+<div class="form-group">
 <%= e.label :location, "Location" %>
 <%= e.text_field :location %>
-
+</div
+<div class="form-group">
 <%= e.label :casting_director, "Casting Director" %>
 <%= e.text_field :casting_director %>
-
+</div
+<div class="form-group">
 <%= e.label :storyline, "Story" %>
 <%= e.text_area :storyline %>
-
+</div
+<div class="form-group">
 <%= e.label :character_description, "Description" %>
 <%= e.text_area :character_description %>
-
+</div
+<div class="form-group">
 <%= e.label :how_to_audition, "Audition Details" %>
 <%= e.text_area :how_to_audition %>
-
+</div
+<div class="form-group">
 <%= e.label :additional_project_info, "Additional Project Info" %>
 <%= e.text_area :additional_project_info %>
-
+</div
+<div class="form-group">
 <%= e.label :audition_date, "Date of Audition" %>
 <%= e.date_select :audition_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
-
+</div
+<div class="form-group">
 <%= e.label :start_date, "Start of Event" %>
 <%= e.date_select :start_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
-
+</div
+<div class="checkbox">
 <%= e.label :paid, "Paid?" %>
 <%= e.check_box :paid %>
-
+</div
+<div class="form-group">
 <%= e.label :special_notes, "Special Notes" %>
 <%= e.text_area :special_notes %>
+</div>
