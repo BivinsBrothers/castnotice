@@ -1,13 +1,13 @@
 FactoryGirl.define do
 
   factory :video do
-    user
+    resume
     video_url "http://www.youtube.com/watch?v=m8u8Z3bUQfs"
     video_thumb_url "https://img.youtube.com/vi/m8u8Z3bUQfs/0.jpg"
   end
 
   factory :headshot do
-    user
+    resume
     image {File.new(File.join(Rails.root, 'spec', 'fixtures', 'image.jpg'))}
   end
 
@@ -31,17 +31,13 @@ FactoryGirl.define do
       parent_zip "12345"
       parent_phone "5551231234"
     end
-  end
 
-  factory :school do
-    education_type "University"
-    school "University of Michigan"
-    major "Acting"
-    degree "Associates Degree in Creative Dance"
+    after(:build) do |user|
+      create(:resume, user: user) if user.resume.nil?
+    end
   end
 
   factory :resume do
-    user
     height 69
     weight 140
     hair_color "blond"
@@ -61,6 +57,17 @@ FactoryGirl.define do
     manager_phone "1-616-222-3333"
     additional_skills "Improve"
     descriptive_tag "Dancer, Actor"
+
+    after(:build) do |resume|
+      create(:user, resume: resume) if resume.user.nil?
+    end
+  end
+
+  factory :school do
+    education_type "University"
+    school "University of Michigan"
+    major "Acting"
+    degree "Associates Degree in Creative Dance"
   end
 
   factory :project do

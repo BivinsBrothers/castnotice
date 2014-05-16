@@ -1,6 +1,6 @@
-<% if @resume.user.background_image %>
+<% if @resume.background_image %>
   <% content_for :background do %>
-    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= @resume.user.background_image.image_url(:background) %>)"></div>
+    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= @resume.background_image.image_url(:background) %>)"></div>
   <% end %>
 <% end %>
 <h1><%= @resume.user.name %></h1>
@@ -46,9 +46,9 @@
 
 <div class="row">
   <div class="col-md-12">
-  <% if @resume.user.headshots.present? %>
+  <% if @resume.headshots.present? %>
     <h3>Photos</h3>
-    <% @resume.user.headshots.each do |headshot| %>
+    <% @resume..headshots.each do |headshot| %>
       <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
     <% end %>
   <% end %>
@@ -57,18 +57,16 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<% if @resume.user.videos.present? %>
+		<% if @resume.videos.present? %>
 		  <h3>Your Videos</h3>
 		
-		  <% @resume.user.videos.each do |video| %>
+		  <% @resume.videos.each do |video| %>
 			<div class="video">
-			  <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
 			  <% if video.youtube_id.present? %>
 				<iframe src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
 			  <% elsif video.vimeo_id.present? %>
 				<iframe src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
 			  <% end %>
-			  <%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
 			</div>
 		  <% end %>
 		<% end %>
@@ -78,13 +76,13 @@
 <div class="row">
 	<div class="col-md-12">
 		<h3>Experience</h3>
-    <%= render template: 'projects/show', locals: { projects: @resume.user.projects } if @resume.user.projects.present? %>
+    <%= render template: 'projects/show', locals: { projects: @resume.projects } if @resume.projects.present? %>
 	</div>
 </div>
 
 <div class="row">
 	<div class="col-md-12">
 		<h3>Schools</h3>
-    <%= render template: 'schools/show', locals: { schools: @resume.user.schools } if @resume.user.schools.present?  %>
+    <%= render template: 'schools/show', locals: { schools: @resume.schools } if @resume.schools.present?  %>
 	</div>
 </div>

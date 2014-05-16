@@ -1,11 +1,11 @@
 require "spec_helper"
 
 describe Headshot do
-  let(:user) { create(:user) }
-  let!(:headshot) { create(:headshot, user: user) }
-  let!(:headshot_as_background) { create(:headshot, user: user, background: true) }
+  let(:resume) { create(:resume) }
+  let!(:headshot) { create(:headshot, resume: resume) }
+  let!(:headshot_as_background) { create(:headshot, resume: resume, background: true) }
 
-  it "a user can have only one background image" do
+  it "a resume can have only one background image" do
     headshot.background = true
 
     expect(headshot.save).to be_false

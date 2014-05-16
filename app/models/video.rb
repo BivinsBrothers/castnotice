@@ -1,5 +1,5 @@
 class Video < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :resume
 
   validate :validate_video_url_format
 
@@ -55,5 +55,4 @@ class Video < ActiveRecord::Base
     end
     nil
   end
-
 end

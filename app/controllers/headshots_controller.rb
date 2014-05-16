@@ -7,12 +7,12 @@ class HeadshotsController < ApplicationController
   end
 
   def index
-    @headshots = current_user.headshots
+    @headshots = current_resume.headshots
     @headshot = Headshot.new
   end
 
   def create
-    @headshot = current_user.headshots.build(headshot_params)
+    @headshot = current_resume.headshots.build(headshot_params)
     if @headshot.save
       redirect_to edit_resume_path
     else
@@ -22,7 +22,7 @@ class HeadshotsController < ApplicationController
   end
 
   def update
-    @headshot = current_user.headshots.find(params[:id])
+    @headshot = current_resume.headshots.find(params[:id])
 
     case params[:background]
     when "true"
@@ -42,7 +42,7 @@ class HeadshotsController < ApplicationController
   end
 
   def destroy
-    headshot = current_user.headshots.find(params[:id])
+    headshot = current_resume.headshots.find(params[:id])
     headshot.destroy
 
     redirect_to edit_resume_path

@@ -1,12 +1,17 @@
 require "spec_helper"
 
 describe "manage resume" do
+  let!(:resume) { create(:resume) }
+  let(:user) { resume.user }
+
+  before do
+    log_in user
+  end
+
   it 'allows talent to create a resume' do
-    user = create(:user)
     create(:union, name: "Screen Actors Guild")
     create(:project_type, name: "Television")
 
-    log_in user
     visit dashboard_path
 
     click_link 'dashboard-edit-resume'
@@ -83,10 +88,6 @@ describe "manage resume" do
   end
 
   it 'allows talent to edit a resume' do
-    user = create(:user, name: "New Name")
-    create(:resume, user: user)
-
-    log_in user
     visit dashboard_path
 
     click_link('dashboard-edit-resume')
@@ -119,9 +120,6 @@ describe "manage resume" do
   end
 
   it "a user can upload a headshot", :js => true do
-    user = create(:user)
-
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -133,15 +131,11 @@ describe "manage resume" do
     expect {
       click_button "Save Photo"
     }.to change {
-      user.headshots.count
+      resume.headshots.count
     }.from(0).to(1)
   end
 
   it "allows adding videos", :js => true do
-    user = create(:user)
-    create(:resume, user: user)
-
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -153,33 +147,29 @@ describe "manage resume" do
     expect {
       click_button "Save Video"
     }.to change {
-      user.videos.count
+      user.resume.videos.count
     }.from(0).to(1)
 
     expect(page).to have_content("Delete")
   end
 
   it "allow deleting videos" do
-    user = create(:user)
-    create(:resume, user: user)
-    create(:video, user: user)
+    create(:video, resume: resume)
 
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
 
-    click_link "Delete"
-
-    expect(page).to_not have_content("http://www.youtube.com/watch?v=m8u8Z3bUQfs")
+    expect {
+      click_link "Delete"
+    }.to change {
+      Dom::Video.all.count
+    }.from(1).to(0)
   end
 
   it "allows adding project" do
-    user = create(:user)
-    create(:resume, user: user)
     create(:project_type, name: "Industrial Project")
 
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -200,12 +190,9 @@ describe "manage resume" do
   end
 
   it "allows editing/deleting a project" do
-    user = create(:user)
-    create(:resume, user: user)
-    create(:project, user: user)
+    create(:project, resume: resume)
     create(:project_type, name: "Industrial Project")
 
-    log_in user
     visit dashboard_path
     click_link "dashboard-edit-resume"
 
@@ -236,10 +223,8 @@ describe "manage resume" do
   end
 
   it "allows adding a school" do
-    user = create(:user)
     create(:resume, user: user)
 
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -259,11 +244,8 @@ describe "manage resume" do
   end
 
   it "allows editing/deleting a school" do
-    user = create(:user)
-    create(:resume, user: user)
-    create(:school, user: user)
+    create(:school, resume: resume)
 
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -282,7 +264,6 @@ describe "manage resume" do
 
     click_button "Save"
 
-
     expect(page).to have_content("Michigan Tech")
     expect(page).to have_content("Computer Science")
     expect(page).to have_content("Masters")
@@ -292,17 +273,13 @@ describe "manage resume" do
     expect(page).to_not have_content("Michigan Tech")
     expect(page).to_not have_content("Computer Science")
     expect(page).to_not have_content("Masters")
-
   end
 
   it "allows talent to print a resume" do
-    user = create(:user)
-    create(:resume, user: user)
-    create(:school, user: user)
-    create(:project, user: user)
-    create(:headshot, user: user)
+    create(:school, resume: resume)
+    create(:project, resume: resume)
+    create(:headshot, resume: resume)
 
-    log_in user
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -328,10 +305,6 @@ describe "manage resume" do
   end
 
   it "talent can add a custom slug to their public profile" do
-    user = create(:user)
-    create(:resume, user: user)
-
-    log_in user
     visit edit_resume_path
 
     fill_in "Public Resume URL", with: "castnotice"

@@ -1,25 +1,25 @@
 <div class="print-content">
   <div class="row">
     <div class="col-md-12 row">
-      <% if current_user.resume_photo %>
+      <% if @resume.resume_photo %>
         <div class="resume-photo col-md-4">
-          <%= image_tag(current_user.resume_photo.image_url(:resume_print)) %>
+          <%= image_tag(@resume.resume_photo.image_url(:resume_print)) %>
         </div>
       <% end %>
       <div class="contact-info col-md-8">
-        <h1><%= current_user.name %></h1>
-        <p><%= sentence_for_category_collection(current_user.resume.unions) %></p>
-        <p><%= current_user.resume.phone %></p>
-        <p><%= current_user.email %></p>
+        <h1><%= @resume.user.name %></h1>
+        <p><%= sentence_for_category_collection(@resume.unions) %></p>
+        <p><%= @resume.phone %></p>
+        <p><%= @resume.user.email %></p>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <% if current_user.projects.present? %>
+      <% if @resume.projects.present? %>
         <h3>Experience</h3>
         <div class="project-list row">
-          <% current_user.projects.each do |project| %>
+          <% @resume.projects.each do |project| %>
             <div class="col-md-4">
               <h4>Title: <%= project.title %></h4>
               <p>Project Type: <%= project.project_type.name if project.project_type.present? %></p>
@@ -33,10 +33,10 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <% if current_user.schools.present? %>
+      <% if @resume.schools.present? %>
         <h3>Education</h3>
         <div class="school-list row">
-          <% current_user.schools.each do |school| %>
+          <% @resume.schools.each do |school| %>
             <div class="col-md-4">
               <h4>School: <%= school.school %></h4>
               <p>School Type: <%= education_type_name(school.education_type) %></p>
@@ -55,9 +55,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-4">
-        <% if current_user.resume.additional_skills? %>
+        <% if @resume.additional_skills? %>
           <h3>Special Skills</h3>
-          <%= current_user.resume.additional_skills %>
+          <%= @resume.additional_skills %>
         <% end %>
       </div>
     </div>

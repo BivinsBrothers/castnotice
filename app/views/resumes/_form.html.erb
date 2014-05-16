@@ -1,6 +1,6 @@
-<% if current_user.background_image %>
+<% if current_resume.background_image %>
   <% content_for :background do %>
-    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= current_user.background_image.image_url(:background) %>)"></div>
+    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= current_resume.background_image.image_url(:background) %>)"></div>
   <% end %>
 <% end %>
 
@@ -104,7 +104,7 @@
 	<div class="col-md-12">
 		<h2>Photos</h2>
 		<div class="add-new-btn-wrapper">
-      <% if current_user.at_maximum_headshots? %>
+      <% if current_resume.at_maximum_headshots? %>
         <h3>You have already uploaded the maximum number of head shots. Please delete an existing head shot before trying to add a new one.</h3>
       <% else %>
         <span class="glyphicon glyphicon-plus mini-link"></span> <%= link_to 'Add a photo', '#new-headshot-form', class: "btn-add-new show-headshot-form mini-link" %>
@@ -120,7 +120,7 @@
 		</div>
 		
     <div class="headshot-image">
-      <% current_user.headshots.each do |headshot| %>
+      <% current_resume.headshots.each do |headshot| %>
         <%= image_tag(headshot.image_url(:thumb)) %>
         <div class="headshot-link">
           <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
@@ -144,7 +144,7 @@
 	<div class="col-md-12">
 		<h2>Videos</h2>
 		<div class="add-new-btn-wrapper">
-      <% if current_user.at_maximum_videos? %>
+      <% if current_resume.at_maximum_videos? %>
         <h2>You have already uploaded the maximum videos, please delete and existing video to add a new one.</h2>
       <% else %>
         <span class="glyphicon glyphicon-plus mini-link"></span><%= link_to "Add a video", "#new-video-form", class: "btn-add-new show-video-form mini-link" %>
@@ -159,7 +159,7 @@
 		</div>
 		
 		<div class="video-list">
-		  <% current_user.videos.each do |video| %>
+		  <% current_resume.videos.each do |video| %>
 			  <%= render 'video', :video => video %>
 		  <% end %>
 		</div>
@@ -192,7 +192,7 @@
 		  <% end %>
 		</div>
     <div class="school-list row">
-      <% current_user.schools.each do |school| %>
+      <% current_resume.schools.each do |school| %>
         <%= render 'school', :school => school %>
       <% end %>
     </div>
@@ -221,7 +221,7 @@
 		  <% end %>
 		</div>
     <div class="project-list row">
-      <% current_user.projects.each do |project| %>
+      <% current_resume.projects.each do |project| %>
         <%= render 'project', :project => project %>
       <% end %>
     </div>

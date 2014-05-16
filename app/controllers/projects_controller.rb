@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.build(project_params)
+    @project = current_resume.projects.build(project_params)
     if @project.save
       respond_to do |format|
         format.html { redirect_to edit_resume_path }
@@ -25,11 +25,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = current_user.projects.find(params[:id])
+    @project = current_resume.projects.find(params[:id])
   end
 
   def update
-    @project = current_user.projects.find(params[:id])
+    @project = current_resume.projects.find(params[:id])
 
     if @project.update_attributes(project_params)
       flash[:success] = "Your project saved."
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    current_user.projects.find(params[:id]).destroy
+    current_resume.projects.find(params[:id]).destroy
     redirect_to edit_resume_path
   end
 
