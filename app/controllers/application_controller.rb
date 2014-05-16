@@ -4,9 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_resume
+  helper_method :current_query
 
   def current_resume
     current_user.resume
+  end
+
+  def current_query
+    params[:q]
   end
 
   protected

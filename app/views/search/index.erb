@@ -1,0 +1,10 @@
+<h1>Search Results</h1>
+<div>Your search for "<%= @search_term %>" returned <%= @resumes.count %> <%= "result".pluralize(@resumes.count) %></div>
+<% @resumes.each do |resume| %>
+  <div class="result">
+    <img alt="<%= resume.user.name %>" src="<%= resume.resume_photo ? resume.resume_photo.image_url(:search_thumb) : "http://placekitten.com/g/300/300" %>" />
+    <div class="name"><%= resume.user.name %></div>
+    <div class="row">Descriptive Tag: <span class="descriptive-tag"><%= resume.descriptive_tag %></span></div>
+    <%= link_to "View Resume", resume_path(resume), class: "btn" %>
+  </div>
+<% end %>

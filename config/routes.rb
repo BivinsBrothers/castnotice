@@ -13,6 +13,8 @@ Castnotice::Application.routes.draw do
   get "/r/:resume_slug" => "public_resumes#show", as: :public_resume
   get "/resume/print" => "resumes#print", as: :print_resume
 
+  get "/search" => "search#index", as: :search
+
   resources :projects, except: [:new, :show, :index]
   resources :schools, except: [:new, :show, :index]
   resources :headshots, except: [:show, :edit]
