@@ -6,11 +6,11 @@ class VideosController < ApplicationController
 
   def index
     @video = Video.new
-    @videos = current_user.videos
+    @videos = current_resume.videos
   end
 
   def create
-    @video = current_user.videos.build(video_params)
+    @video = current_resume.videos.build(video_params)
     if @video.save
     else
       flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
@@ -19,7 +19,7 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    @video = current_user.videos.find_by_id(params[:id])
+    @video = current_resume.videos.find_by_id(params[:id])
 
     if @video && @video.delete
       flash[:success] = "Your video was deleted"

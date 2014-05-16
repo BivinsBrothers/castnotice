@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515213819) do
+ActiveRecord::Schema.define(version: 20140516151347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,12 +52,14 @@ ActiveRecord::Schema.define(version: 20140515213819) do
 
   create_table "headshots", force: true do |t|
     t.string   "image"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "background",   default: false, null: false
     t.boolean  "resume_photo", default: false, null: false
+    t.integer  "resume_id"
   end
+
+  add_index "headshots", ["resume_id"], name: "index_headshots_on_resume_id", using: :btree
 
   create_table "project_types", force: true do |t|
     t.string   "name"
@@ -69,13 +71,14 @@ ActiveRecord::Schema.define(version: 20140515213819) do
     t.string   "title"
     t.string   "role"
     t.string   "director_studio"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "project_type_id"
+    t.integer  "resume_id"
   end
 
   add_index "projects", ["project_type_id"], name: "index_projects_on_project_type_id", using: :btree
+  add_index "projects", ["resume_id"], name: "index_projects_on_resume_id", using: :btree
 
   create_table "regions", force: true do |t|
     t.string   "name"
@@ -131,14 +134,16 @@ ActiveRecord::Schema.define(version: 20140515213819) do
     t.string   "school"
     t.string   "major"
     t.string   "degree"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "teacher"
     t.integer  "years"
     t.string   "education_type"
     t.string   "instruments"
+    t.integer  "resume_id"
   end
+
+  add_index "schools", ["resume_id"], name: "index_schools_on_resume_id", using: :btree
 
   create_table "unions", force: true do |t|
     t.string   "name"
@@ -182,10 +187,12 @@ ActiveRecord::Schema.define(version: 20140515213819) do
 
   create_table "videos", force: true do |t|
     t.text     "video_url"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_thumb_url"
+    t.integer  "resume_id"
   end
+
+  add_index "videos", ["resume_id"], name: "index_videos_on_resume_id", using: :btree
 
 end

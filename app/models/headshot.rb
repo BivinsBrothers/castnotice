@@ -1,14 +1,14 @@
 class Headshot < ActiveRecord::Base
-  validates :background, uniqueness: { scope: :user }, if: :background?
+  validates :background, uniqueness: { scope: :resume }, if: :background?
   validates_presence_of :image
 
   mount_uploader :image, HeadshotUploader
 
-  belongs_to :user
+  belongs_to :resume
 
   def set_as_background_image
-    if user.background_image
-      user.background_image.update_attributes(background: false)
+    if resume.background_image
+      resume.background_image.update_attributes(background: false)
     end
 
     self.background = true
@@ -23,8 +23,8 @@ class Headshot < ActiveRecord::Base
   end
 
   def set_as_resume_photo
-    if user.resume_photo
-      user.resume_photo.update_attributes(resume_photo: false)
+    if resume.resume_photo
+      resume.resume_photo.update_attributes(resume_photo: false)
     end
 
     self.resume_photo = true

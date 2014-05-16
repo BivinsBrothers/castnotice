@@ -1,4 +1,3 @@
 class School < ActiveRecord::Base
-  belongs_to :user
-
+  belongs_to :resume
 end

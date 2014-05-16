@@ -15,6 +15,10 @@ module Dom
     end
   end
 
+  class Video < Domino
+    selector ".video"
+  end
+
   class CalendarDatepicker < Domino
     selector "#calendar-datepicker"
 

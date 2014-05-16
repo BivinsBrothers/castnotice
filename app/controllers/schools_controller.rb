@@ -6,7 +6,7 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    @school = current_user.schools.build(school_params)
+    @school = current_resume.schools.build(school_params)
     if @school.save
       respond_to do |format|
         format.html { redirect_to edit_resume_path }
@@ -25,11 +25,11 @@ class SchoolsController < ApplicationController
   end
 
   def edit
-    @school = current_user.schools.find(params[:id])
+    @school = current_resume.schools.find(params[:id])
   end
 
   def update
-    @school = current_user.schools.find(params[:id])
+    @school = current_resume.schools.find(params[:id])
 
     if @school.update_attributes(school_params)
       flash[:success] = "Your school has been saved."
@@ -40,7 +40,7 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
-    current_user.schools.find(params[:id]).destroy
+    current_resume.schools.find(params[:id]).destroy
     redirect_to edit_resume_path
   end
 

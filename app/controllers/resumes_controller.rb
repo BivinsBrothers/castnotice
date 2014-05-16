@@ -2,17 +2,12 @@ class ResumesController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    if current_user.resume.present?
-      @resume = current_user.resume
-      render :show
-    else
-      flash[:notice] = "Fill in the information you wish to appear on your resume."
-      redirect_to edit_resume_path
-    end
+    @resume = current_resume
+    render :show
   end
 
   def edit
-    @resume = current_user.resume || current_user.create_resume
+    @resume = current_resume
     @project = Project.new
     @school = School.new
     @headshot = Headshot.new
@@ -20,7 +15,7 @@ class ResumesController < ApplicationController
   end
 
   def update
-    @resume = current_user.resume
+    @resume = current_resume
 
     if @resume.update_attributes(resume_params)
       redirect_to edit_resume_path
@@ -30,7 +25,7 @@ class ResumesController < ApplicationController
   end
 
   def print
-    @resume = current_user.resume || current_user.create_resume
+    @resume = current_resume
     render "print", layout: "print"
   end
 

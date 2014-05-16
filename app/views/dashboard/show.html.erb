@@ -1,6 +1,6 @@
-<% if current_user.background_image %>
+<% if current_resume.background_image %>
   <% content_for :background do %>
-    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= current_user.background_image.image_url(:background) %>)"></div>
+    <div class="bg-full" id="bg-headshot" style="background-image: url(<%= current_resume.background_image.image_url(:background) %>)"></div>
   <% end %>
 <% end %>
 
@@ -24,8 +24,8 @@
 				<h2>Your Photos <span><%= link_to 'Manage', edit_resume_path, id: "edit-headshots", class: "btn btn-small" %></span></h2>
 				<p>You can upload a maximum of 10 head shots to your resume and you can set one as the main background image</p>
 		
-				<% if current_user.headshots.present? %>
-				  <% current_user.headshots.each do |headshot| %>
+				<% if current_resume.headshots.present? %>
+				  <% current_resume.headshots.each do |headshot| %>
 					  <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
 				  <% end %>
 				<% else %>
@@ -38,8 +38,8 @@
 				<h2>Your Videos <span><%= link_to 'Manage', edit_resume_path, id: "edit-videos", class: "btn btn-small edit-videos" %></span></h2>
 				<p>Add YouTube or Vimeo links to embed video into your resume.</p>
 		
-				<% if current_user.videos.present? %>
-					<% current_user.videos.each do |video| %>
+				<% if current_resume.videos.present? %>
+					<% current_resume.videos.each do |video| %>
 					  <div class="video">
 						  <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
 						  <% if video.youtube_id.present? %>
@@ -58,6 +58,6 @@
 	</div>
 	<div class="col-md-4">
 		<h2>Experience <span><%= link_to 'Manage', edit_resume_path, class: "btn btn-small" %></span></h2>
-    <%= render template: 'projects/show', locals: { projects: current_user.projects } if current_user.projects.present? %>
+    <%= render template: 'projects/show', locals: { projects: current_resume.projects } if current_resume.projects.present? %>
 	</div>
 </div>
