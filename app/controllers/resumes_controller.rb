@@ -1,12 +1,18 @@
 class ResumesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_up_view_defaults
+  before_filter :set_up_view_defaults, only: [:edit, :update]
 
   def show
+    @resume = current_resume
     render :show
   end
 
+  def edit
+    @resume = current_resume
+  end
+
   def update
+    @resume = current_resume
     if @resume.update_attributes(resume_params)
       redirect_to edit_resume_path
     else
@@ -15,6 +21,7 @@ class ResumesController < ApplicationController
   end
 
   def print
+    @resume = current_resume
     render "print", layout: "print"
   end
 
