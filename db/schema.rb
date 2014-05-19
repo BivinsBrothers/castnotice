@@ -27,24 +27,23 @@ ActiveRecord::Schema.define(version: 20140516151347) do
   add_index "event_unions", ["union_id"], name: "index_event_unions_on_union_id", using: :btree
 
   create_table "events", force: true do |t|
-    t.string    "project_title"
-    t.text      "storyline"
-    t.text      "character_description"
-    t.text      "how_to_audition"
-    t.datetime  "audition_date"
-    t.datetime  "start_date"
-    t.boolean   "paid",                    default: false, null: false
-    t.datetime  "created_at"
-    t.datetime  "updated_at"
-    t.string    "location"
-    t.string    "casting_director"
-    t.integer   "region_id"
-    t.integer   "project_type_id"
-    t.string    "gender"
-    t.text      "project_type_details"
-    t.text      "special_notes"
-    t.text      "additional_project_info"
-    t.int4range "age_range"
+    t.string   "project_title"
+    t.text     "storyline"
+    t.text     "character_description"
+    t.text     "how_to_audition"
+    t.datetime "audition_date"
+    t.datetime "start_date"
+    t.boolean  "paid",                    default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "location"
+    t.string   "casting_director"
+    t.integer  "region_id"
+    t.integer  "project_type_id"
+    t.string   "gender"
+    t.text     "project_type_details"
+    t.text     "special_notes"
+    t.text     "additional_project_info"
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
