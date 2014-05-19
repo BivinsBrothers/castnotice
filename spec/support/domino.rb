@@ -156,4 +156,12 @@ module Dom
     attribute :descriptive_tag
     attribute :performer_type
   end
+
+  class SearchForm < Domino
+    selector "#search-form"
+
+    def submit
+      page.execute_script("document.getElementById('search-form').submit();")
+    end
+  end
 end
