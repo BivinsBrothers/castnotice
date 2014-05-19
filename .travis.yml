@@ -20,6 +20,8 @@ addons:
 services:
   - elasticsearch
 cache: bundler
+before_deploy:
+  - git fetch --unshallow
 deploy:
   provider: heroku
   strategy: git
