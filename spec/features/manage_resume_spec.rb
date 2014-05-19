@@ -119,6 +119,18 @@ describe "manage resume" do
     expect(find_field("resume_descriptive_tag").value).to eq("Singer")
   end
 
+  it "allows the user to choose new slug when duplicate found" do
+    create(:resume, {slug: "test"})
+
+    visit edit_resume_path
+
+    fill_in "Public Resume URL", with: "test"
+
+    find(".resume-save").click
+
+    expect(page.text).to include("Slug has already been taken")
+  end
+
   it "a user can upload a headshot", :js => true do
     visit dashboard_path
 
