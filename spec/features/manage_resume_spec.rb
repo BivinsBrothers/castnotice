@@ -129,6 +129,12 @@ describe "manage resume" do
     find(".resume-save").click
 
     expect(page.text).to include("Slug has already been taken")
+
+    fill_in "Public Resume URL", with: "something-else"
+
+    find(".resume-save").click
+
+    expect(find_field("resume_slug").value).to eq("something-else")
   end
 
   it "a user can upload a headshot", :js => true do
