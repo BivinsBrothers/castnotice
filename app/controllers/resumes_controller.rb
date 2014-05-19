@@ -1,5 +1,6 @@
 class ResumesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :set_up_view_defaults, only: [:edit, :update]
 
   def show
     @resume = current_resume
@@ -8,15 +9,10 @@ class ResumesController < ApplicationController
 
   def edit
     @resume = current_resume
-    @project = Project.new
-    @school = School.new
-    @headshot = Headshot.new
-    @video = Video.new
   end
 
   def update
     @resume = current_resume
-
     if @resume.update_attributes(resume_params)
       redirect_to edit_resume_path
     else
@@ -30,6 +26,14 @@ class ResumesController < ApplicationController
   end
 
   private
+
+  def set_up_view_defaults
+    @resume = current_resume
+    @project = Project.new
+    @school = School.new
+    @headshot = Headshot.new
+    @video = Video.new
+  end
 
   def resume_params
     params.require(:resume)
