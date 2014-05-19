@@ -1,5 +1,5 @@
 <h1>Search Results</h1>
-<div>Your search for "<%= @search_term %>" returned <%= @resumes.count %> <%= "result".pluralize(@resumes.count) %></div>
+<div>Your search for "<%= current_query %>" returned <%= @resumes.count %> <%= "result".pluralize(@resumes.count) %></div>
 <% @resumes.each do |resume| %>
   <div class="result">
     <img alt="<%= resume.user.name %>" src="<%= resume.resume_photo ? resume.resume_photo.image_url(:search_thumb) : "http://placekitten.com/g/300/300" %>" />
