@@ -8,6 +8,9 @@ describe "searching resumes", js: true do
     })
 
     create(:user, name: "Chris Five")
+
+    # Sleep to give elasticsearch time to index Resumes
+    sleep 2
   end
 
   it "searches users and returns results" do
