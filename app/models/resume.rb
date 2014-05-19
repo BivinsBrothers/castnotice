@@ -2,6 +2,9 @@ class Resume < ActiveRecord::Base
   MAXIMUM_HEADSHOTS = 10
   MAXIMUM_VIDEOS = 8
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   extend FriendlyId
   friendly_id :slug_versions, use: :slugged
 
@@ -37,6 +40,15 @@ class Resume < ActiveRecord::Base
     end
 
     super(slug)
+  end
+
+  def as_indexed_json(options={})
+    self.as_json(
+      include: { unions: { only: :name },
+                 projects: { only: :title },
+                 schools: { only: :school },
+                 user:   {  only: :name }
+    })
   end
 
   private
