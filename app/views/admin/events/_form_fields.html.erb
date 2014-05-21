@@ -48,6 +48,24 @@
 <%= e.text_field :gender %>
 </div>
 </div>
+
+<div class="row">
+<div class="col-sm-3">
+<%= e.label :age_min, "Age Min" %>*
+</div>
+<div class="col-sm-9">
+<%= select_tag "event[age_min]", options_for_select((Event::AGE_MIN..Event::AGE_MAX), :age_min) %>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-3">
+<%= e.label :age_max, "Age Max" %>*
+</div>
+<div class="col-sm-9">
+<%= select_tag "event[age_max]", options_for_select((Event::AGE_MIN..Event::AGE_MAX), :age_max) %>
+</div>
+</div>
 <div class="row">
 <div class="col-sm-3">
 <%= e.label :location, "Location" %>

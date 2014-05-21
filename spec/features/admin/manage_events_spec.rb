@@ -29,6 +29,8 @@ feature "an admin can manage events", js: true do
     check "Extraverts United"
     fill_in "Story", with: "Happy people become ghosts, have good times"
     fill_in "Gender", with: "Something"
+    select "21", from: "Age Min"
+    select "28", from: "Age Max"
     fill_in "Description", with: "We need you to have telekentic powers and be willing to yoyo upside down"
     fill_in "Audition Details", with: "In person, there will be a gorilla"
     fill_in "Casting Director", with: "Nic Lindstrom"
@@ -67,11 +69,12 @@ feature "an admin can manage events", js: true do
     expect(event.gender).to eq("Something")
 
     event.toggle_more_information
-
     expect(event.storyline).to eq("Happy people become ghosts, have good times")
     expect(event.character_description).to eq("We need you to have telekentic powers and be willing to yoyo upside down")
     expect(event.how_to_audition).to eq("In person, there will be a gorilla")
     expect(event.special_notes).to eq("Lawn care")
+    expect(event.age_min).to eq("21")
+    expect(event.age_max).to eq("28")
     expect(event.additional_project_info).to eq("For you Victor")
     expect(event.project_type_details).to eq("Many episodes")
   end

@@ -15,6 +15,8 @@ def full_event_hash(event)
      location: event.location,
      casting_director: event.casting_director,
      gender: event.gender,
+     age_min: event.age_min,
+     age_max: event.age_max,
      project_type_details: event.project_type_details,
      special_notes: event.special_notes,
      additional_project_info: event.additional_project_info,
@@ -127,9 +129,9 @@ describe "Calendar API" do
       let(:ratp)     { create(:union, name: "RATP") }
 
       let!(:event1) { create(:event, audition_date: Date.today, project_type: orange, region: dordogne, unions: [ratp]) }
-      let!(:event2) { create(:event, audition_date: 1.day.from_now, project_type: lavazza, region: ile) }
-      let!(:event3) { create(:event, audition_date: 2.days.from_now, project_type: orange, unions: [sncf]) }
-      let!(:event4) { create(:event, audition_date: 3.days.from_now, unions: [sncf, ratp]) }
+      let!(:event2) { create(:event, audition_date: 1.day.from_now, project_type: lavazza, region: ile, age_range: (20..56)) }
+      let!(:event3) { create(:event, audition_date: 2.days.from_now, project_type: orange, unions: [sncf], age_range: (12..16)) }
+      let!(:event4) { create(:event, audition_date: 3.days.from_now, unions: [sncf, ratp], age_range: (18..30)) }
 
       it "returns events filtered by region" do
         get events_path, {filters: {region: [dordogne.id]}}
@@ -172,6 +174,15 @@ describe "Calendar API" do
 
         expect(response.body).to eq({
           "events" => [limited_event_hash(event1), limited_event_hash(event3)],
+          "meta" => {member: false, admin: false}
+        }.to_json)
+      end
+
+      it "returns events filtered by age" do
+        get events_path, {filters: {age: 22}}
+
+        expect(response.body).to eq({
+          "events" => [limited_event_hash(event2), limited_event_hash(event4)],
           "meta" => {member: false, admin: false}
         }.to_json)
       end

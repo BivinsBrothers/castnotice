@@ -28,7 +28,8 @@ feature "calendar", js: true do
         special_notes: "It involves a washer",
         additional_project_info: "Donations accepted",
         project_type_details: "Elephants",
-        start_date: "2014-06-01"
+        start_date: "2014-06-01",
+        age_range: (18..34)
       )
 
       visit page_path("calendar")
@@ -51,6 +52,8 @@ feature "calendar", js: true do
       expect(event.character_description).to eq("Chris is getting google glass")
       expect(event.how_to_audition).to eq("Wears glasses")
       expect(event.special_notes).to eq("It involves a washer")
+      expect(event.age_min).to eq("18")
+      expect(event.age_max).to eq("34")
       expect(event.additional_project_info).to eq("Donations accepted")
       expect(event.project_type_details).to eq("Elephants")
     end
