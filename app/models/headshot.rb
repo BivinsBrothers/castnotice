@@ -1,14 +1,22 @@
 class Headshot < ActiveRecord::Base
-  validates :background, uniqueness: { scope: :resume }, if: :background?
+  validates :background, uniqueness: { scope: :imageable }, if: :background?
   validates_presence_of :image
 
   mount_uploader :image, HeadshotUploader
 
-  belongs_to :resume
+  belongs_to :imageable, polymorphic: true
+
+  def resume=(resume)
+    self.imageable = resume
+  end
+
+  def critique=(critique)
+    self.imageable = critique
+  end
 
   def set_as_background_image
-    if resume.background_image
-      resume.background_image.update_attributes(background: false)
+    if imageable.background_image
+      imageable.background_image.update_attributes(background: false)
     end
 
     self.background = true
@@ -23,8 +31,8 @@ class Headshot < ActiveRecord::Base
   end
 
   def set_as_resume_photo
-    if resume.resume_photo
-      resume.resume_photo.update_attributes(resume_photo: false)
+    if imageable.resume_photo
+      imageable.resume_photo.update_attributes(resume_photo: false)
     end
 
     self.resume_photo = true

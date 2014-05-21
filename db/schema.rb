@@ -55,12 +55,14 @@ ActiveRecord::Schema.define(version: 20140522173528) do
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "background",   default: false, null: false
-    t.boolean  "resume_photo", default: false, null: false
-    t.integer  "resume_id"
+    t.boolean  "background",     default: false, null: false
+    t.boolean  "resume_photo",   default: false, null: false
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
   end
 
-  add_index "headshots", ["resume_id"], name: "index_headshots_on_resume_id", using: :btree
+  add_index "headshots", ["imageable_id", "imageable_type"], name: "index_headshots_on_imageable_id_and_imageable_type", using: :btree
+  add_index "headshots", ["imageable_id"], name: "index_headshots_on_imageable_id", using: :btree
 
   create_table "project_types", force: true do |t|
     t.string   "name"
@@ -192,9 +194,11 @@ ActiveRecord::Schema.define(version: 20140522173528) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "video_thumb_url"
-    t.integer  "resume_id"
+    t.integer  "videoable_id"
+    t.string   "videoable_type"
   end
 
-  add_index "videos", ["resume_id"], name: "index_videos_on_resume_id", using: :btree
+  add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree
+  add_index "videos", ["videoable_id"], name: "index_videos_on_videoable_id", using: :btree
 
 end

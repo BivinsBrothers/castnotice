@@ -1,13 +1,13 @@
 FactoryGirl.define do
 
   factory :video do
-    resume
+    association :videoable, factory: :resume
     video_url "http://www.youtube.com/watch?v=m8u8Z3bUQfs"
     video_thumb_url "https://img.youtube.com/vi/m8u8Z3bUQfs/0.jpg"
   end
 
   factory :headshot do
-    resume
+    association :imageable, factory: :resume
     image {File.new(File.join(Rails.root, 'spec', 'fixtures', 'image.jpg'))}
   end
 

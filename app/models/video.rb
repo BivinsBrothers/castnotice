@@ -1,9 +1,17 @@
 class Video < ActiveRecord::Base
-  belongs_to :resume
-
   validate :validate_video_url_format
 
   before_save :set_video_thumb_url
+
+  belongs_to :videoable, polymorphic: true
+
+  def resume=(resume)
+    self.videoable = resume
+  end
+
+  def critique=(critique)
+    self.videoable = critique
+  end
 
   def youtube_id
     parsed = URI.parse(video_url) rescue nil
