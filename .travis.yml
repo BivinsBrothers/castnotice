@@ -17,6 +17,7 @@ notifications:
 addons:
   code_climate:
     repo_token: 9510623626e89d9c5d7ac29e7dc642a1e814626f9848ecd90543039bdf68efd1
+  postgresql: 9.3
 services:
   - elasticsearch
 cache: bundler

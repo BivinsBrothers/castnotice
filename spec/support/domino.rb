@@ -104,6 +104,14 @@ module Dom
       node.find(".gender").text.partition("Gender: ").last
     end
 
+    def age_min
+      node.find(".age-min").text.partition("Age Min: ").last
+    end
+
+    def age_max
+      node.find(".age-max").text.partition("Age Max: ").last
+    end
+
     def storyline
       node.find(".storyline").text.partition("Storyline: ").last
     end
