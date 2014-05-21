@@ -105,7 +105,6 @@ module Dom
     end
 
     def age_min
-      # save_and_open_page
       node.find(".age-min").text.partition("Age Min: ").last
     end
 
