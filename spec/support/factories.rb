@@ -67,6 +67,11 @@ FactoryGirl.define do
     end
   end
 
+  factory :critique do
+    project_title "Chicago"
+    notes "What could I improve on?"
+  end
+
   factory :school do
     education_type "University"
     school "University of Michigan"

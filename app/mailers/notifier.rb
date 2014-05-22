@@ -5,7 +5,13 @@ class Notifier < ActionMailer::Base
     @from_name = from_name
     @from_email = from_email
     @content = content
-    mail :to => "david@castnotice.com",
+    mail :to => Figaro.env.castnotice_admin_email,
          :subject => subject
+  end
+
+  def critique_request(critique)
+    @critique = critique
+    mail :to => Figaro.env.castnotice_admin_email,
+         :subject => "Critique Request"
   end
 end

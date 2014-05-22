@@ -1,6 +1,5 @@
 class HeadshotsController < ApplicationController
-
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def new
     @headshot = Headshot.new
@@ -51,7 +50,6 @@ class HeadshotsController < ApplicationController
   private
 
   def headshot_params
-    params.require(:headshot).
-    permit(:image, :image_cache, :user_id)
+    params.require(:headshot).permit(:image, :image_cache)
   end
 end

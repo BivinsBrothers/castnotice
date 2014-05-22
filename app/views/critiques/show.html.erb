@@ -1,0 +1,38 @@
+<h1>Critique Requested</h1>
+
+<h3>Project Title</h3>
+<%= @critique.project_title %>
+
+<h3>Project Notes</h3>
+<%= @critique.notes %>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Photos</h3>
+    <% if @critique.headshots %>
+      <% @critique.headshots.each do |headshot| %>
+        <div class="headshot">
+          <div class="headshot-image">
+            <%= image_tag(headshot.image_url(:thumb)) %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<h3>Video</h3>
+<% if @critique.videos %>
+  <% @critique.videos.each do |video| %>
+    <div class="video">
+      <div class="video-iframe">
+        <% if video.youtube_id.present? %>
+          <iframe src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
+        <% elsif video.vimeo_id.present? %>
+          <iframe src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+

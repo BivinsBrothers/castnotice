@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @video = Video.new
@@ -11,8 +12,7 @@ class VideosController < ApplicationController
 
   def create
     @video = current_resume.videos.build(video_params)
-    if @video.save
-    else
+    unless @video.save
       flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
     end
     redirect_to edit_resume_path
@@ -29,12 +29,9 @@ class VideosController < ApplicationController
     redirect_to edit_resume_path
   end
 
-
   private
 
   def video_params
-    params.require(:video).
-        permit(:video_url, :video_thumb_url, :user_id)
+    params.require(:video).permit(:video_url, :video_thumb_url)
   end
-
 end

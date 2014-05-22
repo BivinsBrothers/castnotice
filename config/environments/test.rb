@@ -31,7 +31,7 @@ Castnotice::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  config.domain = "127.0.0.1"
+  config.domain = "www.example.com"
   config.action_mailer.default_url_options = { :protocol => "http", :host => config.domain }
 
   # Print deprecation notices to the stderr.

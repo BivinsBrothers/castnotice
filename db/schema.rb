@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140522173528) do
+=======
+ActiveRecord::Schema.define(version: 20140521205234) do
+>>>>>>> Talent can submit critique requests.
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "critiques", force: true do |t|
+    t.string   "project_title"
+    t.text     "notes"
+    t.integer  "user_id"
+    t.string   "uuid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "critiques", ["user_id"], name: "index_critiques_on_user_id", using: :btree
+  add_index "critiques", ["uuid"], name: "index_critiques_on_uuid", using: :btree
 
   create_table "event_unions", force: true do |t|
     t.integer  "event_id",   null: false
