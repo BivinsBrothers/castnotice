@@ -1,0 +1,3 @@
+install postgresql
+install elasticsearch
+install phantomjs
