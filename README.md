@@ -9,15 +9,19 @@
 
 * Ruby 2.1.0
 * PostgreSQL
+* Elasticsearch
+* PhantomJS (for running tests)
 
 ### Setup
 
 1. Clone the repo
-2. `bundle`
-3. `cp config/database.example.yml config/database.yml` and modify if needed
-4. `rake db:setup`
+2. `brew bundle` (on OS X. Install Requirements above for other platforms)
+3. `bundle`
+4. `cp config/database.example.yml config/database.yml` and modify if needed
 5. `cp config/application.example.yml config/application.yml` and set the missing values
-6. `rails server`
+6. `rake db:setup`
+7. `rake db:seed`
+8. `rails server`
 
 ## Contributing
 
@@ -29,3 +33,6 @@
 6. Create a Pull Request. Visit `https://github.com/collectiveidea/castnotice/compare/jp-dc-awesome-feature`
 
 ## Deploying
+
+### Staging
+Travis CI is configured to push changes to staging whenever the master branch passes all tests.
