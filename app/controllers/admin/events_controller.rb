@@ -1,5 +1,5 @@
 class Admin::EventsController < ApplicationController
-  before_action :enforce_admin
+  before_action :enforce_event_manage_permissions
 
   def new
     @event = Event.new
@@ -35,8 +35,8 @@ class Admin::EventsController < ApplicationController
 
   private
 
-  def enforce_admin
-    current_user.admin?
+  def enforce_event_manage_permissions
+    current_user.admin? || current_user.mentor?
   end
 
   def event_params

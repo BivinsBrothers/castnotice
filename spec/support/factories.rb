@@ -22,6 +22,10 @@ FactoryGirl.define do
       admin true
     end
 
+    trait :mentor do
+      mentor true
+    end
+
     trait :with_parent do
       parent_name "Joe Boxer"
       parent_email "parent@fake.com"

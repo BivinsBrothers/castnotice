@@ -44,6 +44,42 @@ describe "Calendar API" do
       Timecop.return
     end
 
+    it "returns admin:true user is a mentor" do
+      user = create(:user, :mentor)
+      login_as user
+
+      get events_path
+
+      expect(response.body).to eq({
+        "events" => [],
+        "meta" => {member: true, admin: true}
+      }.to_json)
+    end
+
+    it "returns admin:true user is an admin" do
+      user = create(:user, :admin)
+      login_as user
+
+      get events_path
+
+      expect(response.body).to eq({
+        "events" => [],
+        "meta" => {member: true, admin: true}
+      }.to_json)
+    end
+
+    it "returns admin:false user is a typical user" do
+      user = create(:user)
+      login_as user
+
+      get events_path
+
+      expect(response.body).to eq({
+        "events" => [],
+        "meta" => {member: true, admin: false}
+      }.to_json)
+    end
+
     context "when a member" do
       before do
         user = create(:user)
