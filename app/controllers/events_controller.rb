@@ -5,7 +5,7 @@ class EventsController < ApplicationController
                   .periscope(event_params.fetch(:filters, {}))
 
     if current_user.present?
-      render json: events, meta: {member: true, admin: current_user.admin?}
+      render json: events, meta: {member: true, admin: current_user.admin? || current_user.mentor?}
     else
       render json: events, meta: {member: false, admin: false}, each_serializer: LimitedEventSerializer
     end

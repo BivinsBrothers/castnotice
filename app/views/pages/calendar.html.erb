@@ -6,8 +6,7 @@
   <h1>Calendar</h1>
   <h3>One chance for a great first impression</h3>
 
-  <%= link_to "Add Event", new_admin_event_path if current_user.try(:admin) %><br>
-
+  <%= link_to "Add Event", new_admin_event_path if current_user.try(:admin) || current_user.try(:mentor) %><br>
 
   <div class="calendar-events">
   </div>
