@@ -3,6 +3,9 @@
     <div class="bg-full" id="bg-headshot" style="background-image: url(<%= @resume.background_image.image_url(:background) %>)"></div>
   <% end %>
 <% end %>
+
+<%= link_to "Print Resume", print_resume_path, class: "btn" %>
+
 <h1><%= @resume.user.name %></h1>
 <h3><%= @resume.descriptive_tag %></h3>
 

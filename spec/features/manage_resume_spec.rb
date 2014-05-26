@@ -302,7 +302,7 @@ describe "manage resume" do
 
     click_link "dashboard-edit-resume"
 
-    click_link "Printable Resume"
+    click_link "Print Resume"
 
     expect(page).to have_content("Test Dummy")
     expect(page).to have_content("Awesome Union")
@@ -320,6 +320,22 @@ describe "manage resume" do
     expect(page).to have_content("Improve")
 
     expect(page).to have_content("Resume created by CastNotice")
+  end
+
+  it "shows parent info for minors printable resume" do
+    user.update_attributes(birthday: 5.years.ago, parent_name: "Joe Boxer", parent_email: "parent@fake.com",
+           parent_phone: "5551231234", parent_location: "Narnia", parent_city: "Elsewhere", parent_state: "Awesome",
+           parent_zip: "12345")
+
+    visit dashboard_path
+
+    click_link "dashboard-edit-resume"
+
+    click_link "Print Resume"
+
+    expect(page).to have_content("Joe Boxer")
+    expect(page).to have_content("parent@fake.com")
+    expect(page).to have_content("5551231234")
   end
 
   it "talent can add a custom slug to their public profile" do
