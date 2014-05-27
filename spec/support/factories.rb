@@ -13,7 +13,7 @@ FactoryGirl.define do
 
   factory :user do
     name "Test Dummy"
-    sequence(:email) {|n| "test#{n}@fake.com" }
+    sequence(:email) {|n| "test#{n + Kernel.rand}@fake.com" }
     password "goodpassword"
     birthday 27.years.ago
     tos "1"
@@ -122,5 +122,17 @@ FactoryGirl.define do
 
   factory :union do
     name "UEA"
+  end
+
+  factory :conversation do
+    association :recipient, factory: :user
+    association :sender, factory: :user
+    subject "Building a Hamburger"
+  end
+
+  factory :message do
+    # recipient { message.recipient }
+    # sender { message.sender }
+    body "Something important"
   end
 end

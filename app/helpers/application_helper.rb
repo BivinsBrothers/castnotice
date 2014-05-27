@@ -108,9 +108,17 @@ module ApplicationHelper
     category.map(&:name).to_sentence
   end
 
-  def new_messages
-    new_messages = Message.where(:read=>false, :to=>current_user.id).count().to_s
+  def message_toolbar
+    if current_user.unread_messages
+      unread_count = current_user.unread_messages.count
+      link_to "You have #{unread_count} new #{'message'.pluralize(unread_count)}", conversations_path
+    else
+      link_to "Messages", conversations_path
+    end
   end
 
-
+  def can_send_messages_to(recipient)
+    current_user.id != recipient.id unless current_user.nil?
+    # TODO: Mentors should not be able to send messages
+  end
 end

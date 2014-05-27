@@ -5,15 +5,14 @@ class User < ActiveRecord::Base
   has_one :resume
   has_one :background_image, -> { where is_background: true }, class_name: Headshot
 
-  has_one :resume
   has_many :projects
   has_many :schools
   has_many :headshots
   has_many :videos
 
-  has_many :received_messages, :class_name => 'Conversation', :foreign_key => 'to'
-  has_many :sent_messages, :class_name => 'Conversation', :foreign_key => 'from'
-  has_many :messages, :through => :conversations
+  has_many :received_messages, class: Message, foreign_key: :receipient_id
+  has_many :sent_messages, class: Message, foreign_key: :sender_id
+  has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
   has_many :critiques
 
   devise :database_authenticatable, :registerable,
@@ -30,5 +29,9 @@ class User < ActiveRecord::Base
 
   def under_18?
     birthday > 18.years.ago
+  end
+
+  def conversations
+    Converation.where("sender_id = ? OR recipient_id = ?", id, id)
   end
 end

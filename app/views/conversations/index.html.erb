@@ -1,0 +1,15 @@
+<h1>My Messages</h1>
+
+<div class="conversations">
+  <% @conversations.each do |conversation| %>
+    <div class="conversation">
+      <a class="conversation-detail" href="<%= conversation_path(conversation) %>">
+        <span class="wrapper <%= conversation.unread_messages_for? ? "unread" : "read" %>">
+          <span class="from">From <span class="correspondent"><%= conversation.correspondent.name %></span></span>
+          <span class="subject">Subject <span class="line"><%= conversation.subject %><span></span>
+        </span>
+      </a>
+    </div>
+  <% end %>
+</div>
+
