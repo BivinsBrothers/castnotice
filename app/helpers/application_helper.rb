@@ -117,8 +117,11 @@ module ApplicationHelper
     end
   end
 
+  def can_send_messages
+    current_user.present? && current_user.talent?
+  end
+
   def can_send_messages_to(recipient)
-    current_user.id != recipient.id unless current_user.nil?
-    # TODO: Mentors should not be able to send messages
+    current_user.id != recipient.id && can_send_messages
   end
 end

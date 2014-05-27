@@ -34,4 +34,12 @@ class User < ActiveRecord::Base
   def conversations
     Converation.where("sender_id = ? OR recipient_id = ?", id, id)
   end
+
+  def talent?
+    mentor == false
+  end
+
+  def mentor?
+    mentor
+  end
 end
