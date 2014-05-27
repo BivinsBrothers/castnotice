@@ -41,6 +41,9 @@ class ConversationsController < ApplicationController
   end
 
   def can_create_conversation
-    # TODO: Enforce that mentors cannot send messages
+    recipient = User.find(conversation_params[:recipient_id])
+    unless can_send_messages_to(recipient)
+      redirect_to public_resume_path(recipient)
+    end
   end
 end

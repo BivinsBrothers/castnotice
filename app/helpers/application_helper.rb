@@ -116,12 +116,4 @@ module ApplicationHelper
       link_to "Messages", conversations_path
     end
   end
-
-  def can_send_messages
-    current_user.present? && current_user.talent?
-  end
-
-  def can_send_messages_to(recipient)
-    current_user.id != recipient.id && can_send_messages
-  end
 end
