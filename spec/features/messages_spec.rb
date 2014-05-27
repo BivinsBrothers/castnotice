@@ -97,12 +97,17 @@ feature "talent messaging" do
     reply.reply
 
     expect(page).to have_content("Your reply has been sent")
-    
+
     dom_conversation = Dom::Conversation.first
     expect(dom_conversation.messages.count).to eq(2)
     expect(page).to have_content("We should probably make a game about legos and cows")
   end
 
-  scenario "a user cannot send messages to himself or herself"
+  scenario "a user cannot send messages to himself or herself" do
+    visit public_resume_path(user)
+
+    expect(page.text).not_to include("Send Message")
+
+  end
   scenario "mentors cannot send messages to any user"
 end
