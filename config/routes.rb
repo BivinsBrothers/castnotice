@@ -17,8 +17,10 @@ Castnotice::Application.routes.draw do
 
   resources :projects, except: [:new, :show, :index]
   resources :schools, except: [:new, :show, :index]
+  resources :critiques, only: [:new, :create, :show]
+
   resources :headshots, except: [:show, :edit]
-  resources :videos, only: [:new, :index, :create, :destroy]
+  resources :videos, except: [:show, :update, :edit]
 
   get "/contact" => "contacts#new", :as => "contact"
   resource :contacts, only: [:new, :create]

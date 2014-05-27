@@ -1,0 +1,26 @@
+<h1>Submit Critique Request</h1>
+
+<%= form_for @critique do |f| %>
+  <%= f.label :project_title, "Project Title" %>
+  <%= f.text_field :project_title %>
+  <%= f.label :notes, "Comments/Notes" %>
+  <%= f.text_area :notes %>
+
+  <h2>Critique Photos</h2>
+  <h3>Choose two photos</h3>
+  <div>
+    <%= f.fields_for :headshots do |ff| %>
+      <%= ff.file_field :image %>
+    <% end %>
+  </div>
+
+  <h2>Critique Video</h2>
+  <h3>Paste video URL</h3>
+  <div>
+    <%= f.fields_for :videos do |ff| %>
+      <%= ff.text_field :video_url %>
+    <% end %>
+  </div>
+
+  <%= f.submit "Submit Critique", id: "submit-critique" %>
+<% end %>

@@ -60,4 +60,7 @@
 		<h2>Experience <span><%= link_to 'Manage', edit_resume_path, class: "btn btn-small" %></span></h2>
     <%= render template: 'projects/show', locals: { projects: current_resume.projects } if current_resume.projects.present? %>
 	</div>
+  <div>
+    <%= link_to 'Create Critique Request', new_critique_path, class: "btn btn-small" %>
+  </div>
 </div>

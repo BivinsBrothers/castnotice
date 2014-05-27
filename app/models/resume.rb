@@ -12,15 +12,15 @@ class Resume < ActiveRecord::Base
 
   belongs_to :user
 
-  has_one :background_image, -> { where background: true }, class_name: Headshot
-  has_one :resume_photo, -> { where resume_photo: true }, class_name: Headshot
+  has_one :background_image, -> { where background: true }, class_name: Headshot, as: :imageable
+  has_one :resume_photo, -> { where resume_photo: true }, class_name: Headshot, as: :imageable
 
   has_many :resume_unions
   has_many :unions, through: :resume_unions
   has_many :projects
   has_many :schools
-  has_many :headshots
-  has_many :videos
+  has_many :headshots, as: :imageable
+  has_many :videos, as: :videoable
 
   validates :slug, uniqueness: true
 

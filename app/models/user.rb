@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_one :resume
+  has_many :critiques
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
