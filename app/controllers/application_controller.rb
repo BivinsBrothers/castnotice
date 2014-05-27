@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def can_send_messages_to(recipient)
-    current_user.id != recipient.id && can_send_messages
+    current_user.id != recipient.id && can_send_messages unless current_user.nil?
   end
 
   protected
