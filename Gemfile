@@ -29,6 +29,7 @@ gem "pry-rails"
 gem "tzinfo", platforms: [:mingw, :mswin]
 gem "tzinfo-data", platforms: [:mingw, :mswin]
 gem "honeybadger"
+gem "stripe"
 
 group :production, :staging do
   gem "rails_12factor"
