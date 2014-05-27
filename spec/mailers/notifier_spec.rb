@@ -8,7 +8,7 @@ describe Notifier do
                                      'Discounts for Broadway Breakthrough participants?') }
 
     it 'sends the email' do
-      expect(mail.to).to eq(['david@castnotice.com'])
+      expect(mail.to).to eq(['test@castnotice.com'])
     end
 
     it 'sends the email with subject' do
