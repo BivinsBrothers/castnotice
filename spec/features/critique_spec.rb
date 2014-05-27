@@ -3,11 +3,8 @@ require "spec_helper"
 feature "Critique workflow" do
   let(:user) { create(:user) }
 
-  before do
-    log_in user
-  end
-
   scenario "allows user to submit a critique" do
+    log_in user
     visit dashboard_path
 
     click_link "Create Critique Request"
@@ -41,9 +38,8 @@ feature "Critique workflow" do
   end
 
   scenario "mentor can see a critique request" do
-    mentor = create(:user, :mentor)
     critique = create(:critique, :user => user)
-    logout
+    mentor = create(:user, :mentor)
 
     log_in mentor
 

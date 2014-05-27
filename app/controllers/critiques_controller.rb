@@ -34,14 +34,7 @@ class CritiquesController < ApplicationController
   private
 
   def able_to_view?(critique)
-
-    if current_user.try(:admin?) || current_user.try(:mentor?)
-      true
-    elsif current_user == critique.user
-      true
-    else
-      false
-    end
+    current_user.admin? || current_user.mentor? || current_user == critique.user
   end
 
   def critique_params
