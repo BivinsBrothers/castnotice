@@ -13,9 +13,11 @@
 <h3>Now starring you.</h3>
 
 <%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
+<%= link_to "Print Resume", print_resume_path, class: "btn" %>
 <% if current_user.resume %>
   <h2>Your public resume URL: <%= public_resume_url(current_user.resume.slug) %></h2>
 <% end %>
+
 
 <div class="row">
 	<div class="col-md-8">
