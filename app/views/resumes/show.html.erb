@@ -7,7 +7,7 @@
 <%= link_to "Print Resume", print_resume_path, class: "btn" %>
 
 <h1><%= @resume.user.name %></h1>
-<%= link_to "Send Message", new_conversation_path(recipient_id: @resume.user) if can_send_messages_to(@resume.user) %>
+<%= link_to "Send Message", new_conversation_path(recipient_id: @resume.user) if can_send_messages_to?(@resume.user) %>
 <h3><%= @resume.descriptive_tag %></h3>
 
 <% if @resume.user.under_18? %>

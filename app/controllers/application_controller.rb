@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_resume
   helper_method :current_query
-  helper_method :can_send_messages_to
-  helper_method :can_send_messages
+  helper_method :can_send_messages_to?
+  helper_method :can_send_messages?
 
   def current_resume
     current_user.resume
@@ -18,12 +18,12 @@ class ApplicationController < ActionController::Base
     params[:q]
   end
 
-  def can_send_messages
-    current_user.present? && current_user.talent?
+  def can_send_messages?
+    current_user && current_user.talent?
   end
 
-  def can_send_messages_to(recipient)
-    can_send_messages && current_user.id != recipient.id
+  def can_send_messages_to?(recipient)
+    can_send_messages? && current_user.id != recipient.id
   end
 
   protected

@@ -42,7 +42,7 @@ class ConversationsController < ApplicationController
 
   def can_create_conversation
     recipient = User.find(conversation_params[:recipient_id])
-    unless can_send_messages_to(recipient)
+    unless can_send_messages_to?(recipient)
       redirect_to public_resume_path(recipient)
     end
   end
