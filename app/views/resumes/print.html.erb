@@ -13,10 +13,10 @@
         <p><%= @resume.user.email %></p>
       </div>
         <div class="col-md-8">
-          <% if current_user.birthday >= 18.years.ago %>
-            <p><%= current_user.parent_name %></p>
-            <p><%= current_user.parent_email %></p>
-            <p><%= current_user.parent_phone %></p>
+          <% if @resume.user.birthday >= 18.years.ago %>
+            <p><%= @resume.user.parent_name %></p>
+            <p><%= @resume.user.parent_email %></p>
+            <p><%= @resume.user.parent_phone %></p>
           <% end %>
         </div>
     </div>

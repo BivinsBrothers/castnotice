@@ -20,11 +20,6 @@ class ResumesController < ApplicationController
     end
   end
 
-  def print
-    @resume = current_resume
-    render "print", layout: "print"
-  end
-
   private
 
   def set_up_view_defaults
