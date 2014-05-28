@@ -4,11 +4,9 @@ class MessagesController < ApplicationController
   before_action :can_reply_to_conversation, only: :create
 
   def index
-    render :index
   end
 
   def show
-    render :show
   end
 
   def create
