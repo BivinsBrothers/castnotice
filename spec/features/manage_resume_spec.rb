@@ -293,51 +293,6 @@ describe "manage resume" do
     expect(page).to_not have_content("Masters")
   end
 
-  it "allows talent to print a resume" do
-    create(:school, resume: resume)
-    create(:project, resume: resume)
-    create(:headshot, resume: resume)
-
-    visit dashboard_path
-
-    click_link "dashboard-edit-resume"
-
-    click_link "Print Resume"
-
-    expect(page).to have_content("Test Dummy")
-    expect(page).to have_content("Awesome Union")
-    expect(page).to have_content("1-616-555-4567")
-    expect(page).to have_content(user.email)
-    expect(page).to have_content("Experience")
-    expect(page).to have_content("Wizzard of OZ")
-    expect(page).to have_content("Dorothy")
-    expect(page).to have_content("Disney Studios")
-    expect(page).to have_content("Education")
-    expect(page).to have_content("University of Michigan")
-    expect(page).to have_content("Acting")
-    expect(page).to have_content("Associates Degree in Creative Dance")
-    expect(page).to have_content("Special Skills")
-    expect(page).to have_content("Improve")
-
-    expect(page).to have_content("Resume created by CastNotice")
-  end
-
-  it "shows parent info for minors printable resume" do
-    user.update_attributes(birthday: 5.years.ago, parent_name: "Joe Boxer", parent_email: "parent@fake.com",
-           parent_phone: "5551231234", parent_location: "Narnia", parent_city: "Elsewhere", parent_state: "Awesome",
-           parent_zip: "12345")
-
-    visit dashboard_path
-
-    click_link "dashboard-edit-resume"
-
-    click_link "Print Resume"
-
-    expect(page).to have_content("Joe Boxer")
-    expect(page).to have_content("parent@fake.com")
-    expect(page).to have_content("5551231234")
-  end
-
   it "talent can add a custom slug to their public profile" do
     visit edit_resume_path
 
