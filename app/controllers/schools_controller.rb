@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :store_location
+  before_action :authenticate_user!
 
   def new
     @school = School.new
