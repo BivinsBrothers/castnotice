@@ -4,7 +4,7 @@ feature "public resume view" do
   scenario "displays public resume attributes" do
     resume = create(:resume, descriptive_tag: "Watch out!")
 
-    visit public_resume_path(resume.friendly_id)
+    visit public_resume_path(resume)
 
     expect(page).to have_content("Watch out!")
   end
@@ -13,7 +13,7 @@ feature "public resume view" do
     user = create(:user, :with_parent, birthday: 17.years.from_now, parent_name: "Bam Mam")
     resume = create(:resume, user: user)
 
-    visit public_resume_path(resume.friendly_id)
+    visit public_resume_path(resume)
 
     expect(page).to have_content("Parental Information")
     expect(page).to have_content("Bam Mam")

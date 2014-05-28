@@ -57,7 +57,7 @@ feature "talent messaging" do
     scenario "a user can write a message to another user" do
       recipient = create(:user, name: "Joaquin Phoenix")
 
-      visit public_resume_path(recipient)
+      visit public_resume_path(recipient.resume)
 
       click_link "Send Message"
 
@@ -106,7 +106,7 @@ feature "talent messaging" do
     end
 
     scenario "a user cannot send messages to himself or herself" do
-      visit public_resume_path(user)
+      visit public_resume_path(user.resume)
 
       expect(page.text).not_to include("Send Message")
     end
@@ -122,7 +122,7 @@ feature "talent messaging" do
     end
 
     scenario "mentors cannot send messages to users" do
-      visit public_resume_path(user)
+      visit public_resume_path(user.resume)
 
       expect(page.text).not_to include("Send Message")
     end
