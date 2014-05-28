@@ -29,7 +29,7 @@ gem "pry-rails"
 gem "tzinfo", platforms: [:mingw, :mswin]
 gem "tzinfo-data", platforms: [:mingw, :mswin]
 gem "honeybadger"
-gem "stripe"
+gem "stripe-rails"
 
 group :production, :staging do
   gem "rails_12factor"
@@ -56,4 +56,5 @@ end
 
 group :test do
   gem "codeclimate-test-reporter", require: nil
+  gem "puffing-billy"
 end
