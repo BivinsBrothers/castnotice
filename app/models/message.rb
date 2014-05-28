@@ -8,6 +8,13 @@ class Message < ActiveRecord::Base
   # AB: This doesn't seem possible... maybe this needs to be handled in the Conversation model?
   # validates :conversation_id, presence: true
 
+  def self.unread_for?(recipient, conversation)
+    where(recipient_id: recipient.id).
+    where(conversation_id: conversation.id).
+    where("recipient_read_at IS null").
+    present?
+  end
+
   private
 
   def set_sender_and_receipient
