@@ -18,11 +18,11 @@ $ ->
   $form.submit (e) =>
     return true if token
     $form.find("button").prop("disabled", true)
+    dates = $("#expiration").val().split("/")
     Stripe.card.createToken({
       number: $("#card_number").val(),
-      cvc: $("#cvc").val(),
-      exp_month: $("#expiration_month").val(),
-      exp_year: $("#expiration_year").val()
+      exp_month: dates[0],
+      exp_year: dates[1]
     }, stripeHandler)
     false
 

@@ -22,11 +22,10 @@ end
 Capybara.javascript_driver = :poltergeist_billy
 
 Billy.configure do |c|
-  c.cache = false
+  c.cache = true
   c.cache_request_headers = false
-  c.persist_cache = false
+  c.persist_cache = true
   c.cache_path = "spec/billy_cache"
-  # c.non_successful_error_level = :error
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,

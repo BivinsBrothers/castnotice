@@ -20,15 +20,17 @@ feature "registration", js: true do
     select "1968", from: "user_birthday_1i"
     select "March", from: "user_birthday_2i"
     select "14", from: "user_birthday_3i"
-    check "Accept our Terms of Service"
 
     fill_in "Card Number", with: "4242424242424242"
-    # fill_in "CVC", with: "567"
-    fill_in "Expiration (MM/YYYY)", with: "01/2019"
+    fill_in "Expiration (MM/YYYY)", with: "01/2017"
+
+    check "Accept our Terms of Service"
 
     click_button "Sign up"
+    
+    sleep 5
 
-    expect(page.text).to include("Hello Joe Bredow")
+    expect(page).to have_content("Hello Joe Bredow")
 
     expect(current_path).to eq(dashboard_path)
   end
