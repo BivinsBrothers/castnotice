@@ -67,6 +67,7 @@ FactoryGirl.define do
   end
 
   factory :critique do
+    user
     project_title "Chicago"
     notes "What could I improve on?"
   end

@@ -19,6 +19,7 @@ Castnotice::Application.routes.draw do
   resources :projects, except: [:new, :show, :index]
   resources :schools, except: [:new, :show, :index]
   resources :critiques, only: [:new, :create, :show]
+  resources :critique_responses, only: [:create]
 
   resources :headshots, except: [:show, :edit]
   resources :videos, except: [:show, :update, :edit]

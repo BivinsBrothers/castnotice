@@ -23,6 +23,8 @@ class CritiquesController < ApplicationController
 
   def show
     @critique = Critique.find_by_uuid(params[:id])
+    @critique_response = CritiqueResponse.new
+
     if able_to_view?(@critique)
       render :show
     else
@@ -38,6 +40,7 @@ class CritiquesController < ApplicationController
   end
 
   def critique_params
-    params.require(:critique).permit(:project_title, :notes, headshots_attributes: [:image], videos_attributes: [:video_url])
+    params.require(:critique).permit(:project_title, :notes, headshots_attributes: [:image],
+                                     videos_attributes: [:video_url])
   end
 end

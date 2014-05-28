@@ -3,6 +3,8 @@ class Critique < ActiveRecord::Base
   has_many :headshots, as: :imageable
   has_many :videos, as: :videoable
 
+  has_one :critique_response
+
   accepts_nested_attributes_for :headshots, :videos, reject_if: :all_blank
 
   before_save :set_uuid

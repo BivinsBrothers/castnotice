@@ -38,17 +38,54 @@ feature "Critique workflow" do
   end
 
   scenario "mentor can see a critique request" do
-    critique = create(:critique, :user => user)
+    critique = create(:critique, :project_title => "OZ", :notes => "Improve what?")
     mentor = create(:user, :mentor)
 
-    the_critique_url = root_url + "critiques/" + critique.uuid
+    log_in mentor
 
-    visit the_critique_url
+    visit critique_path(critique.uuid)
+
+    expect(page).to have_content("Critique Requested")
+    expect(page).to have_content("OZ")
+    expect(page).to have_content("Improve what?")
+  end
+
+  scenario "mentor can respond to a critique request" do
+    critique = create(:critique, :project_title => "Brave", :notes => "Thoughts?")
+    mentor = create(:user, :mentor)
+
+    log_in mentor
+
+    visit critique_path(critique.uuid)
 
     log_in mentor
 
     expect(page).to have_content("Critique Requested")
-    expect(page).to have_content("Chicago")
-    expect(page).to have_content("What could I improve on?")
+    expect(page).to have_content("Brave")
+    expect(page).to have_content("Thoughts?")
+
+    expect(page).to_not have_content("Critique Response")
+
+    expect(page).to have_content("Please type your response here.")
+
+    fill_in "critique_response_response", with: "Looks Great!"
+
+    click_button "Respond"
+
+    expect(page).to have_content("Your response has been sent.")
+
+    expect(page).to have_content("Hello Test Dummy")
+
+    open_email Figaro.env.castnotice_admin_email
+    the_critique_url = root_url + "critiques/" + Critique.last.uuid
+    expect(current_email).to have_content(the_critique_url)
+
+    visit critique_path(critique.uuid)
+
+    expect(page).to have_content("Critique Response")
+
+    expect(page).to_not have_content("Please type your response here.")
+
   end
+
 end
