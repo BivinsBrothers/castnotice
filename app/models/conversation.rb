@@ -9,4 +9,12 @@ class Conversation < ActiveRecord::Base
 
   scope :for_user, lambda { |uid| where('conversations.sender_id = ? OR conversations.recipient_id = ?', uid, uid) }
   scope :ordered_by_recent_activity, -> { order("recent_message_created_at DESC") }
+
+  def other_correspondent_for(sender)
+    if sender == self.sender
+      self.recipient
+    elsif sender == self.recipient
+      self.sender
+    end
+  end
 end

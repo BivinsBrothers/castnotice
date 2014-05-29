@@ -17,9 +17,10 @@
   </div>
   <div class="reply-conversation">
     <%= form_for @message do |f| %>
-      <%= hidden_field "message", "conversation_id", value: @conversation.id %>
       <%= f.label :body, "Message" %>
       <%= f.text_area :body %>
+      <%= f.hidden_field :recipient_id %>
+      <%= f.hidden_field :conversation_id, value: @conversation.id %>
       <%= f.submit "Reply" %>
     <% end %>
   </div>

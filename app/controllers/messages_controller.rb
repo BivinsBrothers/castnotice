@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    if @conversation.messages.create(message_params)
+    if @conversation.messages.create(message_params.merge({sender_id: current_user.id}))
       flash[:notice] = "Your reply has been sent"
     else
       flash[:failure] = "Unable to reply to message"
@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :conversation_id)
+    params.require(:message).permit(:body, :conversation_id, :recipient_id, :sender_id)
   end
 
   def set_conversation

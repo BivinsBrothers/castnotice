@@ -11,7 +11,7 @@ feature "talent messaging" do
 
     scenario "a user sees unread count in header" do
       conversation = create(:conversation, recipient: user)
-      create(:message, recipient: user, conversation: conversation)
+      create(:message, conversation: conversation)
 
       visit dashboard_path
 
@@ -21,11 +21,13 @@ feature "talent messaging" do
 
     scenario "a user can view a list of all their conversations" do
       conversation1 = create(:conversation, recipient: user, subject: "Finding words")
-      conversation1.messages << build(:message)
+      create(:message, conversation: conversation1)
+
       conversation2 = create(:conversation, recipient: user, subject: "Umbrellas")
-      conversation2.messages << build(:message)
+      create(:message, conversation: conversation2)
+
       conversation3 = create(:conversation, sender: user, subject: "Doesn't matter")
-      conversation3.messages << build(:message)
+      create(:message, conversation: conversation3)
 
       conversation1.messages.first.update_attributes(recipient_read_at: 7.days.ago)
       conversation1.update_attributes(recent_message_created_at: 14.days.ago)
@@ -84,7 +86,7 @@ feature "talent messaging" do
     scenario "a user can respond to a message they have received" do
       sender = create(:user, name: "Chris Farley")
       conversation = create(:conversation, sender: sender, recipient: user)
-      conversation.messages << build(:message)
+      create(:message, conversation: conversation)
 
       visit conversations_path
 

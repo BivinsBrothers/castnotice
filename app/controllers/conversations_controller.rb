@@ -10,20 +10,31 @@ class ConversationsController < ApplicationController
 
   def new
     @recipient = User.find(params[:recipient_id])
-    @conversation = Conversation.new
-    @conversation.recipient_id = @recipient.id
-    @conversation.messages.build
+
+    @conversation = Conversation.new({
+      recipient_id: @recipient.id,
+      sender_id: current_user.id
+    })
+
+    @conversation.messages.build({
+      recipient_id: @recipient.id,
+      sender_id: current_user.id
+    })
   end
 
   def show
     @conversation = Conversation.find(params[:id]).decorate(context: {user: current_user})
-    @message = Message.new
+
+    @message = Message.new({
+      recipient_id: @conversation.other_correspondent_for(current_user).id,
+      sender_id: current_user.id
+    })
   end
 
   def create
-    @conversation = Conversation.new(
-      conversation_params.merge({sender_id: current_user.id})
-    )
+    @conversation = Conversation.new(conversation_params)
+    @conversation.messages.first.sender = current_user
+    @conversation.sender = current_user
 
     if @conversation.save
       flash[:notice] = "Your message has been sent"
@@ -37,7 +48,8 @@ class ConversationsController < ApplicationController
   private
 
   def conversation_params
-    params.require(:conversation).permit(:subject, :recipient_id, messages_attributes: [:body])
+    params.require(:conversation).permit(:subject, :recipient_id, :sender_id,
+                                         messages_attributes: [:body, :recipient_id, :sender_id])
   end
 
   def enforce_create_permission

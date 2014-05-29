@@ -128,11 +128,19 @@ FactoryGirl.define do
     association :recipient, factory: :user
     association :sender, factory: :user
     subject "Building a Hamburger"
+
+    trait :with_message do
+      messages { [create(:message)] }
+    end
   end
 
   factory :message do
-    # recipient { message.recipient }
-    # sender { message.sender }
+    conversation
     body "Something important"
+
+    before(:create) do |message|
+      message.recipient ||= message.conversation.recipient
+      message.sender ||= message.conversation.sender
+    end
   end
 end
