@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_conversation, only: :create
-  before_action :can_reply_to_conversation, only: :create
+  before_action :can_reply_to_conversation?, only: :create
 
   def index
   end
@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  def can_reply_to_conversation
+  def can_reply_to_conversation?
     @conversation.recipient_id == current_user.id
   end
 end
