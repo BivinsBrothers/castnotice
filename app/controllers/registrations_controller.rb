@@ -10,22 +10,16 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    begin
-      user = User.new(registration_params)
-      if user.save()
-        user.create_resume
-        customer = Stripe::Customer.create(card: params[:stripe_token], description: user.id)
-        user.update_attributes({stripe_customer_id: customer.id})
-        #todo actually charge their card
-        sign_in(user)
-        redirect_to :dashboard
-      else
-        @user = user
-        render :new
-      end
-    rescue Stripe::StripeError => e
-      flash[:error] = e.message
-      @user = user
+    result = CreateUserAndStripeCustomer.perform(
+      user_attributes: registration_params,
+      stripe_token: params[:stripe_token]
+    )
+    if result.success?
+      sign_in result.context[:user]
+      redirect_to dashboard_path
+    else
+      @user = result.context.user
+      flash[:error] = result.context.error
       render :new
     end
   end

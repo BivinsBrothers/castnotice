@@ -19,13 +19,19 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, inspector: true, timeout: 60)
 end
 
-Capybara.javascript_driver = :poltergeist_billy
-
 Billy.configure do |c|
   c.cache = true
-  c.cache_request_headers = false
+  c.ignore_params = [
+    "http://get_fonts.googleapis.com",
+    "http://netdna.bootstrapcdn.com"]
   c.persist_cache = true
   c.cache_path = "spec/billy_cache"
+end
+Capybara.javascript_driver = :poltergeist_billy
+
+VCR.configure do |c|
+  c.cassette_library_dir = "spec/cassettes"
+  c.hook_into :webmock
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
