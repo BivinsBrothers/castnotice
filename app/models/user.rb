@@ -5,11 +5,6 @@ class User < ActiveRecord::Base
   has_one :resume
   has_one :background_image, -> { where is_background: true }, class_name: Headshot
 
-  has_many :projects
-  has_many :schools
-  has_many :headshots
-  has_many :videos
-
   has_many :received_messages, class: Message, foreign_key: :receipient_id
   has_many :sent_messages, class: Message, foreign_key: :sender_id
   has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
@@ -36,10 +31,6 @@ class User < ActiveRecord::Base
   end
 
   def talent?
-    mentor == false
-  end
-
-  def mentor?
-    mentor
+    !mentor && !admin
   end
 end
