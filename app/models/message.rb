@@ -9,6 +9,6 @@ class Message < ActiveRecord::Base
     where(recipient_id: recipient.id).
     where(conversation_id: conversation.id).
     where("recipient_read_at IS null").
-    present?
+    exists?
   end
 end
