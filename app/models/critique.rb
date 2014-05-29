@@ -3,7 +3,7 @@ class Critique < ActiveRecord::Base
   has_many :headshots, as: :imageable
   has_many :videos, as: :videoable
 
-  has_one :critique_response
+  has_one :response, class_name: 'CritiqueResponse'
 
   accepts_nested_attributes_for :headshots, :videos, reject_if: :all_blank
 

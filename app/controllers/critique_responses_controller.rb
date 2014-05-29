@@ -3,7 +3,7 @@ class CritiqueResponsesController < ApplicationController
 
   def create
     @critique = Critique.find_by_uuid(params[:critique])
-    @critique_response = CritiqueResponse.new(critique_response_params.merge(user_id: current_user.id, critique: @critique))
+    @critique_response = @critique.build_response(critique_response_params.merge(user_id: current_user.id))
     if @critique_response.save
       Notifier.critique_response(@critique).deliver
       flash[:success] = "Your response has been sent."

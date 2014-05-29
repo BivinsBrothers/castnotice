@@ -36,12 +36,12 @@
   <% end %>
 <% end %>
 
-<% if @critique.critique_response %>
+<% if @critique.response %>
   <h3>Critique Response</h3>
-  <p><%= @critique.critique_response.response %></p>
+  <p><%= @critique.response %></p>
 <% end %>
 
-<% if !@critique.critique_response && current_user.mentor? %>
+<% if !@critique.response && current_user.mentor? %>
   <%= form_for @critique_response, :url => critique_responses_path, :method => :post do |f| %>
    <%= f.label :response, "Please type your response here." %>
    <%= hidden_field_tag :critique, @critique.uuid %>
