@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :can_create_conversation, only: [:create]
+  before_action :enforce_create_permission, only: [:create]
 
   def index
     @conversations = Conversation.for_user(current_user.id)
@@ -40,7 +40,7 @@ class ConversationsController < ApplicationController
     params.require(:conversation).permit(:subject, :recipient_id, messages_attributes: [:body])
   end
 
-  def can_create_conversation
+  def enforce_create_permission
     recipient = User.find(conversation_params[:recipient_id])
     unless can_send_messages_to?(recipient)
       redirect_to public_resume_path(recipient)
