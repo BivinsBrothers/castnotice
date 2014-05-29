@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def conversations
-    Converation.where("sender_id = ? OR recipient_id = ?", id, id)
+    Conversation.where("sender_id = ? OR recipient_id = ?", id, id)
   end
 
   def talent?
