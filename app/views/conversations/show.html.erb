@@ -1,8 +1,8 @@
-<h1>Conversation with <%= @conversation.correspondent.name %> </h1>
+<h1>Conversation with <%= @correspondent.name %> </h1>
 <div class="conversation">
   <div class="conversation-header">
     <div class="from">
-      From <div class="correspondent"><%= link_to @conversation.correspondent.name, public_resume_path(@conversation.correspondent.resume.slug) %></div>
+      From <div class="correspondent"><%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %></div>
     <div/>
     <div class="subject">
       Subject <div class="line"><%= @conversation.subject %></div>

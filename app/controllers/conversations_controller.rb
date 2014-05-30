@@ -3,9 +3,7 @@ class ConversationsController < ApplicationController
   before_action :enforce_messaging_permissions
 
   def index
-    @conversations = Conversation.for_user(current_user.id)
-                                 .ordered_by_recent_activity
-                                 .decorate(context: {user: current_user})
+    @conversations = Conversation.for_user(current_user.id).ordered_by_recent_activity
   end
 
   def new
@@ -23,11 +21,13 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @conversation = current_user.conversations.find(params[:id]).decorate(context: {user: current_user})
+    @conversation = current_user.conversations.find(params[:id])
     @conversation.mark_messages_read_for(current_user)
 
+    @correspondent = @conversation.other_correspondent_with(current_user)
+
     @message = Message.new({
-      recipient_id: @conversation.other_correspondent_for(current_user).id,
+      recipient_id: @conversation.other_correspondent_with(current_user).id,
       sender_id: current_user.id
     })
   end
