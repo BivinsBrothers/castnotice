@@ -33,4 +33,12 @@ class User < ActiveRecord::Base
   def talent?
     !mentor && !admin
   end
+
+  def can_send_messages?
+    talent?
+  end
+
+  def can_send_messages_to?(recipient)
+    can_send_messages? && self.id != recipient.id
+  end
 end
