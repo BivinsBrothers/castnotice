@@ -20578,87 +20578,6 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 30 May 2014 14:11:01 GMT
 - request:
-    method: post
-    uri: https://api.stripe.com/v1/customers
-    body:
-      encoding: US-ASCII
-      string: description=1
-    headers:
-      Accept:
-      - '*/*; q=0.5, application/xml'
-      Accept-Encoding:
-      - gzip, deflate
-      User-Agent:
-      - Stripe/v1 RubyBindings/1.12.0
-      Authorization:
-      - Bearer sk_test_mCsq5DgmBtgwjx4wrrqB64l0
-      Content-Type:
-      - application/x-www-form-urlencoded
-      X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"1.12.0","lang":"ruby","lang_version":"2.0.0 p247 (2013-06-27)","platform":"x86_64-darwin13.1.0","publisher":"stripe","uname":"Darwin
-        rivendell.i 13.2.0 Darwin Kernel Version 13.2.0: Thu Apr 17 23:03:13 PDT 2014;
-        root:xnu-2422.100.13~1/RELEASE_X86_64 x86_64"}'
-      Content-Length:
-      - '13'
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Fri, 30 May 2014 14:11:02 GMT
-      Content-Type:
-      - application/json;charset=utf-8
-      Content-Length:
-      - '593'
-      Stripe-Version:
-      - '2014-05-19'
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Max-Age:
-      - '300'
-      Cache-Control:
-      - no-cache, no-store
-      Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
-    body:
-      encoding: UTF-8
-      string: |
-        {
-          "object": "customer",
-          "created": 1401459061,
-          "id": "cus_486wKFjPVtzbaY",
-          "livemode": false,
-          "description": "1",
-          "email": null,
-          "delinquent": false,
-          "metadata": {},
-          "subscriptions": {
-            "object": "list",
-            "total_count": 0,
-            "has_more": false,
-            "url": "/v1/customers/cus_486wKFjPVtzbaY/subscriptions",
-            "data": []
-          },
-          "discount": null,
-          "account_balance": 0,
-          "currency": null,
-          "cards": {
-            "object": "list",
-            "total_count": 0,
-            "has_more": false,
-            "url": "/v1/customers/cus_486wKFjPVtzbaY/cards",
-            "data": []
-          },
-          "default_card": null
-        }
-    http_version: 
-  recorded_at: Fri, 30 May 2014 14:11:02 GMT
-- request:
     method: get
     uri: http://127.0.0.1:54212/__identify__
     body:
@@ -22476,61 +22395,6 @@ http_interactions:
     http_version: 
   recorded_at: Fri, 30 May 2014 14:34:49 GMT
 - request:
-    method: put
-    uri: http://localhost:9200/resumes/resume/15
-    body:
-      encoding: UTF-8
-      string: '{"id":15,"height":null,"weight":null,"hair_color":null,"eye_color":null,"phone":null,"agent_name":null,"agent_phone":null,"additional_skills":null,"created_at":"2014-05-30T14:34:49.030Z","updated_at":"2014-05-30T14:34:49.030Z","user_id":null,"descriptive_tag":null,"gender":null,"hair_length":null,"piercing":null,"tattoo":null,"citizen":null,"passport":null,"phone_two":null,"manager_name":null,"manager_phone":null,"agent_email":null,"agent_location":null,"agent_location_two":null,"agent_city":null,"agent_state":null,"agent_zip":null,"agent_type":null,"slug":"joe-bredow","unions":[],"projects":[],"schools":[],"user":{"name":"Joe
-        Bredow"}}'
-    headers:
-      User-Agent:
-      - Faraday v0.9.0
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - '*/*'
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Content-Length:
-      - '78'
-    body:
-      encoding: UTF-8
-      string: '{"_index":"resumes","_type":"resume","_id":"15","_version":20,"created":false}'
-    http_version: 
-  recorded_at: Fri, 30 May 2014 14:34:49 GMT
-- request:
-    method: post
-    uri: http://localhost:9200/resumes/resume/15/_update
-    body:
-      encoding: UTF-8
-      string: '{"doc":{"user_id":15}}'
-    headers:
-      User-Agent:
-      - Faraday v0.9.0
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - '*/*'
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Content-Type:
-      - application/json; charset=UTF-8
-      Content-Length:
-      - '62'
-    body:
-      encoding: UTF-8
-      string: '{"_index":"resumes","_type":"resume","_id":"15","_version":21}'
-    http_version: 
-  recorded_at: Fri, 30 May 2014 14:34:49 GMT
-- request:
     method: get
     uri: https://js.stripe.com/v2/?_=1401460489460
     body:
@@ -23995,4 +23859,1230 @@ http_interactions:
         need to be longer than one character"}}}.call(this);
     http_version: 
   recorded_at: Fri, 30 May 2014 14:52:53 GMT
+- request:
+    method: get
+    uri: http://127.0.0.1:55986/__identify__
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.0.0/2013-06-27)
+      Date:
+      - Fri, 30 May 2014 15:00:06 GMT
+      Content-Length:
+      - '14'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '70270493927220'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:06 GMT
+- request:
+    method: get
+    uri: https://js.stripe.com/v2/?_=1401462008736
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:55986/
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:00:09 GMT
+      Content-Type:
+      - application/x-javascript
+      Content-Length:
+      - '10534'
+      Last-Modified:
+      - Tue, 01 Apr 2014 00:57:25 GMT
+      Connection:
+      - close
+      Etag:
+      - '"533a0ef5-2926"'
+      Accept-Ranges:
+      - bytes
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: (function(){var e,t,n,r,i,s={}.hasOwnProperty,o=function(e,t){function
+        r(){this.constructor=e}for(var n in t)s.call(t,n)&&(e[n]=t[n]);return r.prototype=t.prototype,e.prototype=new
+        r,e.__super__=t.prototype,e},u=this;this.Stripe=function(){function e(){}return
+        e.version=2,e.endpoint="https://api.stripe.com/v1",e.setPublishableKey=function(t){e.key=t},e.complete=function(t){return
+        function(n,r,i){var s;if(n!=="success")return s=Math.round((new Date).getTime()/1e3),(new
+        Image).src="https://q.stripe.com?event=stripejs-error&type="+n+"&key="+e.key+"&timestamp="+s,typeof
+        t=="function"?t(500,{error:{code:n,type:n,message:"An unexpected error has
+        occurred submitting your credit\ncard to our secure credit card processor.
+        This may be\ndue to network connectivity issues, so you should try\nagain
+        (you won't be charged twice). If this problem\npersists, please let us know!"}}):void
+        0}},e}.call(this),e=this.Stripe,this.Stripe.token=function(){function t(){}return
+        t.validate=function(e,t){if(!e)throw t+" required";if(typeof e!="object")throw
+        t+" invalid"},t.formatData=function(t,n){return e.utils.isElement(t)&&(t=e.utils.paramsFromForm(t,n)),e.utils.underscoreKeys(t),t},t.create=function(t,n){return
+        t.key||(t.key=e.key||e.publishableKey),e.utils.validateKey(t.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens",data:t,method:"POST",success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t.get=function(t,n){if(!t)throw"token
+        required";return e.utils.validateKey(e.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens/"+t,data:{key:e.key},success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t}.call(this),this.Stripe.card=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="card",n.whitelistedAttrs=["number","cvc","exp_month","exp_year","name","address_line1","address_line2","address_city","address_state","address_zip","address_country"],n.createToken=function(t,r,i){var
+        s;return r==null&&(r={}),e.token.validate(t,"card"),typeof r=="function"?(i=r,r={}):typeof
+        r!="object"&&(s=parseInt(r,10),r={},s>0&&(r.amount=s)),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateCardNumber=function(e){return e=(e+"").replace(/\s+|-/g,""),e.length>=10&&e.length<=16&&n.luhnCheck(e)},n.validateCVC=function(t){return
+        t=e.utils.trim(t),/^\d+$/.test(t)&&t.length>=3&&t.length<=4},n.validateExpiry=function(t,n){var
+        r,i;return t=e.utils.trim(t),n=e.utils.trim(n),/^\d+$/.test(t)?/^\d+$/.test(n)?parseInt(t,10)<=12?(i=new
+        Date(n,t),r=new Date,i.setMonth(i.getMonth()-1),i.setMonth(i.getMonth()+1,1),i>r):!1:!1:!1},n.luhnCheck=function(e){var
+        t,n,r,i,s,o;r=!0,i=0,n=(e+"").split("").reverse();for(s=0,o=n.length;s<o;s++){t=n[s],t=parseInt(t,10);if(r=!r)t*=2;t>9&&(t-=9),i+=t}return
+        i%10===0},n.cardType=function(e){return n.cardTypes[e.slice(0,2)]||"Unknown"},n.cardTypes=function(){var
+        e,t,n,r;t={};for(e=n=40;n<=49;e=++n)t[e]="Visa";for(e=r=50;r<=59;e=++r)t[e]="MasterCard";return
+        t[34]=t[37]="American Express",t[60]=t[62]=t[64]=t[65]="Discover",t[35]="JCB",t[30]=t[36]=t[38]=t[39]="Diners
+        Club",t}(),n}.call(this,this.Stripe.token),this.Stripe.bankAccount=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="bank_account",n.whitelistedAttrs=["country","routing_number","account_number"],n.createToken=function(t,r,i){return
+        r==null&&(r={}),e.token.validate(t,"bank account"),typeof r=="function"&&(i=r,r={}),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateRoutingNumber=function(t,r){t=e.utils.trim(t);switch(r){case"US":return/^\d+$/.test(t)&&t.length===9&&n.routingChecksum(t);case"CA":return/\d{5}\-\d{3}/.test(t)&&t.length===9;default:return!0}},n.validateAccountNumber=function(t,n){t=e.utils.trim(t);switch(n){case"US":return/^\d+$/.test(t)&&t.length>=1&&t.length<=17;default:return!0}},n.routingChecksum=function(e){var
+        t,n,r,i,s,o;r=0,t=(e+"").split(""),o=[0,3,6];for(i=0,s=o.length;i<s;i++)n=o[i],r+=parseInt(t[n])*3,r+=parseInt(t[n+1])*7,r+=parseInt(t[n+2]);return
+        r!==0&&r%10===0},n}.call(this,this.Stripe.token),t=["createToken","getToken","cardType","validateExpiry","validateCVC","validateCardNumber"];for(r=0,i=t.length;r<i;r++)n=t[r],this.Stripe[n]=this.Stripe.card[n];typeof
+        module!="undefined"&&module!==null&&(module.exports=this.Stripe),typeof define=="function"&&define("stripe",[],function(){return
+        u.Stripe})}).call(this),function(){var e,t,n,r=[].slice;e=encodeURIComponent,t=(new
+        Date).getTime(),n=function(t,r,i){var s,o;r==null&&(r=[]);for(s in t)o=t[s],i&&(s=""+i+"["+s+"]"),typeof
+        o=="object"?n(o,r,s):r.push(""+s+"="+e(o));return r.join("&").replace(/%20/g,"+")},this.Stripe.ajaxJSONP=function(e){var
+        i,s,o,u,a,f;return e==null&&(e={}),o="sjsonp"+ ++t,a=document.createElement("script"),s=null,i=function(t){var
+        n;return t==null&&(t="abort"),clearTimeout(s),(n=a.parentNode)!=null&&n.removeChild(a),o
+        in window&&(window[o]=function(){}),typeof e.complete=="function"?e.complete(t,f,e):void
+        0},f={abort:i},a.onerror=function(){return f.abort(),typeof e.error=="function"?e.error(f,e):void
+        0},window[o]=function(){var t;t=1<=arguments.length?r.call(arguments,0):[],clearTimeout(s),a.parentNode.removeChild(a);try{delete
+        window[o]}catch(n){window[o]=void 0}return typeof e.success=="function"&&e.success.apply(e,t),typeof
+        e.complete=="function"?e.complete("success",f,e):void 0},e.data||(e.data={}),e.data.callback=o,e.method&&(e.data._method=e.method),a.src=e.url+"?"+n(e.data),u=document.getElementsByTagName("head")[0],u.appendChild(a),e.timeout>0&&(s=setTimeout(function(){return
+        f.abort("timeout")},e.timeout)),f}}.call(this),function(){var e=[].indexOf||function(e){for(var
+        t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return t;return-1};this.Stripe.utils=function(){function
+        t(){}return t.trim=function(e){return(e+"").replace(/^\s+|\s+$/g,"")},t.underscore=function(e){return(e+"").replace(/([A-Z])/g,function(e){return"_"+e.toLowerCase()}).replace(/-/g,"_")},t.underscoreKeys=function(e){var
+        t,n,r;r=[];for(t in e)n=e[t],delete e[t],r.push(e[this.underscore(t)]=n);return
+        r},t.isElement=function(e){return typeof e!="object"?!1:typeof jQuery!="undefined"&&jQuery!==null&&e
+        instanceof jQuery?!0:e.nodeType===1},t.paramsFromForm=function(t,n){var r,i,s,o,u,a,f,l,c,h;n==null&&(n=[]),typeof
+        jQuery!="undefined"&&jQuery!==null&&t instanceof jQuery&&(t=t[0]),s=t.getElementsByTagName("input"),u=t.getElementsByTagName("select"),a={};for(f=0,c=s.length;f<c;f++){i=s[f],r=this.underscore(i.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;a[r]=i.value}for(l=0,h=u.length;l<h;l++){o=u[l],r=this.underscore(o.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;o.selectedIndex!=null&&(a[r]=o.options[o.selectedIndex].value)}return
+        a},t.validateKey=function(e){if(!e||typeof e!="string")throw new Error("You
+        did not set a valid publishable key. Call Stripe.setPublishableKey() with
+        your publishable key. For more info, see https://stripe.com/docs/stripe.js");if(/\s/g.test(e))throw
+        new Error("Your key is invalid, as it contains whitespace. For more info,
+        see https://stripe.com/docs/stripe.js");if(/^sk_/.test(e))throw new Error("You
+        are using a secret key with Stripe.js, instead of the publishable one. For
+        more info, see https://stripe.com/docs/stripe.js")},t}()}.call(this),function(){var
+        e=[].indexOf||function(e){for(var t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return
+        t;return-1};this.Stripe.validator={"boolean":function(e,t){if(t!=="true"&&t!=="false")return"Enter
+        a boolean string (true or false)"},integer:function(e,t){if(!/^\d+$/.test(t))return"Enter
+        an integer"},positive:function(e,t){if(!(!this.integer(e,t)&&parseInt(t,10)>0))return"Enter
+        a positive value"},range:function(t,n){var r;if(r=parseInt(n,10),e.call(t,r)<0)return"Needs
+        to be between "+t[0]+" and "+t[t.length-1]},required:function(e,t){if(e&&(t==null||t===""))return"Required"},year:function(e,t){if(!/^\d{4}$/.test(t))return"Enter
+        a 4-digit year"},birthYear:function(e,t){var n;n=this.year(e,t);if(n)return
+        n;if(parseInt(t,10)>2e3)return"You must be over 18";if(parseInt(t,10)<1900)return"Enter
+        your birth year"},month:function(e,t){if(this.integer(e,t))return"Please enter
+        a month";if(this.range([1,2,3,4,5,6,7,8,9,10,11,12],t))return"Needs to be
+        between 1 and 12"},choices:function(t,n){if(e.call(t,n)<0)return"Not an acceptable
+        value for this field"},email:function(e,t){if(!/^[^@<\s>]+@[^@<\s>]+$/.test(t))return"That
+        doesn't look like an email address"},url:function(e,t){if(!/^https?:\/\/.+\..+/.test(t))return"Not
+        a valid url"},usTaxID:function(e,t){if(!/^\d{2}-?\d{1}-?\d{2}-?\d{4}$/.test(t))return"Not
+        a valid tax ID"},ein:function(e,t){if(!/^\d{2}-?\d{7}$/.test(t))return"Not
+        a valid EIN"},ssnLast4:function(e,t){if(!/^\d{4}$/.test(t))return"Not a valid
+        last 4 digits for an SSN"},ownerPersonalID:function(e,t){var n;n=function(){switch(e){case"CA":return/^\d{3}-?\d{3}-?\d{3}$/.test(t);case"US":return!0}}();if(!n)return"Not
+        a valid ID"},bizTaxID:function(e,t){var n,r,i,s,o,u,a,f;u={CA:["Tax ID",[/^\d{9}$/]],US:["EIN",[/^\d{2}-?\d{7}$/]]},o=u[e];if(o!=null){n=o[0],s=o[1],r=!1;for(a=0,f=s.length;a<f;a++){i=s[a];if(i.test(t)){r=!0;break}}if(!r)return"Not
+        a valid "+n}},zip:function(e,t){var n;n=function(){switch(e.toUpperCase()){case"CA":return/^[\d\w]{6}$/.test(t!=null?t.replace(/\s+/g,""):void
+        0);case"US":return/^\d{5}$/.test(t)||/^\d{9}$/.test(t)}}();if(!n)return"Not
+        a valid zip"},bankAccountNumber:function(e,t){if(!/^\d{1,17}$/.test(t))return"Invalid
+        bank account number"},usRoutingNumber:function(e){var t,n,r,i,s,o,u;if(!/^\d{9}$/.test(e))return"Routing
+        number must have 9 digits";s=0;for(t=o=0,u=e.length-1;o<=u;t=o+=3)n=parseInt(e.charAt(t),10)*3,r=parseInt(e.charAt(t+1),10)*7,i=parseInt(e.charAt(t+2),10),s+=n+r+i;if(s===0||s%10!==0)return"Invalid
+        routing number"},caRoutingNumber:function(e){if(!/^\d{5}\-\d{3}$/.test(e))return"Invalid
+        transit number"},routingNumber:function(e,t){switch(e.toUpperCase()){case"CA":return
+        this.caRoutingNumber(t);case"US":return this.usRoutingNumber(t)}},phoneNumber:function(e,t){var
+        n;n=t.replace(/[^0-9]/g,"");if(n.length!==10)return"Invalid phone number"},bizDBA:function(e,t){if(!/^.{1,23}$/.test(t))return"Statement
+        descriptors can only have up to 23 characters"},nameLength:function(e,t){if(t.length===1)return"Names
+        need to be longer than one character"}}}.call(this);
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:09 GMT
+- request:
+    method: get
+    uri: https://js.stripe.com/v2/?_=1401462009290
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:55986/pricing
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:00:09 GMT
+      Content-Type:
+      - application/x-javascript
+      Content-Length:
+      - '10534'
+      Last-Modified:
+      - Fri, 16 May 2014 02:18:31 GMT
+      Connection:
+      - close
+      Etag:
+      - '"53757577-2926"'
+      Accept-Ranges:
+      - bytes
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: (function(){var e,t,n,r,i,s={}.hasOwnProperty,o=function(e,t){function
+        r(){this.constructor=e}for(var n in t)s.call(t,n)&&(e[n]=t[n]);return r.prototype=t.prototype,e.prototype=new
+        r,e.__super__=t.prototype,e},u=this;this.Stripe=function(){function e(){}return
+        e.version=2,e.endpoint="https://api.stripe.com/v1",e.setPublishableKey=function(t){e.key=t},e.complete=function(t){return
+        function(n,r,i){var s;if(n!=="success")return s=Math.round((new Date).getTime()/1e3),(new
+        Image).src="https://q.stripe.com?event=stripejs-error&type="+n+"&key="+e.key+"&timestamp="+s,typeof
+        t=="function"?t(500,{error:{code:n,type:n,message:"An unexpected error has
+        occurred submitting your credit\ncard to our secure credit card processor.
+        This may be\ndue to network connectivity issues, so you should try\nagain
+        (you won't be charged twice). If this problem\npersists, please let us know!"}}):void
+        0}},e}.call(this),e=this.Stripe,this.Stripe.token=function(){function t(){}return
+        t.validate=function(e,t){if(!e)throw t+" required";if(typeof e!="object")throw
+        t+" invalid"},t.formatData=function(t,n){return e.utils.isElement(t)&&(t=e.utils.paramsFromForm(t,n)),e.utils.underscoreKeys(t),t},t.create=function(t,n){return
+        t.key||(t.key=e.key||e.publishableKey),e.utils.validateKey(t.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens",data:t,method:"POST",success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t.get=function(t,n){if(!t)throw"token
+        required";return e.utils.validateKey(e.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens/"+t,data:{key:e.key},success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t}.call(this),this.Stripe.card=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="card",n.whitelistedAttrs=["number","cvc","exp_month","exp_year","name","address_line1","address_line2","address_city","address_state","address_zip","address_country"],n.createToken=function(t,r,i){var
+        s;return r==null&&(r={}),e.token.validate(t,"card"),typeof r=="function"?(i=r,r={}):typeof
+        r!="object"&&(s=parseInt(r,10),r={},s>0&&(r.amount=s)),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateCardNumber=function(e){return e=(e+"").replace(/\s+|-/g,""),e.length>=10&&e.length<=16&&n.luhnCheck(e)},n.validateCVC=function(t){return
+        t=e.utils.trim(t),/^\d+$/.test(t)&&t.length>=3&&t.length<=4},n.validateExpiry=function(t,n){var
+        r,i;return t=e.utils.trim(t),n=e.utils.trim(n),/^\d+$/.test(t)?/^\d+$/.test(n)?parseInt(t,10)<=12?(i=new
+        Date(n,t),r=new Date,i.setMonth(i.getMonth()-1),i.setMonth(i.getMonth()+1,1),i>r):!1:!1:!1},n.luhnCheck=function(e){var
+        t,n,r,i,s,o;r=!0,i=0,n=(e+"").split("").reverse();for(s=0,o=n.length;s<o;s++){t=n[s],t=parseInt(t,10);if(r=!r)t*=2;t>9&&(t-=9),i+=t}return
+        i%10===0},n.cardType=function(e){return n.cardTypes[e.slice(0,2)]||"Unknown"},n.cardTypes=function(){var
+        e,t,n,r;t={};for(e=n=40;n<=49;e=++n)t[e]="Visa";for(e=r=50;r<=59;e=++r)t[e]="MasterCard";return
+        t[34]=t[37]="American Express",t[60]=t[62]=t[64]=t[65]="Discover",t[35]="JCB",t[30]=t[36]=t[38]=t[39]="Diners
+        Club",t}(),n}.call(this,this.Stripe.token),this.Stripe.bankAccount=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="bank_account",n.whitelistedAttrs=["country","routing_number","account_number"],n.createToken=function(t,r,i){return
+        r==null&&(r={}),e.token.validate(t,"bank account"),typeof r=="function"&&(i=r,r={}),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateRoutingNumber=function(t,r){t=e.utils.trim(t);switch(r){case"US":return/^\d+$/.test(t)&&t.length===9&&n.routingChecksum(t);case"CA":return/\d{5}\-\d{3}/.test(t)&&t.length===9;default:return!0}},n.validateAccountNumber=function(t,n){t=e.utils.trim(t);switch(n){case"US":return/^\d+$/.test(t)&&t.length>=1&&t.length<=17;default:return!0}},n.routingChecksum=function(e){var
+        t,n,r,i,s,o;r=0,t=(e+"").split(""),o=[0,3,6];for(i=0,s=o.length;i<s;i++)n=o[i],r+=parseInt(t[n])*3,r+=parseInt(t[n+1])*7,r+=parseInt(t[n+2]);return
+        r!==0&&r%10===0},n}.call(this,this.Stripe.token),t=["createToken","getToken","cardType","validateExpiry","validateCVC","validateCardNumber"];for(r=0,i=t.length;r<i;r++)n=t[r],this.Stripe[n]=this.Stripe.card[n];typeof
+        module!="undefined"&&module!==null&&(module.exports=this.Stripe),typeof define=="function"&&define("stripe",[],function(){return
+        u.Stripe})}).call(this),function(){var e,t,n,r=[].slice;e=encodeURIComponent,t=(new
+        Date).getTime(),n=function(t,r,i){var s,o;r==null&&(r=[]);for(s in t)o=t[s],i&&(s=""+i+"["+s+"]"),typeof
+        o=="object"?n(o,r,s):r.push(""+s+"="+e(o));return r.join("&").replace(/%20/g,"+")},this.Stripe.ajaxJSONP=function(e){var
+        i,s,o,u,a,f;return e==null&&(e={}),o="sjsonp"+ ++t,a=document.createElement("script"),s=null,i=function(t){var
+        n;return t==null&&(t="abort"),clearTimeout(s),(n=a.parentNode)!=null&&n.removeChild(a),o
+        in window&&(window[o]=function(){}),typeof e.complete=="function"?e.complete(t,f,e):void
+        0},f={abort:i},a.onerror=function(){return f.abort(),typeof e.error=="function"?e.error(f,e):void
+        0},window[o]=function(){var t;t=1<=arguments.length?r.call(arguments,0):[],clearTimeout(s),a.parentNode.removeChild(a);try{delete
+        window[o]}catch(n){window[o]=void 0}return typeof e.success=="function"&&e.success.apply(e,t),typeof
+        e.complete=="function"?e.complete("success",f,e):void 0},e.data||(e.data={}),e.data.callback=o,e.method&&(e.data._method=e.method),a.src=e.url+"?"+n(e.data),u=document.getElementsByTagName("head")[0],u.appendChild(a),e.timeout>0&&(s=setTimeout(function(){return
+        f.abort("timeout")},e.timeout)),f}}.call(this),function(){var e=[].indexOf||function(e){for(var
+        t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return t;return-1};this.Stripe.utils=function(){function
+        t(){}return t.trim=function(e){return(e+"").replace(/^\s+|\s+$/g,"")},t.underscore=function(e){return(e+"").replace(/([A-Z])/g,function(e){return"_"+e.toLowerCase()}).replace(/-/g,"_")},t.underscoreKeys=function(e){var
+        t,n,r;r=[];for(t in e)n=e[t],delete e[t],r.push(e[this.underscore(t)]=n);return
+        r},t.isElement=function(e){return typeof e!="object"?!1:typeof jQuery!="undefined"&&jQuery!==null&&e
+        instanceof jQuery?!0:e.nodeType===1},t.paramsFromForm=function(t,n){var r,i,s,o,u,a,f,l,c,h;n==null&&(n=[]),typeof
+        jQuery!="undefined"&&jQuery!==null&&t instanceof jQuery&&(t=t[0]),s=t.getElementsByTagName("input"),u=t.getElementsByTagName("select"),a={};for(f=0,c=s.length;f<c;f++){i=s[f],r=this.underscore(i.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;a[r]=i.value}for(l=0,h=u.length;l<h;l++){o=u[l],r=this.underscore(o.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;o.selectedIndex!=null&&(a[r]=o.options[o.selectedIndex].value)}return
+        a},t.validateKey=function(e){if(!e||typeof e!="string")throw new Error("You
+        did not set a valid publishable key. Call Stripe.setPublishableKey() with
+        your publishable key. For more info, see https://stripe.com/docs/stripe.js");if(/\s/g.test(e))throw
+        new Error("Your key is invalid, as it contains whitespace. For more info,
+        see https://stripe.com/docs/stripe.js");if(/^sk_/.test(e))throw new Error("You
+        are using a secret key with Stripe.js, instead of the publishable one. For
+        more info, see https://stripe.com/docs/stripe.js")},t}()}.call(this),function(){var
+        e=[].indexOf||function(e){for(var t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return
+        t;return-1};this.Stripe.validator={"boolean":function(e,t){if(t!=="true"&&t!=="false")return"Enter
+        a boolean string (true or false)"},integer:function(e,t){if(!/^\d+$/.test(t))return"Enter
+        an integer"},positive:function(e,t){if(!(!this.integer(e,t)&&parseInt(t,10)>0))return"Enter
+        a positive value"},range:function(t,n){var r;if(r=parseInt(n,10),e.call(t,r)<0)return"Needs
+        to be between "+t[0]+" and "+t[t.length-1]},required:function(e,t){if(e&&(t==null||t===""))return"Required"},year:function(e,t){if(!/^\d{4}$/.test(t))return"Enter
+        a 4-digit year"},birthYear:function(e,t){var n;n=this.year(e,t);if(n)return
+        n;if(parseInt(t,10)>2e3)return"You must be over 18";if(parseInt(t,10)<1900)return"Enter
+        your birth year"},month:function(e,t){if(this.integer(e,t))return"Please enter
+        a month";if(this.range([1,2,3,4,5,6,7,8,9,10,11,12],t))return"Needs to be
+        between 1 and 12"},choices:function(t,n){if(e.call(t,n)<0)return"Not an acceptable
+        value for this field"},email:function(e,t){if(!/^[^@<\s>]+@[^@<\s>]+$/.test(t))return"That
+        doesn't look like an email address"},url:function(e,t){if(!/^https?:\/\/.+\..+/.test(t))return"Not
+        a valid url"},usTaxID:function(e,t){if(!/^\d{2}-?\d{1}-?\d{2}-?\d{4}$/.test(t))return"Not
+        a valid tax ID"},ein:function(e,t){if(!/^\d{2}-?\d{7}$/.test(t))return"Not
+        a valid EIN"},ssnLast4:function(e,t){if(!/^\d{4}$/.test(t))return"Not a valid
+        last 4 digits for an SSN"},ownerPersonalID:function(e,t){var n;n=function(){switch(e){case"CA":return/^\d{3}-?\d{3}-?\d{3}$/.test(t);case"US":return!0}}();if(!n)return"Not
+        a valid ID"},bizTaxID:function(e,t){var n,r,i,s,o,u,a,f;u={CA:["Tax ID",[/^\d{9}$/]],US:["EIN",[/^\d{2}-?\d{7}$/]]},o=u[e];if(o!=null){n=o[0],s=o[1],r=!1;for(a=0,f=s.length;a<f;a++){i=s[a];if(i.test(t)){r=!0;break}}if(!r)return"Not
+        a valid "+n}},zip:function(e,t){var n;n=function(){switch(e.toUpperCase()){case"CA":return/^[\d\w]{6}$/.test(t!=null?t.replace(/\s+/g,""):void
+        0);case"US":return/^\d{5}$/.test(t)||/^\d{9}$/.test(t)}}();if(!n)return"Not
+        a valid zip"},bankAccountNumber:function(e,t){if(!/^\d{1,17}$/.test(t))return"Invalid
+        bank account number"},usRoutingNumber:function(e){var t,n,r,i,s,o,u;if(!/^\d{9}$/.test(e))return"Routing
+        number must have 9 digits";s=0;for(t=o=0,u=e.length-1;o<=u;t=o+=3)n=parseInt(e.charAt(t),10)*3,r=parseInt(e.charAt(t+1),10)*7,i=parseInt(e.charAt(t+2),10),s+=n+r+i;if(s===0||s%10!==0)return"Invalid
+        routing number"},caRoutingNumber:function(e){if(!/^\d{5}\-\d{3}$/.test(e))return"Invalid
+        transit number"},routingNumber:function(e,t){switch(e.toUpperCase()){case"CA":return
+        this.caRoutingNumber(t);case"US":return this.usRoutingNumber(t)}},phoneNumber:function(e,t){var
+        n;n=t.replace(/[^0-9]/g,"");if(n.length!==10)return"Invalid phone number"},bizDBA:function(e,t){if(!/^.{1,23}$/.test(t))return"Statement
+        descriptors can only have up to 23 characters"},nameLength:function(e,t){if(t.length===1)return"Names
+        need to be longer than one character"}}}.call(this);
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:09 GMT
+- request:
+    method: get
+    uri: https://js.stripe.com/v2/?_=1401462009724
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:55986/users/sign_up
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:00:10 GMT
+      Content-Type:
+      - application/x-javascript
+      Content-Length:
+      - '10534'
+      Last-Modified:
+      - Tue, 01 Apr 2014 00:57:25 GMT
+      Connection:
+      - close
+      Etag:
+      - '"533a0ef5-2926"'
+      Accept-Ranges:
+      - bytes
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: (function(){var e,t,n,r,i,s={}.hasOwnProperty,o=function(e,t){function
+        r(){this.constructor=e}for(var n in t)s.call(t,n)&&(e[n]=t[n]);return r.prototype=t.prototype,e.prototype=new
+        r,e.__super__=t.prototype,e},u=this;this.Stripe=function(){function e(){}return
+        e.version=2,e.endpoint="https://api.stripe.com/v1",e.setPublishableKey=function(t){e.key=t},e.complete=function(t){return
+        function(n,r,i){var s;if(n!=="success")return s=Math.round((new Date).getTime()/1e3),(new
+        Image).src="https://q.stripe.com?event=stripejs-error&type="+n+"&key="+e.key+"&timestamp="+s,typeof
+        t=="function"?t(500,{error:{code:n,type:n,message:"An unexpected error has
+        occurred submitting your credit\ncard to our secure credit card processor.
+        This may be\ndue to network connectivity issues, so you should try\nagain
+        (you won't be charged twice). If this problem\npersists, please let us know!"}}):void
+        0}},e}.call(this),e=this.Stripe,this.Stripe.token=function(){function t(){}return
+        t.validate=function(e,t){if(!e)throw t+" required";if(typeof e!="object")throw
+        t+" invalid"},t.formatData=function(t,n){return e.utils.isElement(t)&&(t=e.utils.paramsFromForm(t,n)),e.utils.underscoreKeys(t),t},t.create=function(t,n){return
+        t.key||(t.key=e.key||e.publishableKey),e.utils.validateKey(t.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens",data:t,method:"POST",success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t.get=function(t,n){if(!t)throw"token
+        required";return e.utils.validateKey(e.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens/"+t,data:{key:e.key},success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t}.call(this),this.Stripe.card=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="card",n.whitelistedAttrs=["number","cvc","exp_month","exp_year","name","address_line1","address_line2","address_city","address_state","address_zip","address_country"],n.createToken=function(t,r,i){var
+        s;return r==null&&(r={}),e.token.validate(t,"card"),typeof r=="function"?(i=r,r={}):typeof
+        r!="object"&&(s=parseInt(r,10),r={},s>0&&(r.amount=s)),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateCardNumber=function(e){return e=(e+"").replace(/\s+|-/g,""),e.length>=10&&e.length<=16&&n.luhnCheck(e)},n.validateCVC=function(t){return
+        t=e.utils.trim(t),/^\d+$/.test(t)&&t.length>=3&&t.length<=4},n.validateExpiry=function(t,n){var
+        r,i;return t=e.utils.trim(t),n=e.utils.trim(n),/^\d+$/.test(t)?/^\d+$/.test(n)?parseInt(t,10)<=12?(i=new
+        Date(n,t),r=new Date,i.setMonth(i.getMonth()-1),i.setMonth(i.getMonth()+1,1),i>r):!1:!1:!1},n.luhnCheck=function(e){var
+        t,n,r,i,s,o;r=!0,i=0,n=(e+"").split("").reverse();for(s=0,o=n.length;s<o;s++){t=n[s],t=parseInt(t,10);if(r=!r)t*=2;t>9&&(t-=9),i+=t}return
+        i%10===0},n.cardType=function(e){return n.cardTypes[e.slice(0,2)]||"Unknown"},n.cardTypes=function(){var
+        e,t,n,r;t={};for(e=n=40;n<=49;e=++n)t[e]="Visa";for(e=r=50;r<=59;e=++r)t[e]="MasterCard";return
+        t[34]=t[37]="American Express",t[60]=t[62]=t[64]=t[65]="Discover",t[35]="JCB",t[30]=t[36]=t[38]=t[39]="Diners
+        Club",t}(),n}.call(this,this.Stripe.token),this.Stripe.bankAccount=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="bank_account",n.whitelistedAttrs=["country","routing_number","account_number"],n.createToken=function(t,r,i){return
+        r==null&&(r={}),e.token.validate(t,"bank account"),typeof r=="function"&&(i=r,r={}),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateRoutingNumber=function(t,r){t=e.utils.trim(t);switch(r){case"US":return/^\d+$/.test(t)&&t.length===9&&n.routingChecksum(t);case"CA":return/\d{5}\-\d{3}/.test(t)&&t.length===9;default:return!0}},n.validateAccountNumber=function(t,n){t=e.utils.trim(t);switch(n){case"US":return/^\d+$/.test(t)&&t.length>=1&&t.length<=17;default:return!0}},n.routingChecksum=function(e){var
+        t,n,r,i,s,o;r=0,t=(e+"").split(""),o=[0,3,6];for(i=0,s=o.length;i<s;i++)n=o[i],r+=parseInt(t[n])*3,r+=parseInt(t[n+1])*7,r+=parseInt(t[n+2]);return
+        r!==0&&r%10===0},n}.call(this,this.Stripe.token),t=["createToken","getToken","cardType","validateExpiry","validateCVC","validateCardNumber"];for(r=0,i=t.length;r<i;r++)n=t[r],this.Stripe[n]=this.Stripe.card[n];typeof
+        module!="undefined"&&module!==null&&(module.exports=this.Stripe),typeof define=="function"&&define("stripe",[],function(){return
+        u.Stripe})}).call(this),function(){var e,t,n,r=[].slice;e=encodeURIComponent,t=(new
+        Date).getTime(),n=function(t,r,i){var s,o;r==null&&(r=[]);for(s in t)o=t[s],i&&(s=""+i+"["+s+"]"),typeof
+        o=="object"?n(o,r,s):r.push(""+s+"="+e(o));return r.join("&").replace(/%20/g,"+")},this.Stripe.ajaxJSONP=function(e){var
+        i,s,o,u,a,f;return e==null&&(e={}),o="sjsonp"+ ++t,a=document.createElement("script"),s=null,i=function(t){var
+        n;return t==null&&(t="abort"),clearTimeout(s),(n=a.parentNode)!=null&&n.removeChild(a),o
+        in window&&(window[o]=function(){}),typeof e.complete=="function"?e.complete(t,f,e):void
+        0},f={abort:i},a.onerror=function(){return f.abort(),typeof e.error=="function"?e.error(f,e):void
+        0},window[o]=function(){var t;t=1<=arguments.length?r.call(arguments,0):[],clearTimeout(s),a.parentNode.removeChild(a);try{delete
+        window[o]}catch(n){window[o]=void 0}return typeof e.success=="function"&&e.success.apply(e,t),typeof
+        e.complete=="function"?e.complete("success",f,e):void 0},e.data||(e.data={}),e.data.callback=o,e.method&&(e.data._method=e.method),a.src=e.url+"?"+n(e.data),u=document.getElementsByTagName("head")[0],u.appendChild(a),e.timeout>0&&(s=setTimeout(function(){return
+        f.abort("timeout")},e.timeout)),f}}.call(this),function(){var e=[].indexOf||function(e){for(var
+        t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return t;return-1};this.Stripe.utils=function(){function
+        t(){}return t.trim=function(e){return(e+"").replace(/^\s+|\s+$/g,"")},t.underscore=function(e){return(e+"").replace(/([A-Z])/g,function(e){return"_"+e.toLowerCase()}).replace(/-/g,"_")},t.underscoreKeys=function(e){var
+        t,n,r;r=[];for(t in e)n=e[t],delete e[t],r.push(e[this.underscore(t)]=n);return
+        r},t.isElement=function(e){return typeof e!="object"?!1:typeof jQuery!="undefined"&&jQuery!==null&&e
+        instanceof jQuery?!0:e.nodeType===1},t.paramsFromForm=function(t,n){var r,i,s,o,u,a,f,l,c,h;n==null&&(n=[]),typeof
+        jQuery!="undefined"&&jQuery!==null&&t instanceof jQuery&&(t=t[0]),s=t.getElementsByTagName("input"),u=t.getElementsByTagName("select"),a={};for(f=0,c=s.length;f<c;f++){i=s[f],r=this.underscore(i.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;a[r]=i.value}for(l=0,h=u.length;l<h;l++){o=u[l],r=this.underscore(o.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;o.selectedIndex!=null&&(a[r]=o.options[o.selectedIndex].value)}return
+        a},t.validateKey=function(e){if(!e||typeof e!="string")throw new Error("You
+        did not set a valid publishable key. Call Stripe.setPublishableKey() with
+        your publishable key. For more info, see https://stripe.com/docs/stripe.js");if(/\s/g.test(e))throw
+        new Error("Your key is invalid, as it contains whitespace. For more info,
+        see https://stripe.com/docs/stripe.js");if(/^sk_/.test(e))throw new Error("You
+        are using a secret key with Stripe.js, instead of the publishable one. For
+        more info, see https://stripe.com/docs/stripe.js")},t}()}.call(this),function(){var
+        e=[].indexOf||function(e){for(var t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return
+        t;return-1};this.Stripe.validator={"boolean":function(e,t){if(t!=="true"&&t!=="false")return"Enter
+        a boolean string (true or false)"},integer:function(e,t){if(!/^\d+$/.test(t))return"Enter
+        an integer"},positive:function(e,t){if(!(!this.integer(e,t)&&parseInt(t,10)>0))return"Enter
+        a positive value"},range:function(t,n){var r;if(r=parseInt(n,10),e.call(t,r)<0)return"Needs
+        to be between "+t[0]+" and "+t[t.length-1]},required:function(e,t){if(e&&(t==null||t===""))return"Required"},year:function(e,t){if(!/^\d{4}$/.test(t))return"Enter
+        a 4-digit year"},birthYear:function(e,t){var n;n=this.year(e,t);if(n)return
+        n;if(parseInt(t,10)>2e3)return"You must be over 18";if(parseInt(t,10)<1900)return"Enter
+        your birth year"},month:function(e,t){if(this.integer(e,t))return"Please enter
+        a month";if(this.range([1,2,3,4,5,6,7,8,9,10,11,12],t))return"Needs to be
+        between 1 and 12"},choices:function(t,n){if(e.call(t,n)<0)return"Not an acceptable
+        value for this field"},email:function(e,t){if(!/^[^@<\s>]+@[^@<\s>]+$/.test(t))return"That
+        doesn't look like an email address"},url:function(e,t){if(!/^https?:\/\/.+\..+/.test(t))return"Not
+        a valid url"},usTaxID:function(e,t){if(!/^\d{2}-?\d{1}-?\d{2}-?\d{4}$/.test(t))return"Not
+        a valid tax ID"},ein:function(e,t){if(!/^\d{2}-?\d{7}$/.test(t))return"Not
+        a valid EIN"},ssnLast4:function(e,t){if(!/^\d{4}$/.test(t))return"Not a valid
+        last 4 digits for an SSN"},ownerPersonalID:function(e,t){var n;n=function(){switch(e){case"CA":return/^\d{3}-?\d{3}-?\d{3}$/.test(t);case"US":return!0}}();if(!n)return"Not
+        a valid ID"},bizTaxID:function(e,t){var n,r,i,s,o,u,a,f;u={CA:["Tax ID",[/^\d{9}$/]],US:["EIN",[/^\d{2}-?\d{7}$/]]},o=u[e];if(o!=null){n=o[0],s=o[1],r=!1;for(a=0,f=s.length;a<f;a++){i=s[a];if(i.test(t)){r=!0;break}}if(!r)return"Not
+        a valid "+n}},zip:function(e,t){var n;n=function(){switch(e.toUpperCase()){case"CA":return/^[\d\w]{6}$/.test(t!=null?t.replace(/\s+/g,""):void
+        0);case"US":return/^\d{5}$/.test(t)||/^\d{9}$/.test(t)}}();if(!n)return"Not
+        a valid zip"},bankAccountNumber:function(e,t){if(!/^\d{1,17}$/.test(t))return"Invalid
+        bank account number"},usRoutingNumber:function(e){var t,n,r,i,s,o,u;if(!/^\d{9}$/.test(e))return"Routing
+        number must have 9 digits";s=0;for(t=o=0,u=e.length-1;o<=u;t=o+=3)n=parseInt(e.charAt(t),10)*3,r=parseInt(e.charAt(t+1),10)*7,i=parseInt(e.charAt(t+2),10),s+=n+r+i;if(s===0||s%10!==0)return"Invalid
+        routing number"},caRoutingNumber:function(e){if(!/^\d{5}\-\d{3}$/.test(e))return"Invalid
+        transit number"},routingNumber:function(e,t){switch(e.toUpperCase()){case"CA":return
+        this.caRoutingNumber(t);case"US":return this.usRoutingNumber(t)}},phoneNumber:function(e,t){var
+        n;n=t.replace(/[^0-9]/g,"");if(n.length!==10)return"Invalid phone number"},bizDBA:function(e,t){if(!/^.{1,23}$/.test(t))return"Statement
+        descriptors can only have up to 23 characters"},nameLength:function(e,t){if(t.length===1)return"Names
+        need to be longer than one character"}}}.call(this);
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:10 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/tokens?_method=POST&callback=sjsonp1401462010147&card%5Bexp_month%5D=01&card%5Bexp_year%5D=2017&card%5Bnumber%5D=4242424242424242&key=pk_test_oI6Jlu0ApiXWc2FYsyMis9WD
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:55986/users/sign_up
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:00:10 GMT
+      Content-Type:
+      - application/javascript;charset=utf-8
+      Content-Length:
+      - '597'
+      Connection:
+      - close
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Stripe-Version:
+      - '2014-05-19'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        sjsonp1401462010147({
+          "id": "tok_10487j41K0MV6J6EV6vpjxuM",
+          "livemode": false,
+          "created": 1401462010,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_10487j41K0MV6J6EdZUGKDSv",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2017,
+            "fingerprint": "BuGq8s8XZQ7sYxMZ",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "customer": null
+          }
+        }
+        , 200)
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:10 GMT
+- request:
+    method: put
+    uri: http://localhost:9200/resumes/resume/8
+    body:
+      encoding: UTF-8
+      string: '{"id":8,"height":null,"weight":null,"hair_color":null,"eye_color":null,"phone":null,"agent_name":null,"agent_phone":null,"additional_skills":null,"created_at":"2014-05-30T15:00:10.876Z","updated_at":"2014-05-30T15:00:10.876Z","user_id":null,"descriptive_tag":null,"gender":null,"hair_length":null,"piercing":null,"tattoo":null,"citizen":null,"passport":null,"phone_two":null,"manager_name":null,"manager_phone":null,"agent_email":null,"agent_location":null,"agent_location_two":null,"agent_city":null,"agent_state":null,"agent_zip":null,"agent_type":null,"slug":"joe-bredow","unions":[],"projects":[],"schools":[],"user":{"name":"Joe
+        Bredow"}}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '77'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"resumes","_type":"resume","_id":"8","_version":64,"created":false}'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:10 GMT
+- request:
+    method: post
+    uri: http://localhost:9200/resumes/resume/8/_update
+    body:
+      encoding: UTF-8
+      string: '{"doc":{"user_id":5}}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '61'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"resumes","_type":"resume","_id":"8","_version":65}'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:10 GMT
+- request:
+    method: get
+    uri: https://js.stripe.com/v2/?_=1401462010967
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:55986/dashboard
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:00:11 GMT
+      Content-Type:
+      - application/x-javascript
+      Content-Length:
+      - '10534'
+      Last-Modified:
+      - Tue, 01 Apr 2014 00:57:24 GMT
+      Connection:
+      - close
+      Etag:
+      - '"533a0ef4-2926"'
+      Accept-Ranges:
+      - bytes
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: (function(){var e,t,n,r,i,s={}.hasOwnProperty,o=function(e,t){function
+        r(){this.constructor=e}for(var n in t)s.call(t,n)&&(e[n]=t[n]);return r.prototype=t.prototype,e.prototype=new
+        r,e.__super__=t.prototype,e},u=this;this.Stripe=function(){function e(){}return
+        e.version=2,e.endpoint="https://api.stripe.com/v1",e.setPublishableKey=function(t){e.key=t},e.complete=function(t){return
+        function(n,r,i){var s;if(n!=="success")return s=Math.round((new Date).getTime()/1e3),(new
+        Image).src="https://q.stripe.com?event=stripejs-error&type="+n+"&key="+e.key+"&timestamp="+s,typeof
+        t=="function"?t(500,{error:{code:n,type:n,message:"An unexpected error has
+        occurred submitting your credit\ncard to our secure credit card processor.
+        This may be\ndue to network connectivity issues, so you should try\nagain
+        (you won't be charged twice). If this problem\npersists, please let us know!"}}):void
+        0}},e}.call(this),e=this.Stripe,this.Stripe.token=function(){function t(){}return
+        t.validate=function(e,t){if(!e)throw t+" required";if(typeof e!="object")throw
+        t+" invalid"},t.formatData=function(t,n){return e.utils.isElement(t)&&(t=e.utils.paramsFromForm(t,n)),e.utils.underscoreKeys(t),t},t.create=function(t,n){return
+        t.key||(t.key=e.key||e.publishableKey),e.utils.validateKey(t.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens",data:t,method:"POST",success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t.get=function(t,n){if(!t)throw"token
+        required";return e.utils.validateKey(e.key),e.ajaxJSONP({url:""+e.endpoint+"/tokens/"+t,data:{key:e.key},success:function(e,t){return
+        typeof n=="function"?n(t,e):void 0},complete:e.complete(n),timeout:4e4})},t}.call(this),this.Stripe.card=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="card",n.whitelistedAttrs=["number","cvc","exp_month","exp_year","name","address_line1","address_line2","address_city","address_state","address_zip","address_country"],n.createToken=function(t,r,i){var
+        s;return r==null&&(r={}),e.token.validate(t,"card"),typeof r=="function"?(i=r,r={}):typeof
+        r!="object"&&(s=parseInt(r,10),r={},s>0&&(r.amount=s)),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateCardNumber=function(e){return e=(e+"").replace(/\s+|-/g,""),e.length>=10&&e.length<=16&&n.luhnCheck(e)},n.validateCVC=function(t){return
+        t=e.utils.trim(t),/^\d+$/.test(t)&&t.length>=3&&t.length<=4},n.validateExpiry=function(t,n){var
+        r,i;return t=e.utils.trim(t),n=e.utils.trim(n),/^\d+$/.test(t)?/^\d+$/.test(n)?parseInt(t,10)<=12?(i=new
+        Date(n,t),r=new Date,i.setMonth(i.getMonth()-1),i.setMonth(i.getMonth()+1,1),i>r):!1:!1:!1},n.luhnCheck=function(e){var
+        t,n,r,i,s,o;r=!0,i=0,n=(e+"").split("").reverse();for(s=0,o=n.length;s<o;s++){t=n[s],t=parseInt(t,10);if(r=!r)t*=2;t>9&&(t-=9),i+=t}return
+        i%10===0},n.cardType=function(e){return n.cardTypes[e.slice(0,2)]||"Unknown"},n.cardTypes=function(){var
+        e,t,n,r;t={};for(e=n=40;n<=49;e=++n)t[e]="Visa";for(e=r=50;r<=59;e=++r)t[e]="MasterCard";return
+        t[34]=t[37]="American Express",t[60]=t[62]=t[64]=t[65]="Discover",t[35]="JCB",t[30]=t[36]=t[38]=t[39]="Diners
+        Club",t}(),n}.call(this,this.Stripe.token),this.Stripe.bankAccount=function(t){function
+        n(){return n.__super__.constructor.apply(this,arguments)}return o(n,t),n.tokenName="bank_account",n.whitelistedAttrs=["country","routing_number","account_number"],n.createToken=function(t,r,i){return
+        r==null&&(r={}),e.token.validate(t,"bank account"),typeof r=="function"&&(i=r,r={}),r[n.tokenName]=e.token.formatData(t,n.whitelistedAttrs),e.token.create(r,i)},n.getToken=function(t,n){return
+        e.token.get(t,n)},n.validateRoutingNumber=function(t,r){t=e.utils.trim(t);switch(r){case"US":return/^\d+$/.test(t)&&t.length===9&&n.routingChecksum(t);case"CA":return/\d{5}\-\d{3}/.test(t)&&t.length===9;default:return!0}},n.validateAccountNumber=function(t,n){t=e.utils.trim(t);switch(n){case"US":return/^\d+$/.test(t)&&t.length>=1&&t.length<=17;default:return!0}},n.routingChecksum=function(e){var
+        t,n,r,i,s,o;r=0,t=(e+"").split(""),o=[0,3,6];for(i=0,s=o.length;i<s;i++)n=o[i],r+=parseInt(t[n])*3,r+=parseInt(t[n+1])*7,r+=parseInt(t[n+2]);return
+        r!==0&&r%10===0},n}.call(this,this.Stripe.token),t=["createToken","getToken","cardType","validateExpiry","validateCVC","validateCardNumber"];for(r=0,i=t.length;r<i;r++)n=t[r],this.Stripe[n]=this.Stripe.card[n];typeof
+        module!="undefined"&&module!==null&&(module.exports=this.Stripe),typeof define=="function"&&define("stripe",[],function(){return
+        u.Stripe})}).call(this),function(){var e,t,n,r=[].slice;e=encodeURIComponent,t=(new
+        Date).getTime(),n=function(t,r,i){var s,o;r==null&&(r=[]);for(s in t)o=t[s],i&&(s=""+i+"["+s+"]"),typeof
+        o=="object"?n(o,r,s):r.push(""+s+"="+e(o));return r.join("&").replace(/%20/g,"+")},this.Stripe.ajaxJSONP=function(e){var
+        i,s,o,u,a,f;return e==null&&(e={}),o="sjsonp"+ ++t,a=document.createElement("script"),s=null,i=function(t){var
+        n;return t==null&&(t="abort"),clearTimeout(s),(n=a.parentNode)!=null&&n.removeChild(a),o
+        in window&&(window[o]=function(){}),typeof e.complete=="function"?e.complete(t,f,e):void
+        0},f={abort:i},a.onerror=function(){return f.abort(),typeof e.error=="function"?e.error(f,e):void
+        0},window[o]=function(){var t;t=1<=arguments.length?r.call(arguments,0):[],clearTimeout(s),a.parentNode.removeChild(a);try{delete
+        window[o]}catch(n){window[o]=void 0}return typeof e.success=="function"&&e.success.apply(e,t),typeof
+        e.complete=="function"?e.complete("success",f,e):void 0},e.data||(e.data={}),e.data.callback=o,e.method&&(e.data._method=e.method),a.src=e.url+"?"+n(e.data),u=document.getElementsByTagName("head")[0],u.appendChild(a),e.timeout>0&&(s=setTimeout(function(){return
+        f.abort("timeout")},e.timeout)),f}}.call(this),function(){var e=[].indexOf||function(e){for(var
+        t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return t;return-1};this.Stripe.utils=function(){function
+        t(){}return t.trim=function(e){return(e+"").replace(/^\s+|\s+$/g,"")},t.underscore=function(e){return(e+"").replace(/([A-Z])/g,function(e){return"_"+e.toLowerCase()}).replace(/-/g,"_")},t.underscoreKeys=function(e){var
+        t,n,r;r=[];for(t in e)n=e[t],delete e[t],r.push(e[this.underscore(t)]=n);return
+        r},t.isElement=function(e){return typeof e!="object"?!1:typeof jQuery!="undefined"&&jQuery!==null&&e
+        instanceof jQuery?!0:e.nodeType===1},t.paramsFromForm=function(t,n){var r,i,s,o,u,a,f,l,c,h;n==null&&(n=[]),typeof
+        jQuery!="undefined"&&jQuery!==null&&t instanceof jQuery&&(t=t[0]),s=t.getElementsByTagName("input"),u=t.getElementsByTagName("select"),a={};for(f=0,c=s.length;f<c;f++){i=s[f],r=this.underscore(i.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;a[r]=i.value}for(l=0,h=u.length;l<h;l++){o=u[l],r=this.underscore(o.getAttribute("data-stripe"));if(e.call(n,r)<0)continue;o.selectedIndex!=null&&(a[r]=o.options[o.selectedIndex].value)}return
+        a},t.validateKey=function(e){if(!e||typeof e!="string")throw new Error("You
+        did not set a valid publishable key. Call Stripe.setPublishableKey() with
+        your publishable key. For more info, see https://stripe.com/docs/stripe.js");if(/\s/g.test(e))throw
+        new Error("Your key is invalid, as it contains whitespace. For more info,
+        see https://stripe.com/docs/stripe.js");if(/^sk_/.test(e))throw new Error("You
+        are using a secret key with Stripe.js, instead of the publishable one. For
+        more info, see https://stripe.com/docs/stripe.js")},t}()}.call(this),function(){var
+        e=[].indexOf||function(e){for(var t=0,n=this.length;t<n;t++)if(t in this&&this[t]===e)return
+        t;return-1};this.Stripe.validator={"boolean":function(e,t){if(t!=="true"&&t!=="false")return"Enter
+        a boolean string (true or false)"},integer:function(e,t){if(!/^\d+$/.test(t))return"Enter
+        an integer"},positive:function(e,t){if(!(!this.integer(e,t)&&parseInt(t,10)>0))return"Enter
+        a positive value"},range:function(t,n){var r;if(r=parseInt(n,10),e.call(t,r)<0)return"Needs
+        to be between "+t[0]+" and "+t[t.length-1]},required:function(e,t){if(e&&(t==null||t===""))return"Required"},year:function(e,t){if(!/^\d{4}$/.test(t))return"Enter
+        a 4-digit year"},birthYear:function(e,t){var n;n=this.year(e,t);if(n)return
+        n;if(parseInt(t,10)>2e3)return"You must be over 18";if(parseInt(t,10)<1900)return"Enter
+        your birth year"},month:function(e,t){if(this.integer(e,t))return"Please enter
+        a month";if(this.range([1,2,3,4,5,6,7,8,9,10,11,12],t))return"Needs to be
+        between 1 and 12"},choices:function(t,n){if(e.call(t,n)<0)return"Not an acceptable
+        value for this field"},email:function(e,t){if(!/^[^@<\s>]+@[^@<\s>]+$/.test(t))return"That
+        doesn't look like an email address"},url:function(e,t){if(!/^https?:\/\/.+\..+/.test(t))return"Not
+        a valid url"},usTaxID:function(e,t){if(!/^\d{2}-?\d{1}-?\d{2}-?\d{4}$/.test(t))return"Not
+        a valid tax ID"},ein:function(e,t){if(!/^\d{2}-?\d{7}$/.test(t))return"Not
+        a valid EIN"},ssnLast4:function(e,t){if(!/^\d{4}$/.test(t))return"Not a valid
+        last 4 digits for an SSN"},ownerPersonalID:function(e,t){var n;n=function(){switch(e){case"CA":return/^\d{3}-?\d{3}-?\d{3}$/.test(t);case"US":return!0}}();if(!n)return"Not
+        a valid ID"},bizTaxID:function(e,t){var n,r,i,s,o,u,a,f;u={CA:["Tax ID",[/^\d{9}$/]],US:["EIN",[/^\d{2}-?\d{7}$/]]},o=u[e];if(o!=null){n=o[0],s=o[1],r=!1;for(a=0,f=s.length;a<f;a++){i=s[a];if(i.test(t)){r=!0;break}}if(!r)return"Not
+        a valid "+n}},zip:function(e,t){var n;n=function(){switch(e.toUpperCase()){case"CA":return/^[\d\w]{6}$/.test(t!=null?t.replace(/\s+/g,""):void
+        0);case"US":return/^\d{5}$/.test(t)||/^\d{9}$/.test(t)}}();if(!n)return"Not
+        a valid zip"},bankAccountNumber:function(e,t){if(!/^\d{1,17}$/.test(t))return"Invalid
+        bank account number"},usRoutingNumber:function(e){var t,n,r,i,s,o,u;if(!/^\d{9}$/.test(e))return"Routing
+        number must have 9 digits";s=0;for(t=o=0,u=e.length-1;o<=u;t=o+=3)n=parseInt(e.charAt(t),10)*3,r=parseInt(e.charAt(t+1),10)*7,i=parseInt(e.charAt(t+2),10),s+=n+r+i;if(s===0||s%10!==0)return"Invalid
+        routing number"},caRoutingNumber:function(e){if(!/^\d{5}\-\d{3}$/.test(e))return"Invalid
+        transit number"},routingNumber:function(e,t){switch(e.toUpperCase()){case"CA":return
+        this.caRoutingNumber(t);case"US":return this.usRoutingNumber(t)}},phoneNumber:function(e,t){var
+        n;n=t.replace(/[^0-9]/g,"");if(n.length!==10)return"Invalid phone number"},bizDBA:function(e,t){if(!/^.{1,23}$/.test(t))return"Statement
+        descriptors can only have up to 23 characters"},nameLength:function(e,t){if(t.length===1)return"Names
+        need to be longer than one character"}}}.call(this);
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:00:11 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/tokens?_method=POST&callback=sjsonp1401463242739&card%5Bexp_month%5D=01&card%5Bexp_year%5D=2017&card%5Bnumber%5D=4242424242424242&key=pk_test_oI6Jlu0ApiXWc2FYsyMis9WD
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:57012/users/sign_up
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:20:43 GMT
+      Content-Type:
+      - application/javascript;charset=utf-8
+      Content-Length:
+      - '597'
+      Connection:
+      - close
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Stripe-Version:
+      - '2014-05-19'
+      Access-Control-Max-Age:
+      - '300'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        sjsonp1401463242739({
+          "id": "tok_10488441K0MV6J6E0HmuNTcW",
+          "livemode": false,
+          "created": 1401463243,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_10488441K0MV6J6EuQsjOdbK",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2017,
+            "fingerprint": "BuGq8s8XZQ7sYxMZ",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "customer": null
+          }
+        }
+        , 200)
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:20:43 GMT
+- request:
+    method: put
+    uri: http://localhost:9200/resumes/resume/15
+    body:
+      encoding: UTF-8
+      string: '{"id":15,"height":null,"weight":null,"hair_color":null,"eye_color":null,"phone":null,"agent_name":null,"agent_phone":null,"additional_skills":null,"created_at":"2014-05-30T15:20:43.912Z","updated_at":"2014-05-30T15:20:43.912Z","user_id":null,"descriptive_tag":null,"gender":null,"hair_length":null,"piercing":null,"tattoo":null,"citizen":null,"passport":null,"phone_two":null,"manager_name":null,"manager_phone":null,"agent_email":null,"agent_location":null,"agent_location_two":null,"agent_city":null,"agent_state":null,"agent_zip":null,"agent_type":null,"slug":"joe-bredow","unions":[],"projects":[],"schools":[],"user":{"name":"Joe
+        Bredow"}}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '78'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"resumes","_type":"resume","_id":"15","_version":27,"created":false}'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:20:43 GMT
+- request:
+    method: post
+    uri: http://localhost:9200/resumes/resume/15/_update
+    body:
+      encoding: UTF-8
+      string: '{"doc":{"user_id":14}}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '62'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"resumes","_type":"resume","_id":"15","_version":28}'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:20:43 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: US-ASCII
+      string: card=tok_10488441K0MV6J6E0HmuNTcW&description=14
+    headers:
+      Accept:
+      - '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.12.0
+      Authorization:
+      - Bearer sk_test_mCsq5DgmBtgwjx4wrrqB64l0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"1.12.0","lang":"ruby","lang_version":"2.0.0 p247 (2013-06-27)","platform":"x86_64-darwin13.1.0","publisher":"stripe","uname":"Darwin
+        rivendell.i 13.2.0 Darwin Kernel Version 13.2.0: Thu Apr 17 23:03:13 PDT 2014;
+        root:xnu-2422.100.13~1/RELEASE_X86_64 x86_64"}'
+      Content-Length:
+      - '48'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:20:44 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '1229'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Max-Age:
+      - '300'
+      Stripe-Version:
+      - '2014-05-19'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "object": "customer",
+          "created": 1401463244,
+          "id": "cus_48842udbsFoBo0",
+          "livemode": false,
+          "description": "14",
+          "email": null,
+          "delinquent": false,
+          "metadata": {},
+          "subscriptions": {
+            "object": "list",
+            "total_count": 0,
+            "has_more": false,
+            "url": "/v1/customers/cus_48842udbsFoBo0/subscriptions",
+            "data": []
+          },
+          "discount": null,
+          "account_balance": 0,
+          "currency": null,
+          "cards": {
+            "object": "list",
+            "total_count": 1,
+            "has_more": false,
+            "url": "/v1/customers/cus_48842udbsFoBo0/cards",
+            "data": [
+              {
+                "id": "card_10488441K0MV6J6EuQsjOdbK",
+                "object": "card",
+                "last4": "4242",
+                "type": "Visa",
+                "exp_month": 1,
+                "exp_year": 2017,
+                "fingerprint": "BuGq8s8XZQ7sYxMZ",
+                "country": "US",
+                "name": null,
+                "address_line1": null,
+                "address_line2": null,
+                "address_city": null,
+                "address_state": null,
+                "address_zip": null,
+                "address_country": null,
+                "cvc_check": null,
+                "address_line1_check": null,
+                "address_zip_check": null,
+                "customer": "cus_48842udbsFoBo0"
+              }
+            ]
+          },
+          "default_card": "card_10488441K0MV6J6EuQsjOdbK"
+        }
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:20:44 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/tokens?_method=POST&callback=sjsonp1401463692094&card%5Bexp_month%5D=01&card%5Bexp_year%5D=2017&card%5Bnumber%5D=4242424242424242&key=pk_test_oI6Jlu0ApiXWc2FYsyMis9WD
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:57497/users/sign_up
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:28:13 GMT
+      Content-Type:
+      - application/javascript;charset=utf-8
+      Content-Length:
+      - '597'
+      Connection:
+      - close
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Stripe-Version:
+      - '2014-05-19'
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        sjsonp1401463692094({
+          "id": "tok_10488B41K0MV6J6EI6NNkQDI",
+          "livemode": false,
+          "created": 1401463692,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_10488B41K0MV6J6EZwgUFSkD",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2017,
+            "fingerprint": "BuGq8s8XZQ7sYxMZ",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "customer": null
+          }
+        }
+        , 200)
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:28:13 GMT
+- request:
+    method: put
+    uri: http://localhost:9200/resumes/resume/34
+    body:
+      encoding: UTF-8
+      string: '{"id":34,"height":null,"weight":null,"hair_color":null,"eye_color":null,"phone":null,"agent_name":null,"agent_phone":null,"additional_skills":null,"created_at":"2014-05-30T15:28:13.045Z","updated_at":"2014-05-30T15:28:13.045Z","user_id":null,"descriptive_tag":null,"gender":null,"hair_length":null,"piercing":null,"tattoo":null,"citizen":null,"passport":null,"phone_two":null,"manager_name":null,"manager_phone":null,"agent_email":null,"agent_location":null,"agent_location_two":null,"agent_city":null,"agent_state":null,"agent_zip":null,"agent_type":null,"slug":"joe-bredow","unions":[],"projects":[],"schools":[],"user":{"name":"Joe
+        Bredow"}}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '77'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"resumes","_type":"resume","_id":"34","_version":6,"created":false}'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:28:13 GMT
+- request:
+    method: post
+    uri: http://localhost:9200/resumes/resume/34/_update
+    body:
+      encoding: UTF-8
+      string: '{"doc":{"user_id":33}}'
+    headers:
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '61'
+    body:
+      encoding: UTF-8
+      string: '{"_index":"resumes","_type":"resume","_id":"34","_version":7}'
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:28:13 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/tokens?_method=POST&callback=sjsonp1401464425880&card%5Bexp_month%5D=01&card%5Bexp_year%5D=2017&card%5Bnumber%5D=4242424242424242&key=pk_test_oI6Jlu0ApiXWc2FYsyMis9WD
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:57878/users/sign_up
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:40:27 GMT
+      Content-Type:
+      - application/javascript;charset=utf-8
+      Content-Length:
+      - '597'
+      Connection:
+      - close
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Stripe-Version:
+      - '2014-05-19'
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Cache-Control:
+      - no-cache, no-store
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        sjsonp1401464425880({
+          "id": "tok_10488O41K0MV6J6EkPmbhPQ7",
+          "livemode": false,
+          "created": 1401464427,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_10488O41K0MV6J6E0CNnBCYz",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2017,
+            "fingerprint": "BuGq8s8XZQ7sYxMZ",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "customer": null
+          }
+        }
+        , 200)
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:40:27 GMT
+- request:
+    method: get
+    uri: https://api.stripe.com/v1/tokens?_method=POST&callback=sjsonp1401464488713&card%5Bexp_month%5D=01&card%5Bexp_year%5D=2017&card%5Bnumber%5D=4242424242424242&key=pk_test_oI6Jlu0ApiXWc2FYsyMis9WD
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; PPC Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko)
+        PhantomJS/1.9.7 Safari/534.34
+      Accept:
+      - '*/*'
+      Referer:
+      - http://127.0.0.1:58115/users/sign_up
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 May 2014 15:41:29 GMT
+      Content-Type:
+      - application/javascript;charset=utf-8
+      Content-Length:
+      - '597'
+      Connection:
+      - close
+      Access-Control-Max-Age:
+      - '300'
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Stripe-Version:
+      - '2014-05-19'
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Vary:
+      - Accept-Encoding
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: |
+        sjsonp1401464488713({
+          "id": "tok_10488P41K0MV6J6EWNxR03gY",
+          "livemode": false,
+          "created": 1401464489,
+          "used": false,
+          "object": "token",
+          "type": "card",
+          "card": {
+            "id": "card_10488P41K0MV6J6EFLoKSzz9",
+            "object": "card",
+            "last4": "4242",
+            "type": "Visa",
+            "exp_month": 1,
+            "exp_year": 2017,
+            "fingerprint": "BuGq8s8XZQ7sYxMZ",
+            "country": "US",
+            "name": null,
+            "address_line1": null,
+            "address_line2": null,
+            "address_city": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_country": null,
+            "customer": null
+          }
+        }
+        , 200)
+    http_version: 
+  recorded_at: Fri, 30 May 2014 15:41:29 GMT
 recorded_with: VCR 2.9.2

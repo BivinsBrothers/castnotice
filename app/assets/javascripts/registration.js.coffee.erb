@@ -1,7 +1,5 @@
-$.getScript 'https://js.stripe.com/v2/', ->
-  Stripe.setPublishableKey "<%= Figaro.env.stripe_publishable_key %>"
-
 $ ->
+  Stripe.setPublishableKey "<%= Figaro.env.stripe_publishable_key %>"
   token = false
   $form = $("#user-registration-form")
   return if $form.length == 0
