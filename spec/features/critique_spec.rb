@@ -41,11 +41,11 @@ feature "Critique workflow" do
     critique = create(:critique, :user => user)
     mentor = create(:user, :mentor)
 
-    log_in mentor
-
     the_critique_url = root_url + "critiques/" + critique.uuid
 
     visit the_critique_url
+
+    log_in mentor
 
     expect(page).to have_content("Critique Requested")
     expect(page).to have_content("Chicago")

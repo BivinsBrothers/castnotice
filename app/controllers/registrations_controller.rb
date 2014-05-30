@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_action :store_location
 
   def create
     user = User.new(registration_params)
