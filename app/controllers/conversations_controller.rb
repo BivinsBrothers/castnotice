@@ -25,6 +25,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = current_user.conversations.find(params[:id]).decorate(context: {user: current_user})
+    @conversation.mark_messages_read_for(current_user)
 
     @message = Message.new({
       recipient_id: @conversation.other_correspondent_for(current_user).id,

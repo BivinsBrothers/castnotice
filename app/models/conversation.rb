@@ -17,4 +17,8 @@ class Conversation < ActiveRecord::Base
       self.sender
     end
   end
+
+  def mark_messages_read_for(recipient)
+    messages.where(recipient_id: recipient.id).update_all(recipient_read_at: Time.current)
+  end
 end
