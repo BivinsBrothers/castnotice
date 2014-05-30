@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   MAXIMUM_VIDEOS = 10
 
   has_one :resume
-  has_one :background_image, -> { where is_background: true }, class_name: Headshot
+  has_one :background_image, -> { where is_background: true }, class: Headshot
 
-  has_many :received_messages, class: Message, foreign_key: :receipient_id
+  has_many :received_messages, class: Message, foreign_key: :recipient_id
   has_many :sent_messages, class: Message, foreign_key: :sender_id
   has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
   has_many :critiques
