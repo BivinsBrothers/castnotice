@@ -58,8 +58,6 @@ feature "Critique workflow" do
 
     visit critique_path(critique.uuid)
 
-    log_in mentor
-
     expect(page).to have_content("Critique Requested")
     expect(page).to have_content("Brave")
     expect(page).to have_content("Thoughts?")
