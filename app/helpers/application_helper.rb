@@ -109,8 +109,7 @@ module ApplicationHelper
   end
 
   def message_toolbar
-    if current_user.unread_messages
-      unread_count = current_user.unread_messages.count
+    if (unread_count = current_user.unread_messages.count) > 0
       link_to "You have #{unread_count} new #{'message'.pluralize(unread_count)}", conversations_path
     else
       link_to "Messages", conversations_path
