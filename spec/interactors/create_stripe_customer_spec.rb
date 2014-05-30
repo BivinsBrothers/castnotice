@@ -4,7 +4,7 @@ describe CreateStripeCustomer do
   let(:user) { create(:user) }
   it "creates a stripe customer" do
     VCR.use_cassette("stripe_create_valid_customer") do
-      result = CreateStripeCustomer.perform(
+      result = described_class.perform(
         user: user,
         stripe_token: "tok_1047oT41K0MV6J6EJZBa075P"
       )
@@ -15,7 +15,7 @@ describe CreateStripeCustomer do
 
   it "changes nothing with invalid credit card data" do
     VCR.use_cassette("stripe_create_invalid_customer") do
-      result = CreateStripeCustomer.perform(
+      result = described_class.perform(
         user: user,
         stripe_token: "fake_token"
       )

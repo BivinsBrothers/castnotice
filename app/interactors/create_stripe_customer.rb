@@ -4,10 +4,10 @@ class CreateStripeCustomer
   def perform
     begin
       customer = Stripe::Customer.create(
-        card: context[:stripe_token],
-        description: context[:user].id
+        card: stripe_token,
+        description: user.id
       )
-      context[:user].update_attributes(stripe_customer_id: customer.id)
+      user.update_attributes(stripe_customer_id: customer.id)
       context[:customer] = customer
     rescue Stripe::StripeError => e
       context[:error] = e.message
@@ -16,7 +16,7 @@ class CreateStripeCustomer
   end
 
   def rollback
-    context[:stripe_customer].delete
-    context[:user].update_attributes(stripe_customer_id: nil)
+    stripe_customer.delete
+    user.update_attributes(stripe_customer_id: nil)
   end
 end
