@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     Conversation.where("sender_id = ? OR recipient_id = ?", id, id)
   end
 
+  def correspondent_in?(conversation)
+    id == conversation.recipient_id || id == conversation.sender_id
+  end
+
   def talent?
     !mentor && !admin
   end
@@ -39,6 +43,6 @@ class User < ActiveRecord::Base
   end
 
   def can_send_messages_to?(recipient)
-    can_send_messages? && self.id != recipient.id
+    can_send_messages? && id != recipient.id
   end
 end

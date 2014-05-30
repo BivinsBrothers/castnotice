@@ -2,7 +2,7 @@
 <%= form_for @conversation do |f| %>
   <%= label_tag "To" %>
   <%= link_to @recipient.name, public_resume_path(@recipient.resume.slug), class: "correspondent" %>
-  <%= hidden_field :conversation, :recipient_id %>
+  <%= f.hidden_field :recipient_id %>
 
   <%= f.label :subject, "Subject" %>
   <%= f.text_field :subject %>

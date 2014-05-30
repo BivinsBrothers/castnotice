@@ -3,12 +3,6 @@ class MessagesController < ApplicationController
   before_action :set_conversation, only: :create
   before_action :can_reply_to_conversation?, only: :create
 
-  def index
-  end
-
-  def show
-  end
-
   def create
     if @conversation.messages.create(message_params.merge({sender_id: current_user.id}))
       flash[:notice] = "Your reply has been sent"
@@ -28,11 +22,11 @@ class MessagesController < ApplicationController
   def set_conversation
     unless @conversation = Conversation.find(message_params[:conversation_id])
       flash[:failure] = "Unable to reply to message"
-      redirect_to conversation_path(@conversation)
+      redirect_to conversations_path
     end
   end
 
   def can_reply_to_conversation?
-    @conversation.recipient_id == current_user.id
+    current_user.correspondent_in?(@conversation)
   end
 end
