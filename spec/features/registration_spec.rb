@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "registration", js: true do
   scenario "a visitor to register with an annual subscription plan" do
-    VCR.use_cassette("feature_stripe_customer_create_and_payment", record: :all) do
+    VCR.use_cassette("feature_stripe_customer_create_and_payment", record: :new_episodes) do
       proxy.cache.with_scope "feature_stripe_customer_create_and_payment" do
         visit root_path
 

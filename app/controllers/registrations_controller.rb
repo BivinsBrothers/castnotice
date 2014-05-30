@@ -18,8 +18,8 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in result.context[:user]
       redirect_to dashboard_path
     else
-      @user = result.context.user
-      flash[:error] = result.context.error
+      @user = result.context[:user]
+      flash[:error] = result.context[:error]
       render :new
     end
   end
