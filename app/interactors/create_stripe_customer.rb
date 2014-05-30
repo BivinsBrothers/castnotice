@@ -10,13 +10,12 @@ class CreateStripeCustomer
       user.update_attributes(stripe_customer_id: customer.id)
       context[:customer] = customer
     rescue Stripe::StripeError => e
-      context[:error] = e.message
-      fail!
+      fail!(error: e.message)
     end
   end
 
   def rollback
-    stripe_customer.delete
+    customer.delete
     user.update_attributes(stripe_customer_id: nil)
   end
 end
