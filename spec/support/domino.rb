@@ -172,4 +172,88 @@ module Dom
       page.execute_script("document.getElementById('search-form').submit();")
     end
   end
+
+  class MessageHeader < Domino
+    selector "#message-header"
+
+    def unread_message
+      node.text
+    end
+
+    def click
+      node.find("a").click
+    end
+  end
+
+  class Conversation < Domino
+    selector ".conversation"
+
+    attribute :correspondent
+
+    def subject
+      node.find(".subject .line").text
+    end
+
+    def correspondent
+      node.find(".from .correspondent").text
+    end
+
+    def unread?
+      node.has_css? ".unread"
+    end
+
+    def messages
+      Dom::Message.all
+    end
+
+    def click
+      node.find(".conversation-detail").click
+    end
+  end
+
+  class NewConversation < Domino
+    selector ".new_conversation"
+
+    attribute :correspondent
+    attribute :subject
+
+    def message
+      Dom::Message.first
+    end
+  end
+
+  class ReplyMessage < Domino
+    selector ".reply-conversation"
+
+    attribute :correspondent
+    attribute :subject
+    attribute :in_reply_to
+
+    def message=(message)
+      fill_in "Message", with: message
+    end
+
+    def reply
+      click_button "Reply"
+    end
+  end
+
+  class Message < Domino
+    selector ".message"
+
+    attribute :correspondent
+    attribute :body, ".body"
+
+    def body=(message)
+      fill_in "Message", with: message
+    end
+
+    def subject=(string)
+      fill_in "Subject", with: string
+    end
+
+    def send
+      click_button "Send"
+    end
+  end
 end

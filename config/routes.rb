@@ -26,5 +26,8 @@ Castnotice::Application.routes.draw do
   get "/contact" => "contacts#new", :as => "contact"
   resource :contacts, only: [:new, :create]
 
+  resources :messages, only: :create
+  resources :conversations, only: [:index, :show, :new, :create]
+
   get "/dashboard" => "dashboard#show", as: :dashboard
 end

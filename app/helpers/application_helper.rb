@@ -107,4 +107,12 @@ module ApplicationHelper
   def sentence_for_category_collection(category)
     category.map(&:name).to_sentence
   end
+
+  def message_toolbar
+    if (unread_count = current_user.unread_messages.count) > 0
+      link_to "You have #{unread_count} new #{'message'.pluralize(unread_count)}", conversations_path
+    else
+      link_to "Messages", conversations_path
+    end
+  end
 end

@@ -1,5 +1,13 @@
 class User < ActiveRecord::Base
+  MAXIMUM_HEADSHOTS = 10
+  MAXIMUM_VIDEOS = 10
+
   has_one :resume
+  has_one :background_image, -> { where is_background: true }, class: Headshot
+
+  has_many :received_messages, class: Message, foreign_key: :recipient_id
+  has_many :sent_messages, class: Message, foreign_key: :sender_id
+  has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
   has_many :critiques
 
   devise :database_authenticatable, :registerable,
@@ -16,5 +24,25 @@ class User < ActiveRecord::Base
 
   def under_18?
     birthday > 18.years.ago
+  end
+
+  def conversations
+    Conversation.where("sender_id = ? OR recipient_id = ?", id, id)
+  end
+
+  def correspondent_in?(conversation)
+    id == conversation.recipient_id || id == conversation.sender_id
+  end
+
+  def talent?
+    !mentor && !admin
+  end
+
+  def can_send_messages?
+    talent?
+  end
+
+  def can_send_messages_to?(recipient)
+    can_send_messages? && id != recipient.id
   end
 end

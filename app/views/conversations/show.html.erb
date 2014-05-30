@@ -1,0 +1,28 @@
+<h1>Conversation with <%= @correspondent.name %> </h1>
+<div class="conversation">
+  <div class="conversation-header">
+    <div class="from">
+      From <div class="correspondent"><%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %></div>
+    <div/>
+    <div class="subject">
+      Subject <div class="line"><%= @conversation.subject %></div>
+    </div>
+  </div>
+  <div class="messages">
+    <% @conversation.messages.each do |message| %>
+      <div class="message">
+        <div class="body"><%= message.body %></div>
+      </div>
+    <% end %>
+  </div>
+  <div class="reply-conversation">
+    <%= form_for @message do |f| %>
+      <%= f.label :body, "Message" %>
+      <%= f.text_area :body %>
+      <%= f.hidden_field :recipient_id %>
+      <%= f.hidden_field :conversation_id, value: @conversation.id %>
+      <%= f.submit "Reply" %>
+    <% end %>
+  </div>
+</div>
+  

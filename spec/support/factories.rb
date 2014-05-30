@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :video do
     association :videoable, factory: :resume
     video_url "http://www.youtube.com/watch?v=m8u8Z3bUQfs"
@@ -122,5 +121,25 @@ FactoryGirl.define do
 
   factory :union do
     name "UEA"
+  end
+
+  factory :conversation do
+    association :recipient, factory: :user
+    association :sender, factory: :user
+    subject "Building a Hamburger"
+
+    trait :with_message do
+      messages { [create(:message)] }
+    end
+  end
+
+  factory :message do
+    conversation
+    body "Something important"
+
+    before(:create) do |message|
+      message.recipient ||= message.conversation.recipient
+      message.sender ||= message.conversation.sender
+    end
   end
 end

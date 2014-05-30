@@ -12,8 +12,8 @@ class Resume < ActiveRecord::Base
 
   belongs_to :user
 
-  has_one :background_image, -> { where background: true }, class_name: Headshot, as: :imageable
-  has_one :resume_photo, -> { where resume_photo: true }, class_name: Headshot, as: :imageable
+  has_one :background_image, -> { where background: true }, class: Headshot, as: :imageable
+  has_one :resume_photo, -> { where resume_photo: true }, class: Headshot, as: :imageable
 
   has_many :resume_unions
   has_many :unions, through: :resume_unions

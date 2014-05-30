@@ -1,0 +1,16 @@
+<%= form_for @message, :url => message_path do |f| %>
+  <% if f.object.errors %>
+    <% f.object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  <% end %>
+  <ul>
+    <%= f.label :subject %>
+      <%= f.text_field :subject %>
+      <%= f.label :body %>
+      <%= f.text_area %>
+    </ul>
+
+  <%= f.submit "Save" %>
+
+<% end %>
