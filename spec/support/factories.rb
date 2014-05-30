@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :video do
     association :videoable, factory: :resume
     video_url "http://www.youtube.com/watch?v=m8u8Z3bUQfs"
@@ -13,7 +12,7 @@ FactoryGirl.define do
 
   factory :user do
     name "Test Dummy"
-    sequence(:email) {|n| "test#{n + Kernel.rand}@fake.com" }
+    sequence(:email) {|n| "test#{n}@fake.com" }
     password "goodpassword"
     birthday 27.years.ago
     tos "1"
