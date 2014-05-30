@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  after_filter :store_location
+  before_action :store_location
 
   helper_method :current_resume
   helper_method :current_query
@@ -19,12 +19,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def store_location
-    # store last url - this is needed for post-login redirect to whatever the user last visited.
-    if (request.fullpath != "/users/sign_in" &&
-        request.fullpath != "/users/sign_up" &&
-        request.fullpath != "/users/password" &&
-        request.fullpath != "/users/sign_out" &&
-        !request.xhr?) # don't store ajax calls
+    devise_routes = %w(/users/sign_in /users/sign_up /users/password /users/sign_out)
+
+    if !devise_routes.include?(request.fullpath) && !request.xhr?
       session[:previous_url] = request.fullpath
     end
   end

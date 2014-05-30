@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  skip_before_action :store_location
 
   def new
   end

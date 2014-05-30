@@ -1,7 +1,6 @@
 class ResumesController < ApplicationController
-  before_action :store_location
   before_action :authenticate_user!
-  before_filter :set_up_view_defaults, only: [:edit, :update]
+  before_action :set_up_view_defaults, only: [:edit, :update]
 
   def show
     @resume = current_resume

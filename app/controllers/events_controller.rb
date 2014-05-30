@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  skip_before_action :store_location
+
   def index
     events = Event.where(audition_date: query_date_range)
                   .order("audition_date ASC")
