@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :enforce_create_permission, only: [:create]
+  before_action :enforce_messaging_permissions, only: [:new, :create]
 
   def index
     @conversations = Conversation.for_user(current_user.id)
@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
 
   def new
     @recipient = User.find(params[:recipient_id])
+
 
     @conversation = Conversation.new({
       recipient_id: @recipient.id,
@@ -49,13 +50,12 @@ class ConversationsController < ApplicationController
 
   def conversation_params
     params.require(:conversation).permit(:subject, :recipient_id, :sender_id,
-                                         messages_attributes: [:body, :recipient_id, :sender_id])
+                                         messages_attributes: [:body, :recipient_id])
   end
 
-  def enforce_create_permission
-    recipient = User.find(conversation_params[:recipient_id])
-    unless can_send_messages_to?(recipient)
-      redirect_to public_resume_path(recipient)
+  def enforce_messaging_permissions
+    unless current_user.can_send_messages_to?(@recipient)
+      redirect_to public_resume_path(@recipient), notice: "You are not allowed to send this user a message"
     end
   end
 end

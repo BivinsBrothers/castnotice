@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:body, :conversation_id, :recipient_id, :sender_id)
+    params.require(:message).permit(:body, :conversation_id, :recipient_id)
   end
 
   def set_conversation
