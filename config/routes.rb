@@ -18,7 +18,9 @@ Castnotice::Application.routes.draw do
 
   resources :projects, except: [:new, :show, :index]
   resources :schools, except: [:new, :show, :index]
-  resources :critiques, only: [:new, :create, :show]
+  resources :critiques, only: [:new, :create, :show] do
+    resource :response, only: [:create], controller: "critique_responses"
+  end
 
   resources :headshots, except: [:show, :edit]
   resources :videos, except: [:show, :update, :edit]

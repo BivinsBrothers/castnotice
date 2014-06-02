@@ -3,6 +3,8 @@ class Critique < ActiveRecord::Base
   has_many :headshots, as: :imageable
   has_many :videos, as: :videoable
 
+  has_one :response, class: CritiqueResponse
+
   accepts_nested_attributes_for :headshots, :videos, reject_if: :all_blank
 
   before_save :set_uuid
@@ -10,5 +12,4 @@ class Critique < ActiveRecord::Base
   def set_uuid
     self.uuid = SecureRandom.uuid if self.uuid.nil?
   end
-
 end
