@@ -10,7 +10,7 @@ class CritiqueResponsesController < ApplicationController
       redirect_to dashboard_path
     else
       flash[:failure] = "Please try to send your response again."
-      render critique_path
+      redirect_to critique_path
     end
   end
 
