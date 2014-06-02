@@ -38,14 +38,12 @@
 
 <% if @critique.response %>
   <h3>Critique Response</h3>
-  <p><%= @critique.response %></p>
-<% end %>
-
-<% if !@critique.response && current_user.mentor? %>
-  <%= form_for @critique_response, :url => critique_responses_path, :method => :post do |f| %>
-   <%= f.label :response, "Please type your response here." %>
+  <p><%= @critique.response.body %></p>
+<% elsif current_user.mentor? %>
+  <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
+   <%= f.label :body, "Please type your response here." %>
    <%= hidden_field_tag :critique, @critique.uuid %>
-   <%= f.text_area :response %>
+   <%= f.text_area :body %>
    <%= f.submit "Respond", class: "btn" %>
   <% end %>
 <% end %>

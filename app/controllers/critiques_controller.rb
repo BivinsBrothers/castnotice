@@ -1,7 +1,6 @@
 class CritiquesController < ApplicationController
   before_action :authenticate_user!
 
-
   def new
     @critique = Critique.new
     @critique.videos.build

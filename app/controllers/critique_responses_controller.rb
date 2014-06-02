@@ -2,7 +2,7 @@ class CritiqueResponsesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @critique = Critique.find_by_uuid(params[:critique])
+    @critique = Critique.find_by_uuid(params[:critique_id])
     @critique_response = @critique.build_response(critique_response_params.merge(user_id: current_user.id))
     if @critique_response.save
       Notifier.critique_response(@critique).deliver
@@ -17,7 +17,6 @@ class CritiqueResponsesController < ApplicationController
   private
 
   def critique_response_params
-    params.require(:critique_response).permit(:response, :user_id, :critique_id)
+    params.require(:critique_response).permit(:body, :user_id, :critique_id)
   end
-
 end
