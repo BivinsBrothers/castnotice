@@ -6,4 +6,8 @@ class CreateUser
     user.create_resume
     fail! unless user.save
   end
+
+  def rollback
+    user.destroy
+  end
 end
