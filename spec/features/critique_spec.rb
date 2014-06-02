@@ -34,49 +34,59 @@ feature "Critique workflow" do
     open_email Figaro.env.castnotice_admin_email
     the_critique_url = root_url + "critiques/" + Critique.last.uuid
     expect(current_email).to have_content(the_critique_url)
-
   end
 
-  scenario "mentor can see a critique request" do
-    critique = create(:critique, project_title: "OZ", notes: "Improve what?")
-    mentor = create(:user, :mentor)
+  context "as a mentor" do
+    let(:mentor) { create(:user, :mentor) }
+    let!(:critique) { create(:critique, project_title: "OZ", notes: "Improve what?") }
 
-    log_in mentor
+    before do
+      log_in mentor
 
-    visit critique_path(critique.uuid)
+      visit critique_path(critique.uuid)
+    end
 
-    expect(page).to have_content("Critique Requested")
-    expect(page).to have_content("OZ")
-    expect(page).to have_content("Improve what?")
-  end
+    scenario "can see a critique request" do
+      expect(page).to have_content("Critique Requested")
+      expect(page).to have_content("OZ")
+      expect(page).to have_content("Improve what?")
+    end
 
-  scenario "mentor can respond to a critique request" do
-    critique = create(:critique, :project_title => "Brave", :notes => "Thoughts?")
-    mentor = create(:user, :mentor)
+    scenario "can respond to a critique request" do
+      expect(page).to have_content("Critique Requested")
+      expect(page).to have_content("OZ")
+      expect(page).to have_content("Improve what?")
+      expect(page).to have_content("Critique Response")
+      expect(page).to have_content("Please type your response here.")
 
-    log_in mentor
+      fill_in "critique_response_body", with: "Looks Great!"
 
-    visit critique_path(critique.uuid)
+      click_button "Respond"
 
-    expect(page).to have_content("Critique Requested")
-    expect(page).to have_content("Brave")
-    expect(page).to have_content("Thoughts?")
-    expect(page).to_not have_content("Critique Response")
-    expect(page).to have_content("Please type your response here.")
+      expect(page).to have_content("Your response has been sent.")
+      expect(page).to have_content("Hello Test Dummy")
 
-    fill_in "critique_response_body", with: "Looks Great!"
+      open_email Figaro.env.castnotice_admin_email
+      expect(current_email).to have_content(critique_path(critique.uuid))
 
-    click_button "Respond"
+      visit critique_path(critique.uuid)
 
-    expect(page).to have_content("Your response has been sent.")
-    expect(page).to have_content("Hello Test Dummy")
+      expect(page).to have_content("Critique Response")
+      expect(page).to_not have_content("Please type your response here.")
+    end
 
-    open_email Figaro.env.castnotice_admin_email
-    expect(current_email).to have_content(critique_path(critique.uuid))
+    scenario "talent receives an email when critique request is completed" do
+      fill_in "critique_response_body", with: "Looks Great!"
+      click_button "Respond"
 
-    visit critique_path(critique.uuid)
+      open_email critique.user.email
 
-    expect(page).to have_content("Critique Response")
-    expect(page).to_not have_content("Please type your response here.")
+      expect(current_email).to have_content("Your Critique Request has been completed please click the link provided to review.")
+      expect(current_email).to have_content(critique_url(critique.uuid))
+
+      visit critique_path(critique.uuid)
+
+      expect(page).to have_content("Looks Great!")
+    end
   end
 end
