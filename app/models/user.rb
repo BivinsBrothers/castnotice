@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
   has_many :critiques
 
-  has_many :critique_responses_given, class_name: "CritiqueResponse"
-  has_many :critique_responses_received, class_name: "CritiqueResponse", through: :critiques, source: :critique_response
+  has_many :critique_responses_given, class: CritiqueResponse
+  has_many :critique_responses_received, class: CritiqueResponse, through: :critiques, source: :response
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
