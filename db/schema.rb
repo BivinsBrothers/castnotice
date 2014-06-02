@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522173528) do
+ActiveRecord::Schema.define(version: 20140528144940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20140522173528) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+
+  create_table "critique_responses", force: true do |t|
+    t.text     "body"
+    t.integer  "critique_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "critique_responses", ["critique_id"], name: "index_critique_responses_on_critique_id", using: :btree
+  add_index "critique_responses", ["user_id"], name: "index_critique_responses_on_user_id", using: :btree
 
   create_table "critiques", force: true do |t|
     t.string   "project_title"
