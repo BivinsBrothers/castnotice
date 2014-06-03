@@ -7,7 +7,7 @@
   <%= f.text_area :notes %>
 
   <h2>Critique Photos</h2>
-  <h3>Choose two photos</h3>
+  <p>Choose two photos to use for your critique.</p>
   <div>
     <%= f.fields_for :headshots do |ff| %>
       <%= ff.file_field :image %>
@@ -15,7 +15,7 @@
   </div>
 
   <h2>Critique Video</h2>
-  <h3>Paste video URL</h3>
+  <p>Paste video URL from YouTube or Vimeo.</p>
   <div>
     <%= f.fields_for :videos do |ff| %>
       <%= ff.text_field :video_url %>
