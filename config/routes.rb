@@ -1,5 +1,8 @@
 Castnotice::Application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
+  devise_scope :mentor do
+    get :mentor_sign_up, controller: "mentors"
+  end
 
   namespace :admin do
     resources :events, except: [:show, :index]
