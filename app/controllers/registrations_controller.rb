@@ -20,6 +20,6 @@ class RegistrationsController < Devise::RegistrationsController
     params.require(:user)
           .permit( :name, :email, :password, :password_confirmation, :location_address, :location_address_two,
                    :location_city, :location_state, :location_zip, :birthday, :parent_name, :parent_email,
-                   :parent_location, :parent_location_two, :parent_city, :parent_state, :parent_zip, :parent_phone, :tos)
+                   :parent_location, :parent_location_two, :parent_city, :parent_state, :parent_zip, :parent_phone, :tos, :mentor)
   end
 end
