@@ -9,7 +9,6 @@ describe "user dashboard" do
 
     expect(page).to have_content("Hello Test Dummy")
     expect(page).to have_content("My Close Up")
-    expect(page).to have_content("Now starring you.")
     expect(page).to have_content("Edit Resume")
     expect(page).to have_content("Your Photos")
     expect(page).to have_content("Your Videos")
