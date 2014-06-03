@@ -7,7 +7,7 @@ feature "Critique workflow" do
     log_in user
     visit dashboard_path
 
-    click_link "Create Critique Request"
+    page.find(".critique").click
 
     expect(page).to have_content("Critique Request")
 

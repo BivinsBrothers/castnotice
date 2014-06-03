@@ -64,6 +64,6 @@
     <%= render template: 'projects/show', locals: { projects: current_resume.projects } if current_resume.projects.present? %>
 	</div>
   <div>
-    <%= link_to 'Create Critique Request', new_critique_path, class: "btn" %>
+    <%= link_to 'Create Critique Request', new_critique_path, class: "btn critique" %>
   </div>
 </div>
