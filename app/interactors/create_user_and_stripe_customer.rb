@@ -1,5 +1,5 @@
 class CreateUserAndStripeCustomer
   include Interactor::Organizer
 
-  organize CreateUser, CreateStripeCustomer
+  organize CreateUser, CreateStripeCustomer, SelectRegistrationPlan
 end
