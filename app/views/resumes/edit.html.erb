@@ -16,11 +16,16 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Personal Information</h2>
+	  </div>
         <div class="col-md-6">
+		<div class="form-group">
           <%= f.label :slug, "Public Resume URL" %>
           <%= f.text_field :slug %>
+		  </div>
+		  <div class="form-group">
           <%= f.label :descriptive_tag, "Descriptive Tags" %>
           <%= f.text_field :descriptive_tag %>
+		  </div>
           <%= f.label :phone %>
           <%= f.phone_field :phone %>
           <%= f.label :phone_two, "Second Phone" %>
@@ -30,11 +35,12 @@
           <%= f.label :citizen, "Citizenship?" %>
           <%= f.select :citizen, citizen_select %>
           <p>Do you have a current passport?</p>
-          <div>
+          <div class="radio">
+		  	
             <%= f.label :passport, "Yes", :value => "true", :class => "radio-label" %>
             <%= f.radio_button :passport, true, :class => "radio-button" %>
-          </div>
-          <div>
+			</div>
+			<div class="radio">
             <%= f.label :passport, "No", :value => "false", :class => "radio-label" %>
             <%= f.radio_button :passport, false, :class => "radio-button" %>
           </div>
@@ -56,9 +62,11 @@
           <%= f.label :tattoo, "Visible Tattoos" %>
           <%= f.select :tattoo, tatoo_select %>
         </div>
-      <%= f.submit "Save", :class => "resume-save" %>
-
+      
+		<div class="col-md-12">
+		<%= f.submit "Save", :class => "resume-save" %>
       <h2>Skills</h2>
+
       <%= f.label :additional_skills %>
       <%= f.text_area :additional_skills %>
       <%= f.submit "Save" %>
@@ -115,11 +123,20 @@
 		</div>
 
 		<div class="is-hidden new-headshot-form" id="new-headshot-form">
-		  <%= form_for @headshot, :multipart => true do |f| %>
-			  <%= f.file_field :image, :id => "headshot_image" %>
-			  <%= f.hidden_field :image_cache %>
-			  <%= f.submit "Save Photo", :disabled => "disabled", :id => "upload-headshot-button" %>
-		  <% end %>
+			<div class="row">
+				<div class="col-md-5">
+				  <%= form_for @headshot, :multipart => true do |f| %>
+					  <%= f.file_field :image, :id => "headshot_image" %>
+					  <%= f.hidden_field :image_cache %>
+					  <%= f.submit "Save Photo", :disabled => "disabled", :id => "upload-headshot-button" %>
+				  <% end %>
+				 </div>
+				 <div class="col-md-7">
+				 	<li>Upload up to 10 pictures from your computer</li>
+					<li>All images will feature in your resume</li>
+					<li>You can set one image as your background picture. This image will be automatically turned black and white and faded, but you may need to experiment with different pictures to get the best results.</li>
+				 </div>
+			</div>
 		</div>
 
     <div class="headshot-image">
@@ -155,10 +172,25 @@
 		</div>
 
 		<div class="is-hidden new-video-form" id="new-video-form">
+			<div class="row">
+				<div class="col-md-5">
 		  <%= form_for @video, :multipart => true do |f| %>
 			  <%= f.text_field :video_url %>
 			  <%= f.submit "Save Video", :disabled => "disabled", :class => "video-save", :id => "upload-video-button" %>
 		  <% end %>
+		  		</div>
+				<div class="col-md-7">
+					<ul>
+						<li>You must be the only performer in your video.</li>
+						<li>Videos should be a maximum of 2 minutes.</li>
+						<li>Videos should be added using the URL of a YouTube or Vimeo video page </li>
+						<li>Check your video sound for clarity.</li>
+						<li>For best do not upload a video of you in a performance.  Film something specifically for CastNotice.com in the style of an audition.</li>
+						<li>Do not dress in costumes.  Dress in clothing you would normally wear.</li>
+						<li>Shooting your video close-up is more effective for Talent Mentors to critique your performance.</li>
+						<li>For best acting critiques upload a monologue instead of a scene.</li>
+				</div>
+			</div>
 		</div>
 
 		<div class="video-list">

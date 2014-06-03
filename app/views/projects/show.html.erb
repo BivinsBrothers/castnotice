@@ -1,12 +1,10 @@
-<div class="row">
+<div class="row repeatable-row">
   <% projects.each do |project| %>
-    <div class="row repeatable-row">
-      <div class="col-md-12">
+      <div class="col-md-4">
         <h4>Title: <%= project.title %></h4>
         <p>Project Type: <%= project.project_type.name %></p>
         <p>Role: <%= project.role %></p>
         <p>Director Studio: <%= project.director_studio %></p>
       </div>
-    </div>
   <% end %>
 </div>

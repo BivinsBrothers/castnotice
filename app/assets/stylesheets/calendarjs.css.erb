@@ -155,15 +155,13 @@ cursor:pointer;
 	}
 
 .calendar-controls .calendar-filters .calendar-option{
-	float: left;
 	margin-bottom:20px;
 	width: 100%;
 	}
 
 .calendar-controls .calendar-filters .calendar-option .calendar-checkbox{
 	width: 50%;
-	float:left;
-
+	float: left;
 }
 
 .calendar-controls .calendar-filters .calendar-option .calendar-checkbox input{
@@ -184,8 +182,65 @@ cursor:pointer;
 	padding-right:3px;
 	margin: 0;
 	display: inline;
+	float:none;
 }
 
+
+@media (max-width: 1200px){
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox {
+	width: 100%;
+	float: none;
+}
+}
+@media (max-width: 991px){
+.calendar-controls #calendar-datepicker {
+	padding: 10px;
+	font-size: 10px;
+}
+.calendar-controls h2 {
+	font-size: 15px;
+}
+.calendar-controls h3 {
+	margin: 5px 0 5px 0;
+	font-size: 13px;
+}
+.calendar-controls .calendar-filters {
+	padding: 10px;
+	margin-bottom: 50px;
+}
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox label{
+	font-size: 10px;
+	padding-right:0px;
+}
+
+}
+@media (max-width: 767px){
+.calendar-controls {
+	width: 100%;
+	float: left;
+}
+.calendar-events {
+width: 100%;
+float: left;
+margin-bottom: 20px;
+}
+.calendar-controls .calendar-filters .calendar-option .calendar-checkbox {
+width: 33%;
+float: left;
+}
+.calendar-controls h3 {
+margin: 5px 0 5px 0;
+font-size: 13px;
+float: left;
+width: 100%;
+}
+}
+@media (max-width: 480px){
+
+}
+@media (max-width: 380px){
+
+}
 
 
 
