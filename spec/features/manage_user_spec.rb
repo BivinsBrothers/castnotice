@@ -171,7 +171,7 @@ describe "managing user" do
   end
 
   it "allows a mentor to register" do
-    visit mentor_sign_up_path
+    visit new_user_registration_path
 
     fill_in "Name", with: "Test Mentor"
     fill_in "Email", with: "mentor@fake.com"

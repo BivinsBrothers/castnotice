@@ -1,8 +1,6 @@
 Castnotice::Application.routes.draw do
-  devise_scope :mentors do
-    get "mentor_sign_up" => "mentors"
-  end
   devise_for :users, controllers: { registrations: "registrations" }
+  get "users/sign_up/mentor", to: redirect("users/sign_up?mentor=true")
 
   namespace :admin do
     resources :events, except: [:show, :index]
