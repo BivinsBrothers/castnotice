@@ -15,8 +15,9 @@
 
 <% if current_user.resume %>
   <%= link_to "Print Resume", print_resume_path(current_user.resume.slug), target: "_blank", class: "btn" %>
-  <p class="resume-url">Your public resume URL: <span><%= public_resume_url(current_user.resume.slug) %></span></p>
   <%= link_to 'Create Critique Request', new_critique_path, class: "btn" %>
+  <p class="resume-url">Your public resume URL: <span><%= public_resume_url(current_user.resume.slug) %></span></p>
+  
 <% end %>
 
 
@@ -29,7 +30,7 @@
 		
 				<% if current_resume.headshots.present? %>
 				  <% current_resume.headshots.each do |headshot| %>
-					  <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+					  <div class="dashboard-headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
 				  <% end %>
 				<% else %>
 				  <div class="add-headshots"><%= link_to "Add a photo", edit_resume_path %></div>
@@ -59,7 +60,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 dashboard-experience">
 		<h2>Experience <span><%= link_to 'Manage', edit_resume_path, class: "btn btn-small" %></span></h2>
     <%= render template: 'projects/show', locals: { projects: current_resume.projects } if current_resume.projects.present? %>
 	</div>

@@ -139,22 +139,26 @@
 			</div>
 		</div>
 
-    <div class="headshot-image">
-      <% current_resume.headshots.each do |headshot| %>
-        <%= image_tag(headshot.image_url(:thumb)) %>
-        <div class="headshot-link">
-          <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
-          <% if headshot.background? %>
-            <%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %> |
-          <% else %>
-            <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %> |
-          <% end %>
-          <% if headshot.resume_photo? %>
-            <%= link_to "Remove as resume photo", headshot_path(headshot, resume_photo: false), method: :put, :class => "mini-link" %>
-          <% else %>
-            <%= link_to "Set as resume photo", headshot_path(headshot, resume_photo: true), method: :put, :class => "mini-link" %>
-          <% end %>
-        </div>
+   <div class="row">
+      	<% current_resume.headshots.each do |headshot| %>
+	  	<div class="col-md-2 headshot-group">
+			<div class="headshot-image">
+				<%= image_tag(headshot.image_url(:thumb)) %>
+			</div>
+			<div class="headshot-link">
+			  	<span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
+			  	<% if headshot.background? %>
+					<%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %> |
+			  	<% else %>
+					<%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %> |
+			  	<% end %>
+			  	<% if headshot.resume_photo? %>
+					<%= link_to "Remove as resume photo", headshot_path(headshot, resume_photo: false), method: :put, :class => "mini-link" %>
+			  	<% else %>
+					<%= link_to "Set as resume photo", headshot_path(headshot, resume_photo: true), method: :put, :class => "mini-link" %>
+			  <% end %>
+			</div>
+			
       <% end %>
     </div>
   </div>
