@@ -173,7 +173,7 @@ describe "managing user" do
   it "allows a mentor to register" do
     visit users_sign_up_mentor_path
 
-    expect(page).to have_content("Create Mentor Account")
+    expect(page).to have_content("Mentor Account")
 
     fill_in "Name", with: "Test Mentor"
     fill_in "Email", with: "mentor@fake.com"
