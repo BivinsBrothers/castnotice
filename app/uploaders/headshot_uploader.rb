@@ -34,7 +34,7 @@ class HeadshotUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   version :thumb do
     process :auto_orient
-    process :resize_to_fill => [75, 75]
+    process :resize_to_fill => [200, 150]
   end
 
   version :background do
