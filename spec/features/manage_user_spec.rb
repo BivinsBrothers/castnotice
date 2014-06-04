@@ -171,7 +171,9 @@ describe "managing user" do
   end
 
   it "allows a mentor to register" do
-    visit new_user_registration_path
+    visit users_sign_up_mentor_path
+
+    expect(page).to have_content("Create Mentor Account")
 
     fill_in "Name", with: "Test Mentor"
     fill_in "Email", with: "mentor@fake.com"
@@ -196,12 +198,12 @@ describe "managing user" do
       User.count
     }.from(0).to(1)
 
-    expect(page).to have_content("Dashboard")
+    expect(current_path).to eq(dashboard_path)
 
     user = User.last
 
     expect(user.name).to eq("Test Mentor")
 
-    expect(user.mentor).to eq("true")
+    expect(user.mentor).to eq(true)
   end
 end
