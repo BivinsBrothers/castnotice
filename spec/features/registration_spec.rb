@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "registration", js: true do
   scenario "a visitor to register with an annual subscription plan" do
-    VCR.use_cassette("feature_stripe_customer_create_and_payment", record: :new_episodes) do
+    VCR.use_cassette("feature_stripe_customer_create_and_payment") do
       proxy.stub("https://api.stripe.com:443/v1/tokens").and_return( Proc.new { |params, headers, body|
         # todo: Figure out how to make this dynamic based on cached value
         {
@@ -41,10 +41,10 @@ feature "registration", js: true do
       click_link "register"
       find(".register-annual").click
 
-      expect(current_path).to eq(new_user_registration_path)
+      expect(current_path).to eq(new_user_registration_path(stripe_plan: Stripe::Plans::ANNUAL))
 
       fill_in "Full Name", with: "Joe Bredow"
-      fill_in "Email", with: "joe@test.com"
+      fill_in "Email", with: "joe123@test.com"
       fill_in "Password", with: "1q2w3e4r"
       fill_in "Password confirmation", with: "1q2w3e4r"
       fill_in "Address One", with: "1234 Test Ln"
@@ -61,7 +61,7 @@ feature "registration", js: true do
       check "Accept our Terms of Service"
 
       click_button "Sign up"
-      
+
       sleep 5
 
       expect(page).to have_content("Hello Joe Bredow")
@@ -73,7 +73,4 @@ feature "registration", js: true do
       expect(page).to have_content("Plan Level: Annual Subscription")
     end
   end
-  scenario "a visitor to register with a monthly subscription plan"
-  scenario "a visitor to register with a broadway breakthrough annual subscription"
-  scenario "a visitor can register with promo code"
 end

@@ -1,5 +1,9 @@
 Castnotice::Application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
+  constraints StripePlanConstraint do
+    devise_for :users, 
+      path_names: { sign_up: "sign_up/:stripe_plan" },
+      controllers: { registrations: "registrations" }
+  end
   get "users/sign_up/mentor", to: redirect("users/sign_up?mentor=true")
 
   namespace :admin do

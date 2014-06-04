@@ -1,6 +1,10 @@
 <h1>Account Information</h1>
 <p>Your account information is listed below.</p>
 <br>
+<div class="plan-information">
+  <% if @user.stripe_plan %>
+    <p>Plan Level: <%= @user.stripe_plan.plan.name %></p>
+  <% end %>
 <%= form_for @user, :url => accounts_path, :method => :put do |f| %>
 
     <% @user.errors.full_messages.each do |msg| %>

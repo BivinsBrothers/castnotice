@@ -9,10 +9,16 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def new
+    @stripe_plan = params[:stripe_plan]
+    super
+  end
+
   def create
     result = CreateUserAndStripeCustomer.perform(
       user_attributes: registration_params,
-      stripe_token: params[:stripe_token]
+      stripe_token: params[:stripe_token],
+      stripe_plan: params[:stripe_plan]
     )
     if result.success?
       sign_in result.context[:user]

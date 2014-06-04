@@ -2,7 +2,7 @@ class AccountsController < ApplicationController
   skip_before_action :store_location
 
   def edit
-    @user = current_user
+    @user = current_user.decorate
   end
 
   def update

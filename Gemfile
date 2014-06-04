@@ -31,6 +31,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin]
 gem "honeybadger"
 gem "stripe-rails"
 gem "interactor-rails"
+gem "draper"
 
 group :production, :staging do
   gem "rails_12factor"
@@ -49,8 +50,6 @@ group :development, :test do
   gem "domino"
   gem "timecop"
   gem "puffing-billy"
-  gem "webmock"
-  gem "vcr"
 end
 
 group :development do
@@ -60,4 +59,6 @@ end
 
 group :test do
   gem "codeclimate-test-reporter", require: nil
+  gem "webmock"
+  gem "vcr"
 end
