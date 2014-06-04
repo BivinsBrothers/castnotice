@@ -41,8 +41,8 @@
 	  <p>Weight: <%= @resume.weight %></p>
 	  <p>Hair Color: <%= @resume.hair_color %></p>
 	  <p>Eye Color: <%= @resume.eye_color %></p>
-	  
 	</div>
+
 	<div class="col-md-6">
 		<p>Phone: <%= @resume.phone %></p>
 	  <p>Email: <%= @resume.user.email %></p>
@@ -54,12 +54,12 @@
 
 <div class="row">
   <div class="col-md-12">
-  <% if @resume.headshots.present? %>
-    <h3>Photos</h3>
-    <% @resume.headshots.each do |headshot| %>
-      <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+    <% if @resume.headshots.present? %>
+      <h3>Photos</h3>
+      <% @resume.headshots.each do |headshot| %>
+        <div class="headshot"><%= image_tag(headshot.image_url(:thumb)) %></div>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 </div>
 
@@ -67,15 +67,14 @@
 	<div class="col-md-12">
 		<% if @resume.videos.present? %>
 		  <h3>Your Videos</h3>
-		
 		  <% @resume.videos.each do |video| %>
-			<div class="video">
-			  <% if video.youtube_id.present? %>
-				<iframe src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
-			  <% elsif video.vimeo_id.present? %>
-				<iframe src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
-			  <% end %>
-			</div>
+        <div class="video">
+          <% if video.youtube_id.present? %>
+            <iframe src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
+          <% elsif video.vimeo_id.present? %>
+            <iframe src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
+          <% end %>
+        </div>
 		  <% end %>
 		<% end %>
 	</div>
