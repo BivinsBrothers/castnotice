@@ -17,56 +17,59 @@
     <div class="col-md-12">
       <h2>Personal Information</h2>
 	  </div>
-        <div class="col-md-6">
-		<div class="form-group">
-          <%= f.label :slug, "Public Resume URL" %>
-          <%= f.text_field :slug %>
-		  </div>
-		  <div class="form-group">
-          <%= f.label :descriptive_tag, "Descriptive Tags" %>
-          <%= f.text_field :descriptive_tag %>
-		  </div>
-          <%= f.label :phone %>
-          <%= f.phone_field :phone %>
-          <%= f.label :phone_two, "Second Phone" %>
-          <%= f.phone_field :phone_two %>
-          <%= f.label :gender %>
-          <%= f.text_field :gender %>
-          <%= f.label :citizen, "Citizenship?" %>
-          <%= f.select :citizen, citizen_select %>
-          <p>Do you have a current passport?</p>
-          <div class="radio">
-		  	
-            <%= f.label :passport, "Yes", :value => "true", :class => "radio-label" %>
-            <%= f.radio_button :passport, true, :class => "radio-button" %>
-			</div>
-			<div class="radio">
-            <%= f.label :passport, "No", :value => "false", :class => "radio-label" %>
-            <%= f.radio_button :passport, false, :class => "radio-button" %>
-          </div>
-        </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :slug, "Public Resume URL" %>
+        <%= f.text_field :slug %>
+      </div>
 
-        <div class="col-md-6">
-          <%= f.label :height %>
-          <%= f.select :height, height_options %>
-          <%= f.label :weight %>
-          <%= f.text_field :weight %>
-          <%= f.label :hair_color %>
-          <%= f.select :hair_color, hair_color_select %>
-          <%= f.label :eye_color %>
-          <%= f.select :eye_color, eye_color_select %>
-          <%= f.label :hair_length %>
-          <%= f.select :hair_length, hair_length_select %>
-          <%= f.label :piercing, "Do you have Piercings" %>
-          <%= f.select :piercing, piercing_select %>
-          <%= f.label :tattoo, "Visible Tattoos" %>
-          <%= f.select :tattoo, tatoo_select %>
-        </div>
+      <div class="form-group">
+        <%= f.label :descriptive_tag, "Descriptive Tags" %>
+        <%= f.text_field :descriptive_tag %>
+      </div>
+
+      <%= f.label :phone %>
+      <%= f.phone_field :phone %>
+      <%= f.label :phone_two, "Second Phone" %>
+      <%= f.phone_field :phone_two %>
+      <%= f.label :gender %>
+      <%= f.text_field :gender %>
+      <%= f.label :citizen, "Citizenship?" %>
+      <%= f.select :citizen, citizen_select %>
+
+      <p>Do you have a current passport?</p>
+
+      <div class="radio">
+        <%= f.label :passport, "Yes", :value => "true", :class => "radio-label" %>
+        <%= f.radio_button :passport, true, :class => "radio-button" %>
+      </div>
+
+      <div class="radio">
+        <%= f.label :passport, "No", :value => "false", :class => "radio-label" %>
+        <%= f.radio_button :passport, false, :class => "radio-button" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.label :height %>
+      <%= f.select :height, height_options %>
+      <%= f.label :weight %>
+      <%= f.text_field :weight %>
+      <%= f.label :hair_color %>
+      <%= f.select :hair_color, hair_color_select %>
+      <%= f.label :eye_color %>
+      <%= f.select :eye_color, eye_color_select %>
+      <%= f.label :hair_length %>
+      <%= f.select :hair_length, hair_length_select %>
+      <%= f.label :piercing, "Do you have Piercings" %>
+      <%= f.select :piercing, piercing_select %>
+      <%= f.label :tattoo, "Visible Tattoos" %>
+      <%= f.select :tattoo, tatoo_select %>
+    </div>
       
 		<div class="col-md-12">
-		<%= f.submit "Save", :class => "resume-save" %>
+		  <%= f.submit "Save", :class => "resume-save" %>
       <h2>Skills</h2>
-
       <%= f.label :additional_skills %>
       <%= f.text_area :additional_skills %>
       <%= f.submit "Save" %>
@@ -139,26 +142,27 @@
 			</div>
 		</div>
 
-   <div class="row">
-      	<% current_resume.headshots.each do |headshot| %>
-	  	<div class="col-md-2 headshot-group">
-			<div class="headshot-image">
-				<%= image_tag(headshot.image_url(:thumb)) %>
-			</div>
-			<div class="headshot-link">
-			  	<span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
-			  	<% if headshot.background? %>
-					<%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %> |
-			  	<% else %>
-					<%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %> |
-			  	<% end %>
-			  	<% if headshot.resume_photo? %>
-					<%= link_to "Remove as resume photo", headshot_path(headshot, resume_photo: false), method: :put, :class => "mini-link" %>
-			  	<% else %>
-					<%= link_to "Set as resume photo", headshot_path(headshot, resume_photo: true), method: :put, :class => "mini-link" %>
-			  <% end %>
-			</div>
-			
+    <div class="row">
+      <% current_resume.headshots.each do |headshot| %>
+        <div class="col-md-2 headshot-group">
+          <div class="headshot-image">
+            <%= image_tag(headshot.image_url(:thumb)) %>
+          </div>
+          <div class="headshot-link">
+            <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
+            <% if headshot.background? %>
+              <%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %> |
+            <% else %>
+              <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %> |
+            <% end %>
+
+            <% if headshot.resume_photo? %>
+              <%= link_to "Remove as resume photo", headshot_path(headshot, resume_photo: false), method: :put, :class => "mini-link" %>
+            <% else %>
+              <%= link_to "Set as resume photo", headshot_path(headshot, resume_photo: true), method: :put, :class => "mini-link" %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -178,11 +182,11 @@
 		<div class="is-hidden new-video-form" id="new-video-form">
 			<div class="row">
 				<div class="col-md-5">
-		  <%= form_for @video, :multipart => true do |f| %>
-			  <%= f.text_field :video_url %>
-			  <%= f.submit "Save Video", :disabled => "disabled", :class => "video-save", :id => "upload-video-button" %>
-		  <% end %>
-		  		</div>
+		      <%= form_for @video, :multipart => true do |f| %>
+			      <%= f.text_field :video_url %>
+			      <%= f.submit "Save Video", :disabled => "disabled", :class => "video-save", :id => "upload-video-button" %>
+		      <% end %>
+        </div>
 				<div class="col-md-7">
 					<ul>
 						<li>You must be the only performer in your video.</li>
@@ -236,7 +240,6 @@
         <%= render 'school', :school => school %>
       <% end %>
     </div>
-
 	</div>
 </div>
 
