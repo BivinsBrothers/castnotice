@@ -14,8 +14,8 @@
 <%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
 
 <% if current_user.resume %>
-  <%= link_to "Print Resume", print_resume_path(current_user.resume.slug), class: "btn" %>
-  <p class="resume-url">Your public resume URL: <span><%= public_resume_url(current_user.resume.slug) %></span</p>
+  <%= link_to "Print Resume", print_resume_path(current_user.resume.slug), target: "_blank", class: "btn" %>
+  <p class="resume-url">Your public resume URL: <span><%= public_resume_url(current_user.resume.slug) %></span></p>
   <%= link_to 'Create Critique Request', new_critique_path, class: "btn" %>
 <% end %>
 
