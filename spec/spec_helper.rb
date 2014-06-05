@@ -37,6 +37,7 @@ VCR.configure do |c|
   c.cassette_library_dir = "spec/cassettes"
   c.default_cassette_options = { record: :new_episodes }
   c.hook_into :webmock
+  c.configure_rspec_metadata!
 end
 
 WebMock.allow_net_connect!
@@ -54,7 +55,6 @@ RSpec.configure do |config|
   config.include(Authentication::Helpers)
   config.include Devise::TestHelpers, :type => :controller
   config.include Warden::Test::Helpers
-
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -78,4 +78,7 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  # Can be removed in Rspec 3... required for VCR metadata integration
+  config.treat_symbols_as_metadata_keys_with_true_values = true
 end
