@@ -20,6 +20,7 @@ $ ->
     dates = $("#expiration").val().split("/")
     Stripe.card.createToken({
       number: $("#card_number").val(),
+      cvc: $("#cvc").val(),
       exp_month: dates[0],
       exp_year: dates[1]
     }, stripeHandler)
