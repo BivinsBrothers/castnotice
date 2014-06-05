@@ -38,12 +38,15 @@ describe "managing user" do
         }
       })
     end
-    
+
     vcr_options = { cassette_name: "feature_stripe_customer_create_and_payment" }
+
     it "allows a user to register", vcr: vcr_options do
       visit new_user_registration_path(stripe_plan: "annual")
 
       expect(current_path).to eq(new_user_registration_path(stripe_plan: Stripe::Plans::ANNUAL))
+
+      birthday = 31.years.ago
 
       fill_in "Full Name", with: "Test Dummy"
       fill_in "Email", with: "dummy@test.me"
@@ -54,12 +57,12 @@ describe "managing user" do
       fill_in "Address Two", with: "PO BOX 105"
       fill_in "City", with: "Grand Rapids"
       select  "Michigan", from: "State"
-      fill_in "Zip code", with: "49506"
+      fill_in "Zip Code", with: "49506"
 
-      select "17", from: "user_birthday_3i"
-      select "September", from: "user_birthday_2i"
-      select "1987", from: "user_birthday_1i"
-      
+      select birthday.day.to_s, from: "user_birthday_3i"
+      select birthday.strftime("%B"), from: "user_birthday_2i"
+      select birthday.year.to_s, from: "user_birthday_1i"
+
       fill_in "Card Number", with: "4242424242424242"
       fill_in "Expiration (MM/YYYY)", with: "01/2017"
 
@@ -70,9 +73,9 @@ describe "managing user" do
       sleep 5
 
       expect(page).to have_content("Hello Test Dummy")
-      
+
       click_link("Account Information")
-      
+
       account_information = Dom::AccountInformation.first
 
       expect(account_information.current_subscription_plan).to eq("Annual Subscription")
@@ -85,28 +88,32 @@ describe "managing user" do
       expect(account_information.location_state).to eq("MI")
       expect(account_information.location_zip).to eq("49506")
 
-      expect(account_information.birthday_day).to eq("17")
-      expect(account_information.birthday_month).to eq("9")
-      expect(account_information.birthday_year).to eq("1987")
+      expect(account_information.birthday_day).to eq(birthday.day.to_s)
+      expect(account_information.birthday_month).to eq(birthday.month.to_s)
+      expect(account_information.birthday_year).to eq(birthday.year.to_s)
     end
 
-    it "shows parent questions when minor is registering" do
-      visit new_user_registration_path
+    it "shows parent questions when minor is registering", vcr: vcr_options do
+      visit new_user_registration_path(stripe_plan: "annual")
+
+      expect(current_path).to eq(new_user_registration_path(stripe_plan: Stripe::Plans::ANNUAL))
+
+      birthday = 7.years.ago
 
       fill_in "Full Name", with: "Test Dummy"
-      fill_in "Email", with: "test@fake.com"
+      fill_in "Email", with: "dummy@test.me"
       fill_in "Password", with: "superpass"
       fill_in "Password confirmation", with: "superpass"
 
-      fill_in "user[location_address]", with: "123 Somewhere"
-      fill_in "user[location_address_two]", with: "PO BOX 105"
-      fill_in "user[location_city]", with: "Grand Rapids"
-      select  "Michigan", from: "user[location_state]"
-      fill_in "user[location_zip]", with: "49506"
+      fill_in "Address One", with: "123 Somewhere"
+      fill_in "Address Two", with: "PO BOX 105"
+      fill_in "City", with: "Grand Rapids"
+      select  "Michigan", from: "State"
+      fill_in "Zip Code", with: "49506"
 
-      select "17", from: "user_birthday_3i"
-      select "September", from: "user_birthday_2i"
-      select "2014", from: "user_birthday_1i"
+      select birthday.day.to_s, from: "user_birthday_3i"
+      select birthday.strftime("%B"), from: "user_birthday_2i"
+      select birthday.year.to_s, from: "user_birthday_1i"
 
       fill_in "Parents Fullname", with: "Mommy Dummy"
       fill_in "Parents Email", with: "mommydummy@fake.com"
@@ -114,26 +121,47 @@ describe "managing user" do
       fill_in "Parents Suite/Apt", with: "PO BOX 205"
       fill_in "Parents City", with: "Grand Rapids"
       select  "Michigan", from: "user[parent_state]"
-      fill_in "Parents Zip code", with: "49506"
+      fill_in "Parents Zip Code", with: "49506"
       fill_in "Parents Phone", with: "616-234-4567"
+
+      fill_in "Card Number", with: "4242424242424242"
+      fill_in "Expiration (MM/YYYY)", with: "01/2017"
 
       check "Accept our Terms of Service"
 
       click_button "Sign up"
 
-      expect(page).to have_content("My Close Up")
+      sleep 5
 
-      user = User.last
+      expect(page).to have_content("Hello Test Dummy")
 
-      expect(user.parent_name).to eq("Mommy Dummy")
-      expect(user.parent_email).to eq("mommydummy@fake.com")
+      click_link("Account Information")
 
-      expect(user.parent_location).to eq("456 Somewhere Else")
-      expect(user.parent_location_two).to eq("PO BOX 205")
-      expect(user.parent_city).to eq("Grand Rapids")
-      expect(user.parent_state).to eq("MI")
-      expect(user.parent_zip).to eq("49506")
-      expect(user.parent_phone).to eq("616-234-4567")
+      account_information = Dom::AccountInformation.first
+
+      expect(account_information.current_subscription_plan).to eq("Annual Subscription")
+      expect(account_information.full_name).to eq("Test Dummy")
+      expect(account_information.email).to eq("dummy@test.me")
+
+      expect(account_information.location_address).to eq("123 Somewhere")
+      expect(account_information.location_address_two).to eq("PO BOX 105")
+      expect(account_information.location_city).to eq("Grand Rapids")
+      expect(account_information.location_state).to eq("MI")
+      expect(account_information.location_zip).to eq("49506")
+
+      expect(account_information.birthday_day).to eq(birthday.day.to_s)
+      expect(account_information.birthday_month).to eq(birthday.month.to_s)
+      expect(account_information.birthday_year).to eq(birthday.year.to_s)
+
+      expect(account_information.parent_name).to eq("Mommy Dummy")
+      expect(account_information.parent_email).to eq("mommydummy@fake.com")
+
+      expect(account_information.parent_location).to eq("456 Somewhere Else")
+      expect(account_information.parent_location_two).to eq("PO BOX 205")
+      expect(account_information.parent_city).to eq("Grand Rapids")
+      expect(account_information.parent_state).to eq("MI")
+      expect(account_information.parent_zip).to eq("49506")
+      expect(account_information.parent_phone).to eq("616-234-4567")
     end
 
     it "allows user to edit Account Information" do
@@ -169,7 +197,8 @@ describe "managing user" do
       fill_in "Parents Suite/Apt", with: "PO BOX 205"
       fill_in "Parents City", with: "Grand Rapids"
       select  "Michigan", from: "user[parent_state]"
-      fill_in "Parents Zip code", with: "49506"
+      fill_in "Parents Zip Code", with: "49506"
+      fill_in "Parents Phone", with: "616-234-4657"
 
       click_button "Save"
 
@@ -188,10 +217,9 @@ describe "managing user" do
     user = create(:user)
 
     log_in user
-    visit dashboard_path
+    visit edit_accounts_path(user)
 
-    click_link "Account Information"
-    fill_in "Name", with: ""
+    fill_in "Full Name", with: ""
     fill_in "Email", with: ""
 
     click_button "Save"

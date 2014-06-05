@@ -1,17 +1,18 @@
 <h1>Account Information</h1>
 <div class="account-information">
+
   <p>Your account information is listed below.</p>
   <% if @user.stripe_plan %>
     <div class="plan-information">
       Plan Level: <%= @user.stripe_plan.plan.name %>
     </div>
   <% end %>
-  <%= form_for @user, :url => accounts_path, :method => :put do |f| %>
-
-    <% @user.errors.full_messages.each do |msg| %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <span class="error">
       <%= msg %>
-    <% end %>
-
+    </span>
+  <% end %>
+  <%= form_for @user, :url => accounts_path, :method => :put do |f| %>
     <%= f.label :name, "Full Name" %>
     <%= f.text_field :name, :autofocus => true %>
 

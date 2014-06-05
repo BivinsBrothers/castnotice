@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   end
 
   def update
-    @user = current_user
+    @user = current_user.decorate
     if @user.update_attributes(account_params)
       redirect_to dashboard_path
     else

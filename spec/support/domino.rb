@@ -304,6 +304,36 @@ module Dom
       find_field("user_birthday_3i").value
     end
 
-    # Parent Fields
+    def parent_name
+      find_field("Parents Fullname").value
+    end
+
+    def parent_email
+      find_field("Parents Email").value
+    end
+
+    def parent_location
+      find_field("Parents Street Address").value
+    end
+
+    def parent_location_two
+      find_field("Parents Suite/Apt").value
+    end
+
+    def parent_city
+      find_field("Parents City").value
+    end
+
+    def parent_state
+      find_field("Parents State").value
+    end
+
+    def parent_zip
+      find_field("Parents Zip Code").value
+    end
+
+    def parent_phone
+      find_field("Parents Phone").value
+    end
   end
 end
