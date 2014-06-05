@@ -42,9 +42,9 @@ describe "managing user" do
     vcr_options = { cassette_name: "feature_stripe_customer_create_and_payment" }
 
     it "allows a user to register", vcr: vcr_options do
-      visit new_user_registration_path(stripe_plan: "annual")
+      visit new_user_registration_path(account_type: "annual")
 
-      expect(current_path).to eq(new_user_registration_path(stripe_plan: Stripe::Plans::ANNUAL))
+      expect(current_path).to eq(new_user_registration_path(account_type: Stripe::Plans::ANNUAL))
 
       birthday = 31.years.ago
 
@@ -94,9 +94,9 @@ describe "managing user" do
     end
 
     it "shows parent questions when minor is registering", vcr: vcr_options do
-      visit new_user_registration_path(stripe_plan: "annual")
+      visit new_user_registration_path(account_type: "annual")
 
-      expect(current_path).to eq(new_user_registration_path(stripe_plan: Stripe::Plans::ANNUAL))
+      expect(current_path).to eq(new_user_registration_path(account_type: Stripe::Plans::ANNUAL))
 
       birthday = 7.years.ago
 
@@ -181,6 +181,7 @@ describe "managing user" do
       expect(find_field("user_birthday_2i").value).to eq(birthday.month.to_s)
       expect(find_field("user_birthday_3i").value).to eq(birthday.day.to_s)
 
+      fill_in "Full Name", with: "My Cool New Name"
       fill_in "Address One", with: "3333 Lady Dr."
       fill_in "Address Two", with: "APT. 109"
       fill_in "City",with: "Grand Rapids"
@@ -202,7 +203,7 @@ describe "managing user" do
 
       click_button "Save"
 
-      expect(current_path).to eq(dashboard_path)
+      expect(page).to have_content("Hello My Cool New Name")
 
       click_link "Account Information"
 
@@ -221,7 +222,6 @@ describe "managing user" do
 
     fill_in "Full Name", with: ""
     fill_in "Email", with: ""
-
     click_button "Save"
 
     expect(page).to have_content("Email can't be blank")
@@ -244,7 +244,7 @@ describe "managing user" do
   end
 
   it "allows a mentor to register" do
-    visit users_sign_up_mentor_path
+    visit new_user_registration_path(account_type: "mentor")
 
     expect(page).to have_content("Mentor Account")
 

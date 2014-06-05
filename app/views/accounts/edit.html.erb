@@ -34,7 +34,7 @@
     <%= f.label :location_zip, "Zip Code" %>
     <%= f.text_field :location_zip %>
 
-    <div class="input-wrapper"><%= f.label :birthday %></div>
+    <div class="input-wrapper"><%= f.label :birthday %>
     <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
 
     <%= render 'registrations/parent_fields', :f => f %>

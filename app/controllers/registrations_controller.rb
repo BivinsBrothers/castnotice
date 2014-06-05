@@ -2,31 +2,41 @@ class RegistrationsController < Devise::RegistrationsController
   skip_before_action :store_location
 
   def new
-    if params[:mentor]
-      render :mentor, locals: {resource: User.new}
-    else
+    account_type = params[:account_type]
+    if account_type == "mentor"
+      render :mentor, locals: { resource: User.new }
+    elsif Stripe::Plans.all.map { |plan| plan.id.to_s }.include?(account_type)
+      @stripe_plan = account_type
       super
+    else
+      redirect_to root_path
     end
   end
 
-  def new
-    @stripe_plan = params[:stripe_plan]
-    super
-  end
-
   def create
-    result = CreateUserAndStripeCustomer.perform(
-      user_attributes: registration_params,
-      stripe_token: params[:stripe_token],
-      stripe_plan: params[:stripe_plan]
-    )
+    account_type = params[:account_type]
+    if account_type == "mentor"
+      result = CreateUser.perform( user_attributes: registration_params )
+    else
+      result = CreateUserAndStripeCustomer.perform(
+        user_attributes: registration_params,
+        stripe_token: params[:stripe_token],
+        stripe_plan: params[:stripe_plan]
+      )
+    end
+    
     if result.success?
       sign_in result.context[:user]
       redirect_to dashboard_path
     else
-      @user = result.context[:user]
       flash[:error] = result.context[:error]
-      render :new
+      @user = result.context[:user]
+      if account_type == "mentor"
+        render :mentor, locals: { resource: @user }
+      else
+        @stripe_plan = account_type
+        render :new
+      end
     end
   end
 
