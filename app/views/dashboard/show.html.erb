@@ -15,7 +15,7 @@
 
 <% if current_user.resume %>
   <%= link_to "Print Resume", print_resume_path(current_user.resume.slug), target: "_blank", class: "btn" %>
-  <%= link_to 'Critique Request', new_critique_path, class: "btn .critique" %>
+  <%= link_to 'Critique Request', new_critique_path, class: "btn critique" %>
   <p class="resume-url">Your public resume URL: <span><%= public_resume_url(current_user.resume.slug) %></span></p>
 <% end %>
 
