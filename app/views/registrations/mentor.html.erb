@@ -1,0 +1,41 @@
+<h1>Mentor Account</h1>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+  <%= f.label :name, "Full Name" %>
+  <%= f.text_field :name, :autofocus => true %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.label :location_address, "Address One" %>
+  <%= f.text_field :location_address %>
+
+  <%= f.label :location_address_two, "Address Two" %>
+  <%= f.text_field :location_address_two %>
+
+  <%= f.label :location_city, "City" %>
+  <%= f.text_field :location_city %>
+
+  <%= f.label :location_state, "State" %>
+  <%= f.select :location_state, us_states_select %>
+
+  <%= f.label :location_zip, "Zip code" %>
+  <%= f.text_field :location_zip %>
+
+  <%= f.hidden_field :mentor, value: true %>
+
+  <div class="input-wrapper"><%= f.label :birthday %>
+    <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
+
+  <div><%= f.label :tos, "Accept our Terms of Service" %>
+    <%= f.check_box :tos %></div>
+
+  <%= f.submit "Sign up" %>
+<% end %>
