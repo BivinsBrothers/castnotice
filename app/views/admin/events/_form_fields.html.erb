@@ -5,7 +5,7 @@
 <%= e.label :project_title, "Name of Project"%>*
 </div>
 <div class="col-sm-9">
-<%= e.text_field :project_title %>*
+<%= e.text_field :project_title %>
 </div>
 </div>
 <div class="row">
@@ -34,10 +34,10 @@
 </div>
 <div class="row">
 <div class="col-sm-3">
-<%= e.label :union_ids, "Union" %>
+<%= e.label :union_ids, "Union" %>*
 </div>
 <div class="col-sm-9">
-<%= e.collection_check_boxes :union_ids, Union.all, :id, :name %>*
+<%= e.collection_check_boxes :union_ids, Union.all, :id, :name %>
 </div>
 </div>
 <div class="row">
