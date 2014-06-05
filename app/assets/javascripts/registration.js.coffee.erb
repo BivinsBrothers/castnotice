@@ -11,7 +11,8 @@ $ ->
     else
       token = response.id
       $form.append($('<input type="hidden" name="stripe_token" />').val(token))
-      $form.submit();
+      $form.find('#card_number, #expiration').remove()
+      $form.submit()
 
   $form.submit (e) =>
     return true if token
@@ -23,5 +24,3 @@ $ ->
       exp_year: dates[1]
     }, stripeHandler)
     false
-
-
