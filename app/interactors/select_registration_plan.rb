@@ -3,7 +3,7 @@ class SelectRegistrationPlan
 
   def perform
     begin
-      plan = customer.subscriptions.create(:plan => stripe_plan)
+      plan = customer.subscriptions.create(plan: stripe_plan)
       context[:plan] = plan
       user.update_attributes(stripe_plan_id: plan.id)
     rescue Stripe::StripeError => e
