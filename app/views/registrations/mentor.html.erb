@@ -29,6 +29,7 @@
   <%= f.label :location_zip, "Zip code" %>
   <%= f.text_field :location_zip %>
 
+  <%= hidden_field_tag :account_type, "mentor" %>
   <%= f.hidden_field :mentor, value: true %>
 
   <div class="input-wrapper"><%= f.label :birthday %>

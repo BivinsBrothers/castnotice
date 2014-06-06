@@ -32,6 +32,13 @@
 5. Push to remote branch. `git push origin my-awesome-feature-name`
 6. Create a Pull Request. Visit `https://github.com/collectiveidea/castnotice/compare/jp-dc-awesome-feature`
 
+## Payment integration
+
+We are using Stripe to handle payments via their plan system. The `stripe-rails` gem allows us to define
+our plans in `config/stripe/plans.rb`. To build these plans on the currently configured Stripe account
+run `rake stripe:prepare`. This command is idempotent so can be run any number of times as part of the
+build process if we want.
+
 ## Deploying
 
 ### Staging

@@ -1,7 +1,17 @@
 <h1>Create an account</h1>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<%= devise_error_messages! %>
+
+<% @user.errors.full_messages.each do |msg| %>
+    <span class="error">
+    <%= msg %>
+  </span>
+<% end %>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {:id => "user-registration-form"}) do |f| %>
+
+  <%= hidden_field_tag :account_type, @account_type %>
+  <%= f.hidden_field :mentor, value: @account_type == "mentor" %>
 
   <%= f.label :name, "Full Name" %>
   <%= f.text_field :name, :autofocus => true %>
@@ -27,7 +37,7 @@
   <%= f.label :location_state, "State" %>
   <%= f.select :location_state, us_states_select %>
 
-  <%= f.label :location_zip, "Zip code" %>
+  <%= f.label :location_zip, "Zip Code" %>
   <%= f.text_field :location_zip %>
 
   <div class="input-wrapper"><%= f.label :birthday %>
@@ -35,6 +45,8 @@
 
   <%= render 'parent_fields', :f => f %>
 
+  <%= render 'payment_fields' %>
+  
   <div><%= f.label :tos, "Accept our Terms of Service" %>
   <%= f.check_box :tos %></div>
 

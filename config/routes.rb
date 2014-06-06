@@ -1,10 +1,15 @@
 Castnotice::Application.routes.draw do
-  devise_for :users, controllers: { registrations: "registrations" }
-  get "users/sign_up/mentor", to: redirect("users/sign_up?mentor=true")
+  constraints RegistrationAccountTypeConstraint do
+    devise_for :users, 
+      path_names: { sign_up: "sign_up/:account_type" },
+      controllers: { registrations: "registrations" }
+  end
 
   namespace :admin do
     resources :events, except: [:show, :index]
   end
+
+  resource :promo_code, only: [:create]
 
   resources :events, only: [:index]
   resources :categories, only: [:index]

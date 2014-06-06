@@ -6,19 +6,13 @@
 	<div class="col-md-3">
 		<h3>Monthly Subscription</h3>
 		<h1 class="pricing">$7.99</h1>
-		<%= link_to "Register", new_user_registration_path, :class => "btn" %>
+		<%= link_to "Register", new_user_registration_path(:account_type => Stripe::Plans::MONTHLY), :class => "btn" %>
 	</div>
 	<div class="col-md-3">
 		<h3>Annual Subscription</h3>
 		<h1 class="pricing">$69.99</h1>
 		<p>Equivalent to $5.83/month</p>
-		<%= link_to "Register", new_user_registration_path, :class => "btn" %>
-	</div>
-	<div class="col-md-3">
-		<h3>Broadway Break Thru Annual Subscription</h3>
-		<h1 class="pricing">$59.99</h1>
-		<p>Equivalent to $4.99/month and includes 1 free critique.</p>
-		<%= link_to "Register", new_user_registration_path, :class => "btn" %>
+		<%= link_to "Register", new_user_registration_path(:account_type => Stripe::Plans::ANNUAL), :class => "btn register-annual" %>
 	</div>
 </div>
 <div class="row">

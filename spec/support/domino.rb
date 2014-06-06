@@ -256,4 +256,84 @@ module Dom
       click_button "Send"
     end
   end
+
+  class AccountInformation < Domino
+    selector ".account-information"
+
+    def current_subscription_plan
+      node.find(".plan-information").text.partition("Plan Level: ").last
+    end
+
+    def full_name
+      find_field("Full Name").value
+    end
+
+    def email
+      find_field("Email").value
+    end
+
+    def location_address
+      find_field("Address One").value
+    end
+
+    def location_address_two
+      find_field("Address Two").value
+    end
+
+    def location_city
+      find_field("City").value
+    end
+
+    def location_state
+      find_field("State").value
+    end
+
+    def location_zip
+      find_field("Zip Code").value
+    end
+
+    def birthday_year
+      find_field("user_birthday_1i").value
+    end
+
+    def birthday_month
+      find_field("user_birthday_2i").value
+    end
+
+    def birthday_day
+      find_field("user_birthday_3i").value
+    end
+
+    def parent_name
+      find_field("Parents Fullname").value
+    end
+
+    def parent_email
+      find_field("Parents Email").value
+    end
+
+    def parent_location
+      find_field("Parents Street Address").value
+    end
+
+    def parent_location_two
+      find_field("Parents Suite/Apt").value
+    end
+
+    def parent_city
+      find_field("Parents City").value
+    end
+
+    def parent_state
+      find_field("Parents State").value
+    end
+
+    def parent_zip
+      find_field("Parents Zip Code").value
+    end
+
+    def parent_phone
+      find_field("Parents Phone").value
+    end
+  end
 end

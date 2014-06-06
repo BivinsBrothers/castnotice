@@ -1,38 +1,44 @@
 <h1>Account Information</h1>
-<p>Your account information is listed below.</p>
-<br>
-<%= form_for @user, :url => accounts_path, :method => :put do |f| %>
+<div class="account-information">
 
-    <% @user.errors.full_messages.each do |msg| %>
+  <p>Your account information is listed below.</p>
+  <% if @user.stripe_plan %>
+    <div class="plan-information">
+      Plan Level: <%= @user.stripe_plan.plan.name %>
+    </div>
+  <% end %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <span class="error">
       <%= msg %>
-    <% end %>
+    </span>
+  <% end %>
+  <%= form_for @user, :url => accounts_path, :method => :put do |f| %>
+    <%= f.label :name, "Full Name" %>
+    <%= f.text_field :name, :autofocus => true %>
 
-      <%= f.label :name, "Full Name" %>
-      <%= f.text_field :name, :autofocus => true %>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+    <%= f.label :location_address, "Address One" %>
+    <%= f.text_field :location_address %>
 
-      <%= f.label :location_address, "Address One" %>
-      <%= f.text_field :location_address %>
+    <%= f.label :location_address_two, "Address Two" %>
+    <%= f.text_field :location_address_two %>
 
-      <%= f.label :location_address_two, "Address Two" %>
-      <%= f.text_field :location_address_two %>
+    <%= f.label :location_city, "City" %>
+    <%= f.text_field :location_city %>
 
-      <%= f.label :location_city, "City" %>
-      <%= f.text_field :location_city %>
+    <%= f.label :location_state, "State" %>
+    <%= f.select :location_state, us_states_select %>
 
-      <%= f.label :location_state, "State" %>
-      <%= f.select :location_state, us_states_select %>
+    <%= f.label :location_zip, "Zip Code" %>
+    <%= f.text_field :location_zip %>
 
-      <%= f.label :location_zip, "Zip Code" %>
-      <%= f.text_field :location_zip %>
+    <div class="input-wrapper"><%= f.label :birthday %>
+    <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
 
-      <div class="input-wrapper"><%= f.label :birthday %>
-      <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
-
-      <%= render 'registrations/parent_fields', :f => f %>
+    <%= render 'registrations/parent_fields', :f => f %>
 
     <%= f.submit "Save" %>
-
-<% end %>
+  <% end %>
+</div>
