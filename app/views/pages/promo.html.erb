@@ -1,0 +1,9 @@
+<% content_for :background do %>
+  <div class="bg-full" id="bg-pricing"></div>
+<% end %>
+<%= form_tag promo_code_path do %>
+  <%= label_tag :promo_code, "Promo Code" %>
+  <%= text_field_tag :promo_code, nil, placeholder: "Promo Code" %>
+
+  <%= submit_tag "Register", class: "btn" %>
+<% end %>

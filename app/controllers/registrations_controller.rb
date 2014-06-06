@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   skip_before_action :store_location
+  before_action :ensure_promo_code_present
 
   def new
     account_type = params[:account_type]
@@ -41,6 +42,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def ensure_promo_code_present
+    redirect_to root_path if params[:account_type] == Stripe::Plans::BROADWAY.to_s &&
+      session[:allow_breakthrough_promo] != true
+  end
 
   def registration_params
     params.require(:user)

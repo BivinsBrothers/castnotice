@@ -9,6 +9,8 @@ Castnotice::Application.routes.draw do
     resources :events, except: [:show, :index]
   end
 
+  resource :promo_code, only: [:create]
+
   resources :events, only: [:index]
   resources :categories, only: [:index]
 
