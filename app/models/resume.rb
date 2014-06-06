@@ -16,6 +16,15 @@ class Resume < ActiveRecord::Base
   has_one :resume_photo, -> { where resume_photo: true }, class: Headshot, as: :imageable
 
   has_many :resume_unions
+  has_many :accents, through: :resume_accents
+  has_many :athletic_endeavors, through: :resume_athletic_endeavors
+  has_many :disabilities, through: :resume_disabilities
+  has_many :disability_assistive_devices, through: :resume_disability_assistive_devices
+  has_many :ethnicities, through: :resume_ethnicities
+  has_many :fluent_languages, through: :resume_fluent_languages
+  has_many :performance_skills, through: :resume_performance_skills
+  has_many :project_types, through: :resume_project_types
+  has_many :regions, through: :resume_regions
   has_many :unions, through: :resume_unions
   has_many :projects
   has_many :schools

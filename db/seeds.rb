@@ -19,5 +19,13 @@ end
 
 CategorySeed.generate_from_csv([
   ProjectType,
-  Union
+  Union,
+  Accent,
+  AthleticEndeavor,
+  Disability,
+  DisabilityAssistiveDevice,
+  Ethnicity,
+  FluentLanguage,
+  PerformanceSkill,
+  Region
 ])
