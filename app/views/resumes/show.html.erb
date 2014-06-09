@@ -93,3 +93,10 @@
     <%= render template: 'schools/show', locals: { schools: @resume.schools } if @resume.schools.present?  %>
 	</div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Skills</h3>
+    <%= render "resumes/skills" %>
+  </div>
+</div>

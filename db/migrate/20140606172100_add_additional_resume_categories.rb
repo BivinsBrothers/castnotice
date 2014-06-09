@@ -9,7 +9,7 @@ class AddAdditionalResumeCategories < ActiveRecord::Migration
 
       create_table "resume_#{model}" do |t|
         t.belongs_to :resume
-        t.belongs_to model
+        t.belongs_to model.singularize
         t.timestamps
       end
     end

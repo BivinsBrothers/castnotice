@@ -182,49 +182,49 @@ ActiveRecord::Schema.define(version: 20140606172100) do
 
   create_table "resume_accents", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "accents_id"
+    t.integer  "accent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "resume_athletic_endeavors", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "athletic_endeavors_id"
+    t.integer  "athletic_endeavor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "resume_disabilities", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "disabilities_id"
+    t.integer  "disability_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "resume_disability_assistive_devices", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "disability_assistive_devices_id"
+    t.integer  "disability_assistive_device_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "resume_ethnicities", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "ethnicities_id"
+    t.integer  "ethnicity_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "resume_fluent_languages", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "fluent_languages_id"
+    t.integer  "fluent_language_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "resume_performance_skills", force: true do |t|
     t.integer  "resume_id"
-    t.integer  "performance_skills_id"
+    t.integer  "performance_skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -66,10 +66,46 @@
       <%= f.label :tattoo, "Visible Tattoos" %>
       <%= f.select :tattoo, tatoo_select %>
     </div>
-      
+
 		<div class="col-md-12">
 		  <%= f.submit "Save", :class => "resume-save" %>
       <h2>Skills</h2>
+
+      <h4>Accents</h4>
+      <div class="accent-checkbox">
+        <%= f.collection_check_boxes :accent_ids, Accent.all, :id, :name %>
+      </div>
+
+      <h4>Athletic Endeavors</h4>
+      <div class="athletic-endeavor-checkbox">
+        <%= f.collection_check_boxes :athletic_endeavor_ids, AthleticEndeavor.all, :id, :name %>
+      </div>
+
+      <h4>Disabilities</h4>
+      <div class="disability-checkbox">
+        <%= f.collection_check_boxes :disability_ids, Disability.all, :id, :name %>
+      </div>
+
+      <h4>Disability Assistive Devices</h4>
+      <div class="disability-assistive-device-checkbox">
+        <%= f.collection_check_boxes :disability_assistive_device_ids, DisabilityAssistiveDevice.all, :id, :name %>
+      </div>
+
+      <h4>Ethnicities</h4>
+      <div class="ethnicity-checkbox">
+        <%= f.collection_check_boxes :ethnicity_ids, Ethnicity.all, :id, :name %>
+      </div>
+
+      <h4>Fluent Languages</h4>
+      <div class="fluent-languages-checkbox">
+        <%= f.collection_check_boxes :fluent_language_ids, FluentLanguage.all, :id, :name %>
+      </div>
+
+      <h4>Performance Skills</h4>
+      <div class="performance-skills-checkbox">
+        <%= f.collection_check_boxes :performance_skill_ids, PerformanceSkill.all, :id, :name %>
+      </div>
+
       <%= f.label :additional_skills %>
       <%= f.text_area :additional_skills %>
       <%= f.submit "Save" %>

@@ -124,6 +124,35 @@ FactoryGirl.define do
     name "UEA"
   end
 
+  factory :accent do
+    name "French"
+  end
+
+
+  factory :athletic_endeavor do
+    name "Hang Gliding"
+  end
+
+  factory :disability do
+    name "Autism"
+  end
+
+  factory :disability_assistive_device do
+    name "Crutches: Forearm"
+  end
+
+  factory :ethnicity do
+    name "Mixed"
+  end
+
+  factory :fluent_language do
+    name "Mandarin"
+  end
+
+  factory :performance_skill do
+    name "Ballet"
+  end
+
   factory :conversation do
     association :recipient, factory: :user
     association :sender, factory: :user

@@ -36,6 +36,8 @@ class ResumesController < ApplicationController
                   :agent_phone, :agent_email, :agent_location, :agent_location_two, :agent_city, :agent_state, :agent_zip,
                   :agent_type, :manager_name, :manager_phone, :additional_skills, :descriptive_tag, :height,
                   :gender, :hair_length, :piercing, :tattoo, :citizen,
-                  :passport, union_ids: [])
+                  :passport, union_ids: [], accent_ids: [], athletic_endeavor_ids: [], disability_ids: [],
+                  disability_assistive_device_ids: [], ethnicity_ids: [], fluent_language_ids: [],
+                  performance_skill_ids: [])
   end
 end
