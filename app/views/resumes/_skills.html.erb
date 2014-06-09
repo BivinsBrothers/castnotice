@@ -1,5 +1,6 @@
 <div class="row repeatable-row">
   <% if @resume.accents.present? %>
+
     <h4>Accents</h4>
     <% @resume.accents.each do |accent| %>
       <span class="accent"><%= accent.name %></span>

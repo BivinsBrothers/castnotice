@@ -36,13 +36,13 @@ describe "manage resume" do
     choose("Yes")
 
     check union.name
-    check accent.name
-    check athletic_endeavor.name
-    check disability.name
-    check disability_assistive_device.name
-    check ethnicity.name
-    check fluent_language.name
-    check performance_skill.name
+    select accent.name, from: "resume_accent_ids"
+    select athletic_endeavor.name, from: "resume_athletic_endeavor_ids"
+    select disability.name, from: "resume_disability_ids"
+    select disability_assistive_device.name, from: "resume_disability_assistive_device_ids"
+    select ethnicity.name, from: "resume_ethnicity_ids"
+    select fluent_language.name, from: "resume_fluent_language_ids"
+    select performance_skill.name, from: "resume_performance_skill_ids"
 
     fill_in "resume[agent_name]", with: "Awesome Agent"
     fill_in "resume[agent_phone]", with: "1-616-456-7890"
