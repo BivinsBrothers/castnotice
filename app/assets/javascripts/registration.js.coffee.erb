@@ -11,7 +11,6 @@ $ ->
     else
       token = response.id
       $form.append($('<input type="hidden" name="stripe_token" />').val(token))
-      $form.find('#card_number, #expiration').remove()
       $form.submit()
 
   $form.submit (e) =>
