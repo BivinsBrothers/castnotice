@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603153317) do
+ActiveRecord::Schema.define(version: 20140606172100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accents", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "athletic_endeavors", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conversations", force: true do |t|
     t.integer  "sender_id"
@@ -51,6 +63,24 @@ ActiveRecord::Schema.define(version: 20140603153317) do
   add_index "critiques", ["user_id"], name: "index_critiques_on_user_id", using: :btree
   add_index "critiques", ["uuid"], name: "index_critiques_on_uuid", using: :btree
 
+  create_table "disabilities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "disability_assistive_devices", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ethnicities", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "event_unions", force: true do |t|
     t.integer  "event_id",   null: false
     t.integer  "union_id",   null: false
@@ -86,6 +116,12 @@ ActiveRecord::Schema.define(version: 20140603153317) do
   add_index "events", ["project_type_id"], name: "index_events_on_project_type_id", using: :btree
   add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
 
+  create_table "fluent_languages", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "headshots", force: true do |t|
     t.string   "image"
     t.datetime "created_at"
@@ -113,6 +149,12 @@ ActiveRecord::Schema.define(version: 20140603153317) do
   add_index "messages", ["recipient_id"], name: "index_messages_on_recipient_id", using: :btree
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
+  create_table "performance_skills", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "project_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -134,6 +176,55 @@ ActiveRecord::Schema.define(version: 20140603153317) do
 
   create_table "regions", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_accents", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "accent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_athletic_endeavors", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "athletic_endeavor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_disabilities", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "disability_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_disability_assistive_devices", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "disability_assistive_device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_ethnicities", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "ethnicity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_fluent_languages", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "fluent_language_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_performance_skills", force: true do |t|
+    t.integer  "resume_id"
+    t.integer  "performance_skill_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

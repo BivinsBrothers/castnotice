@@ -9,8 +9,15 @@ describe "manage resume" do
   end
 
   it 'allows talent to create a resume' do
-    create(:union, name: "Screen Actors Guild")
-    create(:project_type, name: "Television")
+    union = create(:union)
+    accent = create(:accent)
+    athletic_endeavor = create(:athletic_endeavor)
+    project_type = create(:project_type)
+    disability = create(:disability)
+    disability_assistive_device = create(:disability_assistive_device)
+    ethnicity = create(:ethnicity)
+    fluent_language = create(:fluent_language)
+    performance_skill = create(:performance_skill)
 
     visit dashboard_path
 
@@ -28,7 +35,14 @@ describe "manage resume" do
     select "US Citizen", from: "resume_citizen"
     choose("Yes")
 
-    check "Screen Actors Guild"
+    check union.name
+    select accent.name, from: "resume_accent_ids"
+    select athletic_endeavor.name, from: "resume_athletic_endeavor_ids"
+    select disability.name, from: "resume_disability_ids"
+    select disability_assistive_device.name, from: "resume_disability_assistive_device_ids"
+    select ethnicity.name, from: "resume_ethnicity_ids"
+    select fluent_language.name, from: "resume_fluent_language_ids"
+    select performance_skill.name, from: "resume_performance_skill_ids"
 
     fill_in "resume[agent_name]", with: "Awesome Agent"
     fill_in "resume[agent_phone]", with: "1-616-456-7890"
@@ -73,17 +87,28 @@ describe "manage resume" do
 
     click_link "Add a project"
 
-    select "Television", from: "Project Type"
+    select "Episodic", from: "Project Type"
     fill_in "Title", with: "Gossip Girl"
     fill_in "Role", with: "Blair"
     fill_in "Director/Studio", with: "Star Studios"
 
     click_button "Save Project"
 
-    expect(page).to have_content("Television")
+    visit resume_path
+
+    expect(page).to have_content("Episodic")
+    expect(page).to have_content(union.name)
+    expect(page).to have_content(accent.name)
+    expect(page).to have_content(athletic_endeavor.name)
+    expect(page).to have_content(disability.name)
+    expect(page).to have_content(disability_assistive_device.name)
+    expect(page).to have_content(ethnicity.name)
+    expect(page).to have_content(fluent_language.name)
+    expect(page).to have_content(performance_skill.name)
     expect(page).to have_content("Gossip Girl")
     expect(page).to have_content("Blair")
     expect(page).to have_content("Star Studios")
+
 
   end
 

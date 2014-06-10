@@ -1,0 +1,52 @@
+<div class="row repeatable-row">
+  <% if @resume.accents.present? %>
+
+    <h4>Accents</h4>
+    <% @resume.accents.each do |accent| %>
+      <span class="accent"><%= accent.name %></span>
+    <% end %>
+  <% end %>
+
+  <% if @resume.athletic_endeavors.present? %>
+    <h4>Athletic Endeavors</h4>
+    <% @resume.athletic_endeavors.each do |athletic_endeavor| %>
+      <span class="athletic-endeavor"><%= athletic_endeavor.name %></span>
+    <% end %>
+  <% end %>
+
+  <% if @resume.disabilities.present? %>
+    <h4>Disabilities</h4>
+    <% @resume.disabilities.each do |disability| %>
+      <span class="disability"><%= disability.name %></span>
+    <% end %>
+  <% end %>
+
+  <% if @resume.disability_assistive_devices.present? %>
+    <h4>Disability Assistive Devices</h4>
+    <% @resume.disability_assistive_devices.each do |disability_assistive_device| %>
+      <span class="disability-assistive-device"><%= disability_assistive_device.name %></span>
+    <% end %>
+  <% end %>
+
+  <% if @resume.ethnicities.present? %>
+    <h4>Ethnicities</h4>
+    <% @resume.ethnicities.each do |ethnicity| %>
+      <span class="ethnicity"><%= ethnicity.name %></span>
+    <% end %>
+  <% end %>
+
+  <% if @resume.fluent_languages.present? %>
+    <h4>Fluent Languages</h4>
+    <% @resume.fluent_languages.each do |fluent_language| %>
+      <span class="fluent-language"><%= fluent_language.name %></span>
+    <% end %>
+  <% end %>
+
+  <% if @resume.performance_skills.present? %>
+    <h4>Performance Skills</h4>
+    <% @resume.performance_skills.each do |performance_skill| %>
+      <span class="performance-skill"><%= performance_skill.name %></span>
+    <% end %>
+  <% end %>
+
+</div>
