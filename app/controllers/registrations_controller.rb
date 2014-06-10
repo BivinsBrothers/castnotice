@@ -30,7 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in result.context[:user]
       redirect_to dashboard_path
     else
-      flash[:error] = result.context[:error]
+      flash[:failure] = result.context[:error]
       @user = result.context[:user]
       if account_type == "mentor"
         render :mentor, locals: { resource: @user }
