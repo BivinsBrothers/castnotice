@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require jquery.ui.datepicker
 //= require moment.min
-//= require_tree .
 //= require chosen.jquery.min
+//= require_tree .
