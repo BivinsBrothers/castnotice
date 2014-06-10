@@ -3,11 +3,10 @@ class RegistrationsController < Devise::RegistrationsController
   before_action :ensure_promo_code_present
 
   def new
-    account_type = params[:account_type]
-    if account_type == "mentor"
+    @account_type = params[:account_type]
+    if @account_type == "mentor"
       render :mentor, locals: { resource: User.new }
-    elsif Stripe::Plans.all.map { |plan| plan.id.to_s }.include?(account_type)
-      @stripe_plan = account_type
+    elsif Stripe::Plans.all.map { |plan| plan.id.to_s }.include?(@account_type)
       super
     else
       redirect_to root_path
@@ -15,14 +14,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    account_type = params[:account_type]
-    if account_type == "mentor"
+    @account_type = params[:account_type]
+    if @account_type == "mentor"
       result = CreateUser.perform( user_attributes: registration_params )
     else
       result = CreateUserAndStripeCustomer.perform(
         user_attributes: registration_params,
         stripe_token: params[:stripe_token],
-        stripe_plan: params[:stripe_plan]
+        stripe_plan: @account_type
       )
     end
     
@@ -30,12 +29,11 @@ class RegistrationsController < Devise::RegistrationsController
       sign_in result.context[:user]
       redirect_to dashboard_path
     else
-      flash[:error] = result.context[:error]
+      flash[:failure] = result.context[:error]
       @user = result.context[:user]
-      if account_type == "mentor"
+      if @account_type == "mentor"
         render :mentor, locals: { resource: @user }
       else
-        @stripe_plan = account_type
         render :new
       end
     end

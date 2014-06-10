@@ -1,7 +1,4 @@
-<% [:success, :notice, :warning, :failure].each do |m| %>
-  <% if flash[m] %>
-    <div class="flash <%= m %>">
-      <%= flash[m] %>
-    </div>
-  <% end %>
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
 <% end %>
+
