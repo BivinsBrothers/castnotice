@@ -1,6 +1,9 @@
 <h1>Mentor Account</h1>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <% if resource && resource.errors.present? %>
+    <%= devise_error_messages! %>
+  <% end %>
 
   <%= f.label :name, "Full Name" %>
   <%= f.text_field :name, :autofocus => true %>
@@ -32,11 +35,47 @@
   <%= hidden_field_tag :account_type, "mentor" %>
   <%= f.hidden_field :mentor, value: true %>
 
-  <div class="input-wrapper"><%= f.label :birthday %>
-    <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
+  <%= f.fields_for :mentor_bio do |bio| %>
+    <%= bio.label :company, "Current Company" %>
+    <%= bio.text_field :company %>
+    <%= bio. label :company_address, "Company Address" %>
+    <%= bio.text_field :company_address %>
+    <%= bio.label :company_phone, "Company Phone" %>
+    <%= bio.phone_field :company_phone %>
 
-  <div><%= f.label :tos, "Accept our Terms of Service" %>
-    <%= f.check_box :tos %></div>
+    <%= bio.label :past_company, "Past Companies" %>
+    <%= bio.text_field :past_company %>
 
+    <%= bio.label :current_projects, "Current Projects" %>
+    <%= bio.text_field :current_projects %>
+
+    <%= bio.label :teaching_experience, "Teaching Experience" %>
+    <%= bio.text_area :teaching_experience %>
+
+    <div class="union-checkbox collection-checkbox">
+      <h4>Talent Expertise</h4>
+      <%= bio.collection_check_boxes :talent_expertise, expertise_checkboxes, :last, :first %>
+    </div>
+
+    <div class="union-checkbox collection-checkbox">
+      <h4>Dance Expertise</h4>
+      <%= bio.collection_check_boxes :dance_style, dance_style_checkboxes, :last, :first %>
+    </div>
+
+    <%= bio.label :education_experience, "Educational Experience" %>
+    <%= bio.text_area :education_experience %>
+
+    <%= bio.label :artistic_organizations, "Favorite Artistic Organizations" %>
+    <%= bio.text_area :artistic_organizations %>
+  <% end %>
+
+    <div class="input-wrapper"><%= f.label :birthday %>
+      <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %>
+    </div>
+
+    <div>
+      <%= f.label :tos, "Accept our Terms of Service" %>
+      <%= f.check_box :tos %>
+    </div>
   <%= f.submit "Sign up" %>
 <% end %>
