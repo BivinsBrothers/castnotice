@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   has_one :resume
   has_one :background_image, -> { where is_background: true }, class: Headshot
-
+  has_one :mentor_bio
   has_many :received_messages, class: Message, foreign_key: :recipient_id
   has_many :sent_messages, class: Message, foreign_key: :sender_id
   has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   has_many :critique_responses_given, class: CritiqueResponse
   has_many :critique_responses_received, class: CritiqueResponse, through: :critiques, source: :response
+
+  accepts_nested_attributes_for :mentor_bio
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
