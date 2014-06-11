@@ -71,7 +71,7 @@
 		  <%= f.submit "Save", :class => "resume-save" %>
       <h2>Skills</h2>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 skills">
       <h4>Accents</h4>
       <div class="accent-select">
         <%= f.collection_select :accent_ids, Accent.all, :id, :name, {}, multiple: true %>

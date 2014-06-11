@@ -1,52 +1,31 @@
 <div class="row repeatable-row">
-  <% if @resume.accents.present? %>
-
-    <h4>Accents</h4>
-    <% @resume.accents.each do |accent| %>
-      <span class="accent"><%= accent.name %></span>
+  <div class="col-md-12">
+    <% if @resume.accents.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Accents", skills: @resume.accents } %>
     <% end %>
-  <% end %>
 
-  <% if @resume.athletic_endeavors.present? %>
-    <h4>Athletic Endeavors</h4>
-    <% @resume.athletic_endeavors.each do |athletic_endeavor| %>
-      <span class="athletic-endeavor"><%= athletic_endeavor.name %></span>
+    <% if @resume.athletic_endeavors.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Athletic Endeavors", skills: @resume.athletic_endeavors } %>
     <% end %>
-  <% end %>
 
-  <% if @resume.disabilities.present? %>
-    <h4>Disabilities</h4>
-    <% @resume.disabilities.each do |disability| %>
-      <span class="disability"><%= disability.name %></span>
+    <% if @resume.disabilities.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Disabilities", skills: @resume.disabilities } %>
     <% end %>
-  <% end %>
 
-  <% if @resume.disability_assistive_devices.present? %>
-    <h4>Disability Assistive Devices</h4>
-    <% @resume.disability_assistive_devices.each do |disability_assistive_device| %>
-      <span class="disability-assistive-device"><%= disability_assistive_device.name %></span>
+    <% if @resume.disability_assistive_devices.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Disability Assistive Devices", skills: @resume.disability_assistive_devices } %>
     <% end %>
-  <% end %>
 
-  <% if @resume.ethnicities.present? %>
-    <h4>Ethnicities</h4>
-    <% @resume.ethnicities.each do |ethnicity| %>
-      <span class="ethnicity"><%= ethnicity.name %></span>
+    <% if @resume.ethnicities.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Ethnicities", skills: @resume.ethnicities } %>
     <% end %>
-  <% end %>
 
-  <% if @resume.fluent_languages.present? %>
-    <h4>Fluent Languages</h4>
-    <% @resume.fluent_languages.each do |fluent_language| %>
-      <span class="fluent-language"><%= fluent_language.name %></span>
+    <% if @resume.fluent_languages.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Fluent Languages", skills: @resume.fluent_languages } %>
     <% end %>
-  <% end %>
 
-  <% if @resume.performance_skills.present? %>
-    <h4>Performance Skills</h4>
-    <% @resume.performance_skills.each do |performance_skill| %>
-      <span class="performance-skill"><%= performance_skill.name %></span>
+    <% if @resume.performance_skills.present? %>
+      <%= render partial: "resumes/skill_list", locals: { name: "Performance Skills", skills: @resume.performance_skills } %>
     <% end %>
-  <% end %>
-
+  </div>
 </div>

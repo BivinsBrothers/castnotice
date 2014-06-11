@@ -2,7 +2,8 @@
   <div class="bg-full" id="bg-pricing"></div>
 <% end %>
 <%= form_tag promo_code_path do %>
-  <%= label_tag :promo_code, "Promo Code" %>
+  <h1>Promo Code</h1>
+<%= label_tag :promo_code, "Promo Code", style: "display: none" %>
   <%= text_field_tag :promo_code, nil, placeholder: "Promo Code" %>
 
   <%= submit_tag "Register", class: "btn" %>
