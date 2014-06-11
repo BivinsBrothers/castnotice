@@ -1,8 +1,9 @@
 require "spec_helper"
 
-describe "managing mentor" do
+feature "managing mentor" do
   it "allows a mentor to register" do
-    visit users_sign_up_mentor_path
+
+    visit '/users/sign_up?mentor=true'
 
     expect(page).to have_content("Mentor Account")
 
@@ -16,6 +17,19 @@ describe "managing mentor" do
     fill_in "user[location_city]", with: "Grand Rapids"
     select  "Michigan", from: "user[location_state]"
     fill_in "user[location_zip]", with: "49506"
+
+    fill_in "user[mentor_bio_attributes][company]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][company_address]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][company_phone]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][past_company]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][current_projects]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][teaching_experience]", with: "Special Company"
+    check "Film"
+    check "Dance"
+    check "Ballet"
+    check "Jazz"
+    fill_in "user[mentor_bio_attributes][education_experience]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][artistic_organizations]", with: "Special Company"
 
     select "17", from: "user_birthday_3i"
     select "September", from: "user_birthday_2i"
@@ -34,28 +48,9 @@ describe "managing mentor" do
     user = User.last
 
     expect(user.name).to eq("Test Mentor")
-
     expect(user.mentor).to eq(true)
-  end
 
-  it "allows mentor to view their dashboard/My Bio" do
-    let(:mentor) { create(:user, :mentor) }
-
-    log_in mentor
-
-    visit dashboard_path
-
-    expect(page).to have_content("My Bio")
-
-    expect(page).to have_content("Your Photos")
-    expect(page).to have_content("Current Company")
-    expect(page).to have_content("Company Address")
-    expect(page).to have_content("Company Phone Number")
-    expect(page).to have_content("Past Companies")
-    expect(page).to have_content("Current Projects")
-    expect(page).to have_content("Teaching Expertise")
-    expect(page).to have_content("Compa")
-
-
+    expect(user.mentor_bio.talent_expertise).to eq(["film", "dance"])
+    expect(user.mentor_bio.dance_style).to eq(["ballet", "jazz"])
   end
 end

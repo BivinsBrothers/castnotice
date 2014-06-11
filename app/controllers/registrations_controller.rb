@@ -5,7 +5,9 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     @account_type = params[:account_type]
     if @account_type == "mentor"
-      render :mentor, locals: { resource: User.new }
+      @user = User.new
+      @user.build_mentor_bio
+      render :mentor, locals: { resource: @user }
     elsif Stripe::Plans.all.map { |plan| plan.id.to_s }.include?(@account_type)
       super
     else
@@ -49,8 +51,12 @@ class RegistrationsController < Devise::RegistrationsController
   def registration_params
     params.require(:user)
           .permit( :name, :email, :password, :password_confirmation, :location_address, :location_address_two,
-                   :location_city, :location_state, :location_zip, :birthday, :parent_name, :parent_email, :mentor,
-                   :parent_location, :parent_location_two, :parent_city, :parent_state, :parent_zip, :parent_phone, :tos,
-                   :stripe_token)
+                   :location_city, :location_state, :location_zip, :birthday, :parent_name, :parent_email,
+                   :parent_location, :parent_location_two, :parent_city, :parent_state, :parent_zip, :parent_phone,
+                   :tos, :stripe_token, :mentor, :company, :company_address, :company_phone_number, :past_companies, :current_projects,
+                   :teaching_experience, :talent_expertise, :dance_style, :education_experience, :artistic_organizations,
+                   mentor_bio_attributes: [:company, :company_address, :company_phone, :past_company, :current_projects,
+                                           :teaching_experience, :education_experience, :artistic_organizations, talent_expertise: [],
+                                           dance_style: [] ])
   end
 end
