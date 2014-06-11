@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   skip_before_action :store_location
+  skip_before_action :enforce_promo_code_access
 
   def index
     events = Event.where(audition_date: query_date_range)

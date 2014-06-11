@@ -328,6 +328,7 @@ describe "manage resume" do
     expect(page).to have_content("Your public resume URL: http://www.example.com/r/castnotice")
 
     log_out
+    enter_promo_code
 
     visit public_resume_path("castnotice")
 

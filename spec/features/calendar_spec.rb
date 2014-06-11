@@ -1,6 +1,10 @@
 require "spec_helper"
 
 feature "calendar", js: true do
+  before do
+    enter_promo_code
+  end
+
   let(:this_month) { Date.current }
   let(:region) { create(:region, name: "Canada") }
   let(:project_type) { create(:project_type, name: "PSA") }

@@ -1,6 +1,10 @@
 require "spec_helper"
 
 feature "public resume view" do
+  before do
+    enter_promo_code
+  end
+
   scenario "displays public resume attributes" do
     resume = create(:resume, descriptive_tag: "Watch out!")
 

@@ -32,12 +32,13 @@ class ApplicationController < ActionController::Base
   end
 
   def enforce_promo_code_access
-    unless current_user || session[:allow_breakthrough_promo] == true || is_promo_entry?
+    unless current_user || session[:allow_breakthrough_promo] == true || is_promo_entry_or_sign_on?
       redirect_to page_path("promo")
     end
   end
 
-  def is_promo_entry?
-    [promo_code_path, page_path("promo")].include?(request.path)
+  def is_promo_entry_or_sign_on?
+    [promo_code_path, page_path("promo")].include?(request.path) ||
+      ["devise/sessions", "devise/passwords"].include?(params[:controller])
   end
 end
