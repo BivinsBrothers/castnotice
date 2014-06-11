@@ -135,6 +135,20 @@ ActiveRecord::Schema.define(version: 20140606172100) do
   add_index "headshots", ["imageable_id", "imageable_type"], name: "index_headshots_on_imageable_id_and_imageable_type", using: :btree
   add_index "headshots", ["imageable_id"], name: "index_headshots_on_imageable_id", using: :btree
 
+  create_table "mentor_bios", force: true do |t|
+    t.string  "company"
+    t.string  "company_address"
+    t.integer "company_phone"
+    t.string  "past_company"
+    t.string  "current_projects"
+    t.string  "teaching_experience"
+    t.string  "talent_expertise",       default: [], array: true
+    t.string  "dance_style",            default: [], array: true
+    t.string  "education_experience"
+    t.string  "artistic_organizations"
+    t.integer "user_id"
+  end
+
   create_table "messages", force: true do |t|
     t.integer  "conversation_id"
     t.integer  "sender_id"
