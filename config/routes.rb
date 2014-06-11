@@ -1,7 +1,5 @@
 Castnotice::Application.routes.draw do
 
-  get "/", to: redirect("/promo")
-
   constraints RegistrationAccountTypeConstraint do
     devise_for :users, 
       path_names: { sign_up: "sign_up/:account_type" },
