@@ -6,7 +6,8 @@
     <div class="search">
       <%= form_tag search_path, method: :get, id: "search-form" do %>
         <%= label_tag :q, "Search", class: "hidden" %>
-        <%= text_field_tag :q, current_query %>
+        <%= text_field_tag :q, current_query, placeholder: "Search" %>
+        <%= submit_tag "Go", id: "btn-tiny" %>
       <% end %>
     </div>
     <div class="social">
