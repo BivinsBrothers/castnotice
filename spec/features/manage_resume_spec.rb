@@ -6,6 +6,7 @@ describe "manage resume" do
 
   before do
     log_in user
+    enter_promo_code
   end
 
   it 'allows talent to create a resume' do

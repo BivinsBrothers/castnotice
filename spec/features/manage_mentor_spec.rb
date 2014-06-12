@@ -2,7 +2,7 @@ require "spec_helper"
 
 feature "managing mentor" do
   it "allows a mentor to register" do
-
+    enter_promo_code
     visit '/users/sign_up/mentor'
 
     expect(page).to have_content("Mentor Account")

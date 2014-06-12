@@ -2,6 +2,8 @@ require "spec_helper"
 
 describe "searching resumes", js: true do
   before do
+    enter_promo_code
+
     johnny = create(:user, name: "Johnny Five")
     johnny.resume.update_attributes({
       descriptive_tag: "I'm a robot!"
