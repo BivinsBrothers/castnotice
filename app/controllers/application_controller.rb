@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def should_see_navigation?
-    return !! current_user || has_promo_code?
+    !! current_user || has_promo_code?
   end
 
   protected
