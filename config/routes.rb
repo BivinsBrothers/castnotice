@@ -3,7 +3,11 @@ Castnotice::Application.routes.draw do
   constraints RegistrationAccountTypeConstraint do
     devise_for :users, 
       path_names: { sign_up: "sign_up/:account_type" },
-      controllers: { registrations: "registrations" }
+      controllers: {
+        registrations: "registrations",
+        sessions: "sessions",
+        passwords: "passwords"
+      }
   end
 
   namespace :admin do

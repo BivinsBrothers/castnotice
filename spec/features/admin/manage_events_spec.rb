@@ -3,6 +3,10 @@ require "spec_helper"
 feature "an admin or mentor can manage events", js: true do
   let(:current_date) { Date.current }
 
+  before do
+    enter_promo_code
+  end
+
   scenario "allows only mentors and admins to create events" do
     user   = create(:user)
     mentor = create(:user, :mentor)
@@ -122,7 +126,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "deleting an event" do
-       create(:event, audition_date: Date.current)
+      create(:event, audition_date: Date.current)
 
       visit page_path("calendar")
       click_link "Calendar"
