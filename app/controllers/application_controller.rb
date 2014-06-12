@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_resume
   helper_method :current_query
+  helper_method :should_see_navigation?
 
   def current_resume
     current_user.resume
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
 
   def current_query
     params[:q]
+  end
+
+  def should_see_navigation?
+    return !! current_user || has_promo_code?
   end
 
   protected
@@ -32,9 +37,13 @@ class ApplicationController < ActionController::Base
   end
 
   def enforce_promo_code_access
-    unless current_user || session[:allow_breakthrough_promo] == true || is_promo_entry_or_sign_on?
-      redirect_to page_path("promo")
+    unless current_user || has_promo_code? || is_promo_entry_or_sign_on?
+      redirect_to promo_path
     end
+  end
+
+  def has_promo_code?
+    session[:allow_breakthrough_promo] == true
   end
 
   def is_promo_entry_or_sign_on?

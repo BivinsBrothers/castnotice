@@ -5,6 +5,8 @@
   <h1>Promo Code</h1>
   <%= label_tag :promo_code, "Promo Code", style: "display: none" %>
   <%= text_field_tag :promo_code, nil, placeholder: "Promo Code" %>
-
-  <%= submit_tag "Register", class: "btn" %>
+  <div class="promo-or-log-in">
+    <%= submit_tag "Register", class: "btn" %>
+    <span>or</span> <%= link_to "log in", new_user_session_path %>
+  </div>
 <% end %>
