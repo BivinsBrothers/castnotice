@@ -90,6 +90,29 @@ module ApplicationHelper
     ]
   end
 
+  def expertise_checkboxes
+    [
+      ["Plays", "plays"],
+      ["Musicals", "musicals"],
+      ["Television", "television"],
+      ["Film", "film"],
+      ["Dance", "dance"],
+      ["Modeling", "modeling"]
+    ]
+  end
+
+  def dance_style_checkboxes
+    [
+      ["Ballet", "ballet"],
+      ["Jazz", "jazz"],
+      ["Lyrical/Contemporary", "lyrical/contemporary"],
+      ["Modern", "modern"],
+      ["Tap", "tap"],
+      ["Hip Hop", "hip hop"],
+      ["Clog", "clog"]
+    ]
+  end
+
   def education_type_name(education_type)
     {
       "university" => "University",
