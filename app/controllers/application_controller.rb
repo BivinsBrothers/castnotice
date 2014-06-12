@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_promo_entry_or_sign_on?
-    [promo_path, promo_path].include?(request.path) ||
+    request.path == promo_path ||
       ["devise/sessions", "devise/passwords"].include?(params[:controller])
   end
 end
