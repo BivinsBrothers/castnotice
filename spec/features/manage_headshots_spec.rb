@@ -92,6 +92,9 @@ describe "managing headshots" do
   end
 
   context "when a user is not logged in" do
+    before do
+      enter_promo_code
+    end
     it "they are redirected to the login page" do
       visit dashboard_path
 

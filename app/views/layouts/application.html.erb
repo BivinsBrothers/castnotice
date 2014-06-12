@@ -16,7 +16,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= render "layouts/header" %>
+  <% if has_promo_code_or_logged_in? %>
+    <%= render "layouts/header" %>
+  <% end %>
   <% if content_for?(:background) %>
     <%= yield :background %>
   <% else %>
@@ -30,6 +32,8 @@
     </div>
   </div>
 
-  <%= render "layouts/footer" %>
+  <% if has_promo_code_or_logged_in? %>
+    <%= render "layouts/footer" %>
+  <% end %>
 </body>
 </html>

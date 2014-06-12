@@ -4,9 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :store_location
+  before_action :enforce_promo_code_access
 
   helper_method :current_resume
   helper_method :current_query
+  helper_method :has_promo_code_or_logged_in?
 
   def current_resume
     current_user.resume
@@ -28,5 +30,19 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     session[:previous_url] || dashboard_path
+  end
+
+  def enforce_promo_code_access
+    unless has_promo_code_or_logged_in?
+      redirect_to promo_path
+    end
+  end
+
+  def has_promo_code_or_logged_in?
+    !! current_user || has_promo_code?
+  end
+
+  def has_promo_code?
+    session[:allow_breakthrough_promo] == true
   end
 end

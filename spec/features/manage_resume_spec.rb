@@ -6,6 +6,7 @@ describe "manage resume" do
 
   before do
     log_in user
+    enter_promo_code
   end
 
   it 'allows talent to create a resume' do
@@ -328,6 +329,7 @@ describe "manage resume" do
     expect(page).to have_content("Your public resume URL: http://www.example.com/r/castnotice")
 
     log_out
+    enter_promo_code
 
     visit public_resume_path("castnotice")
 

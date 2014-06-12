@@ -1,6 +1,10 @@
 require "spec_helper"
 
 describe "managing user" do
+  before do
+    enter_promo_code
+  end
+
   context "when registering a user" do
     before(:each) do
       # use_vcr_cassette "feature_stripe_customer_create_and_payment"
