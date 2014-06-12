@@ -9,6 +9,6 @@ class PromoController < ApplicationController
   end
 
   def valid_coupon_codes
-    Figaro.env.coupon_codes || []
+    Figaro.env.coupon_codes.present? ? Figaro.env.coupon_codes.split(",") : []
   end
 end
