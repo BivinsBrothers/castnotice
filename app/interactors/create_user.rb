@@ -3,7 +3,7 @@ class CreateUser
 
   def perform
     context[:user] = User.new(user_attributes)
-    user.create_resume
+    user.build_resume
     fail! unless user.save
   end
 
