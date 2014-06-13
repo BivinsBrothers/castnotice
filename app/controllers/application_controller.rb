@@ -43,6 +43,6 @@ class ApplicationController < ActionController::Base
   end
 
   def has_promo_code?
-    session[:allow_breakthrough_promo] == true
+    session[:promo_code_success] == true
   end
 end

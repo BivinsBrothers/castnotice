@@ -7,7 +7,7 @@ module Promo
         fill_in "Promo Code", with: "BreakThru2014"
         click_button "Register"
       when :controller
-        session[:allow_breakthrough_promo] = true
+        session[:promo_code_success] = true
       end
     end
   end
