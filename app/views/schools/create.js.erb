@@ -1,9 +1,0 @@
-$(".school-list").append("<%= escape_javascript(render('resumes/school', :school => @school)) %>");
-var form = $(".new-school-form");
-form.slideUp();
-form.find("#school").val("");
-form.find("#school_major").val("");
-form.find("#school_degree").val("");
-form.find("#school_teacher").val("");
-form.find("#school_years").val("");
-form.find("#school_instruments").val("");
