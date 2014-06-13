@@ -9,39 +9,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "rspec/autorun"
 
-require "capybara/rspec"
-require "capybara/poltergeist"
-require "capybara/email/rspec"
-
-require "billy/rspec"
-
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, inspector: true, timeout: 60)
-end
-
-Billy.configure do |c|
-  c.cache = true
-  c.persist_cache = true
-  c.ignore_cache_port = true
-  c.whitelist = [ '127.0.0.1', 'localhost', 'netdna.bootstrapcdn.com', 'js.stripe.com', 'fonts.googleapis.com', 'bucket.s3.amazonaws.com', 'placekitten.com', 's.ytimg.com', 'www.google.com', 'www.youtube.com' ]
-  c.ignore_params = [ "https://js.stripe.com/v2", "https://api.stripe.com/v1/tokens" ]
-  c.non_whitelisted_requests_disabled = false # disable new HTTP connections when true
-  c.non_successful_error_level = :error
-  c.cache_path = "spec/billy_cache"
-end
-Capybara.javascript_driver = :poltergeist_billy
-
-VCR.configure do |c|
-  c.ignore_localhost = true
-  c.allow_http_connections_when_no_cassette = true
-  c.cassette_library_dir = "spec/cassettes"
-  c.default_cassette_options = { record: :new_episodes }
-  c.hook_into :webmock
-  c.configure_rspec_metadata!
-end
-
-WebMock.allow_net_connect!
-
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
