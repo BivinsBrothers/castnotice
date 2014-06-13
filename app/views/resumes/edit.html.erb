@@ -144,7 +144,7 @@
       <%= f.phone_field :manager_phone %>
 
       <h4>Unions</h4>
-      <div class="union-checkbox">
+      <div class="union-checkbox" id="photo-anchor">
         <%= f.collection_check_boxes :union_ids, Union.all, :id, :name %>
       </div>
 
@@ -187,7 +187,7 @@
           <div class="headshot-image">
             <%= image_tag(headshot.image_url(:thumb)) %>
           </div>
-          <div class="headshot-link">
+          <div class="headshot-link" id="video-anchor">
             <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", headshot_path(headshot), method: :delete, :class => "mini-link" %> |
             <% if headshot.background? %>
               <%= link_to "Remove as background", headshot_path(headshot, background: false), method: :put, :class => "mini-link" %> |
