@@ -36,10 +36,14 @@ describe ProjectsController do
   end
 
   describe "#destroy" do
-    let(:project) { create(:project, resume: user.resume) }
+    let!(:project) { create(:project, resume: user.resume) }
 
     it "redirects to resume on successful destroy" do
-      delete :destroy, id: project
+      expect {
+        delete :destroy, id: project
+      }.to change {
+        Project.count
+      }.by(-1)
       expect(response).to redirect_to(edit_resume_path)
     end
   end

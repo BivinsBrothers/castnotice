@@ -36,10 +36,14 @@ describe SchoolsController do
   end
 
   describe "#destroy" do
-    let(:school) { create(:school, resume: user.resume) }
+    let!(:school) { create(:school, resume: user.resume) }
 
     it "redirects to resume on successful destroy" do
-      delete :destroy, id: school
+      expect {
+        delete :destroy, id: school
+      }.to change {
+        School.count
+      }.by(-1)
       expect(response).to redirect_to(edit_resume_path)
     end
   end
