@@ -70,7 +70,7 @@ describe "managing user" do
       fill_in "Card Number", with: "4242424242424242"
       fill_in "Expiration (MM/YYYY)", with: "01/2017"
 
-      check "Accept our Terms of Service"
+      check "user_tos"
 
       click_button "Sign up"
 
@@ -131,7 +131,7 @@ describe "managing user" do
       fill_in "Card Number", with: "4242424242424242"
       fill_in "Expiration (MM/YYYY)", with: "01/2017"
 
-      check "Accept our Terms of Service"
+      check "user_tos"
 
       click_button "Sign up"
 
@@ -267,7 +267,7 @@ describe "managing user" do
     select "September", from: "user_birthday_2i"
     select "1987", from: "user_birthday_1i"
 
-    check "Accept our Terms of Service"
+    check "user_tos"
 
     expect {
       click_button "Sign up"
