@@ -5,11 +5,6 @@ class HeadshotsController < ApplicationController
     @headshot = Headshot.new
   end
 
-  def index
-    @headshots = current_resume.headshots
-    @headshot = Headshot.new
-  end
-
   def create
     @headshot = current_resume.headshots.build(headshot_params)
     if @headshot.save
