@@ -33,7 +33,7 @@ Castnotice::Application.routes.draw do
     resource :response, only: [:create], controller: "critique_responses"
   end
 
-  resources :headshots, except: [:show, :edit]
+  resources :headshots, except: [:show, :edit, :index]
   resources :videos, except: [:show, :update, :edit]
 
   get "/contact" => "contacts#new", :as => "contact"
