@@ -35,7 +35,7 @@ feature "managing mentor" do
     select "September", from: "user_birthday_2i"
     select "1987", from: "user_birthday_1i"
 
-    check "Accept our Terms of Service"
+    check "user_tos"
 
     expect {
       click_button "Sign up"

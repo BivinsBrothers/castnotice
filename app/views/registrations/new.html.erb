@@ -46,9 +46,11 @@
   <%= render 'parent_fields', :f => f %>
 
   <%= render 'payment_fields' %>
-  
-  <div><%= f.label :tos, "Accept our Terms of Service" %>
-  <%= f.check_box :tos %></div>
+
+  <div>
+    <%= link_to "Accept our Terms of Service", page_path("tos"), target: '_blank' %>
+    <%= f.check_box :tos %>
+  </div>
 
   <%= f.submit "Sign up" %>
 <% end %>
