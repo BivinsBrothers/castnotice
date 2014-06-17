@@ -43,8 +43,6 @@ FactoryGirl.define do
   factory :resume do
     height 69
     weight 140
-    hair_color "blond"
-    eye_color "blue"
     phone "1-616-555-4567"
     phone_two "1-616-234-9090"
     unions { [create(:union, name: "Awesome Union")] }
@@ -60,6 +58,13 @@ FactoryGirl.define do
     manager_phone "1-616-222-3333"
     additional_skills "Improve"
     descriptive_tag "Dancer, Actor"
+    eye_color "blue"
+    hair_color "red"
+    hair_length "long"
+    piercing "yes"
+    tattoo "no"
+    citizen "us_citizen"
+    agent_type "television"
 
     after(:build) do |resume|
       create(:user, resume: resume) if resume.user.nil?

@@ -60,8 +60,8 @@ module ApplicationHelper
 
   def citizen_select
     [
-      ["US Citizen", "us citizen"],
-      ["Resident Alien", "resident alien"]
+      ["US Citizen", "us_citizen"],
+      ["Resident Alien", "resident_alien"]
     ]
   end
 
@@ -105,10 +105,10 @@ module ApplicationHelper
     [
       ["Ballet", "ballet"],
       ["Jazz", "jazz"],
-      ["Lyrical/Contemporary", "lyrical/contemporary"],
+      ["Lyrical/Contemporary", "lyrical_contemporary"],
       ["Modern", "modern"],
       ["Tap", "tap"],
-      ["Hip Hop", "hip hop"],
+      ["Hip Hop", "hip_hop"],
       ["Clog", "clog"]
     ]
   end

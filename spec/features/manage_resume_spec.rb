@@ -83,7 +83,7 @@ describe "manage resume" do
     expect(find_field("resume_hair_length").value).to eq("medium")
     expect(find_field("resume_piercing").value).to eq("no")
     expect(find_field("resume_tattoo").value).to eq("no")
-    expect(find_field("resume_citizen").value).to eq("us citizen")
+    expect(find_field("resume_citizen").value).to eq("us_citizen")
     expect(find_field("resume_passport_true")).to be_checked
 
     click_link "Add a project"
@@ -121,7 +121,7 @@ describe "manage resume" do
     expect(find_field("resume_phone").value).to eq("1-616-555-4567")
     expect(find_field("resume_phone_two").value).to eq("1-616-234-9090")
     expect(find_field("Weight").value).to eq("140")
-    expect(find_field("resume_hair_color").value).to eq("blond")
+    expect(find_field("resume_hair_color").value).to eq("red")
     expect(find_field("resume_eye_color").value).to eq("blue")
     expect(find_field("resume_agent_name").value).to eq("Awesome Agent")
     expect(find_field("resume_agent_phone").value).to eq("1-616-667-8989")
