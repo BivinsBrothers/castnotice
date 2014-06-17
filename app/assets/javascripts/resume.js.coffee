@@ -26,6 +26,9 @@ $ ->
   $("#headshot_image").on "change", ->
     $("#upload-headshot-button").prop('disabled', false)
 
+  $("#upload-headshot-button").on 'click', ->
+    $(".new-headshot-form").slideUp()
+
   $(".show-video-form").on 'click', (e) ->
     e.preventDefault
     $(".new-video-form").slideDown()
