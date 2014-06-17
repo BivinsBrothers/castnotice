@@ -13,10 +13,11 @@ class HeadshotsController < ApplicationController
   def create
     @headshot = current_resume.headshots.build(headshot_params)
     if @headshot.save
-      redirect_to edit_resume_path
+      redirect_to edit_resume_path(anchor: 'photo-anchor')
     else
       flash[:failure] = "Sorry unable to save your Head Shot please correct errors: #{@headshot.errors.full_messages.to_sentence}"
-      redirect_to edit_resume_path
+
+      redirect_to edit_resume_path(anchor: 'photo-anchor')
     end
   end
 
@@ -37,14 +38,14 @@ class HeadshotsController < ApplicationController
       @headshot.remove_as_resume_photo
     end
 
-    redirect_to edit_resume_path
+    redirect_to edit_resume_path(anchor: 'photo-anchor')
   end
 
   def destroy
     headshot = current_resume.headshots.find(params[:id])
     headshot.destroy
 
-    redirect_to edit_resume_path
+    redirect_to edit_resume_path(anchor: 'photo-anchor')
   end
 
   private
