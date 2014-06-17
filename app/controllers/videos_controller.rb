@@ -15,7 +15,8 @@ class VideosController < ApplicationController
     unless @video.save
       flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
     end
-    redirect_to edit_resume_path + '#video-anchor'
+
+    redirect_to edit_resume_path(anchor: 'video-anchor')
   end
 
   def destroy
@@ -26,7 +27,8 @@ class VideosController < ApplicationController
     else
       flash[:failure] = "Video was not removed, please try again."
     end
-    redirect_to edit_resume_path + '#video-anchor'
+
+    redirect_to edit_resume_path(anchor: 'video-anchor')
   end
 
   private
