@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "support@castnotice.com"
+  default from: "hello@castnotice.com"
 
   def contact_us(from_name, from_email, subject, content)
     @from_name = from_name
