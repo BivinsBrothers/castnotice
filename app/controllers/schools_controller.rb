@@ -8,11 +8,19 @@ class SchoolsController < ApplicationController
   def create
     @school = current_resume.schools.build(school_params)
     if @school.save
-      redirect_to edit_resume_path
+      respond_to do |format|
+        format.html { redirect_to edit_resume_path }
+        format.js
+      end
     else
-      flash[:failure] = "Sorry unable to save your School please correct errors:
-        #{@school.errors.full_message.to_sentence}"
-      redirect_to edit_resume_path
+      respond_to do |format|
+        format.html do
+          flash[:failure] = "Sorry unable to save your School please correct errors:
+            #{@school.errors.full_message.to_sentence}"
+          redirect_to edit_resume_path
+        end
+        format.js
+      end
     end
   end
 

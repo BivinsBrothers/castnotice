@@ -300,8 +300,7 @@ describe "manage resume" do
     expect(page).to have_content("Associates Degree in Creative Dance")
 
     click_link "Edit"
-
-    select "College", from: "Education Type"
+    select "College", from: "Education type"
     fill_in "School", with: "Michigan Tech"
     fill_in "Major", with: "Computer Science"
     fill_in "Degree", with: "Masters"

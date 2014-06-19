@@ -1,0 +1,6 @@
+$(".headshots-list").append("<%= escape_javascript(render('resumes/headshots', :headshot => @headshot)) %>");
+var form = $(".new-headshot-form");
+form.slideUp();
+form.find("#headshot_image").val("");
+form.find("#headshot_image_cache").val("");
+$("html, body").animate({ scrollTop: $(document).height() }, "slow");

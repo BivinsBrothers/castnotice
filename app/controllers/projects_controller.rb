@@ -8,11 +8,19 @@ class ProjectsController < ApplicationController
   def create
     @project = current_resume.projects.build(project_params)
     if @project.save
-      redirect_to edit_resume_path
+      respond_to do |format|
+        format.html { redirect_to edit_resume_path }
+        format.js
+      end
     else
-      flash[:failure] = "Sorry unable to save your Project please correct errors:
-        #{@project.errors.full_message.to_sentence}"
-      redirect_to edit_resume_path
+      respond_to do |format|
+        format.html do
+          flash[:failure] = "Sorry unable to save your Project please correct errors:
+            #{@project.errors.full_message.to_sentence}"
+          redirect_to edit_resume_path
+        end
+        format.js
+      end
     end
   end
 
@@ -36,8 +44,6 @@ class ProjectsController < ApplicationController
     current_resume.projects.find(params[:id]).destroy
     redirect_to edit_resume_path
   end
-
-  private
 
   def project_params
     params.require(:project).permit(:project_type_id, :title, :role, :director_studio)
