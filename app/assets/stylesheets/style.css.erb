@@ -109,7 +109,10 @@ input, select, textarea, input[type="checkbox"]{
 	display: block;
 
 }
-
+select, input[type="text"]{
+	height:27px;
+	width:250px;
+}
 input:focus, textarea:focus, isindex:focus, keygen:focus, select:focus {
 	outline:none;
 	background-color:#FFF;
@@ -180,6 +183,7 @@ label {
 
 .new_event label{
 	width:auto;
+	padding:0 15px 0 5px;
 }
 .is-hidden {
   display:none;
@@ -187,6 +191,14 @@ label {
 
 #user_birthday_1i, #user_birthday_2i, #user_birthday_3i{
 	display:inline;
+}
+.chosen-container .chosen-choices {
+	width: 100%;
+	border-radius:7px;
+	background-color:#EEE;
+	font-family: 'Open Sans', sans-serif;
+	border: none;
+	padding: 4px 20px 4px 7px;
 }
 
 /*Error Styles*/
