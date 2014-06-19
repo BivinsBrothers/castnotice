@@ -78,7 +78,7 @@ FactoryGirl.define do
   end
 
   factory :school do
-    education_type "University"
+    education_type "university"
     school "University of Michigan"
     major "Acting"
     degree "Associates Degree in Creative Dance"

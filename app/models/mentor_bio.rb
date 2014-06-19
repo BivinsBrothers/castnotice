@@ -1,5 +1,5 @@
 class MentorBio < ActiveRecord::Base
-  TALENT_EXPERTICES = %w( plays musicals television film dance modeling )
+  TALENT_EXPERTISES = %w( plays musicals television film dance modeling )
   DANCE_STYLES = %w( ballet jazz lyrical_contemporary modern tap hip_hop clog )
 
   belongs_to :user
@@ -19,7 +19,7 @@ class MentorBio < ActiveRecord::Base
 
   def validate_talent_expertise
     talent_expertise.each do |expertise|
-      unless TALENT_EXPERTICES.include?(expertise)
+      unless TALENT_EXPERTISES.include?(expertise)
         errors.add(:talend_expertse, "is not a valid talent expertise")
       end
     end

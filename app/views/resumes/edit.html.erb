@@ -257,7 +257,7 @@
 		</div>
 		<div class="is-hidden new-school-form" id="new-school-form">
 		  <%= form_for @school, :remote => true do |f| %>
-        <%= f.label :education_type %>
+        <%= f.label :education_type, "Education Type" %>
         <%= f.select :education_type, education_type_select %>
         <%= f.label :school %>
         <%= f.text_field :school %>
