@@ -3,10 +3,12 @@ class PromoController < ApplicationController
 
   def create
     if valid_coupon_codes.include?(params[:promo_code])
-      session[:allow_breakthrough_promo] = true
+      session[:promo_code_success] = true
     end
     redirect_to root_path
   end
+
+  private
 
   def valid_coupon_codes
     Figaro.env.coupon_codes.present? ? Figaro.env.coupon_codes.split(",") : []

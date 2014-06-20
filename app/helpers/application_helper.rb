@@ -14,113 +14,67 @@ module ApplicationHelper
   end
 
   def eye_color_select
-    [
-      ["Brown", "brown"],
-      ["Hazel", "hazel"],
-      ["Blue", "blue"],
-      ["Green", "green"],
-      ["Silver", "silver"],
-      ["Amber", "amber"]
-    ]
+    Resume::EYE_COLORS.map do |color|
+      [I18n.t("helpers.label.resume.eye_colors.#{color}"), color]
+    end
   end
 
   def hair_color_select
-    [
-      ["Black", "black"],
-      ["Brown", "brown"],
-      ["Blond", "blond"],
-      ["Auburn", "auburn"],
-      ["Chestnut", "chestnut"],
-      ["Red", "red"],
-      ["Gray", "gray"]
-    ]
+    Resume::HAIR_COLORS.map do |color|
+      [I18n.t("helpers.label.resume.hair_colors.#{color}"), color]
+    end
   end
 
   def hair_length_select
-    [
-      ["Short", "short"],
-      ["Medium", "medium"],
-      ["Long", "long"],
-    ]
+    Resume::HAIR_LENGTHS.map do |length|
+      [I18n.t("helpers.label.resume.hair_lengths.#{length}"), length]
+    end
   end
 
   def piercing_select
-    [
-      ["Yes", "yes"],
-      ["No", "no"]
-    ]
+    Resume::PIERCINGS.map do |piercing|
+      [I18n.t("helpers.label.resume.piercings.#{piercing}"), piercing]
+    end
   end
 
   def tatoo_select
-    [
-      ["Yes", "yes"],
-      ["No", "no"]
-    ]
+    Resume::TATTOOS.map do |tattoo|
+      [I18n.t("helpers.label.resume.tattoos.#{tattoo}"), tattoo]
+    end
   end
 
   def citizen_select
-    [
-      ["US Citizen", "us citizen"],
-      ["Resident Alien", "resident alien"]
-    ]
+    Resume::CITIZENS.map do |citizen|
+      [I18n.t("helpers.label.resume.citizens.#{citizen}"), citizen]
+    end
   end
 
   def agent_type_select
-    [
-      ["Theatrical", "theatrical"],
-      ["Television", "television"],
-      ["Film", "film"],
-      ["Commercial", "commercial"],
-      ["Dance", "dance"],
-      ["Modeling/Print", "modeling_print"],
-      ["Modeling/High Fashion", "modeling_high_fashion"],
-      ["Modeling/Editorial", "modeling_editorial"],
-      ["Modeling/Commercial", "modeling_commercial"],
-      ["Children's Talent Agent", "childrens_talent_agent"],
-    ]
-  end
-
-  def education_type_select
-    [
-      ["University", "university"],
-      ["College", "college"],
-      ["Studio", "studio"],
-      ["Academy", "academy"],
-      ["Private Training", "private_training"]
-    ]
+    Resume::AGENT_TYPES.map do |agent_type|
+      [I18n.t("helpers.label.resume.agent_types.#{agent_type}"), agent_type]
+    end
   end
 
   def expertise_checkboxes
-    [
-      ["Plays", "plays"],
-      ["Musicals", "musicals"],
-      ["Television", "television"],
-      ["Film", "film"],
-      ["Dance", "dance"],
-      ["Modeling", "modeling"]
-    ]
+    MentorBio::TALENT_EXPERTISES.map do |expertise|
+      [I18n.t("helpers.label.mentor_bio.expertises.#{expertise}"), expertise]
+    end
   end
 
   def dance_style_checkboxes
-    [
-      ["Ballet", "ballet"],
-      ["Jazz", "jazz"],
-      ["Lyrical/Contemporary", "lyrical/contemporary"],
-      ["Modern", "modern"],
-      ["Tap", "tap"],
-      ["Hip Hop", "hip hop"],
-      ["Clog", "clog"]
-    ]
+    MentorBio::DANCE_STYLES.map do |style|
+      [I18n.t("helpers.label.mentor_bio.dance_styles.#{style}"), style]
+    end
+  end
+
+  def education_type_select
+    School::EDUCATION_TYPES.map do |education_type|
+      [I18n.t("helpers.label.school.education_types.#{education_type}"), education_type]
+    end
   end
 
   def education_type_name(education_type)
-    {
-      "university" => "University",
-      "college" => "College",
-      "studio" => "Studio",
-      "academy" => "Academy",
-      "private_training" => "Private Training"
-    }[education_type]
+    I18n.t("helpers.label.school.education_types.#{education_type}")
   end
 
   def for_select_by_model(klass)
@@ -139,3 +93,4 @@ module ApplicationHelper
     end
   end
 end
+

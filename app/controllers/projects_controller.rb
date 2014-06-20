@@ -36,6 +36,7 @@ class ProjectsController < ApplicationController
       redirect_to edit_resume_path
     else
       flash[:failure] = "Sorry unable to save your Project please try again."
+      redirect_to edit_resume_path
     end
   end
 

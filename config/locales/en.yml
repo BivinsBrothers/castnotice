@@ -27,3 +27,66 @@ en:
         project_type: "Project Type"
       school:
         education_type: "Education Type"
+      resume:
+        eye_colors:
+          brown: "Brown"
+          hazel: "Hazel"
+          blue: "Blue"
+          green: "Green"
+          silver: "Silver"
+          amber: "Amber"
+        hair_colors:
+          black: "Black"
+          brown: "Brown"
+          blond: "Blond"
+          auburn: "Auburn"
+          chestnut: "Chestnut"
+          red: "Red"
+          gray: "Gray"
+        hair_lengths:
+          short: "Short"
+          medium: "Medium"
+          long: "Long"
+        piercings:
+          "yes": "Yes"
+          "no": "No"
+        tattoos:
+          "yes": "Yes"
+          "no": "No"
+        citizens:
+          us_citizen: "US Citizen"
+          resident_alien: "Resident Alien"
+        agent_types:
+          theatrical: "Theatrical"
+          television: "Television"
+          film: "Film"
+          commercial: "Commercial"
+          dance: "Dance"
+          modeling_print: "Modeling/Print"
+          modeling_high_fashion: "Modeling/High Fashion"
+          modeling_editorial: "Modeling/Editorial"
+          modeling_commercial: "Modeling/Commercial"
+          childrens_talent_agent: "Children's Talent Agent"
+      mentor_bio:
+        expertises:
+          plays: "Plays"
+          musicals: "Musicals"
+          television: "Television"
+          film: "Film"
+          dance: "Dance"
+          modeling: "Modeling"
+        dance_styles:
+          ballet: "Ballet"
+          jazz: "Jazz"
+          lyrical_contemporary: "Lyrical/Contemporary"
+          modern: "Modern"
+          tap: "Tap"
+          hip_hop: "Hip Hop"
+          clog: "Clog"
+      school:
+        education_types:
+          university: "University"
+          college: "College"
+          studio: "Studio"
+          academy: "Academy"
+          private_training: "Private Training"

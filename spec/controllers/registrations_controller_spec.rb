@@ -3,7 +3,7 @@ require "spec_helper"
 describe RegistrationsController do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    session[:allow_breakthrough_promo] = true
+    session[:promo_code_success] = true
   end
 
   describe "#create" do
