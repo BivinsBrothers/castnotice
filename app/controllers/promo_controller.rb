@@ -1,5 +1,6 @@
 class PromoController < ApplicationController
   skip_before_action :enforce_promo_code_access
+  skip_before_action :store_location
 
   def create
     if valid_coupon_codes.include?(params[:promo_code])
