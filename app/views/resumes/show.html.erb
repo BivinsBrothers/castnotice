@@ -80,23 +80,29 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-12">
-		<h3>Experience</h3>
-    <%= render template: 'projects/show', locals: { projects: @resume.projects } if @resume.projects.present? %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-12">
-		<h3>Schools</h3>
-    <%= render template: 'schools/show', locals: { schools: @resume.schools } if @resume.schools.present?  %>
-	</div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <h3>Skills</h3>
-    <%= render "resumes/skills" %>
+<% if @resume.projects.present? %>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Experience</h3>
+      <%= render template: 'projects/show', locals: { projects: @resume.projects } %>
+    </div>
   </div>
-</div>
+<% end %>
+
+<% if @resume.schools.present? %>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Schools</h3>
+      <%= render template: 'schools/show', locals: { schools: @resume.schools } %>
+    </div>
+  </div>
+<% end %>
+
+<% if @resume.additional_skills.present? %>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Skills</h3>
+      <%= render "resumes/skills" %>
+    </div>
+  </div>
+<% end %>
