@@ -6,9 +6,11 @@ class Admin::EventsController < ApplicationController
   end
 
   def create
-    if @event = Event.create(event_params)
+    @event = Event.new(event_params)
+    if @event.save
       redirect_to page_path("calendar")
     else
+      flash[:failure] = "Your event failed to save. Please try again."
       render :new
     end
   end
