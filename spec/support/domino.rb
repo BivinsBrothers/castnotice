@@ -100,6 +100,10 @@ module Dom
       node.find(".location").text.partition("Location: ").last
     end
 
+    def production_location
+      node.find(".production_location").text.partition("Production Location: ").last
+    end
+
     def gender
       node.find(".gender").text.partition("Gender: ").last
     end
@@ -126,18 +130,6 @@ module Dom
 
     def special_notes
       node.find(".special-notes").text.partition("Special Notes: ").last
-    end
-
-    def additional_project_info
-      node.find(".additional-project-info").text.partition("Additional Project Info: ").last
-    end
-
-    def project_type_details
-      node.find(".project-type-details").text.partition("Project Type Details: ").last
-    end
-
-    def start_date
-      node.find(".start-date").text.partition("Shoot/Start Date: ").last
     end
 
     def more_information

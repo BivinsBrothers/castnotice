@@ -30,9 +30,6 @@ feature "calendar", js: true do
         character_description: "Chris is getting google glass",
         how_to_audition: "Wears glasses",
         special_notes: "It involves a washer",
-        additional_project_info: "Donations accepted",
-        project_type_details: "Elephants",
-        start_date: "2014-06-01",
         age_range: (18..34)
       )
 
@@ -48,7 +45,6 @@ feature "calendar", js: true do
       expect(event.unions).to eq("Extraverts United, UEA")
       expect(event.gender).to eq("Male")
       expect(event.casting_director).to eq("Karl McSweeney")
-      expect(event.start_date).to eq("06-01-14")
 
       event.toggle_more_information
 
@@ -58,8 +54,6 @@ feature "calendar", js: true do
       expect(event.special_notes).to eq("It involves a washer")
       expect(event.age_min).to eq("18")
       expect(event.age_max).to eq("34")
-      expect(event.additional_project_info).to eq("Donations accepted")
-      expect(event.project_type_details).to eq("Elephants")
     end
   end
 

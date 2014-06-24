@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606172100) do
+ActiveRecord::Schema.define(version: 20140623205145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,10 @@ ActiveRecord::Schema.define(version: 20140606172100) do
     t.text      "special_notes"
     t.text      "additional_project_info"
     t.int4range "age_range"
+    t.text      "staff"
+    t.string    "pay_rate"
+    t.text      "audition_times"
+    t.text      "production_location"
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree

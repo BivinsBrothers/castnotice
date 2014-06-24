@@ -1,5 +1,5 @@
 <h1>Create an event</h1>
-<p>Fill out the fields below to create a new celendar event. * Denotes a required field.</p>
+<p>Fill out the fields below to create a new calendar event. * Denotes a required field.</p>
 <div class="row">
 <div class="col-sm-3">
 <%= e.label :project_title, "Name of Project"%>*
@@ -14,14 +14,6 @@
 </div>
 <div class="col-sm-9">
 <%= e.select :project_type_id, for_select_by_model(ProjectType) %>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-3">
-<%= e.label :project_type_details, "Project Type Details" %>
-</div>
-<div class="col-sm-9">
-<%= e.text_area :project_type_details %>
 </div>
 </div>
 <div class="row">
@@ -68,10 +60,18 @@
 </div>
 <div class="row">
 <div class="col-sm-3">
-<%= e.label :location, "Location" %>
+<%= e.label :location, "Audition Location" %>
 </div>
 <div class="col-sm-9">
 <%= e.text_field :location %>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<%= e.label :production_location, "Production Location" %>
+</div>
+<div class="col-sm-9">
+<%= e.text_field :production_location %>
 </div>
 </div>
 <div class="row">
@@ -80,6 +80,14 @@
 </div>
 <div class="col-sm-9">
 <%= e.text_field :casting_director %>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<%= e.label :staff, "Staff"%>*
+</div>
+<div class="col-sm-9">
+<%= e.text_area :staff %>
 </div>
 </div>
 <div class="row">
@@ -108,14 +116,6 @@
 </div>
 <div class="row">
 <div class="col-sm-3">
-<%= e.label :additional_project_info, "Additional Project Info" %>
-</div>
-<div class="col-sm-9">
-<%= e.text_area :additional_project_info %>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-3">
 <%= e.label :audition_date, "Date of Audition" %>*
 </div>
 <div class="col-sm-9">
@@ -124,10 +124,10 @@
 </div>
 <div class="row">
 <div class="col-sm-3">
-<%= e.label :start_date, "Start of Event" %>
+<%= e.label :audition_times, "Audition Times"%>*
 </div>
 <div class="col-sm-9">
-<%= e.date_select :start_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
+<%= e.text_area :audition_times %>
 </div>
 </div>
 <div class="row">
@@ -136,6 +136,14 @@
 </div>
 <div class="col-sm-9">
 <%= e.check_box :paid %>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-3">
+<%= e.label :pay_rate, "Pay Rate"%>*
+</div>
+<div class="col-sm-9">
+<%= e.text_field :pay_rate %>
 </div>
 </div>
 <div class="row">
