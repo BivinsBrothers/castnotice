@@ -1,0 +1,18 @@
+<%= form_for [:admin, @event, @roll] do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.label :gender %>
+  <%= f.text_field :gender %>
+
+  <%= f.label :ethnicity %>
+  <%= f.text_field :ethnicity %>
+
+  <%= f.label :age_min, "Age Min" %>*
+  <%= select_tag "roll[age_min]", options_for_select((Roll::AGE_MIN..Roll::AGE_MAX), :age_min) %>
+
+  <%= f.label :age_max, "Age Max" %>*
+  <%= select_tag "roll[age_max]", options_for_select((Roll::AGE_MIN..Roll::AGE_MAX), :age_max) %>
+
+  <%= f.submit "Create Roll" %>
+<% end %>

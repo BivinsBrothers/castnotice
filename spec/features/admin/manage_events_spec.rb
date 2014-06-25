@@ -142,6 +142,28 @@ feature "an admin or mentor can manage events", js: true do
 
       expect(rolls.size).to eq(2)
     end
+
+    scenario "adding a roll to an event" do
+      create(:event, :full, audition_date: 1.day.from_now)
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      click_link "Add Roll"
+
+      fill_in "Description", with: "Lead character, Dorthy"
+      fill_in "Gender", with: "female"
+      fill_in "Ethnicity", with: "white"
+      select "21", from: "Age Min"
+      select "32", from: "Age Max"
+      click_button "Create Roll"
+
+      rolls = Dom::CalendarEventRoll.all
+
+      expect(rolls.size).to eq(1)
+    end
   end
 
 end
