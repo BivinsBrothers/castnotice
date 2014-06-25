@@ -157,6 +157,14 @@ module Dom
     selector ".roll"
 
     attribute :description
+
+    def edit
+      click_link "Edit"
+    end
+
+    def delete
+      click_link "Delete"
+    end
   end
 
   class SearchResult < Domino

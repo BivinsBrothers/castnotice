@@ -22,6 +22,20 @@ module Admin
       end
     end
 
+    def edit
+      @roll = @event.rolls.find(params[:id])
+    end
+
+    def update
+      @roll = @event.rolls.find(params[:id])
+
+      if @roll.update_attributes(roll_params)
+        redirect_to admin_event_rolls_path(@event), notice: "Successfully updated roll"
+      else
+        render :edit
+      end
+    end
+
     private
 
     def roll_params

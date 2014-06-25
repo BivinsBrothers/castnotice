@@ -3,5 +3,6 @@
 <% @rolls.each do |roll| %>
   <div class="roll">
     <p class="description"><%= roll.description %></p>
+    <%= link_to "Edit", edit_admin_event_roll_path(@event, roll) %>
   </div>
 <% end %>

@@ -164,6 +164,39 @@ feature "an admin or mentor can manage events", js: true do
 
       expect(rolls.size).to eq(1)
     end
+
+    scenario "editing an existing event" do
+      create(:event, :full, audition_date: 1.day.from_now)
+      create(:roll, description: "Dorthy")
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      Dom::CalendarEventRoll.first.edit
+
+      fill_in "Description", with: "Lead character, Dorthy"
+      click_button "Update Roll"
+
+      roll = Dom::CalendarEventRoll.first
+
+      expect(roll.description).to eq("Lead character, Dorthy")
+    end
+
+    scenario "removing an  roll from an event" do
+      create(:event, :full, audition_date: 1.day.from_now)
+      create(:roll, description: "Dorthy")
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      Dom::CalendarEventRoll.first.delete
+
+      expect(event.rolls).to be_empty
+    end
   end
 
 end
