@@ -36,6 +36,13 @@ module Admin
       end
     end
 
+    def destroy
+      @roll = @event.rolls.find(params[:id])
+      @roll.destroy
+
+      redirect_to admin_event_rolls_path(@event), notice: "Successfully deleted roll"
+    end
+
     private
 
     def roll_params

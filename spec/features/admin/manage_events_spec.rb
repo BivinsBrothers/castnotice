@@ -185,7 +185,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "removing an  roll from an event" do
-      create(:event, :full, audition_date: 1.day.from_now)
+      event = create(:event, :full, audition_date: 1.day.from_now)
       create(:roll, description: "Dorthy")
 
       visit page_path("calendar")
