@@ -25,15 +25,13 @@ feature "calendar", js: true do
         project_type: project_type,
         unions: [union1, union2],
         casting_director: "Karl McSweeney",
-        gender: "Male",
         storyline: "Happy people become ghosts, have good times",
-        character_description: "Chris is getting google glass",
         how_to_audition: "Wears glasses",
         special_notes: "It involves a washer",
-        additional_project_info: "Donations accepted",
-        project_type_details: "Elephants",
-        start_date: "2014-06-01",
-        age_range: (18..34)
+        production_location: "Los Angeles",
+        pay_rate: "$10,000",
+        staff: "Casting Supporter",
+        location: "Detroit"
       )
 
       visit page_path("calendar")
@@ -46,20 +44,13 @@ feature "calendar", js: true do
       expect(event.region).to eq("Canada")
       expect(event.project_type).to eq("PSA")
       expect(event.unions).to eq("Extraverts United, UEA")
-      expect(event.gender).to eq("Male")
       expect(event.casting_director).to eq("Karl McSweeney")
-      expect(event.start_date).to eq("06-01-14")
 
       event.toggle_more_information
 
       expect(event.storyline).to eq("Happy people become ghosts, have good times")
-      expect(event.character_description).to eq("Chris is getting google glass")
       expect(event.how_to_audition).to eq("Wears glasses")
       expect(event.special_notes).to eq("It involves a washer")
-      expect(event.age_min).to eq("18")
-      expect(event.age_max).to eq("34")
-      expect(event.additional_project_info).to eq("Donations accepted")
-      expect(event.project_type_details).to eq("Elephants")
     end
   end
 
@@ -69,7 +60,13 @@ feature "calendar", js: true do
         project_title: "Extravaganza!",
         audition_date: this_month,
         region: region,
-        project_type: project_type
+        project_type: project_type,
+        casting_director: "Dale Ernhardt",
+        production_location: "Jackson, Montana",
+        pay_rate: "Free",
+        staff: "Some additional roles required…",
+        location: "Miami",
+        how_to_audition: "Show up and work hard."
       )
 
       visit page_path("calendar")
@@ -107,8 +104,8 @@ feature "calendar", js: true do
   it "filters by month in sidebar" do
     next_month = this_month.next_month
 
-    create(:event, audition_date: this_month, paid: false)
-    create(:event, audition_date: next_month, paid: true)
+    create(:event, :full, audition_date: this_month, paid: false)
+    create(:event, :full, audition_date: next_month, paid: true)
 
     visit page_path("calendar")
 
@@ -128,8 +125,8 @@ feature "calendar", js: true do
   end
 
   it "filters by selected categories" do
-    oxford    = create(:event, region: create(:region, name: "Oxford"))
-    cambridge = create(:event, project_title: "Beatles Reunion", region: create(:region, name: "Cambridge"))
+    oxford    = create(:event, :full, region: create(:region, name: "Oxford"))
+    cambridge = create(:event, :full, project_title: "Beatles Reunion", region: create(:region, name: "Cambridge"))
 
     visit page_path("calendar")
 
@@ -146,7 +143,7 @@ feature "calendar", js: true do
   end
 
   it "escapes HTML from user input" do
-    create(:event, project_title: "<i>Dungeons & Dragons</i>")
+    create(:event, :full, project_title: "<i>Dungeons & Dragons</i>")
 
     visit page_path("calendar")
 

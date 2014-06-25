@@ -7,20 +7,27 @@ def full_event_hash(event)
      project_type: event.project_type.name,
      region: event.region.name,
      storyline: event.storyline,
-     character_description: event.character_description,
      how_to_audition: event.how_to_audition,
      audition_date: event.audition_date.strftime("%Y-%m-%d"),
-     start_date: event.start_date.strftime("%m-%d-%y"),
      paid: event.paid,
      location: event.location,
      casting_director: event.casting_director,
-     gender: event.gender,
-     age_min: event.age_min,
-     age_max: event.age_max,
-     project_type_details: event.project_type_details,
      special_notes: event.special_notes,
-     additional_project_info: event.additional_project_info,
-     unions: (event.unions.map {|u| {name: u.name} })
+     staff: event.staff,
+     pay_rate: event.pay_rate,
+     production_location: event.production_location,
+     unions: (event.unions.map {|u| {name: u.name} }),
+     rolls: (
+       event.rolls.map do |r|
+         {
+           description: r.description,
+           gender: r.gender,
+           ethnicity: r.ethnicity,
+           age_min: r.age_min,
+           age_max: r.age_max
+         }
+       end
+     )
   }
 end
 
@@ -165,9 +172,9 @@ describe "Calendar API" do
       let(:ratp)     { create(:union, name: "RATP") }
 
       let!(:event1) { create(:event, audition_date: Date.today, project_type: orange, region: dordogne, unions: [ratp]) }
-      let!(:event2) { create(:event, audition_date: 1.day.from_now, project_type: lavazza, region: ile, age_range: (20..56)) }
-      let!(:event3) { create(:event, audition_date: 2.days.from_now, project_type: orange, unions: [sncf], age_range: (12..16)) }
-      let!(:event4) { create(:event, audition_date: 3.days.from_now, unions: [sncf, ratp], age_range: (18..30)) }
+      let!(:event2) { create(:event, audition_date: 1.day.from_now, project_type: lavazza, region: ile) }
+      let!(:event3) { create(:event, audition_date: 2.days.from_now, project_type: orange, unions: [sncf]) }
+      let!(:event4) { create(:event, audition_date: 3.days.from_now, unions: [sncf, ratp]) }
 
       it "returns events filtered by region" do
         get events_path, {filters: {region: [dordogne.id]}}
@@ -210,15 +217,6 @@ describe "Calendar API" do
 
         expect(response.body).to eq({
           "events" => [limited_event_hash(event1), limited_event_hash(event3)],
-          "meta" => {member: false, admin: false}
-        }.to_json)
-      end
-
-      it "returns events filtered by age" do
-        get events_path, {filters: {age: 22}}
-
-        expect(response.body).to eq({
-          "events" => [limited_event_hash(event2), limited_event_hash(event4)],
           "meta" => {member: false, admin: false}
         }.to_json)
       end

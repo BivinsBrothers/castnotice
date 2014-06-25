@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606172100) do
+ActiveRecord::Schema.define(version: 20140625162914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 20140606172100) do
   create_table "events", force: true do |t|
     t.string    "project_title"
     t.text      "storyline"
-    t.text      "character_description"
     t.text      "how_to_audition"
     t.datetime  "audition_date"
     t.datetime  "start_date"
@@ -105,11 +104,14 @@ ActiveRecord::Schema.define(version: 20140606172100) do
     t.string    "casting_director"
     t.integer   "region_id"
     t.integer   "project_type_id"
-    t.string    "gender"
     t.text      "project_type_details"
     t.text      "special_notes"
     t.text      "additional_project_info"
     t.int4range "age_range"
+    t.text      "staff"
+    t.string    "pay_rate"
+    t.text      "audition_times"
+    t.text      "production_location"
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
@@ -286,6 +288,16 @@ ActiveRecord::Schema.define(version: 20140606172100) do
   end
 
   add_index "resumes", ["slug"], name: "index_resumes_on_slug", unique: true, using: :btree
+
+  create_table "rolls", force: true do |t|
+    t.text      "description"
+    t.string    "gender"
+    t.string    "ethnicity"
+    t.int4range "age_range"
+    t.integer   "event_id"
+    t.datetime  "created_at"
+    t.datetime  "updated_at"
+  end
 
   create_table "schools", force: true do |t|
     t.string   "school"

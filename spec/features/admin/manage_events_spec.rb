@@ -49,27 +49,20 @@ feature "an admin or mentor can manage events", js: true do
 
       fill_in "Name of Project", with: "Extravaganza!"
       select "Episodic", from: "Project Type"
-      fill_in "Project Type Details", with: "Many episodes"
       select "Central", from: "Region"
       check "Extraverts United"
       fill_in "Story", with: "Happy people become ghosts, have good times"
-      fill_in "Gender", with: "Something"
-      select "21", from: "Age Min"
-      select "28", from: "Age Max"
-      fill_in "Description", with: "We need you to have telekentic powers and be willing to yoyo upside down"
       fill_in "Audition Details", with: "In person, there will be a gorilla"
       fill_in "Casting Director", with: "Nic Lindstrom"
-      fill_in "Additional Project Info", with: "For you Victor"
-      fill_in "Location", with: "Detroit"
+      fill_in "Audition Location", with: "Detroit"
+      fill_in "Production Location", with: "Los Angeles"
       fill_in "Special Notes", with: "Lawn care"
+      fill_in "Pay Rate", with: "$500-$1,000"
+      fill_in "Staff", with: "Assistant to the coffee-getter"
 
       select current_date.day.to_s, from: "event_audition_date_3i"
       select current_month, from: "event_audition_date_2i"
       select current_date.year, from: "event_audition_date_1i"
-
-      select "1", from: "event_start_date_3i"
-      select "December", from: "event_start_date_2i"
-      select "2014", from: "event_start_date_1i"
 
       check "Paid"
 
@@ -90,22 +83,15 @@ feature "an admin or mentor can manage events", js: true do
       expect(event.unions).to eq("Extraverts United")
       expect(event.casting_director).to eq("Nic Lindstrom")
       expect(event.location).to eq("Detroit")
-      expect(event.start_date).to eq("12-01-14")
-      expect(event.gender).to eq("Something")
 
       event.toggle_more_information
       expect(event.storyline).to eq("Happy people become ghosts, have good times")
-      expect(event.character_description).to eq("We need you to have telekentic powers and be willing to yoyo upside down")
       expect(event.how_to_audition).to eq("In person, there will be a gorilla")
       expect(event.special_notes).to eq("Lawn care")
-      expect(event.age_min).to eq("21")
-      expect(event.age_max).to eq("28")
-      expect(event.additional_project_info).to eq("For you Victor")
-      expect(event.project_type_details).to eq("Many episodes")
     end
 
     scenario "editing an event" do
-      create(:event, project_title: "Boring Times", audition_date: Date.current)
+      create(:event, :full, project_title: "Boring Times", audition_date: Date.current)
 
       visit page_path("calendar")
       click_link "Calendar"
@@ -126,7 +112,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "deleting an event" do
-      create(:event, audition_date: Date.current)
+      create(:event, :full, audition_date: Date.current)
 
       visit page_path("calendar")
       click_link "Calendar"
@@ -135,6 +121,93 @@ feature "an admin or mentor can manage events", js: true do
       event.click_delete
 
       expect(Dom::CalendarEvent.all.count).to eq(0)
+    end
+
+    scenario "listing rolls for an event" do
+      event = create(:event, :full, audition_date: 1.day.from_now)
+      other_event = create(:event, :full, audition_date: 3.day.from_now)
+
+      create(:roll, event: event)
+      create(:roll, event: event)
+      create(:roll, event: other_event)
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      rolls = Dom::CalendarEventRoll.all
+
+      expect(rolls.size).to eq(2)
+    end
+
+    scenario "adding a roll to an event" do
+      create(:event, :full, audition_date: 1.day.from_now)
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      click_link "Add Roll"
+
+      fill_in "Description", with: "Lead character, Dorthy"
+      fill_in "Gender", with: "female"
+      fill_in "Ethnicity", with: "white"
+      select "21", from: "Age Min"
+      select "32", from: "Age Max"
+      click_button "Create Roll"
+
+      rolls = Dom::CalendarEventRoll.all
+
+      expect(rolls.size).to eq(1)
+    end
+
+    scenario "editing an existing event" do
+      create(:event, :full, audition_date: 1.day.from_now)
+      create(:roll, description: "Dorthy")
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      Dom::CalendarEventRoll.first.edit
+
+      fill_in "Description", with: "Lead character, Dorthy"
+      click_button "Update Roll"
+
+      roll = Dom::CalendarEventRoll.first
+
+      expect(roll.description).to eq("Lead character, Dorthy")
+    end
+
+    scenario "removing an  roll from an event" do
+      event = create(:event, :full, audition_date: 1.day.from_now)
+      create(:roll, description: "Dorthy")
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      Dom::CalendarEventRoll.first.delete
+
+      expect(event.rolls).to be_empty
+    end
+
+    scenario "viewing a roll details" do
+      create(:event, :full, audition_date: 1.day.from_now)
+      create(:roll, description: "Dorthy")
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      Dom::CalendarEventRoll.first.view_details
+
+      expect(page).to have_content("Dorthy")
     end
   end
 

@@ -100,6 +100,10 @@ module Dom
       node.find(".location").text.partition("Location: ").last
     end
 
+    def production_location
+      node.find(".production_location").text.partition("Production Location: ").last
+    end
+
     def gender
       node.find(".gender").text.partition("Gender: ").last
     end
@@ -128,18 +132,6 @@ module Dom
       node.find(".special-notes").text.partition("Special Notes: ").last
     end
 
-    def additional_project_info
-      node.find(".additional-project-info").text.partition("Additional Project Info: ").last
-    end
-
-    def project_type_details
-      node.find(".project-type-details").text.partition("Project Type Details: ").last
-    end
-
-    def start_date
-      node.find(".start-date").text.partition("Shoot/Start Date: ").last
-    end
-
     def more_information
       node.find(".calendar-detail").text
     end
@@ -154,6 +146,28 @@ module Dom
 
     def click_delete
       node.click_link("Delete")
+    end
+
+    def manage_rolls
+      node.click_link("Manage Rolls")
+    end
+  end
+
+  class CalendarEventRoll < Domino
+    selector ".roll"
+
+    attribute :description
+
+    def edit
+      click_link "Edit"
+    end
+
+    def delete
+      click_link "Delete"
+    end
+
+    def view_details
+      click_link "View"
     end
   end
 

@@ -97,16 +97,16 @@ FactoryGirl.define do
     region
     unions { [create(:union)] }
     audition_date Date.today
-    gender "Male"
+    casting_director "That guy"
+    production_location "Glasgow"
+    pay_rate "$5,000 - $10,000"
+    staff "Some random staff listings"
+    location "Stockholm"
+    how_to_audition "Grow a beard"
 
     trait :full do
       storyline "Eurovision"
-      character_description "Austrian in drag"
-      how_to_audition "Grow a beard"
       start_date 2.months.from_now
-      location "Stockholm"
-      casting_director "That guy"
-      project_type_details "It involves people"
       special_notes "Avoid the caviar"
     end
 
@@ -176,5 +176,13 @@ FactoryGirl.define do
       message.recipient ||= message.conversation.recipient
       message.sender ||= message.conversation.sender
     end
+  end
+
+  factory :roll do
+    description "description"
+    gender "gender"
+    age_min 1
+    age_max 20
+    event
   end
 end
