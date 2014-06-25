@@ -6,6 +6,7 @@ class EventSerializer < ActiveModel::Serializer
     :project_type_details, :special_notes, :additional_project_info
 
   has_many :unions
+  has_many :rolls
 
   def start_date
     object.start_date.try(:strftime, "%m-%d-%y")

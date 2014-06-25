@@ -16,7 +16,18 @@ def full_event_hash(event)
      project_type_details: event.project_type_details,
      special_notes: event.special_notes,
      additional_project_info: event.additional_project_info,
-     unions: (event.unions.map {|u| {name: u.name} })
+     unions: (event.unions.map {|u| {name: u.name} }),
+     rolls: (
+       event.rolls.map do |r|
+         {
+           description: r.description,
+           gender: r.gender,
+           ethnicity: r.ethnicity,
+           age_min: r.age_min,
+           age_max: r.age_max
+         }
+       end
+     )
   }
 end
 
