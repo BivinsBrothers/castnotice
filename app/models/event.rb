@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
 
   has_many :event_unions
   has_many :unions, through: :event_unions
+  has_many :rolls
 
   def age_min=(min)
     max = self.age_range ? self.age_range.end : AGE_MAX

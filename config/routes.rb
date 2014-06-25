@@ -11,7 +11,9 @@ Castnotice::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :events, except: [:show, :index]
+    resources :events, except: [:show, :index] do
+      resources :rolls, only: :index
+    end
   end
 
   resource :promo, only: [:create, :show], controller: "promo"

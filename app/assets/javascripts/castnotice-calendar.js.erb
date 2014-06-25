@@ -38,7 +38,8 @@ function calendarBuild() {
 function addAdminEventLinks(event_id, admin) {
   if (admin) {
     return '<div class="edit-event"><a href="/admin/events/' + event_id + '/edit">Edit</a></div>' +
-           '<div class="delete-event"><a href="/admin/events/' + event_id + '" data-method="delete">Delete</a></div>'
+           '<div class="delete-event"><a href="/admin/events/' + event_id + '" data-method="delete">Delete</a></div>' +
+           '<div class="add-event-role"><a href="/admin/events/' + event_id + '/rolls">Manage Rolls</a></div>'
   } else {
     return ""
   }

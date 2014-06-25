@@ -124,6 +124,24 @@ feature "an admin or mentor can manage events", js: true do
 
       expect(Dom::CalendarEvent.all.count).to eq(0)
     end
+
+    scenario "listing rolls for an event" do
+      event = create(:event, :full, audition_date: 1.day.from_now)
+      other_event = create(:event, :full, audition_date: 3.day.from_now)
+
+      create(:roll, event: event)
+      create(:roll, event: event)
+      create(:roll, event: other_event)
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      rolls = Dom::CalendarEventRoll.all
+
+      expect(rolls.size).to eq(2)
+    end
   end
 
 end

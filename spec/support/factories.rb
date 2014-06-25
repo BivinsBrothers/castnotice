@@ -180,4 +180,12 @@ FactoryGirl.define do
       message.sender ||= message.conversation.sender
     end
   end
+
+  factory :roll do
+    description "description"
+    gender "gender"
+    age_min 1
+    age_max 20
+    event
+  end
 end
