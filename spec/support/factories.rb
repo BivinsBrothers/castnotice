@@ -97,7 +97,6 @@ FactoryGirl.define do
     region
     unions { [create(:union)] }
     audition_date Date.today
-    gender "Male"
     casting_director "That guy"
     production_location "Glasgow"
     pay_rate "$5,000 - $10,000"
@@ -107,7 +106,6 @@ FactoryGirl.define do
 
     trait :full do
       storyline "Eurovision"
-      character_description "Austrian in drag"
       start_date 2.months.from_now
       project_type_details "It involves people"
       special_notes "Avoid the caviar"

@@ -102,17 +102,13 @@ function calendarUpdate() {
                 if (data.meta.member == true) {
                     $('#calendar-detail-' + key).append(
                             '<div class="calendar-description storyline"><span>Storyline:</span> ' + escapeHtml(val.storyline) + '</div>',
-                            '<div class="calendar-description character-description"><span>Description:</span> ' + escapeHtml(val.character_description) + '</div>',
                             '<div class="calendar-description how-to-audition"><span>How to Audition:</span> ' + escapeHtml(val.how_to_audition) + '</div>',
                             '<div class="calendar-description special-notes"><span>Special Notes:</span> ' + escapeHtml(val.special_notes) + '</div>',
-                            '<div class="calendar-description age-min"><span>Age Min:</span> ' + escapeHtml(val.age_min) + '</div>',
-                            '<div class="calendar-description age-max"><span>Age Max:</span> ' + escapeHtml(val.age_max) + '</div>',
                             '<div class="calendar-description additional-project-info"><span>Additional Project Info:</span> ' + escapeHtml(val.additional_project_info) + '</div>',
                             '<div class="calendar-description project-type-details"><span>Project Type Details:</span> ' + escapeHtml(val.project_type_details) + '</div>'
                             );
                     $('#calendar-overview-' + key).append(
                             '<div class="calendar-attribute start-date"><span>Shoot/Start Date:</span> ' + val.start_date + '</div>',
-                            '<div class="calendar-attribute gender"><span>Gender:</span> ' + escapeHtml(val.gender) + '</div>',
                             '<div class="calendar-attribute unions"><span>Unions:</span> ' + sentenceForUnions(val.unions) + '</div>',
                             '<div class="calendar-attribute casting-director"><span>Casting Director:</span> ' + escapeHtml(val.casting_director) + '</div>',
                             '<div class="calendar-attribute location"><span>Location:</span> ' + escapeHtml(val.location) + '</div>'

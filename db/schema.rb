@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625152234) do
+ActiveRecord::Schema.define(version: 20140625162914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 20140625152234) do
   create_table "events", force: true do |t|
     t.string    "project_title"
     t.text      "storyline"
-    t.text      "character_description"
     t.text      "how_to_audition"
     t.datetime  "audition_date"
     t.datetime  "start_date"
@@ -105,7 +104,6 @@ ActiveRecord::Schema.define(version: 20140625152234) do
     t.string    "casting_director"
     t.integer   "region_id"
     t.integer   "project_type_id"
-    t.string    "gender"
     t.text      "project_type_details"
     t.text      "special_notes"
     t.text      "additional_project_info"

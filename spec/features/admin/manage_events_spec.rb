@@ -52,7 +52,6 @@ feature "an admin or mentor can manage events", js: true do
       select "Central", from: "Region"
       check "Extraverts United"
       fill_in "Story", with: "Happy people become ghosts, have good times"
-      fill_in "Description", with: "We need you to have telekentic powers and be willing to yoyo upside down"
       fill_in "Audition Details", with: "In person, there will be a gorilla"
       fill_in "Casting Director", with: "Nic Lindstrom"
       fill_in "Audition Location", with: "Detroit"
@@ -87,7 +86,6 @@ feature "an admin or mentor can manage events", js: true do
 
       event.toggle_more_information
       expect(event.storyline).to eq("Happy people become ghosts, have good times")
-      expect(event.character_description).to eq("We need you to have telekentic powers and be willing to yoyo upside down")
       expect(event.how_to_audition).to eq("In person, there will be a gorilla")
       expect(event.special_notes).to eq("Lawn care")
     end

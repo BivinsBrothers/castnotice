@@ -23,14 +23,11 @@ feature "calendar", js: true do
         audition_date: this_month,
         region: region,
         project_type: project_type,
-        unions: [union1, union2],
+        unions: [union2, union1],
         casting_director: "Karl McSweeney",
-        gender: "Male",
         storyline: "Happy people become ghosts, have good times",
-        character_description: "Chris is getting google glass",
         how_to_audition: "Wears glasses",
         special_notes: "It involves a washer",
-        age_range: (18..34),
         production_location: "Los Angeles",
         pay_rate: "$10,000",
         staff: "Casting Supporter",
@@ -47,17 +44,13 @@ feature "calendar", js: true do
       expect(event.region).to eq("Canada")
       expect(event.project_type).to eq("PSA")
       expect(event.unions).to eq("Extraverts United, UEA")
-      expect(event.gender).to eq("Male")
       expect(event.casting_director).to eq("Karl McSweeney")
 
       event.toggle_more_information
 
       expect(event.storyline).to eq("Happy people become ghosts, have good times")
-      expect(event.character_description).to eq("Chris is getting google glass")
       expect(event.how_to_audition).to eq("Wears glasses")
       expect(event.special_notes).to eq("It involves a washer")
-      expect(event.age_min).to eq("18")
-      expect(event.age_max).to eq("34")
     end
   end
 
