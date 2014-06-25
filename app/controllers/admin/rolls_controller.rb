@@ -43,6 +43,10 @@ module Admin
       redirect_to admin_event_rolls_path(@event), notice: "Successfully deleted roll"
     end
 
+    def show
+      @roll = @event.rolls.find(params[:id])
+    end
+
     private
 
     def roll_params

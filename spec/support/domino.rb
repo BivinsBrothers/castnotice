@@ -165,6 +165,10 @@ module Dom
     def delete
       click_link "Delete"
     end
+
+    def view_details
+      click_link "View"
+    end
   end
 
   class SearchResult < Domino

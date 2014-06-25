@@ -197,6 +197,20 @@ feature "an admin or mentor can manage events", js: true do
 
       expect(event.rolls).to be_empty
     end
+
+    scenario "viewing a roll details" do
+      create(:event, :full, audition_date: 1.day.from_now)
+      create(:roll, description: "Dorthy")
+
+      visit page_path("calendar")
+      click_link "Calendar"
+
+      Dom::CalendarEvent.first.manage_rolls
+
+      Dom::CalendarEventRoll.first.view_details
+
+      expect(page).to have_content("Dorthy")
+    end
   end
 
 end
