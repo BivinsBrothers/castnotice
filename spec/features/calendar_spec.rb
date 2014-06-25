@@ -23,7 +23,7 @@ feature "calendar", js: true do
         audition_date: this_month,
         region: region,
         project_type: project_type,
-        unions: [union2, union1],
+        unions: [union1, union2],
         casting_director: "Karl McSweeney",
         storyline: "Happy people become ghosts, have good times",
         how_to_audition: "Wears glasses",

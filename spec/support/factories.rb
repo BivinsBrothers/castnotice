@@ -107,7 +107,6 @@ FactoryGirl.define do
     trait :full do
       storyline "Eurovision"
       start_date 2.months.from_now
-      project_type_details "It involves people"
       special_notes "Avoid the caviar"
     end
 

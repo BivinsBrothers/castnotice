@@ -9,13 +9,13 @@ def full_event_hash(event)
      storyline: event.storyline,
      how_to_audition: event.how_to_audition,
      audition_date: event.audition_date.strftime("%Y-%m-%d"),
-     start_date: event.start_date.strftime("%m-%d-%y"),
      paid: event.paid,
      location: event.location,
      casting_director: event.casting_director,
-     project_type_details: event.project_type_details,
      special_notes: event.special_notes,
-     additional_project_info: event.additional_project_info,
+     staff: event.staff,
+     pay_rate: event.pay_rate,
+     production_location: event.production_location,
      unions: (event.unions.map {|u| {name: u.name} }),
      rolls: (
        event.rolls.map do |r|
