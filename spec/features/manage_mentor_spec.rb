@@ -23,6 +23,7 @@ feature "managing mentor" do
     fill_in "user[mentor_bio_attributes][company_phone]", with: "Special Company"
     fill_in "user[mentor_bio_attributes][past_company]", with: "A Slightly Less Special Company"
     fill_in "user[mentor_bio_attributes][current_projects]", with: "Special Company"
+    fill_in "user[mentor_bio_attributes][biography]", with: "Biography Details"
     fill_in "user[mentor_bio_attributes][teaching_experience]", with: "Special Company"
     check "Film"
     check "Dance"

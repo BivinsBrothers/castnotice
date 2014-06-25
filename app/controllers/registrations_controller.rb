@@ -49,7 +49,7 @@ class RegistrationsController < Devise::RegistrationsController
                    :parent_location, :parent_location_two, :parent_city, :parent_state, :parent_zip, :parent_phone,
                    :tos, :stripe_token, :mentor, :company, :company_address, :company_phone_number, :past_companies, :current_projects,
                    :teaching_experience, :talent_expertise, :dance_style, :education_experience, :artistic_organizations,
-                   mentor_bio_attributes: [:company, :company_address, :company_phone, :past_company, :current_projects,
+                   mentor_bio_attributes: [:company, :company_address, :company_phone, :past_company, :current_projects, :biography,
                                            :teaching_experience, :education_experience, :artistic_organizations, talent_expertise: [],
                                            dance_style: [] ])
   end
