@@ -12,29 +12,25 @@
 
 $ ->
   $(".show-project-form").on 'click', (e) ->
-    e.preventDefault
     $(".new-project-form").slideDown()
 
   $(".show-school-form").on 'click', (e) ->
-    e.preventDefault
     $(".new-school-form").slideDown()
 
   $(".show-headshot-form").on 'click', (e) ->
-    e.preventDefault
     $(".new-headshot-form").slideDown()
+    $("#upload-headshot-button").prop('disabled', true)
 
-  $("#headshot_image").on "change", ->
+  $("#headshot_image").on 'change', (e) ->
     $("#upload-headshot-button").prop('disabled', false)
 
-  $("#upload-headshot-button").on 'click', ->
-    $(".new-headshot-form").slideUp()
+  $(".new_headshot").submit ->
+    $("#upload-headshot-button").prop('disabled', true)
 
   $(".show-video-form").on 'click', (e) ->
-    e.preventDefault
     $(".new-video-form").slideDown()
 
   $(".agent-extra").on 'click', (e) ->
-    e.preventDefault
     $(".show-agent-fields").slideDown()
 
   accountFields.toggleParentFields()
