@@ -3,15 +3,19 @@ class ChangeCompanyPhoneToStringOnMentorBios < ActiveRecord::Migration
   end
 
   def up
-    add_column :mentor_bios, :new_phone, :string
+    rename_column :mentor_bios, :company_phone, :int_company_phone
+    add_column :mentor_bios, :company_phone, :string
+    MentorBio.reset_column_information
 
     MentorBio.all.each do |mentor|
-      mentor.new_phone = mentor.company_phone.to_s
+      mentor.company_phone = mentor.int_company_phone.to_s
+      mentor.save
     end
 
   end
 
   def down
-    remove_column :mentor_bios, :new_phone
+    remove_column :mentor_bios, :company_phone
+    rename_column :mentor_bios, :int_company_phone, :company_phone
   end
 end
