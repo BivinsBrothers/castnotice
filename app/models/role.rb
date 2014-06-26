@@ -1,4 +1,4 @@
-class Roll < ActiveRecord::Base
+class Role < ActiveRecord::Base
   AGE_MIN = 1
   AGE_MAX = 99
 

@@ -178,7 +178,7 @@ FactoryGirl.define do
     end
   end
 
-  factory :roll do
+  factory :role do
     description "description"
     gender "gender"
     age_min 1

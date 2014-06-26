@@ -14,5 +14,5 @@ class Event < ActiveRecord::Base
 
   has_many :event_unions
   has_many :unions, through: :event_unions
-  has_many :rolls
+  has_many :roles
 end

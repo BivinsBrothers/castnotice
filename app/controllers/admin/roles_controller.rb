@@ -1,56 +1,56 @@
 module Admin
-  class RollsController < ApplicationController
+  class RolesController < ApplicationController
     before_action do
       @event = Event.find(params[:event_id])
     end
 
     def index
-      @rolls = @event.rolls
+      @roles = @event.roles
     end
 
     def new
-      @roll = @event.rolls.build
+      @role = @event.roles.build
     end
 
     def create
-      @roll = @event.rolls.build(roll_params)
+      @role = @event.roles.build(role_params)
 
-      if @roll.save
-        redirect_to admin_event_rolls_path(@event), notice: "Successfully added roll"
+      if @role.save
+        redirect_to admin_event_roles_path(@event), notice: "Successfully added role"
       else
         render :new
       end
     end
 
     def edit
-      @roll = @event.rolls.find(params[:id])
+      @role = @event.roles.find(params[:id])
     end
 
     def update
-      @roll = @event.rolls.find(params[:id])
+      @role = @event.roles.find(params[:id])
 
-      if @roll.update_attributes(roll_params)
-        redirect_to admin_event_rolls_path(@event), notice: "Successfully updated roll"
+      if @role.update_attributes(role_params)
+        redirect_to admin_event_roles_path(@event), notice: "Successfully updated role"
       else
         render :edit
       end
     end
 
     def destroy
-      @roll = @event.rolls.find(params[:id])
-      @roll.destroy
+      @role = @event.roles.find(params[:id])
+      @role.destroy
 
-      redirect_to admin_event_rolls_path(@event), notice: "Successfully deleted roll"
+      redirect_to admin_event_roles_path(@event), notice: "Successfully deleted role"
     end
 
     def show
-      @roll = @event.rolls.find(params[:id])
+      @role = @event.roles.find(params[:id])
     end
 
     private
 
-    def roll_params
-      params.require(:roll).permit(
+    def role_params
+      params.require(:role).permit(
         :description,
         :age_min,
         :age_max,

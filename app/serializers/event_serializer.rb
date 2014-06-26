@@ -6,6 +6,6 @@ class EventSerializer < ActiveModel::Serializer
     :special_notes, :staff, :pay_rate, :production_location
 
   has_many :unions
-  has_many :rolls
+  has_many :roles
 
 end

@@ -17,8 +17,8 @@ def full_event_hash(event)
      pay_rate: event.pay_rate,
      production_location: event.production_location,
      unions: (event.unions.map {|u| {name: u.name} }),
-     rolls: (
-       event.rolls.map do |r|
+     roles: (
+       event.roles.map do |r|
          {
            description: r.description,
            gender: r.gender,

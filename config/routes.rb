@@ -12,7 +12,7 @@ Castnotice::Application.routes.draw do
 
   namespace :admin do
     resources :events, except: [:show, :index] do
-      resources :rolls
+      resources :roles
     end
   end
 

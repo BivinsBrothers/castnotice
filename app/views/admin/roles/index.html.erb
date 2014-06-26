@@ -1,10 +1,10 @@
-<%= link_to "Add Roll", new_admin_event_roll_path(@event) %>
+<%= link_to "Add Role", new_admin_event_role_path(@event) %>
 
-<% @rolls.each do |roll| %>
-  <div class="roll">
-    <p class="description"><%= roll.description %></p>
-    <%= link_to "View", admin_event_roll_path(@event, roll) %>
-    <%= link_to "Edit", edit_admin_event_roll_path(@event, roll) %>
-    <%= link_to "Delete", admin_event_roll_path(@event, roll), method: :delete, confirm: "Are you sure?" %>
+<% @roles.each do |role| %>
+  <div class="role">
+    <p class="description"><%= role.description %></p>
+    <%= link_to "View", admin_event_role_path(@event, role) %>
+    <%= link_to "Edit", edit_admin_event_role_path(@event, role) %>
+    <%= link_to "Delete", admin_event_role_path(@event, role), method: :delete, confirm: "Are you sure?" %>
   </div>
 <% end %>

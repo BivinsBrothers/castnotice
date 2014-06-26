@@ -148,13 +148,13 @@ module Dom
       node.click_link("Delete")
     end
 
-    def manage_rolls
-      node.click_link("Manage Rolls")
+    def manage_roles
+      node.click_link("Manage Roles")
     end
   end
 
-  class CalendarEventRoll < Domino
-    selector ".roll"
+  class CalendarEventRole < Domino
+    selector ".role"
 
     attribute :description
 

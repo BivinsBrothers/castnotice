@@ -1,4 +1,4 @@
-<%= form_for [:admin, @event, @roll] do |f| %>
+<%= form_for [:admin, @event, @role] do |f| %>
   <%= f.label :description, "Seeking" %>
   <%= f.text_field :description %>
 
@@ -9,11 +9,11 @@
   <%= f.text_field :ethnicity %>
 
   <%= f.label :age_min, "Age Min" %>*
-  <%= select_tag "roll[age_min]", options_for_select((Roll::AGE_MIN..Roll::AGE_MAX), :age_min) %>
+  <%= select_tag "role[age_min]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_min) %>
 
   <%= f.label :age_max, "Age Max" %>*
-  <%= select_tag "roll[age_max]", options_for_select((Roll::AGE_MIN..Roll::AGE_MAX), :age_max) %>
+  <%= select_tag "role[age_max]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_max) %>
 
-  <%= f.submit "#{@roll.new_record? ? "Create" : "Update" } Roll" %>
+  <%= f.submit "#{@role.new_record? ? "Create" : "Update" } Role" %>
 <% end %>
 
