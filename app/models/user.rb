@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def under_18?
+    return false unless birthday.present?
     birthday > 18.years.ago
   end
 
