@@ -123,89 +123,89 @@ feature "an admin or mentor can manage events", js: true do
       expect(Dom::CalendarEvent.all.count).to eq(0)
     end
 
-    scenario "listing rolls for an event" do
+    scenario "listing roles for an event" do
       event = create(:event, :full, audition_date: 1.day.from_now)
       other_event = create(:event, :full, audition_date: 3.day.from_now)
 
-      create(:roll, event: event)
-      create(:roll, event: event)
-      create(:roll, event: other_event)
+      create(:role, event: event)
+      create(:role, event: event)
+      create(:role, event: other_event)
 
       visit page_path("calendar")
       click_link "Calendar"
 
-      Dom::CalendarEvent.first.manage_rolls
+      Dom::CalendarEvent.first.manage_roles
 
-      rolls = Dom::CalendarEventRoll.all
+      roles = Dom::CalendarEventRole.all
 
-      expect(rolls.size).to eq(2)
+      expect(roles.size).to eq(2)
     end
 
-    scenario "adding a roll to an event" do
+    scenario "adding a role to an event" do
       create(:event, :full, audition_date: 1.day.from_now)
 
       visit page_path("calendar")
       click_link "Calendar"
 
-      Dom::CalendarEvent.first.manage_rolls
+      Dom::CalendarEvent.first.manage_roles
 
-      click_link "Add Roll"
+      click_link "Add Role"
 
       fill_in "Seeking", with: "Lead character, Dorthy"
       fill_in "Gender", with: "female"
       fill_in "Ethnicity", with: "white"
       select "21", from: "Age Min"
       select "32", from: "Age Max"
-      click_button "Create Roll"
+      click_button "Create Role"
 
-      rolls = Dom::CalendarEventRoll.all
+      roles = Dom::CalendarEventRole.all
 
-      expect(rolls.size).to eq(1)
+      expect(roles.size).to eq(1)
     end
 
     scenario "editing an existing event" do
       create(:event, :full, audition_date: 1.day.from_now)
-      create(:roll, description: "Dorthy")
+      create(:role, description: "Dorthy")
 
       visit page_path("calendar")
       click_link "Calendar"
 
-      Dom::CalendarEvent.first.manage_rolls
+      Dom::CalendarEvent.first.manage_roles
 
-      Dom::CalendarEventRoll.first.edit
+      Dom::CalendarEventRole.first.edit
 
       fill_in "Seeking", with: "Lead character, Dorthy"
-      click_button "Update Roll"
+      click_button "Update Role"
 
-      roll = Dom::CalendarEventRoll.first
+      role = Dom::CalendarEventRole.first
 
-      expect(roll.description).to eq("Lead character, Dorthy")
+      expect(role.description).to eq("Lead character, Dorthy")
     end
 
-    scenario "removing an  roll from an event" do
+    scenario "removing an  role from an event" do
       event = create(:event, :full, audition_date: 1.day.from_now)
-      create(:roll, description: "Dorthy")
+      create(:role, description: "Dorthy")
 
       visit page_path("calendar")
       click_link "Calendar"
 
-      Dom::CalendarEvent.first.manage_rolls
+      Dom::CalendarEvent.first.manage_roles
 
-      Dom::CalendarEventRoll.first.delete
+      Dom::CalendarEventRole.first.delete
 
-      expect(event.rolls).to be_empty
+      expect(event.roles).to be_empty
     end
 
-    scenario "viewing a roll details" do
+    scenario "viewing a role details" do
       create(:event, :full, audition_date: 1.day.from_now)
-      create(:roll, description: "Dorthy")
+      create(:role, description: "Dorthy")
 
       visit page_path("calendar")
       click_link "Calendar"
 
-      Dom::CalendarEvent.first.manage_rolls
+      Dom::CalendarEvent.first.manage_roles
 
-      Dom::CalendarEventRoll.first.view_details
+      Dom::CalendarEventRole.first.view_details
 
       expect(page).to have_content("Dorthy")
     end
