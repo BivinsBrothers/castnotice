@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20140626163720) do
   create_table "mentor_bios", force: true do |t|
     t.string  "company"
     t.string  "company_address"
-    t.integer "company_phone"
+    t.integer "int_company_phone"
     t.string  "past_company"
     t.string  "current_projects"
     t.string  "teaching_experience"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 20140626163720) do
     t.string  "artistic_organizations"
     t.integer "user_id"
     t.text    "biography"
-    t.string  "new_phone"
+    t.string  "company_phone"
   end
 
   create_table "messages", force: true do |t|
