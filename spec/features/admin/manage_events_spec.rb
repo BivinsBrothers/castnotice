@@ -151,7 +151,7 @@ feature "an admin or mentor can manage events", js: true do
 
       click_link "Add Roll"
 
-      fill_in "Description", with: "Lead character, Dorthy"
+      fill_in "Seeking", with: "Lead character, Dorthy"
       fill_in "Gender", with: "female"
       fill_in "Ethnicity", with: "white"
       select "21", from: "Age Min"
@@ -174,7 +174,7 @@ feature "an admin or mentor can manage events", js: true do
 
       Dom::CalendarEventRoll.first.edit
 
-      fill_in "Description", with: "Lead character, Dorthy"
+      fill_in "Seeking", with: "Lead character, Dorthy"
       click_button "Update Roll"
 
       roll = Dom::CalendarEventRoll.first
