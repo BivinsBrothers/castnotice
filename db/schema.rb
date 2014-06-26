@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626131721) do
+ActiveRecord::Schema.define(version: 20140626163720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20140626131721) do
   create_table "mentor_bios", force: true do |t|
     t.string  "company"
     t.string  "company_address"
-    t.integer "company_phone"
+    t.integer "int_company_phone"
     t.string  "past_company"
     t.string  "current_projects"
     t.string  "teaching_experience"
@@ -150,6 +150,7 @@ ActiveRecord::Schema.define(version: 20140626131721) do
     t.string  "artistic_organizations"
     t.integer "user_id"
     t.text    "biography"
+    t.string  "company_phone"
   end
 
   create_table "messages", force: true do |t|
