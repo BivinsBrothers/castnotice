@@ -7,10 +7,14 @@
       Plan Level: <%= @user.stripe_plan.plan.name %>
     </div>
   <% end %>
-  <% @user.errors.full_messages.each do |msg| %>
-    <span class="error">
-      <%= msg %>
-    </span>
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li class="error"><%= msg %></li>
+      <% end %>      
+    </ul>
+  </div>
   <% end %>
   <%= form_for @user, :url => accounts_path, :method => :put do |f| %>
     <%= f.label :name, "Full Name" %>
