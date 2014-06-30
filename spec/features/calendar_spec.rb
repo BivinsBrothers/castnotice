@@ -43,7 +43,7 @@ feature "calendar", js: true do
       expect(event.paid?).to be_true
       expect(event.region).to eq("Canada")
       expect(event.project_type).to eq("PSA")
-      expect(event.unions).to eq("Extraverts United, UEA")
+      expect(event.unions.split(", ")).to match_array(["Extraverts United", "UEA"])
       expect(event.casting_director).to eq("Karl McSweeney")
 
       event.toggle_more_information
