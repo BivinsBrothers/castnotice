@@ -98,11 +98,15 @@
   </div>
 <% end %>
 
-<% if @resume.additional_skills.present? %>
+<% if @resume.additional_skills.present? || @resume.has_skill_attributes? %>
   <div class="row">
     <div class="col-md-12">
       <h3>Skills</h3>
       <%= render "resumes/skills" %>
+      <% if @resume.additional_skills.present? %>
+        <h4>Additional Skills:</h4>
+        <p><%= @resume.additional_skills %></p>
+      <% end %>
     </div>
   </div>
 <% end %>
