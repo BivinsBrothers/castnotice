@@ -23,16 +23,16 @@ class Resume < ActiveRecord::Base
   has_one :background_image, -> { where background: true }, class: Headshot, as: :imageable
   has_one :resume_photo, -> { where resume_photo: true }, class: Headshot, as: :imageable
 
-  has_and_belongs_to_many :unions, join_table: :resume_unions
-  has_and_belongs_to_many :accents, join_table: :resume_accents
-  has_and_belongs_to_many :athletic_endeavors, join_table: :resume_athletic_endeavors
-  has_and_belongs_to_many :ethnicities, join_table: :resume_ethnicities
-  has_and_belongs_to_many :disabilities, join_table: :resume_disabilities
-  has_and_belongs_to_many :fluent_languages, join_table: :resume_fluent_languages
-  has_and_belongs_to_many :performance_skills, join_table: :resume_performance_skills
+  has_and_belongs_to_many :unions,                       join_table: :resume_unions
+  has_and_belongs_to_many :accents,                      join_table: :resume_accents
+  has_and_belongs_to_many :athletic_endeavors,           join_table: :resume_athletic_endeavors
+  has_and_belongs_to_many :ethnicities,                  join_table: :resume_ethnicities
+  has_and_belongs_to_many :disabilities,                 join_table: :resume_disabilities
+  has_and_belongs_to_many :fluent_languages,             join_table: :resume_fluent_languages
+  has_and_belongs_to_many :performance_skills,           join_table: :resume_performance_skills
   has_and_belongs_to_many :disability_assistive_devices, join_table: :resume_disability_assistive_devices
-  has_and_belongs_to_many :project_types, join_table: :resume_project_types
-  has_and_belongs_to_many :regions, join_table: :resume_regions
+  has_and_belongs_to_many :project_types,                join_table: :resume_project_types
+  has_and_belongs_to_many :regions,                      join_table: :resume_regions
 
   has_many :projects
   has_many :schools
