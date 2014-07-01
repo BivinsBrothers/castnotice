@@ -21,7 +21,7 @@ class EventsController < ApplicationController
     start_date = DateTime.parse(params[:date].fetch(:start, Time.now.in_time_zone("UTC").beginning_of_month.to_s))
     end_date = DateTime.parse(params[:date].fetch(:end, Time.now.in_time_zone("UTC").end_of_month.to_s))
 
-    range_for(start_date, end_date)
+    range_for(start_date, end_date.end_of_day)
   end
 
   def range_for(start_date, end_date)

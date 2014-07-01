@@ -124,12 +124,11 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "listing roles for an event" do
-      event = create(:event, :full, audition_date: 1.day.from_now)
-      other_event = create(:event, :full, audition_date: 3.day.from_now)
+      event_date = Time.now
+      event = create(:event, :full, audition_date: event_date)
 
       create(:role, event: event)
       create(:role, event: event)
-      create(:role, event: other_event)
 
       visit page_path("calendar")
       click_link "Calendar"
@@ -142,7 +141,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "adding a role to an event" do
-      create(:event, :full, audition_date: 1.day.from_now)
+      create(:event, :full, audition_date: Date.today)
 
       visit page_path("calendar")
       click_link "Calendar"
