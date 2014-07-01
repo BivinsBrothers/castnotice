@@ -64,6 +64,13 @@ class Resume < ActiveRecord::Base
     videos.count >= MAXIMUM_VIDEOS
   end
 
+  def has_skill_attributes?
+    associations = [:unions, :regions, :project_types, :performance_skills, :fluent_languages,
+                    :ethnicities, :disability_assistive_devices, :disabilities,
+                    :athletic_endeavors, :accents]
+    associations.any?{|a| send(a).any? }
+  end
+
   def slug=(slug)
     if slug.empty?
       slug = nil
