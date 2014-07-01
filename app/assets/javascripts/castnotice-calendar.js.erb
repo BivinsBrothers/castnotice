@@ -100,21 +100,36 @@ function calendarUpdate() {
                     $(this).toggleClass('calendar-expand');
                 });
                 if (data.meta.member == true) {
-                    $('#calendar-detail-' + key).append(
-                            '<div class="calendar-description storyline"><span>Storyline:</span> ' + escapeHtml(val.storyline) + '</div>',
-                            '<div class="calendar-description how-to-audition"><span>How to Audition:</span> ' + escapeHtml(val.how_to_audition) + '</div>',
-                            '<div class="calendar-description special-notes"><span>Special Notes:</span> ' + escapeHtml(val.special_notes) + '</div>',
-                            '<div class="calendar-description additional-project-info"><span>Additional Project Info:</span> ' + escapeHtml(val.additional_project_info) + '</div>',
-                            '<div class="calendar-description project-type-details"><span>Project Type Details:</span> ' + escapeHtml(val.project_type_details) + '</div>'
-                            );
+                $('#calendar-detail-' + key).append(
+                '<div class="calendar-description staff"><span>Staff:</span> ' + escapeHtml(val.staff) + '</div>',
+                '<div class="calendar-description storyline"><span>Storyline:</span> ' + escapeHtml(val.storyline) + '</div>',
+                '<div class="calendar-description how-to-audition"><span>How to Audition:</span> ' + escapeHtml(val.how_to_audition) + '</div>',
+                '<div class="calendar-description special-notes"><span>Special Notes:</span> ' + escapeHtml(val.special_notes) + '</div>'
+                );
                     $('#calendar-overview-' + key).append(
                             '<div class="calendar-attribute start-date"><span>Shoot/Start Date:</span> ' + val.start_date + '</div>',
                             '<div class="calendar-attribute unions"><span>Unions:</span> ' + sentenceForUnions(val.unions) + '</div>',
                             '<div class="calendar-attribute casting-director"><span>Casting Director:</span> ' + escapeHtml(val.casting_director) + '</div>',
                             '<div class="calendar-attribute location"><span>Location:</span> ' + escapeHtml(val.location) + '</div>'
                             );
-                } else {
-                    $('#calendar-detail-' + key).append(
+                    if (val.roles.length){
+                      $('#calendar-detail-' + key).append(
+                      '<h2>Roles</h2>'
+                      );
+                      $.each(val.roles, function(i, role) {
+                      $('#calendar-detail-' + key).append(
+                    '<div class="calendar-event-role">',
+                      '<div class="calendar-description seeking"><span>Seeking:</span> ' + escapeHtml(role.description) + '</div>',
+                      '<div class="calendar-description gender"><span>Gender:</span> ' + escapeHtml(role.gender) + '</div>',
+                      '<div class="calendar-description ethnicity"><span>Ethnicity:</span> ' + escapeHtml(role.ethnicity) + '</div>',
+                      '<div class="calendar-description age"><span>Age:</span> ' + escapeHtml(role.age_min) + ' - ' + escapeHtml(role.age_max) + '</div>',
+                      '</div>'
+                    );
+                      });
+                    }
+
+                            } else {
+                            $('#calendar-detail-' + key).append(
                             '<p>To find out detailed information about this event, you must be logged into CastNotice. Please <a href="' + urlSignIn + '">Sign in</a> or <a href="' + urlRegister + '">Register</a></p></div>'
                             );
                 }
@@ -132,15 +147,15 @@ function calendarUpdate() {
                 beforeShowDay: function(date) {
                     var m = date.getUTCMonth(), d = date.getUTCDate(), y = date.getUTCFullYear();
                     for (i = 0; i < eventDates.length; i++) {
-                        if ($.inArray(y + '-' + (m + 1) + '-' + d, eventDates) != -1) {
-                            return [true, 'calendar-matched-event-date'];
+                    if ($.inArray(y + '-' + (m + 1) + '-' + d, eventDates) !== -1) {
+                    return [true, 'calendar-matched-event-date'];
                         }
                         return [false, 'calendar-not-matched-event-date'];
                     }
                 },
                 onSelect: function(date) {
-                    date = new Date(date)
-                    target = $('[data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '"]');
+                date = new Date(date);
+                target = $('[data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '"]');
                     $("html,body").animate({scrollTop: target.offset().top}, 500);
                 }
             });
