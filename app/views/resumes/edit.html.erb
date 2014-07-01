@@ -170,7 +170,7 @@
 				  <%= form_for @headshot, :multipart => true do |f| %>
 					  <%= f.file_field :image, :id => "headshot_image" %>
 					  <%= f.hidden_field :image_cache %>
-					  <%= f.submit "Save Photo", :disabled => "disabled", :id => "upload-headshot-button" %>
+					  <%= f.submit "Save Photo", :id => "upload-headshot-button" %>
 				  <% end %>
 				 </div>
 				 <div class="col-md-7">
