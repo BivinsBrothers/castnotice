@@ -1,2 +1,4 @@
-<h1><%= @event.project_title %></h1>
-<p><%= @role.description %></p>
+<h1>Calendar Admin - View Role</h1>
+<h3><%= @event.project_title %></h3>
+<p>Description: <%= @role.description %></p>
+<span class="glyphicon glyphicon-chevron-left"></span> <%= link_to "Back to Calendar", page_path("calendar") %>

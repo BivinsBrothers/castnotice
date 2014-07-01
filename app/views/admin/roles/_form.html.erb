@@ -15,5 +15,7 @@
   <%= select_tag "role[age_max]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_max) %>
 
   <%= f.submit "#{@role.new_record? ? "Create" : "Update" } Role" %>
+  <br>
+  <span class="glyphicon glyphicon-chevron-left"></span> <%= link_to "Back to Calendar", page_path("calendar") %>
 <% end %>
 

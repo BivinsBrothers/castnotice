@@ -1,10 +1,13 @@
-<%= link_to "Add Role", new_admin_event_role_path(@event) %>
+<h1>Calendar Admin - Manage Roles</h1>
 
+<span class="glyphicon glyphicon-plus mini-link"></span> <%= link_to "Add Role", new_admin_event_role_path(@event), :class => "mini-link" %>
+<br><br>
+<p>Current roles for <%= @event.project_title %>:</p>
 <% @roles.each do |role| %>
   <div class="role">
-    <p class="description"><%= role.description %></p>
-    <%= link_to "View", admin_event_role_path(@event, role) %>
-    <%= link_to "Edit", edit_admin_event_role_path(@event, role) %>
-    <%= link_to "Delete", admin_event_role_path(@event, role), method: :delete, confirm: "Are you sure?" %>
+    <h3 class="description"><%= role.description %></h3>
+    <%= link_to "View", admin_event_role_path(@event, role), :class => "mini-link" %> | 
+    <%= link_to "Edit", edit_admin_event_role_path(@event, role), :class => "mini-link" %> | 
+    <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", admin_event_role_path(@event, role), method: :delete, confirm: "Are you sure?", :class => "mini-link" %>
   </div>
 <% end %>
