@@ -4,7 +4,7 @@ class PromoController < ApplicationController
 
   def create
     if valid_coupon_codes.include?(params[:promo_code])
-      session[:promo_code_success] = true
+      session[:promo_code] = params[:promo_code]
     end
     redirect_to root_path
   end
