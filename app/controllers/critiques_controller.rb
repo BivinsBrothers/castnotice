@@ -14,7 +14,7 @@ class CritiquesController < ApplicationController
       flash[:success] = "Your critique request has been sent."
       redirect_to dashboard_path
     else
-      flash[:failure] = "Your critique failed to send please try again."
+      flash[:failure] = "Your critique failed to send, please try again."
       render :new
     end
   end
@@ -31,10 +31,16 @@ class CritiquesController < ApplicationController
     end
   end
 
+  def index
+    unless current_user.mentor? || current_user.admin?
+      redirect_to :dashboard
+    end
+  end
+
   private
 
   def able_to_view?(critique)
-    current_user.admin? || current_user.mentor? || current_user == critique.user
+    (current_user.admin? || (current_user.mentor? && @critique.open?) || current_user == critique.user)
   end
 
   def critique_params

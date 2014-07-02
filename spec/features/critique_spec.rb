@@ -46,17 +46,17 @@ feature "Critique workflow" do
 
     before do
       log_in mentor
-
-      visit critique_path(critique.uuid)
     end
 
     scenario "can see a critique request" do
+      visit critique_path(critique.uuid)
       expect(page).to have_content("Critique Requested")
       expect(page).to have_content("OZ")
       expect(page).to have_content("Improve what?")
     end
 
     scenario "can respond to a critique request" do
+      visit critique_path(critique.uuid)
       expect(page).to have_content("Critique Requested")
       expect(page).to have_content("OZ")
       expect(page).to have_content("Dance")
@@ -74,14 +74,10 @@ feature "Critique workflow" do
 
       open_email Figaro.env.castnotice_admin_email
       expect(current_email.body).to have_content(critique_path(critique.uuid))
-
-      visit critique_path(critique.uuid)
-
-      expect(page).to have_content("Critique Response")
-      expect(page).to_not have_content("Please type your response here.")
     end
 
     scenario "talent receives an email when critique request is completed" do
+      visit critique_path(critique.uuid)
       fill_in "critique_response_body", with: "Looks Great!"
       click_button "Respond"
 
@@ -89,10 +85,25 @@ feature "Critique workflow" do
 
       expect(current_email.body).to have_content("Your Critique Request has been completed please click the link provided to review.")
       expect(current_email.body).to have_content(critique_url(critique.uuid))
+    end
 
-      visit critique_path(critique.uuid)
+    scenario "mentor can view index of available critique requests" do
+      critique1 = create(:critique, project_title: "Massive")
+      critique2 = create(:critique, project_title: "Big")
+      critique3 = create(:critique, project_title: "Small")
 
-      expect(page).to have_content("Looks Great!")
+      visit critiques_path
+      expect(page).to have_content(critique.project_title)
+      expect(page).to have_content(critique1.project_title)
+      expect(page).to have_content(critique2.project_title)
+      expect(page).to have_content(critique3.project_title)
+    end
+
+    scenario "critiques are closed for review when they have a response" do
+      closed_critique = create(:critique, :closed)
+      visit critiques_path
+
+      expect(page).to have_content("Completed")
     end
   end
 end
