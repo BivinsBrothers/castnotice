@@ -90,3 +90,10 @@ en:
           studio: "Studio"
           academy: "Academy"
           private_training: "Private Training"
+      critique:
+        types:
+          dance: "Dance"
+          voice: "Voice"
+          acting: "Acting"
+          college_university: "College/University"
+          modeling: "Modeling"

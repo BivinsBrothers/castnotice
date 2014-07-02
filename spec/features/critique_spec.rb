@@ -7,11 +7,12 @@ feature "Critique workflow" do
     log_in user
     visit dashboard_path
 
-    page.find(".critique").click
+    click_link "Critique Request"
 
     expect(page).to have_content("Critique Request")
 
     fill_in "critique_project_title", with: "Audition for Gossip Girl"
+    select "Voice", from: "critique[types][]"
     fill_in "critique_notes", with: "What do you think I could do to improve my skills?"
 
     expect(page).to have_content("Choose two photos")
@@ -38,7 +39,7 @@ feature "Critique workflow" do
 
   context "as a mentor" do
     let(:mentor) { create(:user, :mentor) }
-    let!(:critique) { create(:critique, project_title: "OZ", notes: "Improve what?") }
+    let!(:critique) { create(:critique, project_title: "OZ", types: ["dance"], notes: "Improve what?") }
 
     before do
       log_in mentor
