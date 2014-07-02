@@ -39,7 +39,7 @@ feature "Critique workflow" do
 
   context "as a mentor" do
     let(:mentor) { create(:user, :mentor) }
-    let!(:critique) { create(:critique, project_title: "OZ", types: ["dance"], notes: "Improve what?") }
+    let!(:critique) { create(:critique, project_title: "OZ", types: ["dance", "voice"], notes: "Improve what?") }
 
     before do
       log_in mentor
@@ -56,6 +56,8 @@ feature "Critique workflow" do
     scenario "can respond to a critique request" do
       expect(page).to have_content("Critique Requested")
       expect(page).to have_content("OZ")
+      expect(page).to have_content("Dance")
+      expect(page).to have_content("Voice")
       expect(page).to have_content("Improve what?")
       expect(page).to have_content("Critique Response")
       expect(page).to have_content("Please type your response here.")
