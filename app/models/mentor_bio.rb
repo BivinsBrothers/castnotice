@@ -20,7 +20,7 @@ class MentorBio < ActiveRecord::Base
   def validate_talent_expertise
     talent_expertise.each do |expertise|
       unless TALENT_EXPERTISES.include?(expertise)
-        errors.add(:talend_expertse, "is not a valid talent expertise")
+        errors.add(:talent_expertse, "is not a valid talent expertise")
       end
     end
   end
@@ -28,7 +28,7 @@ class MentorBio < ActiveRecord::Base
   def validate_dance_style
     dance_style.each do |style|
       unless DANCE_STYLES.include?(style)
-        errors.add(:talend_expertse, "is not a valid dance style")
+        errors.add(:talent_expertse, "is not a valid dance style")
       end
     end
   end

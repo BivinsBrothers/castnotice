@@ -67,6 +67,12 @@ module ApplicationHelper
     end
   end
 
+  def type_select
+    Critique::TYPES.map do |type|
+      [I18n.t("helpers.label.critique.types.#{type}"), type]
+    end
+  end
+
   def education_type_select
     School::EDUCATION_TYPES.map do |education_type|
       [I18n.t("helpers.label.school.education_types.#{education_type}"), education_type]

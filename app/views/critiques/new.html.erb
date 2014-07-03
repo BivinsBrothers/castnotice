@@ -3,7 +3,9 @@
 <%= form_for @critique do |f| %>
   <%= f.label :project_title, "Project Title" %>
   <%= f.text_field :project_title %>
-  <%= f.label :notes, "Comments/Notes" %>
+  <%= f.label :types, "Critique Type" %>
+  <%= f.select(:types, type_select, {}, {multiple: true, size: 5})%>
+  <%= f.label :notes, "Comments/Notes", class: "critique-notes" %>
   <%= f.text_area :notes %>
 
   <h2>Critique Photos</h2>

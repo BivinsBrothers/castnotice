@@ -3,6 +3,9 @@
 <h3>Project Title</h3>
 <%= @critique.project_title %>
 
+<h3>Critique Type</h3>
+<%= @critique.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %>
+
 <h3>Project Notes</h3>
 <%= @critique.notes %>
 

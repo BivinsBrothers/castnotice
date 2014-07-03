@@ -74,6 +74,7 @@ FactoryGirl.define do
   factory :critique do
     user
     project_title "Chicago"
+    types ["dance", "voice"]
     notes "What could I improve on?"
   end
 
@@ -132,7 +133,6 @@ FactoryGirl.define do
   factory :accent do
     name "French"
   end
-
 
   factory :athletic_endeavor do
     name "Hang Gliding"

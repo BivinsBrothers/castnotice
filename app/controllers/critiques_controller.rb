@@ -9,7 +9,6 @@ class CritiquesController < ApplicationController
 
   def create
     @critique = current_user.critiques.build(critique_params)
-
     if @critique.save
       Notifier.critique_request(@critique).deliver
       flash[:success] = "Your critique request has been sent."
@@ -39,7 +38,7 @@ class CritiquesController < ApplicationController
   end
 
   def critique_params
-    params.require(:critique).permit(:project_title, :notes, headshots_attributes: [:image],
+    params.require(:critique).permit(:project_title, :notes, types: [], headshots_attributes: [:image],
                                      videos_attributes: [:video_url])
   end
 end
