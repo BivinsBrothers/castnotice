@@ -77,7 +77,7 @@ feature "an admin or mentor can manage events", js: true do
 
       expect(event.project_title).to eq("Extravaganza!")
       expect(event.audition_date).to eq(audition_date)
-      expect(event.paid?).to be_true
+      expect(event).to be_paid
       expect(event.project_type).to eq("Episodic")
       expect(event.region).to eq("Central")
       expect(event.unions).to eq("Extraverts United")

@@ -45,15 +45,15 @@ feature "talent messaging" do
 
       expect(conversations[0].subject).to eq("Doesn't matter")
       expect(conversations[0].correspondent).to eq(conversation3.recipient.name)
-      expect(conversations[0].unread?).to be_false
+      expect(conversations[0]).not_to be_unread
 
       expect(conversations[1].subject).to eq("Umbrellas")
       expect(conversations[1].correspondent).to eq(conversation2.sender.name)
-      expect(conversations[1].unread?).to be_true
+      expect(conversations[1]).to be_unread
 
       expect(conversations[2].subject).to eq("Finding words")
       expect(conversations[2].correspondent).to eq(conversation1.sender.name)
-      expect(conversations[2].unread?).to be_false
+      expect(conversations[2]).not_to be_unread
     end
 
     scenario "a user can write a message to another user" do

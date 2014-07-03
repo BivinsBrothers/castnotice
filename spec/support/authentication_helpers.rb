@@ -3,7 +3,7 @@ module Authentication
     def log_in(user)
       password = user.password || "goodpassword"
 
-      case example.metadata[:type]
+      case RSpec.current_example.metadata[:type]
       when :request
         Warden.test_mode!
         login_as(user, :scope => :user)
@@ -18,7 +18,7 @@ module Authentication
     end
 
     def log_out
-      case example.metadata[:type]
+      case RSpec.current_example.metadata[:type]
       when :feature
         click_link "sign out"
       end

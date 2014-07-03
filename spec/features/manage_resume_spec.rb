@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "manage resume" do
+feature "manage resume" do
   let!(:resume) { create(:resume) }
   let(:user) { resume.user }
 
@@ -13,7 +13,7 @@ describe "manage resume" do
     union = create(:union)
     accent = create(:accent)
     athletic_endeavor = create(:athletic_endeavor)
-    project_type = create(:project_type)
+    create(:project_type)
     disability = create(:disability)
     disability_assistive_device = create(:disability_assistive_device)
     ethnicity = create(:ethnicity)

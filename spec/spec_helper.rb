@@ -18,11 +18,13 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
-  config.include(FactoryGirl::Syntax::Methods)
-  config.include(Authentication::Helpers)
-  config.include(Promo::Helpers)
+  config.include FactoryGirl::Syntax::Methods
+  config.include Authentication::Helpers
+  config.include Promo::Helpers
   config.include Devise::TestHelpers, :type => :controller
   config.include Warden::Test::Helpers
+  config.include Capybara::Email::DSL, :type => :feature # not in the gem for some reason
+  config.include Rails.application.routes.url_helpers
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -47,6 +49,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # Can be removed in Rspec 3... required for VCR metadata integration
-  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.infer_spec_type_from_file_location!
 end

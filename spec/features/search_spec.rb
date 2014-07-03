@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "searching resumes", js: true do
+feature "searching resumes", js: true do
   before do
     enter_promo_code
 

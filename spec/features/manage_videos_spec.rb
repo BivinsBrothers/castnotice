@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "managing videos", :js => true do
+feature "managing videos", :js => true do
   let!(:resume) { create(:resume) }
   let(:user) { resume.user }
 

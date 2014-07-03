@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "managing user" do
+feature "managing user" do
   before do
     enter_promo_code
   end
@@ -244,7 +244,7 @@ describe "managing user" do
 
     open_email user.email
 
-    expect(current_email).to have_content("Change my password")
+    expect(current_email.body).to have_content("Change my password")
   end
 
   it "allows a mentor to register" do
