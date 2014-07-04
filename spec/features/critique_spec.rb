@@ -3,6 +3,10 @@ require "spec_helper"
 feature "Critique workflow" do
   let(:user) { create(:user) }
 
+  background do
+    clear_emails
+  end
+
   scenario "allows user to submit a critique" do
     log_in user
     visit dashboard_path
@@ -31,10 +35,9 @@ feature "Critique workflow" do
     }.from(0).to(1)
 
     expect(page).to have_content("Your critique request has been sent.")
-
     open_email Figaro.env.castnotice_admin_email
     the_critique_url = root_url + "critiques/" + Critique.last.uuid
-    expect(current_email).to have_content(the_critique_url)
+    expect(current_email.body).to have_content(the_critique_url)
   end
 
   context "as a mentor" do
@@ -70,7 +73,7 @@ feature "Critique workflow" do
       expect(page).to have_content("Hello Test Dummy")
 
       open_email Figaro.env.castnotice_admin_email
-      expect(current_email).to have_content(critique_path(critique.uuid))
+      expect(current_email.body).to have_content(critique_path(critique.uuid))
 
       visit critique_path(critique.uuid)
 
@@ -84,8 +87,8 @@ feature "Critique workflow" do
 
       open_email critique.user.email
 
-      expect(current_email).to have_content("Your Critique Request has been completed please click the link provided to review.")
-      expect(current_email).to have_content(critique_url(critique.uuid))
+      expect(current_email.body).to have_content("Your Critique Request has been completed please click the link provided to review.")
+      expect(current_email.body).to have_content(critique_url(critique.uuid))
 
       visit critique_path(critique.uuid)
 

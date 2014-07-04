@@ -40,7 +40,7 @@ feature "calendar", js: true do
 
       expect(event.project_title).to eq("Extravaganza!")
       expect(event.audition_date).to eq(this_month.strftime('%B %-d'))
-      expect(event.paid?).to be_true
+      expect(event).to be_paid
       expect(event.region).to eq("Canada")
       expect(event.project_type).to eq("PSA")
       expect(event.unions.split(", ")).to match_array(["Extraverts United", "UEA"])
@@ -75,7 +75,7 @@ feature "calendar", js: true do
 
       expect(event.project_title).to eq("Extravaganza!")
       expect(event.audition_date).to eq(this_month.strftime('%B %-d'))
-      expect(event.paid?).to be_true
+      expect(event).to be_paid
       expect(event.region).to eq("Canada")
       expect(event.project_type).to eq("PSA")
 
@@ -126,7 +126,7 @@ feature "calendar", js: true do
 
   it "filters by selected categories" do
     oxford    = create(:event, :full, region: create(:region, name: "Oxford"))
-    cambridge = create(:event, :full, project_title: "Beatles Reunion", region: create(:region, name: "Cambridge"))
+    create(:event, :full, project_title: "Beatles Reunion", region: create(:region, name: "Cambridge"))
 
     visit page_path("calendar")
 

@@ -8,9 +8,9 @@ describe Headshot do
   it "a resume can have only one background image" do
     headshot.background = true
 
-    expect(headshot.save).to be_false
-    expect(headshot).to have(1).errors_on(:background)
-    expect(headshot.reload.background).to be_false
+    expect(headshot.save).to be_falsy
+    expect(headshot.errors[:background].size).to eq(1)
+    expect(headshot.reload.background).to be_falsy
   end
 
   describe "#set_as_background_image" do

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "user dashboard" do
+feature "user dashboard" do
   it "allows user to view their dashboard" do
     user = create(:user)
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "managing headshots" do
+feature "managing headshots" do
   context "when a user is logged in" do
     let!(:resume) { create(:resume) }
     let(:user) { resume.user }

@@ -6,7 +6,7 @@ describe PromoController do
       post :create, promo_code: "BreakThru2014"
 
       expect(response).to redirect_to(root_path)
-      expect(session[:promo_code_success]).to be_true
+      expect(session[:promo_code_success]).to be_truthy
     end
 
     it " does not set a session variable with an invalid promo code" do
