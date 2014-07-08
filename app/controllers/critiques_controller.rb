@@ -35,7 +35,7 @@ class CritiquesController < ApplicationController
 
   def index
     unless current_user.mentor? || current_user.admin?
-      redirect_to :dashboard
+      redirect_to dashboard_path
     end
   end
 

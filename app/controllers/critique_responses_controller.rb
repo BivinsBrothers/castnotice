@@ -2,7 +2,7 @@ class CritiqueResponsesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_critique
-  before_action :check_if_critique_open, only: :create
+  before_action :check_if_critique_closed, only: :create
 
   def create
     @critique_response = @critique.build_response(critique_response_params.merge(user_id: current_user.id))
@@ -23,7 +23,7 @@ class CritiqueResponsesController < ApplicationController
     @critique = Critique.find_by_uuid(params[:critique_id])
   end
 
-  def check_if_critique_open
+  def check_if_critique_closed
     if @critique.closed? && current_user.mentor?
       redirect_to critiques_path
     end

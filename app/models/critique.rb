@@ -21,11 +21,11 @@ class Critique < ActiveRecord::Base
   end
 
   def open?
-    !! response.nil?
+    response.nil?
   end
 
   def closed?
-    !! response.present?
+    response.present?
   end
 
   private
