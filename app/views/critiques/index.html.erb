@@ -1,0 +1,29 @@
+<h1>Available Critiques</h1>
+  <div class="back"><%= link_to "Back to My Close Up", dashboard_path %></div>
+  <% Critique.all.each do |c| %>
+    <div class="critique-request">
+      <div class="critique-owner">
+        <%= c.user.name %>
+      </div>
+      <div class="critique-title">
+        <%= c.project_title %>
+      </div>
+      <div class="critique-types">
+        <%= c.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %>
+      </div>
+      <div class="critique-time">
+        <%= time_ago_in_words(c.created_at) %>
+      </div>
+      <div class="critique-view">
+        <% if c.closed? %>
+          <div class="critique-closed">
+            <p>Completed</p>
+          </div>
+        <% else %>
+          <div class="critique-open">
+            <%= link_to "View", critique_path(c.uuid) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>

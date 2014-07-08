@@ -31,7 +31,7 @@ Castnotice::Application.routes.draw do
 
   resources :projects, except: [:new, :show, :index]
   resources :schools, except: [:new, :show, :index]
-  resources :critiques, only: [:new, :create, :show] do
+  resources :critiques, only: [:new, :create, :show, :index] do
     resource :response, only: [:create], controller: "critique_responses"
   end
 

@@ -13,15 +13,25 @@ class Critique < ActiveRecord::Base
 
   validate :validate_types
 
+  validates_presence_of :project_title
+
   def types=(types)
     types &&= types.reject(&:blank?)
     super
   end
 
+  def open?
+    response.nil?
+  end
+
+  def closed?
+    response.present?
+  end
+
   private
 
   def validate_types
-    self.types.each do |type|
+    types.each do |type|
       unless TYPES.include?(type)
         errors.add(:types, "is not a valid critique type")
       end

@@ -76,6 +76,17 @@ FactoryGirl.define do
     project_title "Chicago"
     types ["dance", "voice"]
     notes "What could I improve on?"
+
+    trait :closed do
+      after(:create) do |c|
+        c.response = create(:critique_response)
+        c.save
+      end
+    end
+  end
+
+  factory :critique_response do
+    body "Looks Great!!!"
   end
 
   factory :school do
