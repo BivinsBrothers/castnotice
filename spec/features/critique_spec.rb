@@ -11,7 +11,7 @@ feature "Critique workflow" do
     log_in user
     visit dashboard_path
 
-    click_link "Critique Request"
+    click_link "Request Critique"
 
     expect(page).to have_content("Critique Request")
 
@@ -70,7 +70,7 @@ feature "Critique workflow" do
       click_button "Respond"
 
       expect(page).to have_content("Your response has been sent.")
-      expect(page).to have_content("Hello Test Dummy")
+      expect(current_path).to eq(critiques_path)
 
       open_email Figaro.env.castnotice_admin_email
       expect(current_email.body).to have_content(critique_path(critique.uuid))
