@@ -42,7 +42,6 @@ class CritiquesController < ApplicationController
   private
 
   def able_to_create_critique?
-    binding.pry
     if current_user.mentor? || current_user.admin?
       redirect_to dashboard_path
     end
