@@ -1,6 +1,8 @@
 class CritiquesController < ApplicationController
   before_action :authenticate_user!
 
+  before_action :able_to_create_critique?, only: [:new, :create]
+
   def new
     @critique = Critique.new
     @critique.videos.build
@@ -38,6 +40,13 @@ class CritiquesController < ApplicationController
   end
 
   private
+
+  def able_to_create_critique?
+    binding.pry
+    if current_user.mentor? || current_user.admin?
+      redirect_to dashboard_path
+    end
+  end
 
   def able_to_view?(critique)
     (current_user.admin? || (current_user.mentor? && @critique.open?) || current_user == critique.user)

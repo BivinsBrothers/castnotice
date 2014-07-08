@@ -21,6 +21,15 @@ describe CritiquesController do
       expect(flash[:failure]).to eq("Your critique failed to send, please try again.")
       expect(response).to render_template(:new)
     end
+
+    it "redirects if the current user cannot create a critique request" do
+      log_in create(:user, :mentor)
+      post :create, critique: attributes_for(:critique)
+
+      expect(flash[:success]).to be_nil
+      expect(flash[:failure]).to be_nil
+      expect(response).to redirect_to(dashboard_path)
+    end
   end
 
   describe "#show" do
