@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701171741) do
+ActiveRecord::Schema.define(version: 20140708200717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20140701171741) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "types"
+    t.string   "stripe_charge_id"
+    t.string   "payment_method"
   end
 
   add_index "critiques", ["user_id"], name: "index_critiques_on_user_id", using: :btree
