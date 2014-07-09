@@ -46,8 +46,6 @@ feature "public resume view" do
     expect(page).to have_content("Associates Degree in Creative Dance")
     expect(page).to have_content("Special Skills")
     expect(page).to have_content("Improve")
-
-    expect(page).to have_content("Resume created by CastNotice")
   end
 
   scenario "it displays parent info on printable resume when talent is a minor" do
