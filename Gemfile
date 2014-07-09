@@ -2,13 +2,13 @@ source "https://rubygems.org"
 
 ruby "2.1.2"
 
-gem "rails", "4.1"
+gem "rails", "4.1.0"
 
 gem "pg"
 
 # Assets
 gem "coffee-rails", "~> 4.0.0"
-gem "sass-rails", "~> 4.0.0"
+gem "sass-rails", "~> 4.0.3"
 gem "uglifier", ">= 1.3.0"
 
 gem "active_model_serializers"
@@ -23,6 +23,9 @@ gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "high_voltage"
 gem "carrierwave"
+gem "carrierwave_backgrounder"
+gem "sucker_punch"
+gem "zencoder"
 gem "mini_magick"
 gem "periscope-activerecord"
 gem "pry-rails"
@@ -33,6 +36,7 @@ gem "stripe-rails"
 gem "interactor-rails"
 gem "draper"
 gem "sucker_punch"
+
 
 group :production, :staging do
   gem "rails_12factor"
