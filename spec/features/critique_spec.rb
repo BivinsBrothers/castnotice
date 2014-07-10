@@ -1,43 +1,50 @@
 require "spec_helper"
 
 feature "Critique workflow" do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, 
+    stripe_customer_id: "cus_47oUnsvWTQWwPs",
+    stripe_plan_id: "sub_4CFLiZFRyp52ya"
+  ) }
 
   background do
     clear_emails
   end
 
   scenario "allows user to submit a critique" do
-    log_in user
-    visit dashboard_path
+    VCR.use_cassette("create_valid_stripe_critique_payment") do
+      log_in user
+      visit dashboard_path
 
-    click_link "Request Critique"
+      click_link "Request Critique"
 
-    expect(page).to have_content("Critique Request")
+      expect(page).to have_content("Critique Request")
 
-    fill_in "critique_project_title", with: "Audition for Gossip Girl"
-    select "Voice", from: "critique[types][]"
-    fill_in "critique_notes", with: "What do you think I could do to improve my skills?"
+      fill_in "critique_project_title", with: "Audition for Gossip Girl"
+      select "Voice", from: "critique[types][]"
+      fill_in "critique_notes", with: "What do you think I could do to improve my skills?"
 
-    expect(page).to have_content("Choose two photos")
+      expect(page).to have_content("Choose two photos")
 
-    attach_file "critique_headshots_attributes_0_image", "#{Rails.root}/spec/fixtures/image.jpg"
-    attach_file "critique_headshots_attributes_1_image", "#{Rails.root}/spec/fixtures/image.jpg"
+      attach_file "critique_headshots_attributes_0_image", "#{Rails.root}/spec/fixtures/image.jpg"
+      attach_file "critique_headshots_attributes_1_image", "#{Rails.root}/spec/fixtures/image.jpg"
 
-    expect(page).to have_content("Paste video URL")
+      expect(page).to have_content("Paste video URL")
 
-    fill_in "critique_videos_attributes_0_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
+      expect(page).to have_content("When you click Request Critique, we will charge $24.99 to the credit card you have on file from registration.")
 
-    expect {
-      click_button "Submit Critique"
-    }.to change {
-      Critique.count
-    }.from(0).to(1)
+      fill_in "critique_videos_attributes_0_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
 
-    expect(page).to have_content("Your critique request has been sent.")
-    open_email Figaro.env.castnotice_admin_email
-    the_critique_url = root_url + "critiques/" + Critique.last.uuid
-    expect(current_email.body).to have_content(the_critique_url)
+      expect {
+        click_button "Submit Critique"
+      }.to change {
+        Critique.count
+      }.from(0).to(1)
+
+      expect(page).to have_content("Your critique request has been sent.")
+      open_email Figaro.env.castnotice_admin_email
+      the_critique_url = root_url + "critiques/" + Critique.last.uuid
+      expect(current_email.body).to have_content(the_critique_url)
+    end
   end
 
   context "as a mentor" do
@@ -100,7 +107,7 @@ feature "Critique workflow" do
     end
 
     scenario "critiques are closed for review when they have a response" do
-      closed_critique = create(:critique, :closed)
+      create(:critique, :closed)
       visit critiques_path
 
       expect(page).to have_content("Completed")

@@ -32,6 +32,7 @@ gem "honeybadger"
 gem "stripe-rails"
 gem "interactor-rails"
 gem "draper"
+gem "sucker_punch"
 
 group :production, :staging do
   gem "rails_12factor"

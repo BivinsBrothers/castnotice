@@ -1,13 +1,17 @@
 require "spec_helper"
 
 describe CritiquesController do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user, 
+    stripe_customer_id: "cus_47oUnsvWTQWwPs",
+    stripe_plan_id: "sub_4CFLiZFRyp52ya"
+  ) }
 
   before do
     log_in user
   end
 
-  describe "#create" do
+  vcr_options = { cassette_name: "create_valid_stripe_critique_payment" }
+  describe "#create", vcr: vcr_options do
     it "sets a success message and redirects to dashboard path on success" do
       post :create, critique: attributes_for(:critique)
 

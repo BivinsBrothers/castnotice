@@ -51,4 +51,17 @@ class User < ActiveRecord::Base
   def can_send_messages_to?(recipient)
     can_send_messages? && id != recipient.id
   end
+
+  def eligible_for_free_critique?
+    stripe_customer.subscriptions.retrieve(stripe_plan_id).plan.id.to_sym == Stripe::Plans::BROADWAY.id &&
+    critiques.where(payment_method: "breakthru_free").count == 0
+  end
+
+  def stripe_customer
+    @stripe_customer ||= begin
+      Stripe::Customer.retrieve(stripe_customer_id)
+    rescue Exception => e
+      raise "Unable to load stripe customer: #{e.message}"
+    end
+  end
 end

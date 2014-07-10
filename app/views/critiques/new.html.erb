@@ -24,5 +24,19 @@
     <% end %>
   </div>
 
+  <div class="critique-payment">
+    <% if current_user.eligible_for_free_critique? %>
+      <div class="free-critique">
+        <p>You have 1 free critique included in your membership plan. No payment
+          required!</p>
+      </div>
+    <% else %>
+      <div class="paid-critique">
+        <p>When you click Request Critique, we will charge $24.99 to the credit
+          card you have on file from registration.</p>
+      </div>
+    <% end %>
+  </div>
+
   <%= f.submit "Submit Critique", id: "submit-critique" %>
 <% end %>
