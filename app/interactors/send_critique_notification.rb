@@ -2,6 +2,6 @@ class SendCritiqueNotification
   include Interactor
 
   def perform
-    Notifier.critique_request(critique).deliver
+    CritiqueRequestNotification.new.async.perform(critique)
   end
 end

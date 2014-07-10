@@ -5,12 +5,10 @@ class CreateCritiqueStripeCharge
     user.eligible_for_free_critique? ? free_critique : paid_critique
   end
 
-  def rollback
-    user.update_attributes(
-      stripe_charge_id: nil,
-      payment_method: nil
-    )
-  end
+  # there is no rollback because this interactor represents the end of the
+  # transaction for our purposes. If this interactor is ever followed in the
+  # organizer by a interactor that can invoke "#fail!", then we need to
+  # implement rollback
 
   private
 
