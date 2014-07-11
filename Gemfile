@@ -26,6 +26,7 @@ gem "carrierwave"
 gem "carrierwave_backgrounder"
 gem "sucker_punch"
 gem "zencoder"
+gem "videojs_rails"
 gem "mini_magick"
 gem "periscope-activerecord"
 gem "pry-rails"
@@ -58,6 +59,7 @@ end
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
+  gem "zencoder-fetcher"
 end
 
 group :test do
