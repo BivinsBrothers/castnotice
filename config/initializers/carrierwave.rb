@@ -15,6 +15,6 @@ CarrierWave.configure do |config|
   # end
 end
 
-# CarrierWave::Backgrounder.configure do |c|
-#   c.backend :sucker_punch, queue: :carrierwave
-# end
+CarrierWave::Backgrounder.configure do |c|
+  c.backend :sucker_punch, queue: :carrierwave
+end

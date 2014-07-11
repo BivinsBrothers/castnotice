@@ -1,6 +1,6 @@
 class Video < ActiveRecord::Base
   mount_uploader :video, VideoUploader
-  # store_in_background :video
+  store_in_background :video
 
   validate :validate_video_url_format
 
