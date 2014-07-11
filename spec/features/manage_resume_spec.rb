@@ -179,7 +179,7 @@ feature "manage resume" do
     }.from(0).to(1)
   end
 
-  it "allows adding videos", :js => true do
+  it "allows adding linked videos", :js => true do
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -195,6 +195,24 @@ feature "manage resume" do
     }.from(0).to(1)
 
     expect(page).to have_content("Delete")
+  end
+
+  it "allows uploading videos", js: true do
+    visit dashboard_path
+
+    click_link "dashboard-edit-resume"
+
+    click_link "Add a video"
+
+    attach_file "Video", "#{Rails.root}/spec/fixtures/sample.mov"
+
+    expect {
+      click_button "Upload Video"
+      save_and_open_page
+    }.to change {
+      user.resume.videos.count
+    }.from(0).to(1)
+
   end
 
   it "allow deleting videos" do

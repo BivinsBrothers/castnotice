@@ -1,11 +1,5 @@
 <div class="video">
-	<div class="video-iframe">
-      <% if video.youtube_id.present? %>
-        <iframe src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
-      <% elsif video.vimeo_id.present? %>
-        <iframe src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
-      <% end %>
-	</div>
+  <%= render "shared/video_player", video: video %>
 	<div class="video-links">
       <span class="glyphicon glyphicon-trash"></span> <%= link_to "Delete", video_path(video), method: :delete %>
 	 </div>

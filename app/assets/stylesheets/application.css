@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require chosen.min
+ *= require video-js
  *= require_tree .
  */

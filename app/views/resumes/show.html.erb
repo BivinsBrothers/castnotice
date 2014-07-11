@@ -66,15 +66,9 @@
 <div class="row">
 	<div class="col-md-12">
 		<% if @resume.videos.present? %>
-		  <h3>Your Videos</h3>
+		  <h3>Videos</h3>
 		  <% @resume.videos.each do |video| %>
-        <div class="video">
-          <% if video.youtube_id.present? %>
-            <iframe src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0&modestbranding=1&showinfo=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
-          <% elsif video.vimeo_id.present? %>
-            <iframe src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
-          <% end %>
-        </div>
+		    <%= render "shared/video_player", video: video %>
 		  <% end %>
 		<% end %>
 	</div>

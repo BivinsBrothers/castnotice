@@ -538,9 +538,19 @@ top: 19px;
 	display:inline;
 }
 
-
 .video {
-  display:inline;
+  display: inline;
+}
+
+.video-embed {
+  display: inline-block;
+  height: 145px;
+  width: 258px;
+}
+.video-embed iframe,
+.video-embed .video-js-box {
+  height: 145px;
+  width: 258px;
 }
 
 .provider-result .video-link > .play-button {
@@ -596,6 +606,7 @@ label[for=resume_additional_skills] {
 	width:100%;
 }
 .headshot-links, .video-links{
+  margin-top: 1em;
 	width:100%;
 	font-size:12px;
 }
