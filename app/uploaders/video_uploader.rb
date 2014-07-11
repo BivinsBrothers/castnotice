@@ -1,5 +1,5 @@
 class VideoUploader < CarrierWave::Uploader::Base
-  # include ::CarrierWave::Backgrounder::Delay
+  include ::CarrierWave::Backgrounder::Delay
   Rails.application.routes.default_url_options = ActionMailer::Base.default_url_options
 
   after :store, :send_to_zencoder

@@ -29,7 +29,7 @@ class Video < ActiveRecord::Base
   end
 
   def validate_video_url_format
-    return if video_url.blank?
+    return if video_url.blank? || video.present?
     unless youtube_id || vimeo_id
       errors.add :video_url, "Enter the URL of a YouTube or Vimeo video page"
     end
