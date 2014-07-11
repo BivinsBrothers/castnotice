@@ -56,6 +56,6 @@ class CritiquesController < ApplicationController
 
   def critique_params
     params.require(:critique).permit(:project_title, :notes, types: [], headshots_attributes: [:image],
-                                     videos_attributes: [:video_url])
+                                     videos_attributes: [:video_url, :video])
   end
 end

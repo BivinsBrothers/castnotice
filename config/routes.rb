@@ -1,7 +1,6 @@
 Castnotice::Application.routes.draw do
-
   constraints RegistrationAccountTypeConstraint do
-    devise_for :users, 
+    devise_for :users,
       path_names: { sign_up: "sign_up/:account_type" },
       controllers: {
         registrations: "registrations",
@@ -37,6 +36,9 @@ Castnotice::Application.routes.draw do
 
   resources :headshots, except: [:show, :edit, :index]
   resources :videos, except: [:show, :update, :edit]
+
+  # Zencoder notification endpoint.
+  post "/video_statuses" => "video_statuses#notify"
 
   get "/contact" => "contacts#new", :as => "contact"
   resource :contacts, only: [:new, :create]

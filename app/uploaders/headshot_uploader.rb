@@ -1,11 +1,5 @@
 class HeadshotUploader < CarrierWave::Uploader::Base
-
   include CarrierWave::MiniMagick
-
-  def fog_directory
-    # the bucket being used by this uploader
-    Figaro.env.aws_s3_image_bucket
-  end
 
   version :thumb do
     process :auto_orient

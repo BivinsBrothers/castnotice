@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708200717) do
+ActiveRecord::Schema.define(version: 20140710150131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -370,6 +370,12 @@ ActiveRecord::Schema.define(version: 20140708200717) do
     t.string   "video_thumb_url"
     t.integer  "videoable_id"
     t.string   "videoable_type"
+    t.string   "video"
+    t.integer  "video_job_id"
+    t.string   "video_job_status"
+    t.integer  "video_width"
+    t.integer  "video_height"
+    t.string   "video_tmp"
   end
 
   add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree
