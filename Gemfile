@@ -39,7 +39,7 @@ gem "draper"
 
 group :production, :staging do
   gem "rails_12factor"
-  gem "unicorn"
+  gem "puma"
 end
 
 group :development, :test do
