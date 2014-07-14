@@ -204,11 +204,10 @@ feature "manage resume" do
 
     click_link "Add a video"
 
-    attach_file "Video", "#{Rails.root}/spec/fixtures/sample.mov"
+    attach_file "video_video", "#{Rails.root}/spec/fixtures/sample.mov"
 
     expect {
       click_button "Upload Video"
-      save_and_open_page
     }.to change {
       user.resume.videos.count
     }.from(0).to(1)
