@@ -31,7 +31,6 @@ class Resume < ActiveRecord::Base
   has_and_belongs_to_many :fluent_languages,             join_table: :resume_fluent_languages
   has_and_belongs_to_many :performance_skills,           join_table: :resume_performance_skills
   has_and_belongs_to_many :disability_assistive_devices, join_table: :resume_disability_assistive_devices
-  has_and_belongs_to_many :project_types,                join_table: :resume_project_types
 
   has_many :projects
   has_many :schools
@@ -57,7 +56,7 @@ class Resume < ActiveRecord::Base
   end
 
   def has_skill_attributes?
-    associations = [:unions, :project_types, :performance_skills, :fluent_languages,
+    associations = [:unions, :performance_skills, :fluent_languages,
                     :ethnicities, :disability_assistive_devices, :disabilities,
                     :athletic_endeavors, :accents]
     associations.any?{|a| send(a).any? }
