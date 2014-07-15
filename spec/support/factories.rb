@@ -86,6 +86,7 @@ FactoryGirl.define do
   end
 
   factory :critique_response do
+    user
     body "Looks Great!!!"
   end
 
