@@ -195,6 +195,15 @@
               <%= link_to "Set as background", headshot_path(headshot, background: true), method: :put, :class => "mini-link" %> |
             <% end %>
 
+            <% if current_user.mentor? %>
+              <% if headshot.profile_photo? %>
+                <%= link_to "Remove as profile photo", headshot_path(headshot, profile_photo: false), method: :put, :class => "mini-link" %> |
+              <% else %>
+                <%= link_to "Set as profile photo", headshot_path(headshot, profile_photo: true), method: :put, :class => "mini-link" %> |
+              <% end %>
+            <% end %>
+
+
             <% if headshot.resume_photo? %>
               <%= link_to "Remove as resume photo", headshot_path(headshot, resume_photo: false), method: :put, :class => "mini-link" %>
             <% else %>

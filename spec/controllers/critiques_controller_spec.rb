@@ -72,4 +72,24 @@ describe CritiquesController do
       expect(response).to redirect_to(dashboard_path)
     end
   end
+
+  describe "#index" do
+    it "renders the index view" do
+      admin = create(:user, :admin)
+      log_in admin
+      get :index
+
+      expect(response).to be_success
+    end
+
+    it "renders critiques show if I have permission to view" do
+      critique = create(:critique, :closed, user: user )
+
+      admin = create(:user, :admin)
+      log_in admin
+
+      get :show, id: critique.uuid
+      expect(response).to be_success
+    end
+  end
 end

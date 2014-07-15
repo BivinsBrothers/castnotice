@@ -109,11 +109,31 @@ feature "Critique workflow" do
       expect(page).to have_content(critique3.project_title)
     end
 
-    scenario "critiques are closed for review when they have a response" do
+    scenario "critiques are closed for mentors when they have a response" do
       create(:critique, :closed)
       visit critiques_path
 
       expect(page).to have_content("Completed")
+    end
+  end
+
+  context "as an admin" do
+    let(:admin) { create(:user, :admin) }
+    let(:mentor) { create(:user, :mentor, name: "Mr Mentor")}
+    let!(:critique) { create(:critique, project_title: "OZ", types: ["dance", "voice"], notes: "Improve what?") }
+
+    before do
+      log_in admin
+    end
+
+    scenario "admin can view closed critiques" do
+      critique.response = create(:critique_response, user: mentor)
+      visit critiques_path
+      expect(page).to have_content("Completed")
+
+      click_link("View")
+
+      expect(page).to have_content("Mr Mentor")
     end
   end
 end

@@ -21,7 +21,7 @@
 <% if current_user.resume %>
   <%= link_to "Print Resume", print_resume_path(current_user.resume.slug), target: "_blank", class: "btn" %>
 
-  <% if current_user.mentor? %>
+  <% if current_user.mentor? || current_user.admin? %>
     <%= link_to 'View Available Critiques', critiques_path, class: "btn critique" %>
   <% else %>
     <%= link_to 'Request Critique', new_critique_path, class: "btn available-critique" %>

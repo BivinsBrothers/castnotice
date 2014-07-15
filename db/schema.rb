@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20140710150131) do
     t.boolean  "resume_photo",   default: false, null: false
     t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.boolean  "profile_photo",  default: false, null: false
   end
 
   add_index "headshots", ["imageable_id", "imageable_type"], name: "index_headshots_on_imageable_id_and_imageable_type", using: :btree
