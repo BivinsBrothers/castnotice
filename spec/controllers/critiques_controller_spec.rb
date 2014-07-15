@@ -22,8 +22,9 @@ describe CritiquesController do
     it "sets a failure message and renders the new template on failure" do
       post :create, critique: attributes_for(:critique, project_title: nil)
 
-      expect(flash[:failure]).to eq("Your critique failed to send, please try again.")
+      expect(flash[:failure]).to eq("Project title can't be blank")
       expect(response).to render_template(:new)
+      expect(response).to be_success
     end
 
     it "redirects if the current user cannot create a critique request" do

@@ -3,10 +3,9 @@ class CreateCritique
 
   def perform
     critique = user.critiques.build(critique_attributes)
-    if critique.save
-      context[:critique] = critique
-    else
-      fail!(error: critique.errors)
+    context[:critique] = critique
+    unless critique.save
+      fail!(error: critique.errors.full_messages.join(", "))
     end
   end
 

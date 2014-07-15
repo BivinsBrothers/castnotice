@@ -14,12 +14,12 @@ class CritiquesController < ApplicationController
       user: current_user,
       critique_attributes: critique_params
     )
+    @critique = result.critique
     if result.success?
-      @critique = result.critique
       flash[:success] = "Your critique request has been sent."
       redirect_to dashboard_path
     else
-      flash[:failure] = "Your critique failed to send, please try again."
+      flash[:failure] = result.error
       render :new
     end
   end
