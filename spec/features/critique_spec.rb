@@ -32,7 +32,7 @@ feature "Critique workflow" do
 
       expect(page).to have_content("When you click Request Critique, we will charge $24.99 to the credit card you have on file from registration.")
 
-      fill_in "critique_videos_attributes_0_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
+      attach_file "video_video", "#{Rails.root}/spec/fixtures/sample.mov"
 
       expect {
         click_button "Submit Critique"

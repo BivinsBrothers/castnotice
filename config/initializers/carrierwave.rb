@@ -1,7 +1,7 @@
 CarrierWave.configure do |config|
-  # if Rails.env.test? || Rails.env.development?
-  #   config.storage = :file
-  # else
+  if Rails.env.test? || Rails.env.development?
+    config.storage = :file
+  else
     config.storage = :fog
     config.fog_credentials = {
         provider:              'AWS',
@@ -12,7 +12,7 @@ CarrierWave.configure do |config|
 
     config.fog_attributes['Cache-Control'] = 'max-age=315576000, public'
     config.fog_directory = Figaro.env.aws_s3_image_bucket
-  # end
+  end
 end
 
 CarrierWave::Backgrounder.configure do |c|

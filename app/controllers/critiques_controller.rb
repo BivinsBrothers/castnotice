@@ -55,7 +55,11 @@ class CritiquesController < ApplicationController
   end
 
   def critique_params
-    params.require(:critique).permit(:project_title, :notes, types: [], headshots_attributes: [:image],
+    critique_params = params.require(:critique).permit(:project_title, :notes, types: [], headshots_attributes: [:image],
                                      videos_attributes: [:video_url, :video])
+    if critique_params[:video_attributes].present? && critique_params[:video_attributes][:video_url].present?
+      critique_params[:video_attributes].delete(:video)
+    end
+    critique_params
   end
 end
