@@ -36,10 +36,15 @@
   <p><%= @critique.response.body %></p>
 <% elsif current_user.mentor? %>
   <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
-   <%= f.label :body, "Please type your response here." %>
-   <%= f.text_area :body %>
+    <%= f.label :body, "Please type your response here." %>
+    <%= f.text_area :body %>
 
-   <%= f.submit "Respond", class: "btn" %>
+    <%= f.fields_for :videos do |ff| %>
+      <%= ff.label :video, "Upload A Video Response" %>
+      <%= ff.file_field :video %>
+    <% end %>
+
+  <%= f.submit "Respond", class: "btn" %>
   <% end %>
 <% else %>
   A critique response has not yet been submitted.

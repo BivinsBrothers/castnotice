@@ -27,6 +27,7 @@ class CritiquesController < ApplicationController
   def show
     @critique = Critique.find_by_uuid(params[:id])
     @critique_response = CritiqueResponse.new
+    @critique_response.videos.build
 
     if able_to_view?(@critique)
       render :show

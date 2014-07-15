@@ -30,6 +30,6 @@ class CritiqueResponsesController < ApplicationController
   end
 
   def critique_response_params
-    params.require(:critique_response).permit(:body)
+    params.require(:critique_response).permit(:body, videos_attributes: [:video])
   end
 end
