@@ -71,8 +71,8 @@ class VideoUploader < CarrierWave::Uploader::Base
         # For local development, use this notification url
         # Run "zencoder_fetcher -u http://localhost:3000/video_statuses [api key]" to
         # query Zencoder for finished jobs to post to your local server
-        "http://zencoderfetcher/"
-        # Rails.application.routes.url_helpers.video_statuses_url
+        # "http://zencoderfetcher/"
+        Rails.application.routes.url_helpers.video_statuses_url
       ],
       output: [
         {
