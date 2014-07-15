@@ -32,12 +32,13 @@ feature "Critique workflow" do
 
       expect(page).to have_content("When you click Request Critique, we will charge $24.99 to the credit card you have on file from registration.")
 
-      fill_in "critique_videos_attributes_0_video_url", with: "http://www.youtube.com/watch?v=2kn8im8XOwM"
+      attach_file "critique_videos_attributes_1_video", "#{Rails.root}/spec/fixtures/sample.mov"
 
       expect {
         click_button "Submit Critique"
       }.to change {
         Critique.count
+        Video.count
       }.from(0).to(1)
 
       expect(page).to have_content("Your critique request has been sent.")
@@ -73,6 +74,8 @@ feature "Critique workflow" do
       expect(page).to have_content("Please type your response here.")
 
       fill_in "critique_response_body", with: "Looks Great!"
+
+      attach_file "critique_response_videos_attributes_0_video", "#{Rails.root}/spec/fixtures/sample.mov"
 
       click_button "Respond"
 

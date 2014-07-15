@@ -21,6 +21,14 @@
   <div>
     <%= f.fields_for :videos do |ff| %>
       <%= ff.text_field :video_url %>
+    <% end %> 
+  </div>
+
+  <p>or upload a video</p>
+  <div>
+    <%= f.fields_for :videos do |ff| %>
+      <%= ff.label :video %>
+      <%= ff.file_field :video %>
     <% end %>
   </div>
 

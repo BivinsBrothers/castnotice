@@ -1,4 +1,7 @@
 class Video < ActiveRecord::Base
+  mount_uploader :video, VideoUploader
+  store_in_background :video
+
   validate :validate_video_url_format
 
   before_save :set_video_thumb_url
@@ -26,7 +29,7 @@ class Video < ActiveRecord::Base
   end
 
   def validate_video_url_format
-    return if video_url.blank?
+    return if video_url.blank? || video.present?
     unless youtube_id || vimeo_id
       errors.add :video_url, "Enter the URL of a YouTube or Vimeo video page"
     end
@@ -62,5 +65,18 @@ class Video < ActiveRecord::Base
       end
     end
     nil
+  end
+
+  def video_name
+    self["video"]
+  end
+
+  def video_available?
+    video_job_status == "finished"
+  end
+
+  def video_url
+    # return the database video_url for linked videos, otherwise, allow carrierwave to return url for uploaded videos
+    video.present? ? super : self["video_url"]
   end
 end

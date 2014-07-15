@@ -15,4 +15,5 @@
 //= require jquery.ui.datepicker
 //= require moment.min
 //= require chosen.jquery.min
+//= require video
 //= require_tree .

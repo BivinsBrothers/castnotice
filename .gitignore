@@ -27,4 +27,5 @@
 /config/application.yml
 
 /public/uploads
+/public/videos
 .DS_Store

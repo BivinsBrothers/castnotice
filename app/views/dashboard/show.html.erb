@@ -53,15 +53,7 @@
 
         <% if current_resume.videos.present? %>
           <% current_resume.videos.each do |video| %>
-            <div class="video">
-              <%#= image_tag(video.video_thumb_url, class: "video-thumbnail") %>
-              <% if video.youtube_id.present? %>
-                <iframe width="258" height="145" src="http://www.youtube.com/embed/<%= video.youtube_id %>?autoplay=0&rel=0" frameborder="0" allowfullscreen class="cast-video"></iframe>
-              <% elsif video.vimeo_id.present? %>
-                <iframe width="258" height="145" src="https://player.vimeo.com/video/<%= video.vimeo_id %>?autoplay=0&portrait=0&color=CF7513" frameborder="0" allowfullscreen class="cast-video"></iframe>
-              <% end %>
-              <%#= image_tag asset_path('button-play.png'), :class => "play-button" %>
-            </div>
+            <%= render "shared/video_player", video: video %>
           <% end %>
         <% else %>
           <div class="add-videos"><%= link_to "Add a video", edit_resume_path %></div>
