@@ -16,6 +16,11 @@ class HeadshotUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [250, 300]
   end
 
+  version :profile_photo do
+    process :auto_orient
+    process :resize_to_fill => [250, 300]
+  end
+
   version :search_thumb do
     process :auto_orient
     process :resize_to_fill => [300, 300]

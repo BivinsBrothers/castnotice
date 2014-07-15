@@ -22,6 +22,7 @@ class Resume < ActiveRecord::Base
 
   has_one :background_image, -> { where background: true }, class: Headshot, as: :imageable
   has_one :resume_photo, -> { where resume_photo: true }, class: Headshot, as: :imageable
+  has_one :profile_photo, -> { where profile_photo: true }, class: Headshot, as: :imageable
 
   has_and_belongs_to_many :unions,                       join_table: :resume_unions
   has_and_belongs_to_many :accents,                      join_table: :resume_accents

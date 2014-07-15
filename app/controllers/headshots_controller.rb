@@ -33,6 +33,13 @@ class HeadshotsController < ApplicationController
       @headshot.remove_as_resume_photo
     end
 
+    case params[:profile_photo]
+      when "true"
+        @headshot.set_as_profile_photo
+      when "false"
+        @headshot.remove_as_profile_photo
+    end
+
     redirect_to edit_resume_path(anchor: 'photo-anchor')
   end
 

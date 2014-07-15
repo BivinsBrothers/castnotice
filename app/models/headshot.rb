@@ -45,4 +45,20 @@ class Headshot < ActiveRecord::Base
       self.save
     end
   end
+
+  def set_as_profile_photo
+    if imageable.profile_photo
+      imageable.profile_photo.update_attributes(profile_photo: false)
+    end
+
+    self.profile_photo = true
+    self.save
+  end
+
+  def remove_as_profile_photo
+    if profile_photo?
+      self.profile_photo = false
+      self.save
+    end
+  end
 end
