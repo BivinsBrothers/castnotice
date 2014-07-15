@@ -24,28 +24,45 @@
   </div>
 </div>
 
-<h3>Video</h3>
 <% if @critique.videos %>
   <% @critique.videos.each do |video| %>
     <%= render "shared/video_player", video: video %>
   <% end %>
 <% end %>
 
-<h3>Critique Response</h3>
-<% if @critique.response %>
-  <p><%= @critique.response.body %></p>
-<% elsif current_user.mentor? %>
-  <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
-    <%= f.label :body, "Please type your response here." %>
-    <%= f.text_area :body %>
+<div>
+  <h2>Critique Response</h2>
+  <% if @critique.response %>
+    <div class="row">
+      <div class="col-md-12">
+        <% if @critique.response.user.resume.profile_photo.present? %>
+          <div class="col-md-4">
+            <%= image_tag(@critique.response.user.resume.profile_photo.image_url(:profile_photo)) %>
+          </div>
+        <% end %>
+        <div class="col-md-8">
+          <h3><%= @critique.response.user.name %></h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 critique-response">
+        <p><%= @critique.response.body %></p>
+      </div>
+    </div>
+  <% elsif current_user.mentor? %>
+    <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
+      <%= f.label :body, "Please type your response here." %>
+      <%= f.text_area :body %>
 
-    <%= f.fields_for :videos do |ff| %>
-      <%= ff.label :video, "Upload A Video Response" %>
-      <%= ff.file_field :video %>
+      <%= f.fields_for :videos do |ff| %>
+        <%= ff.label :video, "Upload A Video Response" %>
+        <%= ff.file_field :video %>
+      <% end %>
+
+      <%= f.submit "Respond", class: "btn" %>
     <% end %>
-
-  <%= f.submit "Respond", class: "btn" %>
+  <% else %>
+    <span>A critique response has not yet been submitted.</span>
   <% end %>
-<% else %>
-  A critique response has not yet been submitted.
-<% end %>
+</div>
