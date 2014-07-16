@@ -3,12 +3,12 @@
 <div class="conversations">
   <% @conversations.each do |conversation| %>
     <div class="conversation">
-      <a class="conversation-detail" href="<%= conversation_path(conversation) %>">
-        <span class="wrapper <%= conversation.has_unread_messages_for_user?(current_user) ? "unread" : "read" %>">
-          <span class="from">From <span class="correspondent"><%= conversation.other_correspondent_with(current_user).name %></span></span>
-          <span class="subject">Subject <span class="line"><%= conversation.subject %><span></span>
-        </span>
-      </a>
+      <div class="conversation-detail">
+        <%= conversation_path(conversation) %>
+        <span class="wrapper"><%= conversation.has_unread_messages_for_user?(current_user) ? "unread" : "read" %></span>
+        <span class="from">From</span> <span class="correspondent"><%= conversation.other_correspondent_with(current_user).name %></span>
+        <span class="subject">Subject</span><span class="line"><%= conversation.subject %></span>
+      </div>
     </div>
   <% end %>
 </div>

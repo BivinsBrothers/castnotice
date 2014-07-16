@@ -3,6 +3,7 @@ require "spec_helper"
 feature "talent messaging" do
   let(:user) { create(:user) }
   let(:mentor) { create(:user, mentor: true) }
+  let(:admin) { create(:user, admin: true) }
 
   context "as a regular user" do
     before do
@@ -130,4 +131,16 @@ feature "talent messaging" do
     end
   end
 
+  context "as an admin" do
+    before do
+      log_in admin
+    end
+
+    scenario "admin can send talent messages" do
+      visit public_resume_path(user.resume)
+
+      expect(page.text).to include("Send Message")
+
+    end
+  end
 end

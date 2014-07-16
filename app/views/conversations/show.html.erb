@@ -2,10 +2,16 @@
 <div class="conversation">
   <div class="conversation-header">
     <div class="from">
-      From <div class="correspondent"><%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %></div>
-    <div/>
+      <div class="correspondent">
+        <h2>To</h2>
+        <%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %>
+      </div>
+    </div>
     <div class="subject">
-      Subject <div class="line"><%= @conversation.subject %></div>
+      <h2>Subject</h2>
+      <div class="line">
+        <%= @conversation.subject %>
+      </div>
     </div>
   </div>
   <div class="messages">
@@ -25,4 +31,3 @@
     <% end %>
   </div>
 </div>
-  

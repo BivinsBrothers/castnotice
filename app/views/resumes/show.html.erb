@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h1><%= @resume.user.name %> <%= link_to "Print Resume", print_resume_path(@resume), target: "_blank", class: "btn" %></h1>
-    <% if current_user && current_user.can_send_messages_to?(@resume.user) %>
+    <% if current_user && @resume.user.can_send_messages_to?(@resume.user) %>
       <h3><%= link_to "Send Message", new_conversation_path(recipient_id: @resume.user), class: "btn" %></h3>
     <% end %>
 		<h3 class="preview-descriptive"><%= @resume.descriptive_tag %></h3>

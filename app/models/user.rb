@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   end
 
   def can_send_messages?
-    talent?
+    talent? || admin?
   end
 
   def can_send_messages_to?(recipient)
