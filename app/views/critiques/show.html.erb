@@ -25,8 +25,11 @@
 </div>
 
 <% if @critique.videos %>
+  <h3>Video</h3>
   <% @critique.videos.each do |video| %>
-    <%= render "shared/video_player", video: video %>
+    <div>
+      <%= render "shared/video_player", video: video %>
+    </div>
   <% end %>
 <% end %>
 
@@ -50,6 +53,14 @@
         <p><%= @critique.response.body %></p>
       </div>
     </div>
+    <% if @critique.response.videos %>
+      <h3>Video</h3>
+      <% @critique.response.videos.each do |video| %>
+        <div>
+          <%= render "shared/video_player", video: video %>
+        </div>
+      <% end %>
+    <% end %>
   <% elsif current_user.mentor? %>
     <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
       <%= f.label :body, "Please type your response here." %>
