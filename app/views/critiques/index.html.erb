@@ -10,7 +10,7 @@
           <div class="col-sm-8">
             <div class="critique-owner">
               <p>Critique submitted by:</p>
-            <h3><%= c.user.name %></h3>
+              <h3><%= c.user.name %></h3>
             </div>
             <div class="critique-title">
               <p>Project Title <%= c.project_title %></p>
@@ -19,24 +19,24 @@
               <p>Critique Type: <%= c.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></p>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="critique-time">
-            <p>This critique was submitted <%= time_ago_in_words(c.created_at) %> ago.</p>
-          </div>
-          <div class="critique-view">
-            <% if c.closed? %>
-              <div class="critique-closed">
-                <p>Status: Completed</p>
-              </div>
-              <% if current_user.admin? %>
-                <%= link_to "View", critique_path(c.uuid), class: "btn" %>
+          <div class="col-md-4">
+            <div class="critique-time">
+              <p>This critique was submitted <%= time_ago_in_words(c.created_at) %> ago.</p>
+            </div>
+            <div class="critique-view">
+              <% if c.closed? %>
+                <div class="critique-closed">
+                  <p>Status: Completed</p>
+                </div>
+                <% if current_user.admin? %>
+                  <%= link_to "View", critique_path(c.uuid), class: "btn" %>
+                <% end %>
+              <% else %>
+                <div class="critique-open">
+                  <%= link_to "View", critique_path(c.uuid), class: "btn" %>
+                </div>
               <% end %>
-            <% else %>
-              <div class="critique-open">
-                <%= link_to "View", critique_path(c.uuid), class: "btn" %>
-              </div>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
