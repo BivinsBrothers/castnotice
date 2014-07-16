@@ -1,17 +1,12 @@
 <h1>Critique Requested</h1>
-
-<h3>Project Title</h3>
-<%= @critique.project_title %>
-
-<h3>Critique Type</h3>
-<%= @critique.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %>
-
-<h3>Project Notes</h3>
-<%= @critique.notes %>
+<%= link_to "Back to My Close Up", dashboard_path, class: "btn" %>
+<h3>Project Title: <%= @critique.project_title %></h3>
+<p>Critique Type: <%= @critique.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></p>
+<p>Project Notes: <%= @critique.notes %></p>
 
 <div class="row">
   <div class="col-md-12">
-    <h3>Photos</h3>
+    <h4>Photos:</h4>
     <% if @critique.headshots %>
       <% @critique.headshots.each do |headshot| %>
         <div class="headshot">
@@ -25,7 +20,7 @@
 </div>
 
 <% if @critique.videos %>
-  <h3>Video</h3>
+  <h4>Video:</h4>
   <% @critique.videos.each do |video| %>
     <div>
       <%= render "shared/video_player", video: video %>
@@ -53,27 +48,35 @@
         <p><%= @critique.response.body %></p>
       </div>
     </div>
-    <% if @critique.response.videos %>
-      <h3>Video</h3>
-      <% @critique.response.videos.each do |video| %>
-        <div>
-          <%= render "shared/video_player", video: video %>
-        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <% if @critique.response.videos %>
+          <h3>Video</h3>
+          <% @critique.response.videos.each do |video| %>
+            <div>
+              <%= render "shared/video_player", video: video %>
+            </div>
+          <% end %>
+        <% end %>
+        <% elsif current_user.mentor? %>
+          <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
+            <%= f.label :body, "Please type your response here." %>
+            <%= f.text_area :body %>
+      
+            <%= f.fields_for :videos do |ff| %>
+              <%= ff.label :video, "Upload A Video Response" %>
+              <%= ff.file_field :video %>
+            <% end %>
+      
+            <div class="row">
+              <div class="col-md-12">
+                <%= f.submit "Respond", class: "btn" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <span>A critique response has not yet been submitted.</span>
       <% end %>
-    <% end %>
-  <% elsif current_user.mentor? %>
-    <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
-      <%= f.label :body, "Please type your response here." %>
-      <%= f.text_area :body %>
-
-      <%= f.fields_for :videos do |ff| %>
-        <%= ff.label :video, "Upload A Video Response" %>
-        <%= ff.file_field :video %>
-      <% end %>
-
-      <%= f.submit "Respond", class: "btn" %>
-    <% end %>
-  <% else %>
-    <span>A critique response has not yet been submitted.</span>
-  <% end %>
+    </div>
+  </div>
 </div>
