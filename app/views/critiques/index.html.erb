@@ -1,34 +1,45 @@
 <h1>Available Critiques</h1>
 <div class="back">
-  <%= link_to "Back to My Close Up", dashboard_path %>
+  <%= link_to "Back to My Close Up", dashboard_path, class: "btn" %>
 </div>
 <% Critique.all.each do |c| %>
-  <div class="critique-request">
-    <div class="critique-owner">
-      <%= c.user.name %>
-    </div>
-    <div class="critique-title">
-      <%= c.project_title %>
-    </div>
-    <div class="critique-types">
-      <%= c.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %>
-    </div>
-    <div class="critique-time">
-      <%= time_ago_in_words(c.created_at) %>
-    </div>
-    <div class="critique-view">
-      <% if c.closed? %>
-        <div class="critique-closed">
-          <p>Completed</p>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="critique-request">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="critique-owner">
+              <p>Critique submitted by:</p>
+            <h3><%= c.user.name %></h3>
+            </div>
+            <div class="critique-title">
+              <p>Project Title <%= c.project_title %></p>
+            </div>
+            <div class="critique-types">
+              <p>Critique Type: <%= c.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></p>
+            </div>
+          </div>
         </div>
-        <% if current_user.admin? %>
-          <%= link_to "View", critique_path(c.uuid) %>
-        <% end %>
-      <% else %>
-        <div class="critique-open">
-          <%= link_to "View", critique_path(c.uuid) %>
+        <div class="col-md-4">
+          <div class="critique-time">
+            <p>This critique was submitted <%= time_ago_in_words(c.created_at) %> ago.</p>
+          </div>
+          <div class="critique-view">
+            <% if c.closed? %>
+              <div class="critique-closed">
+                <p>Status: Completed</p>
+              </div>
+              <% if current_user.admin? %>
+                <%= link_to "View", critique_path(c.uuid), class: "btn" %>
+              <% end %>
+            <% else %>
+              <div class="critique-open">
+                <%= link_to "View", critique_path(c.uuid), class: "btn" %>
+              </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 <% end %>

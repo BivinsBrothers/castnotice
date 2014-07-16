@@ -30,7 +30,7 @@ feature "Critique workflow" do
 
       expect(page).to have_content("Paste video URL")
 
-      expect(page).to have_content("When you click Request Critique, we will charge $24.99 to the credit card you have on file from registration.")
+      expect(page).to have_content("When you click Submit Critique, we will charge $24.99 to the credit card you have on file from registration.")
 
       attach_file "critique_videos_attributes_1_video", "#{Rails.root}/spec/fixtures/sample.mov"
 
