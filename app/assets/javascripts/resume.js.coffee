@@ -1,14 +1,16 @@
 @accountFields =
 
   toggleParentFields: ->
-    year = $('#user_birthday_1i').val()
-    month = $('#user_birthday_2i').val()
-    day = $('#user_birthday_3i').val()
-    yearsDiff = moment().diff(new Date("#{year}-#{month}-#{day}"), "years")
-    if yearsDiff < 18
-      $('.parent-questions').slideDown()
-    else
-      $('.parent-questions').slideUp()
+    year = parseInt($('#user_birthday_1i').val(), 10)
+    month = parseInt($('#user_birthday_2i').val(), 10)
+    day = parseInt($('#user_birthday_3i').val(), 10)
+    birthday = new Date(year, month, day)
+    unless isNaN(birthday)
+      yearsDiff = moment().diff(birthday, "years")
+      if yearsDiff < 18
+        $('.parent-questions').slideDown()
+      else
+        $('.parent-questions').slideUp()
 
 $ ->
   $(".show-project-form").on 'click', (e) ->
