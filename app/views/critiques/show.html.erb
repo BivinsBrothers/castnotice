@@ -25,6 +25,7 @@
 </div>
 
 <% if @critique.videos %>
+  <h3>Video</h3>
   <% @critique.videos.each do |video| %>
     <div>
       <%= render "shared/video_player", video: video %>
@@ -53,6 +54,7 @@
       </div>
     </div>
     <% if @critique.response.videos %>
+      <h3>Video</h3>
       <% @critique.response.videos.each do |video| %>
         <div>
           <%= render "shared/video_player", video: video %>
@@ -63,13 +65,14 @@
     <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
       <%= f.label :body, "Please type your response here." %>
       <%= f.text_area :body %>
-    <% end %>
 
-    <%= f.fields_for :videos do |ff| %>
-      <%= ff.label :video, "Upload A Video Response" %>
-      <%= ff.file_field :video %>
+      <%= f.fields_for :videos do |ff| %>
+        <%= ff.label :video, "Upload A Video Response" %>
+        <%= ff.file_field :video %>
+      <% end %>
+
+      <%= f.submit "Respond", class: "btn" %>
     <% end %>
-    <%= f.submit "Respond", class: "btn" %>
   <% else %>
     <span>A critique response has not yet been submitted.</span>
   <% end %>
