@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_resume
   helper_method :current_query
   helper_method :has_promo_code_or_logged_in?
+  helper_method :is_promo_code?
+  helper_method :has_breakthrough_pricing?
+  helper_method :promo_code
 
   def current_resume
     current_user.resume
@@ -43,6 +46,14 @@ class ApplicationController < ActionController::Base
   end
 
   def has_promo_code?
-    session[:promo_code_success] == true
+    session[:promo_code].present?
+  end
+
+  def has_breakthrough_pricing?
+    !! session[:breakthrough_pricing]
+  end
+
+  def promo_code
+    session[:promo_code]
   end
 end
