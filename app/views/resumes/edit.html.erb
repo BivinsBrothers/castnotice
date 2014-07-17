@@ -258,6 +258,9 @@
 
 		<div class="video-list">
 		  <% current_resume.videos.each do |video| %>
+		    <% if video.video_processing? %>
+		      <div class="video-processing-placeholder">Processing&hellip;</div>
+		    <% end %>
 			  <%= render 'video', :video => video %>
 		  <% end %>
 		</div>

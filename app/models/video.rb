@@ -8,6 +8,8 @@ class Video < ActiveRecord::Base
 
   belongs_to :videoable, polymorphic: true
 
+  scope :processed, -> { where.not(video_job_status: "processing") }
+
   def resume=(resume)
     self.videoable = resume
   end
@@ -78,5 +80,9 @@ class Video < ActiveRecord::Base
   def video_url
     # return the database video_url for linked videos, otherwise, allow carrierwave to return url for uploaded videos
     video.present? ? super : self["video_url"]
+  end
+
+  def video_processing?
+    video_job_status == "processing"
   end
 end
