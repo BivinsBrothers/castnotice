@@ -4,13 +4,13 @@
       <li><%= msg %></li>
     <% end %>
   <% end %>
-  <ul>
+  <div class="message-subject">
     <%= f.label :subject %>
-      <%= f.text_field :subject %>
-      <%= f.label :body %>
-      <%= f.text_area %>
-    </ul>
-
+    <%= f.text_field :subject %>
+  </div>
+  <div class="message-body">
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
   <%= f.submit "Save" %>
-
 <% end %>

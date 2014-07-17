@@ -1,6 +1,6 @@
 <h1>New Message</h1>
 <%= form_for @conversation do |f| %>
-  <%= label_tag "To" %>
+  <%= f.label :recipient_id, "To" %>
   <%= link_to @recipient.name, public_resume_path(@recipient.resume.slug), class: "correspondent" %>
   <%= f.hidden_field :recipient_id %>
 

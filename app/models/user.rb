@@ -45,11 +45,11 @@ class User < ActiveRecord::Base
   end
 
   def can_send_messages?
-    talent?
+    talent? || admin?
   end
 
   def can_send_messages_to?(recipient)
-    can_send_messages? && id != recipient.id
+    can_send_messages? && id != recipient.id && !recipient.mentor?
   end
 
   def eligible_for_free_critique?
