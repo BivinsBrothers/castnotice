@@ -53,10 +53,6 @@ class ApplicationController < ActionController::Base
     !! session[:breakthrough_pricing]
   end
 
-  def is_promo_code?(promo_code)
-    has_promo_code? && session[:promo_code] == promo_code
-  end
-
   def promo_code
     session[:promo_code]
   end
