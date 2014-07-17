@@ -1,22 +1,14 @@
 <h1>Conversation with <%= @correspondent.name %> </h1>
 <div class="conversation">
   <div class="conversation-header">
-    <div class="from">
-      <h2>From</h2>
-      <div class="correspondent">
-        <%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %>
-      </div>
-    </div>
-    <div class="subject">
-      <h2>Subject</h2>
-      <div class="line">
-        <%= @conversation.subject %>
-      </div>
-    </div>
+    <p>From</p>
+    <h3 class="from"><%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %></h3>
+    <p>Subject</p>
+    <h3 class="subject"><%= @conversation.subject %></h3>
   </div>
-  <div class="messages">
+  <div class="conversation-messages">
     <% @conversation.messages.each do |message| %>
-      <div class="message">
+      <div class="conversation-message">
         <div class="body"><%= message.body %></div>
       </div>
     <% end %>

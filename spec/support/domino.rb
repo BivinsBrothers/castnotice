@@ -205,11 +205,11 @@ module Dom
     attribute :correspondent
 
     def subject
-      node.find(".subject .line").text
+      node.find(".subject").text
     end
 
     def correspondent
-      node.find(".from .correspondent").text
+      node.find(".from").text
     end
 
     def unread?
@@ -221,7 +221,7 @@ module Dom
     end
 
     def click
-      node.find(".conversation-detail").click
+      node.find(".conversation-detail.subject").click
     end
   end
 
@@ -253,7 +253,7 @@ module Dom
   end
 
   class Message < Domino
-    selector ".message"
+    selector ".conversation-message, .new_conversation"
 
     attribute :correspondent
     attribute :body, ".body"
