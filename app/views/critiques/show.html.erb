@@ -6,8 +6,8 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h4>Photos:</h4>
-    <% if @critique.headshots %>
+    <% if @critique.headshots.present? %>
+      <h4>Photos:</h4>
       <% @critique.headshots.each do |headshot| %>
         <div class="headshot">
           <div class="headshot-image">
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<% if @critique.videos %>
+<% if @critique.videos.present? %>
   <h4>Video:</h4>
   <% @critique.videos.each do |video| %>
     <div>
@@ -44,13 +44,13 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12 critique-response">
+      <div class="col-md-12">
         <p><%= @critique.response.body %></p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <% if @critique.response.videos %>
+        <% if @critique.response.videos.present? %>
           <h3>Video</h3>
           <% @critique.response.videos.each do |video| %>
             <div>
