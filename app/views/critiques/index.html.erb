@@ -2,7 +2,7 @@
 <div class="back">
   <%= link_to "Back to My Close Up", dashboard_path, class: "btn" %>
 </div>
-<% Critique.all.each do |c| %>
+<% @critiques.each do |c| %>
   <div class="row">
     <div class="col-sm-12">
       <div class="critique-request">

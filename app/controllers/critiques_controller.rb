@@ -41,6 +41,7 @@ class CritiquesController < ApplicationController
     unless current_user.mentor? || current_user.admin?
       redirect_to dashboard_path
     end
+    @critiques = Critique.joins("LEFT JOIN critique_responses as cr ON critiques.id = cr.critique_id").order("cr.body DESC")
   end
 
   private
