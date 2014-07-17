@@ -6,9 +6,9 @@
       <div class="conversation">
         <div class="wrapper <%= conversation.has_unread_messages_for_user?(current_user) ? "unread" : "read" %>">
           <p>From</p>
-          <h3><a class="conversation-detail" href="<%= conversation_path(conversation) %>"><%= conversation.other_correspondent_with(current_user).name %></a></h3>
+          <h3><a class="conversation-detail from" href="<%= conversation_path(conversation) %>"><%= conversation.other_correspondent_with(current_user).name %></a></h3>
           <p>Subject</p>
-          <h3><a class="conversation-detail" href="<%= conversation_path(conversation) %>"><%= conversation.subject %></a></h3>
+          <h3><a class="conversation-detail subject" href="<%= conversation_path(conversation) %>"><%= conversation.subject %></a></h3>
         </div>
       </div>
     </div>

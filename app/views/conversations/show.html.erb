@@ -2,9 +2,9 @@
 <div class="conversation">
   <div class="conversation-header">
     <p>From</p>
-    <h3><%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %></h3>
+    <h3 class="from"><%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %></h3>
     <p>Subject</p>
-    <h3><%= @conversation.subject %></h3>
+    <h3 class="subject"><%= @conversation.subject %></h3>
   </div>
   <div class="conversation-messages">
     <% @conversation.messages.each do |message| %>
