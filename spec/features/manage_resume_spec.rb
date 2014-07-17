@@ -214,6 +214,16 @@ feature "manage resume" do
 
   end
 
+  it "indicates processing status when videos are uploaded but not yet ready to be watched" do
+    resume.videos << create(:video, video_job_status: "processing")
+    resume.save
+
+    visit dashboard_path
+    click_link "dashboard-edit-resume"
+
+    expect(page.text).to include("Processing…")
+  end
+
   it "allow deleting videos" do
     create(:video, resume: resume)
 
