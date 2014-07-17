@@ -7,19 +7,21 @@
     <div class="col-sm-12">
       <div class="critique-request">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-sm-6">
             <div class="critique-owner">
               <p>Critique submitted by:</p>
               <h3><%= c.user.name %></h3>
             </div>
-            <div class="critique-title">
-              <p>Project Title <%= c.project_title %></p>
-            </div>
             <div class="critique-types">
-              <p>Critique Type: <%= c.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></p>
-            </div>
+              <p>Critique Type:</p>
+              <h3><%= c.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></h3>
+            </div>   
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
+            <div class="critique-title">
+              <p>Project Title:</p>
+              <h3><%= c.project_title %></h3>
+            </div>
             <div class="critique-time">
               <p>This critique was submitted <%= time_ago_in_words(c.created_at) %> ago.</p>
             </div>
