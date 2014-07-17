@@ -4,7 +4,9 @@
     <div class="from">
       <div class="correspondent">
         <h2>To</h2>
-        <%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %>
+        <div class="name">
+          <%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %>
+        </div>
       </div>
     </div>
     <div class="subject">
