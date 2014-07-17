@@ -2,11 +2,9 @@
 <div class="conversation">
   <div class="conversation-header">
     <div class="from">
+      <h2>From</h2>
       <div class="correspondent">
-        <h2>To</h2>
-        <div class="name">
-          <%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %>
-        </div>
+        <%= link_to @correspondent.name, public_resume_path(@correspondent.resume.slug) %>
       </div>
     </div>
     <div class="subject">

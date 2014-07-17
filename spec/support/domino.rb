@@ -209,7 +209,7 @@ module Dom
     end
 
     def correspondent
-      node.find(".from .correspondent .name").text
+      node.find(".from .correspondent").text
     end
 
     def unread?
