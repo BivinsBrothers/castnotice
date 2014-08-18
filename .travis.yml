@@ -29,7 +29,7 @@ deploy:
   provider: heroku
   strategy: git
   api_key:
-    secure: Wa7cU7phnmdDMGRZDK4B7giMFwgj0pPEhClkRRb/DLpHTjofaBpp681E8EoOWbQz0IFkRYxHB/akTT/AQGI9uSMtQGdigDFZ7Er8dc/gAXQsoxFly3dNpcLOsQR93wR3zzDQeivdIatHaVvvUn4FcNkLMKAiKANFWMJly5BmYvQ=
+    secure: Xos6xF/UV4Nqv/oQC3a2xavy/hhyKLgGOmMJ59DUUUSbNPztdgGpR3J1y5jiSzTN5im1ux5Zx5EClmTSR4fNO63yZM2o00NGzk0HGicf35pru7K2g8ei5WJyDu5thz0Z7t9uHQRwnDKX6Ds9+ksgk1PcqUfMXTVT4nUtSalmkiU=
   app:
     master: castnotice-staging
   on:
