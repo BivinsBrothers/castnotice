@@ -17,7 +17,7 @@ describe CreateCritiqueStripeCharge do
 
   it "charges stripe with a monthly or annual plan" do
     VCR.use_cassette("create_valid_stripe_critique_payment") do
-      result = described_class.perform(
+      result = described_class.call(
         user: standard_user,
         critique: critique
       )
@@ -30,7 +30,7 @@ describe CreateCritiqueStripeCharge do
 
   context "with a broadway plan" do
     it "gives 1 free critique" do
-      result = described_class.perform(
+      result = described_class.call(
         user: breakthru_user,
         critique: critique
       )
@@ -44,7 +44,7 @@ describe CreateCritiqueStripeCharge do
       VCR.use_cassette("create_valid_stripe_critique_payment") do
         existing_critique = create(:critique, user: breakthru_user, payment_method: "breakthru_free")
         breakthru_user.reload
-        result = described_class.perform(
+        result = described_class.call(
           user: breakthru_user,
           critique: critique
         )
@@ -58,7 +58,7 @@ describe CreateCritiqueStripeCharge do
 
   it "doesn't change anything when unsucessful" do
     VCR.use_cassette("create_invalid_stripe_critique_payment") do
-      result = described_class.perform(
+      result = described_class.call(
         user: user_with_invalid_payment_info,
         critique: critique
       )

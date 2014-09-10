@@ -1,20 +1,20 @@
 class CreateStripeCustomer
   include Interactor
 
-  def perform
+  def call
     begin
       customer = Stripe::Customer.create(
-        card: stripe_token,
-        description: user.id
+        card: context.stripe_token,
+        description: context.user.id
       )
-      context[:customer] = customer
-      user.update_attributes(stripe_customer_id: customer.id)
+      context.customer = customer
+      context.user.update_attributes(stripe_customer_id: context.customer.id)
     rescue Stripe::StripeError => e
-      fail!(error: e.message)
+      context.fail!(error: e.message)
     end
   end
 
   def rollback
-    user.update_attributes(stripe_customer_id: nil)
+    context.user.update_attributes(stripe_customer_id: nil)
   end
 end

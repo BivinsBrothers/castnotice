@@ -9,7 +9,7 @@ describe RequestCritique do
 
   it "successfully creates a critique" do
     VCR.use_cassette("create_valid_stripe_critique_payment") do
-      result = described_class.perform(
+      result = described_class.call(
         user: user,
         critique_attributes: attributes_for(:critique)
       )
