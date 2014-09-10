@@ -1,13 +1,13 @@
 class CreateUser
   include Interactor
 
-  def perform
-    context[:user] = User.new(user_attributes)
-    user.build_resume
-    fail! unless user.save
+  def call
+    context.user = User.new(context.user_attributes)
+    context.user.build_resume
+    context.fail! unless context.user.save
   end
 
   def rollback
-    user.destroy
+    context.user.destroy
   end
 end

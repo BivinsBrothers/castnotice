@@ -1,18 +1,18 @@
 class SelectRegistrationPlan
   include Interactor
 
-  def perform
+  def call
     begin
-      plan = customer.subscriptions.create(plan: stripe_plan)
-      context[:plan] = plan
-      user.update_attributes(stripe_plan_id: plan.id)
+      plan = context.customer.subscriptions.create(plan: context.stripe_plan)
+      context.plan = plan
+      context.user.update_attributes(stripe_plan_id: context.plan.id)
     rescue Stripe::StripeError => e
-      fail!(error: e.message)
+      context.fail!(error: e.message)
     end
   end
 
   def rollback
-    user.update_attributes(stripe_customer_id: nil)
+    context.user.update_attributes(stripe_customer_id: nil)
   end
 
 end

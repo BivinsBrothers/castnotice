@@ -17,9 +17,9 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     @account_type = params[:account_type]
     if @account_type == "mentor"
-      result = CreateUser.perform( user_attributes: registration_params )
+      result = CreateUser.call( user_attributes: registration_params )
     else
-      result = CreateUserAndStripeCustomer.perform(
+      result = CreateUserAndStripeCustomer.call(
         user_attributes: registration_params,
         stripe_token: params[:stripe_token],
         stripe_plan: @account_type
@@ -27,11 +27,11 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     if result.success?
-      sign_in result.context[:user]
+      sign_in result.user
       redirect_to dashboard_path
     else
-      flash[:failure] = result.context[:error]
-      @user = result.context[:user]
+      flash[:failure] = result.error
+      @user = result.user
       if @account_type == "mentor"
         render :mentor, locals: { resource: @user }
       else

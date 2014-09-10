@@ -1,15 +1,14 @@
 class CreateCritique
   include Interactor
 
-  def perform
-    critique = user.critiques.build(critique_attributes)
-    context[:critique] = critique
-    unless critique.save
-      fail!(error: critique.errors.full_messages.join(", "))
+  def call
+    context.critique = context.user.critiques.build(context.critique_attributes)
+    unless context.critique.save
+      context.fail!(error: context.critique.errors.full_messages.join(", "))
     end
   end
 
   def rollback
-    critique.delete
+    context.critique.delete
   end
 end

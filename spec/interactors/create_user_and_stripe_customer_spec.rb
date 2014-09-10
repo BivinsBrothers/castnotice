@@ -3,7 +3,7 @@ require "spec_helper"
 describe CreateUserAndStripeCustomer do
   it "creates a stripe customer and user and selects a plan" do
     VCR.use_cassette("stripe_create_valid_customer") do
-      result = described_class.perform(
+      result = described_class.call(
         user_attributes: attributes_for(:user),
         stripe_token: "tok_1047oT41K0MV6J6EJZBa075P",
         stripe_plan: Stripe::Plans::MONTHLY
@@ -17,7 +17,7 @@ describe CreateUserAndStripeCustomer do
 
   it "cleans up after itself when there is a failed condition" do
     VCR.use_cassette("stripe_create_invalid_customer", record: :new_episodes) do
-      result = described_class.perform(
+      result = described_class.call(
         user_attributes: attributes_for(:user),
         stripe_token: "invalid_token"
       )

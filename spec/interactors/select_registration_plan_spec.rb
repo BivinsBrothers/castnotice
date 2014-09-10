@@ -6,7 +6,7 @@ describe SelectRegistrationPlan do
       user = create(:user, stripe_customer_id: "cus_47oUnsvWTQWwPs")
       customer = Stripe::Customer.retrieve(user.stripe_customer_id)
 
-      result = described_class.perform(
+      result = described_class.call(
         user: user,
         customer: customer,
         stripe_plan: Stripe::Plans::MONTHLY.id

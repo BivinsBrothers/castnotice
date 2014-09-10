@@ -10,7 +10,7 @@ class CritiquesController < ApplicationController
   end
 
   def create
-    result = RequestCritique.perform(
+    result = RequestCritique.call(
       user: current_user,
       critique_attributes: critique_params
     )
