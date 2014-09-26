@@ -14,8 +14,7 @@ class CreateCritiqueStripeCharge
 
   def free_critique
     context.critique.payment_method = "breakthru_free"
-    context.critique.save
-    return
+    fail! unless context.critique.save
   end
 
   def paid_critique
