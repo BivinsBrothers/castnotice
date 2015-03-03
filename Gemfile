@@ -5,6 +5,7 @@ ruby "2.1.3"
 gem "rails", "~> 4.1.7"
 
 gem "pg"
+gem "mysql2"
 
 # Assets
 gem "coffee-rails", "~> 4.0.0"
