@@ -9,7 +9,7 @@ describe Notifier do
 
     before do
       env = double(:env, castnotice_admin_email: "test@fake.com")
-      Figaro.stub(env: env)
+      allow(Figaro).to receive(:env).and_return(env)
     end
 
     it 'sends the email' do
