@@ -92,17 +92,17 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0.3)
-    elasticsearch (1.0.5)
-      elasticsearch-api (= 1.0.5)
-      elasticsearch-transport (= 1.0.5)
-    elasticsearch-api (1.0.5)
+    elasticsearch (1.0.6)
+      elasticsearch-api (= 1.0.6)
+      elasticsearch-transport (= 1.0.6)
+    elasticsearch-api (1.0.6)
       multi_json
-    elasticsearch-model (0.1.5)
+    elasticsearch-model (0.1.6)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
     elasticsearch-rails (0.1.6)
-    elasticsearch-transport (1.0.5)
+    elasticsearch-transport (1.0.6)
       faraday
       multi_json
     em-http-request (1.1.2)
@@ -123,7 +123,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    faraday (0.9.0)
+    faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -152,9 +152,9 @@ GEM
       fog-core
       fog-json
     formatador (0.2.5)
-    friendly_id (5.0.4)
+    friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    hashie (3.3.1)
+    hashie (3.4.0)
     high_voltage (2.2.1)
     hike (1.2.3)
     honeybadger (1.16.4)
@@ -210,7 +210,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-rails (0.3.2)
+    pry-rails (0.3.3)
       pry (>= 0.9.10)
     puffing-billy (0.2.3)
       capybara
