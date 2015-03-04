@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808170157) do
+ActiveRecord::Schema.define(version: 20150304171828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,36 @@ ActiveRecord::Schema.define(version: 20140808170157) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "camper_registrations", force: true do |t|
+    t.integer "camp_id",  null: false
+    t.integer "order_id", null: false
+  end
+
+  create_table "campers", force: true do |t|
+    t.integer "camper_registration_id",                         null: false
+    t.integer "user_id",                                        null: false
+    t.string  "grade",                                          null: false
+    t.string  "gender",                                         null: false
+    t.string  "home_phone",                     default: "N/A", null: false
+    t.string  "cell_phone",                                     null: false
+    t.string  "emergency_contact_name"
+    t.string  "emergency_contact_phone"
+    t.string  "emergency_contact_relationship"
+    t.text    "medical_history",                default: "N/A", null: false
+    t.text    "medical_current_medication",     default: "N/A", null: false
+    t.text    "medical_allergies",              default: "N/A", null: false
+    t.string  "shirt_size",                                     null: false
+    t.string  "school",                                         null: false
+    t.string  "referred_by"
+    t.boolean "agreed_to_refund_policy",        default: false, null: false
+    t.boolean "photo_release",                  default: false, null: false
+  end
+
+  create_table "camps", force: true do |t|
+    t.string "name", null: false
+    t.string "code", null: false
   end
 
   create_table "conversations", force: true do |t|

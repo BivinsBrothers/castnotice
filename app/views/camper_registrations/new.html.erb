@@ -1,0 +1,117 @@
+<h1>Complete your registration</h1>
+<p>Order <%= order.id %></p>
+
+<p>Every camper <strong>must</strong> fill out
+the following form to complete registration</p>
+
+
+<%= form_for @camper_registration, url: camper_registration_path do |f| %>
+  <%= f.hidden_field :order_id %>
+  <%= f.hidden_field :camp_id %>
+
+  <% @camper_registration.campers.each_with_index do |camper, i| %>
+
+    <%= f.fields_for :campers, camper do |cf| %>
+      <fieldset>
+        <% if i > 0 %><legend>Camper <%= i + 1 %></legend><% end %>
+
+        <h3>Student information</h3>
+        <%= cf.fields_for :user, camper.build_user do |u| %>
+          <%= render 'accounts/fields', f: u %>
+        <% end %>
+
+        <%= cf.label :school, "School name" %>
+        <%= cf.text_field :school %>
+
+        <%= cf.label :grade %>
+        <%= cf.select :grade, (1..12).to_a + ["other"] %>
+
+        <%= cf.label :gender %>
+        <%= cf.select :gender, [["Male", "M"], ["Female", "F"]] %>
+
+        <%= cf.label :home_phone, "Student's home phone" %>
+        <%= cf.text_field :home_phone %>
+
+        <%= cf.label :cell_phone, "Student's cell phone" %>
+        <%= cf.text_field :cell_phone %>
+
+        <%= cf.label :shirt_size %>
+        <%= cf.select :shirt_size, shirt_size_select %>
+
+
+        <h3>Parent information</h3>
+        <%= cf.fields_for :user do |u| %>
+          <%= u.label :parent_name, "Parents Fullname" %>
+          <%= u.text_field :parent_name %>
+
+          <%= u.label :parent_email, "Parents Email" %>
+          <%= u.email_field :parent_email %>
+
+          <%= u.label :parent_location, "Parents Street Address" %>
+          <%= u.text_field :parent_location %>
+
+          <%= u.label :parent_location_two, "Parents Suite/Apt" %>
+          <%= u.text_field :parent_location_two %>
+
+          <%= u.label :parent_city, "Parents City" %>
+          <%= u.text_field :parent_city %>
+
+          <%= u.label :parent_state, "Parents State" %>
+          <%= u.select :parent_state, us_states_select %>
+
+          <%= u.label :parent_zip, "Parents Zip Code" %>
+          <%= u.text_field :parent_zip %>
+
+          <%= u.label :parent_phone, "Parents Phone" %>
+          <%= u.text_field :parent_phone %>
+        <% end %>
+
+        <h3>Emergency contact</h3>
+        <%= cf.label :emergency_contact_name, "Emergency contact (if different than parent)" %>
+        <%= cf.text_field :emergency_contact_name %>
+        <%= cf.label :emergency_contact_phone %>
+        <%= cf.text_field :emergency_contact_phone %>
+        <%= cf.label :emergency_contact_relationship %>
+        <%= cf.text_field :emergency_contact_relationship %>
+
+        <h3>Medical history</h3>
+        <%= cf.label :medical_history, "Student's medical history (list any pertinent information)" %>
+        <%= cf.text_area :medical_history %>
+
+        <%= cf.label :medical_current_medication, "Current medication" %>
+        <%= cf.text_area :medical_current_medication %>
+
+        <%= cf.label :medical_allergies, "Allergies" %>
+        <%= cf.text_area :medical_allergies %>
+
+        <%= cf.label :referred_by, "Referred by another student? Tell us who!" %>
+        <%= cf.text_field :referred_by %>
+
+        <p>
+          <label>
+            <%= cf.fields_for :user do |u| %>
+              <%= u.check_box :tos %>
+            <% end %>
+            I agree to the <%= link_to "terms of service", page_path("tos"), target: '_blank' %>
+          </label>
+        </p>
+
+        <p>
+          <label>
+            <%= cf.check_box :agreed_to_refund_policy %>
+            I agree to the refund policy
+          </label>
+        </p>
+
+        <p>
+          <label>
+            <%= cf.check_box :photo_release %>
+            I agree to a photo release
+          </label>
+        </p>
+      </fieldset>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "Register" %>
+<% end %>

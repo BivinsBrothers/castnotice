@@ -13,6 +13,12 @@ module ApplicationHelper
     end
   end
 
+  def shirt_size_select
+    %w[CS CM CL AS AM AL AXL AXXL AXXXL].map do |size|
+      [I18n.t(size, scope: "helpers.label.shirt_size", default: size), size]
+    end
+  end
+
   def eye_color_select
     Resume::EYE_COLORS.map do |color|
       [I18n.t("helpers.label.resume.eye_colors.#{color}"), color]

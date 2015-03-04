@@ -27,6 +27,16 @@ en:
         project_type: "Project Type"
       school:
         education_type: "Education Type"
+      shirt_size:
+        CS: "Child's Small"
+        CM: "Child's Medium"
+        CL: "Child's Large"
+        AS: Adult Small
+        AM: Adult Medium
+        AL: Adult Large
+        AXL: Adult XL
+        AXXL: Adult XXL
+        AXXXL: Adult XXXL
       resume:
         eye_colors:
           brown: "Brown"
