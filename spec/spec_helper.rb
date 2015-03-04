@@ -1,4 +1,5 @@
 ENV["RAILS_ENV"] ||= "test"
+ENV["MYSQL_URL"] = "mysql://root@localhost/bbt_test"
 
 if ENV["CODECLIMATE_REPO_TOKEN"]
   require "codeclimate-test-reporter"
