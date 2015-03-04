@@ -10,6 +10,7 @@ Castnotice::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :camps
     resources :events, except: [:show, :index] do
       resources :roles
     end

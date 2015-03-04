@@ -41,6 +41,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_admin
+    unless current_user && current_user.admin?
+      redirect_to promo_path
+    end
+  end
+
   def has_promo_code_or_logged_in?
     !! current_user || has_promo_code?
   end

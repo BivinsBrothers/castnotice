@@ -1,0 +1,9 @@
+<%= form_for [:admin, camp] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :code %>
+  <%= f.text_field :code %>
+
+  <%= f.submit "Save" %>
+<% end %>

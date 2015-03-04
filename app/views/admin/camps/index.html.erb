@@ -1,0 +1,23 @@
+<h1>Camps</h1>
+
+<% @camps.each do |camp| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="critique-request">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="critique-owner">
+              <h3><%= camp.name %></h3>
+              <p>code: <%= camp.code %></p>
+              <p><%= link_to "edit", edit_admin_camp_path(camp) %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<p>
+  <%= link_to "Add new camp", new_admin_camp_path, class: "btn" %>
+</p>
