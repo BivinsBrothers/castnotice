@@ -1,5 +1,5 @@
 class Camper < ActiveRecord::Base
-  belongs_to :user, inverse_of: :camper
+  belongs_to :user, inverse_of: :camper, autosave: true
   belongs_to :camper_registration
 
   accepts_nested_attributes_for :user
@@ -9,4 +9,9 @@ class Camper < ActiveRecord::Base
 
 
   validates_confirmation_of :agreed_to_refund_policy, :photo_release
+
+  def user_attributes=(attrs)
+    self.user = User.find_by(email: attrs[:email]) || build_user
+    user.attributes = attrs
+  end
 end

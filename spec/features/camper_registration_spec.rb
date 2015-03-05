@@ -12,6 +12,7 @@ feature "camper registration", mysql: true do
   end
 
   before do
+    clear_emails
     mysql_conn.query("delete from ec_order")
     mysql_conn.query("delete from ec_orderdetail")
   end
@@ -37,53 +38,53 @@ feature "camper registration", mysql: true do
 
   let!(:camp) { Camp.create(name: "A camp", code: "GREAT2011") }
 
+  def fill_in_student_fields(name, email)
+    fill_in "Full Name", with: name
+    fill_in "Email", with: email
+    fill_in "Address One", with: "123 Example st"
+    fill_in "City", with: "Nowhere"
+    select "Illinois", from: "State"
+    fill_in "Zip Code", with: "43212"
+    select_date Date.today, from: "Birthday"
+    fill_in "School", with: "Ridgmont High"
+    select "11", from: "Grade"
+    select "Male", from: "Gender"
+    fill_in "Student's home phone", with: "213-123-1123"
+    fill_in "Student's cell phone", with: "213-123-1123"
+
+    fill_in "Parents Fullname", with: "Parent Person"
+    fill_in "Parents Email", with: "parent1@example.com"
+    fill_in "Parents Street Address", with: "123 H Ln"
+    fill_in "Parents Suite/Apt", with: "2"
+    fill_in "Parents City", with: "Fargo"
+    select "North Dakota", from: "Parents State"
+    fill_in "Parents Zip", with: "83812"
+    fill_in "Parents Phone", with: "773-123-1123"
+
+    fill_in "Emergency contact (if different than parent)", with: "Jim Beam"
+    fill_in "Emergency contact phone", with: "800-123-1234"
+    fill_in "Emergency contact relationship", with: "Favorite drink"
+    fill_in "Student's medical history", with: "I have no history"
+    fill_in "Current medication", with: "Advil, twice daily"
+    fill_in "Allergies", with: "Pollen"
+    select "Adult Medium", from: "Shirt size"
+    fill_in "Referred by another student?", with: "My BFF"
+    check "I agree to the terms of service"
+    check "I agree to the refund policy"
+    check "I agree to a photo release"
+  end
+
   scenario "after successful order" do
     create_order_detail! order_id: 1, quantity: 2, model_number: camp.code
     visit new_camper_registration_path(order_id: 1)
     expect(page).to have_content("Order 1")
 
-    fieldset = ->(name, email) {
-      fill_in "Full Name", with: name
-      fill_in "Email", with: email
-      fill_in "Address One", with: "123 Example st"
-      fill_in "City", with: "Nowhere"
-      select "Illinois", from: "State"
-      fill_in "Zip Code", with: "43212"
-      select_date Date.today, from: "Birthday"
-      fill_in "School", with: "Ridgmont High"
-      select "11", from: "Grade"
-      select "Male", from: "Gender"
-      fill_in "Student's home phone", with: "213-123-1123"
-      fill_in "Student's cell phone", with: "213-123-1123"
-
-      fill_in "Parents Fullname", with: "Parent Person"
-      fill_in "Parents Email", with: "parent1@example.com"
-      fill_in "Parents Street Address", with: "123 H Ln"
-      fill_in "Parents Suite/Apt", with: "2"
-      fill_in "Parents City", with: "Fargo"
-      select "North Dakota", from: "Parents State"
-      fill_in "Parents Zip", with: "83812"
-      fill_in "Parents Phone", with: "773-123-1123"
-
-      fill_in "Emergency contact (if different than parent)", with: "Jim Beam"
-      fill_in "Emergency contact phone", with: "800-123-1234"
-      fill_in "Emergency contact relationship", with: "Favorite drink"
-      fill_in "Student's medical history", with: "I have no history"
-      fill_in "Current medication", with: "Advil, twice daily"
-      fill_in "Allergies", with: "Pollen"
-      select "Adult Medium", from: "Shirt size"
-      fill_in "Referred by another student?", with: "My BFF"
-      check "I agree to the terms of service"
-      check "I agree to the refund policy"
-      check "I agree to a photo release"
-    }
-
     within :xpath, ".//form//fieldset[1]" do
-      fieldset.call("John Bonham", "john@example.com")
+      fill_in_student_fields("John Bonham", "john@example.com")
     end
 
     within :xpath, ".//form//fieldset[2]" do
-      fieldset.call("Josie Bonham", "josie@example.com")
+      fill_in_student_fields("Josie Bonham", "josie@example.com")
     end
 
     click_on "Register"
@@ -91,6 +92,28 @@ feature "camper registration", mysql: true do
     expect(page).to have_content "Thank you!"
 
     expect(emails_sent_to('john@example.com').size).to eq(1)
+    expect(emails_sent_to('josie@example.com').size).to eq(1)
+  end
+
+  scenario "with existing users" do
+    create_order_detail! order_id: 1, quantity: 2, model_number: camp.code
+    create(:user, email: "john@example.com")
+
+    visit new_camper_registration_path(order_id: 1)
+    expect(page).to have_content("Order 1")
+
+    within :xpath, ".//form//fieldset[1]" do
+      fill_in_student_fields("John Bonham", "john@example.com")
+    end
+
+    within :xpath, ".//form//fieldset[2]" do
+      fill_in_student_fields("Josie Bonham", "josie@example.com")
+    end
+
+    click_on "Register"
+
+    expect(page).to have_content "Thank you!"
+    expect(User.count).to eq(2)
     expect(emails_sent_to('josie@example.com').size).to eq(1)
   end
 end
