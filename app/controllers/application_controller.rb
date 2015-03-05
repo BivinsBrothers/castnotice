@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def enforce_promo_code_access
-    unless has_promo_code_or_logged_in?
+    unless has_promo_code_or_logged_in? || controller_name == 'pages'
       redirect_to promo_path
     end
   end
