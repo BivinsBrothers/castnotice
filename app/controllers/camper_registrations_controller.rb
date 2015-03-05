@@ -14,10 +14,7 @@ class CamperRegistrationsController < ApplicationController
 
   def create
     @camper_registration = CamperRegistration.new(camper_registration_params)
-    @camper_registration.campers.each do |c|
-      next unless c.user
-      c.user.password = SecureRandom.hex
-    end
+    @camper_registration.set_missing_passwords
     if @camper_registration.save
       session[:registration_id] = @camper_registration.id
       @camper_registration.send_password_reset_emails!
@@ -33,7 +30,7 @@ class CamperRegistrationsController < ApplicationController
 
   private
   def order
-    @order ||= LegacyOrder.find(params[:order_id]||params[:camper_registration][:order_id])
+    @order ||= LegacyOrder.find(params[:order_id]||params.fetch(:camper_registration, {})[:order_id])
   end
   helper_method :order
 

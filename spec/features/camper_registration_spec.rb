@@ -97,7 +97,8 @@ feature "camper registration", mysql: true do
 
   scenario "with existing users" do
     create_order_detail! order_id: 1, quantity: 2, model_number: camp.code
-    create(:user, email: "john@example.com")
+    create(:user, email: "john@example.com", sign_in_count: 3)
+    clear_emails
 
     visit new_camper_registration_path(order_id: 1)
     expect(page).to have_content("Order 1")
@@ -114,6 +115,7 @@ feature "camper registration", mysql: true do
 
     expect(page).to have_content "Thank you!"
     expect(User.count).to eq(2)
+    expect(emails_sent_to('john@example.com').size).to eq(0)
     expect(emails_sent_to('josie@example.com').size).to eq(1)
   end
 end
