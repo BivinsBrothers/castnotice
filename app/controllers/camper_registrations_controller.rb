@@ -1,6 +1,10 @@
 class CamperRegistrationsController < ApplicationController
   skip_before_action :enforce_promo_code_access
 
+  before_action :ensure_no_previous_registration, only: :new
+  before_action :ensure_order, only: :new
+  before_action :ensure_camp, only: :new
+
   def new
     if order && order.camp
       @camper_registration = CamperRegistration.new(order_id: order.id, camp: order.camp)
@@ -29,6 +33,32 @@ class CamperRegistrationsController < ApplicationController
   end
 
   private
+
+  def ensure_order
+    unless order
+      @message = "No order found."
+      render :error
+    end
+    false
+  end
+
+  def ensure_camp
+    unless order && order.camp
+      @message = "Your order is complete! "
+      @message << "Please join Castnotice to experience all of the benefits of membership."
+      render :error
+    end
+    false
+  end
+
+  def ensure_no_previous_registration
+    if CamperRegistration.find_by(order_id: params[:order_id])
+      @message = "Congratulations! Your order has already been completed! Please contact support if you believe this to be an error."
+      render :error
+    end
+    false
+  end
+
   def order
     @order ||= LegacyOrder.find(params[:order_id]||params.fetch(:camper_registration, {})[:order_id])
   end
