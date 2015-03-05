@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_one :resume
   has_one :background_image, -> { where is_background: true }, class: Headshot
   has_one :mentor_bio
+  has_one :camper
   has_many :received_messages, class: Message, foreign_key: :recipient_id
   has_many :sent_messages, class: Message, foreign_key: :sender_id
   has_many :unread_messages, -> { where recipient_read_at: nil }, foreign_key: :recipient_id, class: Message
@@ -22,6 +23,9 @@ class User < ActiveRecord::Base
   validates :name, :email, :birthday, presence: true
   validates :parent_name, :parent_email, :parent_location, :parent_city, :parent_state,
     :parent_zip, :parent_phone, presence: true, on: :create, if: :under_18?
+
+  validates_presence_of :location_address, :location_city, :location_state,
+    :location_zip, on: :create, if: :camper
 
   def happy_birthday?
     birthday.day == Date.current.day && birthday.month == Date.current.month
