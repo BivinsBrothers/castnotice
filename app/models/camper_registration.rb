@@ -28,4 +28,8 @@ class CamperRegistration < ActiveRecord::Base
   def referring?
     referral_email.present? || referral_name.present?
   end
+
+  def camper_count
+    campers.size
+  end
 end

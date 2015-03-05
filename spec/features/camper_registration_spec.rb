@@ -98,6 +98,18 @@ feature "camper registration", mysql: true do
 
     expect(emails_sent_to('john@example.com').size).to eq(1)
     expect(emails_sent_to('josie@example.com').size).to eq(1)
+
+
+    admin = create(:user, :admin)
+    log_in admin
+    within "header nav" do
+      click_on "Camps"
+    end
+
+    expect(page).to have_selector("h1", text: "Camps")
+    within ".main-content" do
+      expect(page).to have_content "2 campers are fully registered"
+    end
   end
 
   scenario "with existing users" do

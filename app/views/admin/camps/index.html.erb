@@ -9,6 +9,7 @@
             <div class="critique-owner">
               <h3><%= camp.name %></h3>
               <p>code: <%= camp.code %></p>
+              <p><%= pluralize camp.camper_count, "camper" %> are fully registered</p>
               <p><%= link_to "edit", edit_admin_camp_path(camp) %></p>
             </div>
           </div>
