@@ -33,7 +33,7 @@ class CamperRegistrationsController < ApplicationController
 
   private
   def order
-    @order ||= LegacyOrder.find(params[:order_id])
+    @order ||= LegacyOrder.find(params[:order_id]||params[:camper_registration][:order_id])
   end
   helper_method :order
 

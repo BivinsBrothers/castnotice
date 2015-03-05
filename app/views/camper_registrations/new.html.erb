@@ -4,6 +4,15 @@
 <p>Every camper <strong>must</strong> fill out
 the following form to complete registration</p>
 
+<% if @camper_registration.errors.any? %>
+<div id="error_explanation">
+  <ul>
+    <% @camper_registration.errors.full_messages.each do |msg| %>
+      <li class="error"><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
 <%= form_for @camper_registration, url: camper_registration_path do |f| %>
   <%= f.hidden_field :order_id %>
