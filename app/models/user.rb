@@ -61,6 +61,14 @@ class User < ActiveRecord::Base
     critiques.where(payment_method: "breakthru_free").count == 0
   end
 
+  def address
+    [location_address, location_address_two, location_city, location_state, location_zip].select(&:present?).join(", ")
+  end
+
+  def parent_address
+    [parent_location, parent_location_two, parent_city, parent_state, parent_zip].select(&:present?).join(", ")
+  end
+
   def stripe_customer
     @stripe_customer ||= begin
       Stripe::Customer.retrieve(stripe_customer_id)

@@ -6,6 +6,13 @@ class Admin::CampsController < ApplicationController
     @camps = Camp.all
   end
 
+  def show
+    @camp = Camp.find(params[:id])
+    respond_to do |format|
+      format.csv { render text: @camp.to_csv }
+    end
+  end
+
   def create
     camp.attributes = camp_params
     if camp.save

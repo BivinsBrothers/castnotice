@@ -109,7 +109,10 @@ feature "camper registration", mysql: true do
     expect(page).to have_selector("h1", text: "Camps")
     within ".main-content" do
       expect(page).to have_content "2 campers are fully registered"
+      click_link "download roster"
     end
+
+    expect(page).to have_content "John Bonham"
   end
 
   scenario "with existing users" do
