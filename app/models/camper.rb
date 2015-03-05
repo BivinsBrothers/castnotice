@@ -8,7 +8,7 @@ class Camper < ActiveRecord::Base
     :medical_allergies, :medical_current_medication, :shirt_size, :school
 
 
-  validates_confirmation_of :agreed_to_refund_policy, :photo_release
+  validates_confirmation_of :agreed_to_refund_policy, :photo_release, :agreed_to_medical_release
 
   def user_attributes=(attrs)
     self.user = User.find_by(email: attrs[:email]) || build_user

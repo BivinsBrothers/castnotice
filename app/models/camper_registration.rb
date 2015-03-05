@@ -2,7 +2,8 @@ class CamperRegistration < ActiveRecord::Base
   belongs_to :camp
   has_many :campers
 
-  validates_presence_of :order_id
+  validates_presence_of :order_id, :how_heard
+  validates_presence_of :referral_name, :referral_email, if: :referring?
 
   accepts_nested_attributes_for :campers
 
@@ -22,5 +23,9 @@ class CamperRegistration < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def referring?
+    referral_email.present? || referral_name.present?
   end
 end

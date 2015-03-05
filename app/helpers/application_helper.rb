@@ -13,6 +13,14 @@ module ApplicationHelper
     end
   end
 
+  def grade_level_select
+    k12 = (1..12).map do |n|
+      [n.ordinalize, n]
+    end
+    college = ["College freshmen", "College sophomore", "College junior", "College senior"]
+    k12 + college
+  end
+
   def shirt_size_select
     %w[CS CM CL AS AM AL AXL AXXL AXXXL].map do |size|
       [I18n.t(size, scope: "helpers.label.shirt_size", default: size), size]

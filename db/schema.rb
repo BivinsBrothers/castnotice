@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304171828) do
+ActiveRecord::Schema.define(version: 20150305204341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,11 @@ ActiveRecord::Schema.define(version: 20150304171828) do
   end
 
   create_table "camper_registrations", force: true do |t|
-    t.integer "camp_id",  null: false
-    t.integer "order_id", null: false
+    t.integer "camp_id",        null: false
+    t.integer "order_id",       null: false
+    t.string  "how_heard",      null: false
+    t.string  "referral_name"
+    t.string  "referral_email"
   end
 
   create_table "campers", force: true do |t|
@@ -51,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150304171828) do
     t.string  "referred_by"
     t.boolean "agreed_to_refund_policy",        default: false, null: false
     t.boolean "photo_release",                  default: false, null: false
+    t.boolean "agreed_to_medical_release",      default: false, null: false
   end
 
   create_table "camps", force: true do |t|

@@ -33,7 +33,7 @@ the following form to complete registration</p>
         <%= cf.text_field :school %>
 
         <%= cf.label :grade %>
-        <%= cf.select :grade, (1..12).to_a + ["other"] %>
+        <%= cf.select :grade, grade_level_select %>
 
         <%= cf.label :gender %>
         <%= cf.select :gender, [["Male", "M"], ["Female", "F"]] %>
@@ -108,19 +108,35 @@ the following form to complete registration</p>
         <p>
           <label>
             <%= cf.check_box :agreed_to_refund_policy %>
-            I agree to the refund policy
+            I agree to the <%= link_to "refund policy", page_path("camp_terms", anchor: "refund_policy"), target: "_blank" %>
+          </label>
+        </p>
+
+        <p>
+          <label>
+            <%= cf.check_box :agreed_to_medical_release %>
+            I accept the <%= link_to "medical release and insurance liability waiver", page_path("camp_terms", anchor: "medical_release_waiver"), target: "_blank" %>
           </label>
         </p>
 
         <p>
           <label>
             <%= cf.check_box :photo_release %>
-            I agree to a photo release
+            I agree to the <%= link_to "photo release", page_path("camp_terms", anchor: "photo_release"), target: "_blank" %>
           </label>
         </p>
       </fieldset>
     <% end %>
   <% end %>
+
+  <%= f.label :how_heard, "How did you hear about BBT?" %>
+  <%= f.text_field :how_heard %>
+
+  <h3>Refer a friend and get $25 off your registration</h3>
+  <%= f.label :referral_name, "Friend's name" %>
+  <%= f.text_field :referral_name %>
+  <%= f.label :referral_email, "Friend's email" %>
+  <%= f.text_field :referral_email %>
 
   <%= f.submit "Register" %>
 <% end %>

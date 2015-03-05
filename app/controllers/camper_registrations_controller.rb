@@ -68,6 +68,9 @@ class CamperRegistrationsController < ApplicationController
     params.require(:camper_registration).permit(
       :order_id,
       :camp_id,
+      :how_heard,
+      :referral_email,
+      :referral_name,
       campers_attributes: [
         :gender,
         :school,
@@ -83,6 +86,7 @@ class CamperRegistrationsController < ApplicationController
         :shirt_size,
         :referred_by,
         :agreed_to_refund_policy,
+        :agreed_to_medical_release,
         :photo_release,
         user_attributes: [
           :email,

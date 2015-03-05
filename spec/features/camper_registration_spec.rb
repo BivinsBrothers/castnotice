@@ -71,7 +71,8 @@ feature "camper registration", mysql: true do
     fill_in "Referred by another student?", with: "My BFF"
     check "I agree to the terms of service"
     check "I agree to the refund policy"
-    check "I agree to a photo release"
+    check "I agree to the photo release"
+    check "I accept the medical release"
   end
 
   scenario "after successful order" do
@@ -86,6 +87,10 @@ feature "camper registration", mysql: true do
     within :xpath, ".//form//fieldset[2]" do
       fill_in_student_fields("Josie Bonham", "josie@example.com")
     end
+
+    fill_in "How did you hear about BBT", with: "My best friend"
+    fill_in "Friend's name", with: "My best friend"
+    fill_in "Friend's email", with: "foo@bar.com"
 
     click_on "Register"
 
@@ -110,6 +115,8 @@ feature "camper registration", mysql: true do
     within :xpath, ".//form//fieldset[2]" do
       fill_in_student_fields("Josie Bonham", "josie@example.com")
     end
+
+    fill_in "How did you hear about BBT", with: "My best friend"
 
     click_on "Register"
 
