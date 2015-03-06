@@ -22,7 +22,7 @@ class CamperRegistrationsController < ApplicationController
     if @camper_registration.save
       session[:registration_id] = @camper_registration.id
       @camper_registration.send_password_reset_emails!
-      redirect_to @camper_registration
+      redirect_to camper_registration_path
     else
       render :new
     end
