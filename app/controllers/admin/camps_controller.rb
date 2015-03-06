@@ -4,6 +4,8 @@ class Admin::CampsController < ApplicationController
 
   def index
     @camps = Camp.all
+    incomplete = IncompleteOrder.all(CamperRegistration.pluck(:order_id))
+    @unregistered = incomplete ? incomplete.group_by(&:code) : {}
   end
 
   def show
