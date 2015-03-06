@@ -10,7 +10,7 @@
       <h4>Unregistered</h4>
       <% if @unregistered[camp.code].present? %>
         <p><small>Successfully ordered this camp, but have not yet registered here</small></p>
-      <ul>
+        <ul>
         <% @unregistered[camp.code].each do |order| %>
           <li>
             <%= order.email %>

@@ -2,7 +2,17 @@
 
 <p>You've successfully registered for the event.</p>
 
+<% if @camper_registration.campers.any?(&:over_13?) %>
+<h2>Important</h2>
+<h4>You're not quite finished!</h4>
+
+<p>
+  All campers over 13 <strong>must</strong> set up a video audition through Castnotice.
+</p>
+
+<% else %>
 <p>To truly take advantage of Castnotice, you should finish setting up your account.</p>
+<% end%>
 
 <p>You'll receive an email shortly with instructions to set a password.
 You can then set up your resume and start getting noticed!</p>

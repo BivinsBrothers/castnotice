@@ -23,4 +23,14 @@ class Camper < ActiveRecord::Base
     end
   end
 
+  def over_13?
+    age && age >= 13
+  end
+
+  def age
+    return unless user && birthday
+    now = Time.now.utc.to_date
+    current_year_offset = (now.month > birthday.month || (now.month == birthday.month && now.day >= birthday.day)) ? 0 : 1
+    now.year - birthday.year - current_year_offset
+  end
 end
