@@ -80,6 +80,10 @@ module Dom
       node.has_css? ".calendar-paid-true"
     end
 
+    def stipend?
+      node.has_css? ".calendar-stipend-true"
+    end
+
     def region
       node.find(".region").text.partition("Region: ").last
     end

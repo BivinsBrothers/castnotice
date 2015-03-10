@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305204341) do
+ActiveRecord::Schema.define(version: 20150310190123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20150305204341) do
     t.text      "pay_rate"
     t.text      "audition_times"
     t.text      "production_location"
+    t.boolean   "stipend",                 default: false
   end
 
   add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree

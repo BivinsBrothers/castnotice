@@ -36,6 +36,22 @@ feature "an admin or mentor can manage events", js: true do
       log_in admin
     end
 
+    scenario "validations" do
+      within("header") do
+        click_link "Calendar"
+      end
+      click_link "Add Event"
+      click_button "Create Event"
+
+      expect(page).to have_content("Project title can't be blank")
+      expect(page).to have_content("Unions can't be blank")
+      expect(page).to have_content("Production location can't be blank")
+      expect(page).to have_content("Pay rate can't be blank")
+      expect(page).to have_content("Staff can't be blank")
+      expect(page).to have_content("Location can't be blank")
+      expect(page).to have_content("How to audition can't be blank")
+    end
+
     scenario "adding an event" do
       create(:region, name: "Central")
       create(:project_type, name: "Episodic")
@@ -65,6 +81,7 @@ feature "an admin or mentor can manage events", js: true do
       select current_date.year, from: "event_audition_date_1i"
 
       check "Paid"
+      check "Stipend"
 
       find("#create-event").trigger("click")
 
@@ -78,6 +95,7 @@ feature "an admin or mentor can manage events", js: true do
       expect(event.project_title).to eq("Extravaganza!")
       expect(event.audition_date).to eq(audition_date)
       expect(event).to be_paid
+      expect(event).to be_stipend
       expect(event.project_type).to eq("Episodic")
       expect(event.region).to eq("Central")
       expect(event.unions).to eq("Extraverts United")

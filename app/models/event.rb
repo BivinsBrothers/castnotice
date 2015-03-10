@@ -5,8 +5,8 @@ class Event < ActiveRecord::Base
 
   scope_accessible :region, :project, :union
 
-  validates :project_title, :region, :project_type, :unions, :casting_director, 
-  :production_location, :pay_rate, :staff, :location, 
+  validates :project_title, :region, :project_type, :unions,
+  :production_location, :pay_rate, :staff, :location,
   :audition_date, :how_to_audition, presence: true
 
   belongs_to :region

@@ -47,6 +47,14 @@
 	line-height: 20px;
 }
 
+.calendar-events .calendar-stipend{
+	position: absolute;
+	right: 20px;
+	top: 35px;
+	font-size: 20px;
+	line-height: 20px;
+}
+
 .calendar-events .calendar-paid-false:after {
     content: url(<%= asset_path("calendar-paid-false.png") %>);
 	padding-left: 5px;
@@ -57,6 +65,15 @@
 	padding-left: 5px;
 }
 
+.calendar-events .calendar-stipend-false:after {
+    content: url(<%= asset_path("calendar-paid-false.png") %>);
+	padding-left: 5px;
+}
+
+.calendar-events .calendar-stipend-true:after {
+    content: url(<%= asset_path("calendar-paid-true.png") %>);
+	padding-left: 5px;
+}
 .calendar-events .calendar-overview{
 	padding: 10px 0;
 	}
