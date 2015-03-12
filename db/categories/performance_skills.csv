@@ -1,97 +1,178 @@
-name
-Accordion
-Auctioneer
-Audio Prompter
-Autoharp
-Bagpipes
-Banjo
-Bartender - Vegas Style Flair
-Bassoon
-Bones
-Bongos
-Brass Instruments
-Cello
-Chef
-Chef - Garde Manger
-Chef - Pastry
-Chef - Saucier
-Chef - Sous
-Clarinet
-Clowning
-Comedian
-Conga
-Dance - Bhangara
-Dance - Breakdance
-Dance - Pole Dancing
-Dance Acro
-Dance Argentine Tango
-Dance Ballet
-Dance Ballroom
-Dance Belly
-Dance Bolero
-Dance Cha Cha
-Dance Flamenco
-Dance Hip Hop
-Dance Jazz
-Dance Line/Country
-Dance Mambo
-Dance Modern
-Dance Rumba
-Dance Salsa
-Dance Samba
-Dance Swing
-Dance Tango
-Dance Tap
-Dancer
-Disc Jockey
-Diving
-Drums
-Dulcimer
-Ear Prompter
-Fiddle
-Firearms
-Flute
-French Horn
-Guitar
-Guitar Bass
-Harmonica
-Host
-Impressionist
-Improvisation
-Juggler
-Licensed Driver
-Magician
-Medical Equip.
-Mime
-Modeling
-Motorcyclist
-Orchestral String Instruments
-Organ
-Percussion
-Piano
-Pilot
-Precision Driver
-Sax
-Singer
-Square Dance Caller
-Stunts
-Teleprompter
-Trombone
-Trumpet
-Tuba
-Ukulele
-Ventriloquist
-Violin
-Vocal Range: Alto
-Vocal Range: Bari-Tenor
-Vocal Range: Baritone
-Vocal Range: Bass
-Vocal Range: Mezzo Soprano
-Vocal Range: Soprano
-Vocal Range: Tenor
-Vocal Style: Belt
-Vocal Style: Legit
-Vocal Style: Rapper
-Voiceover
-Whistler
-Wind Instrument
+name,category
+Vocal Range: Alto, singer
+Vocal Range: Bari-Tenor,singer
+Vocal Range: Baritone,singer
+Vocal Range: Bass,singer
+Vocal Range: Mezzo Soprano,singer
+Vocal Range: Soprano,singer
+Vocal Range: Tenor,singer
+Vocal Style: Belt,singer
+Vocal Style: Legit,singer
+Vocal Style: Rapper,singer
+Voiceover,singer
+A1,singer
+A2,singer
+A3,singer
+A4,singer
+A5,singer
+A6,singer
+A7,singer
+B1,singer
+B2,singer
+B3,singer
+B4,singer
+B5,singer
+B6,singer
+B7,singer
+C1,singer
+C2,singer
+C3,singer
+C4,singer
+C5,singer
+C6,singer
+C7,singer
+D1,singer
+D2,singer
+D3,singer
+D4,singer
+D5,singer
+D6,singer
+D7,singer
+E1,singer
+E2,singer
+E3,singer
+E4,singer
+E5,singer
+E6,singer
+E7,singer
+F1,singer
+F2,singer
+F3,singer
+F4,singer
+F5,singer
+F6,singer
+F7,singer
+G1,singer
+G2,singer
+G3,singer
+G4,singer
+G5,singer
+G6,singer
+G7,singer
+Comedian,actor
+Day-time Television,actor
+Feature Film,actor
+Impressionist,actor
+Improvisation,actor
+Industrial,actor
+Prime-Time Television,actor
+Shakespeare,actor
+Stage Actor,actor
+Television Hosting,actor
+Voice Over,actor
+Ballet,dancer
+Tap,dancer
+Argentine Tango,dancer
+Ballroom,dancer
+Belly Dance,dancer
+Bhangara,dancer
+Bolero,dancer
+Breakdance,dancer
+Cha Cha,dancer
+Clogging,dancer
+Conga,dancer
+Contemporary,dancer
+Dance Acro,dancer
+Dance Line/Country,dancer
+Flamenco,dancer
+Folk Dance,dancer
+Hip Hop,dancer
+Jazz,dancer
+Latin Dance,dancer
+Mambo,dancer
+Modern,dancer
+Rumba,dancer
+Salsa,dancer
+Samba,dancer
+Square Dance Caller,dancer
+Swing,dancer
+Tango,dancer
+Alternative Model,modeling
+Art Model,modeling
+Commerical Model,modeling
+Editorial Fashion Model ,modeling
+Fashion ,modeling
+Fashion Catalogue,modeling
+Fitness Model,modeling
+Freelance Model ,modeling
+Parts Model,modeling
+Petite Model,modeling
+Plus Size Model,modeling
+Print Model,modeling
+Promotional Model ,modeling
+Runway Model,modeling
+Spokesmodel ,modeling
+Trade Show Model,modeling
+Accordion,instruments
+Autoharp,instruments
+Bagpipes,instruments
+Banjo,instruments
+Bassoon,instruments
+Bones,instruments
+Bongos,instruments
+Brass Instruments,instruments
+Cello,instruments
+Clarinet,instruments
+Drums,instruments
+Dulcimer,instruments
+Fiddle,instruments
+Flute,instruments
+French Horn,instruments
+Guitar,instruments
+Guitar Bass,instruments
+Harmonica,instruments
+Orchestral String Instruments,instruments
+Organ,instruments
+Percussion,instruments
+Piano,instruments
+Sax,instruments
+Trombone,instruments
+Trumpet,instruments
+Tuba,instruments
+Ukulele,instruments
+Violin,instruments
+Whistler,instruments
+Wind Instrument,instruments
+Audio Prompter,hosting
+Ear Prompter,hosting
+Teleprompter,hosting
+Chef,cooking
+Chef - Garde Manger,cooking
+Chef - Pastry,cooking
+Chef - Saucier,cooking
+Chef - Sous,cooking
+Clowning,circus
+Juggler,circus
+Mime,circus
+Ventriloquist,circus
+Escape,magician
+Levitation,magician
+Penetration,magician
+Prediction ,magician
+Production,magician
+Restoration,magician
+Tranportation,magician
+Transformation,magician
+Vanish,magician
+Bicyclist ,transportation
+Boating ,transportation
+Canoeing ,transportation
+Licensed Driver,transportation
+Motorcyclist,transportation
+Pilot,transportation
+Precision Driver,transportation
+Precision Driver,transportation
+Race Car Driving ,transportation
+Snowmobiles ,transportation
+Stunt Driver,transportation
+Truck ,transportation
