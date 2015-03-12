@@ -3,6 +3,7 @@ class Admin::EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.event_audition_dates.build
   end
 
   def create
@@ -45,7 +46,7 @@ class Admin::EventsController < ApplicationController
     params.require(:event).permit(
       :project_title, :project_type_id, :region_id, :special_notes,
       :storyline, :how_to_audition, :audition_date, :location,
-      :casting_director, :paid, :stipend, :staff, :pay_rate, :audition_times, :production_location, union_ids: []
+      :casting_director, :paid, :stipend, :staff, :pay_rate, :audition_times, :production_location, union_ids: [], event_audition_dates_attributes: [:audition_date, :_destroy, :id]
     )
   end
 end

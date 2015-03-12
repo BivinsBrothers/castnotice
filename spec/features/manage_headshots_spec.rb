@@ -15,7 +15,7 @@ feature "managing headshots" do
       FileUtils.rm_rf(Dir["#{HeadshotUploader.cache_dir}"])
     end
 
-    it "a user can upload a headshot", :js => true do
+    it "a user can upload a headshot" do
       click_link "edit-headshots"
       click_link "Add a photo"
 
@@ -74,7 +74,7 @@ feature "managing headshots" do
       }.from(true).to(false)
     end
 
-    it "a user can have a maximum of 10 headshots", :js => true do
+    it "a user can have a maximum of 10 headshots" do
       create_list(:headshot, 9, resume: resume)
 
       click_link "edit-headshots"

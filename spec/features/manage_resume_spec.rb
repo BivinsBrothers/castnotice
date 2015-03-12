@@ -163,7 +163,7 @@ feature "manage resume" do
     expect(find_field("resume_slug").value).to eq("something-else")
   end
 
-  it "a user can upload a headshot", :js => true do
+  it "a user can upload a headshot" do
     visit dashboard_path
 
     click_link "dashboard-edit-resume"
@@ -197,7 +197,7 @@ feature "manage resume" do
     expect(page).to have_content("Delete")
   end
 
-  it "allows uploading videos", js: true do
+  it "allows uploading videos" do
     visit dashboard_path
 
     click_link "dashboard-edit-resume"

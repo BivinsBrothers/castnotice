@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310190123) do
+ActiveRecord::Schema.define(version: 20150311150440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(version: 20150310190123) do
     t.datetime "updated_at"
   end
 
+  create_table "event_audition_dates", force: true do |t|
+    t.integer  "event_id"
+    t.date     "audition_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "event_unions", force: true do |t|
     t.integer  "event_id",   null: false
     t.integer  "union_id",   null: false
@@ -132,7 +139,6 @@ ActiveRecord::Schema.define(version: 20150310190123) do
     t.string    "project_title"
     t.text      "storyline"
     t.text      "how_to_audition"
-    t.datetime  "audition_date"
     t.datetime  "start_date"
     t.boolean   "paid",                    default: false, null: false
     t.datetime  "created_at"
@@ -150,9 +156,9 @@ ActiveRecord::Schema.define(version: 20150310190123) do
     t.text      "audition_times"
     t.text      "production_location"
     t.boolean   "stipend",                 default: false
+    t.datetime  "audition_date"
   end
 
-  add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
   add_index "events", ["project_type_id"], name: "index_events_on_project_type_id", using: :btree
   add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
 

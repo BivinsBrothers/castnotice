@@ -105,17 +105,24 @@ FactoryGirl.define do
   end
 
   factory :event do
+    transient do
+      audition_date Date.today
+    end
+
     project_title "Big Event"
     project_type
     region
     unions { [create(:union)] }
-    audition_date Date.today
     casting_director "That guy"
     production_location "Glasgow"
     pay_rate "$5,000 - $10,000"
     staff "Some random staff listings"
     location "Stockholm"
     how_to_audition "Grow a beard"
+
+    after(:create) do |event, evaluator|
+      create(:event_audition_date, audition_date: evaluator.audition_date, event: event)
+    end
 
     trait :full do
       storyline "Eurovision"
@@ -128,7 +135,9 @@ FactoryGirl.define do
     end
   end
 
-  # Category Factories
+  factory :event_audition_date do
+    audition_date Date.today
+  end
 
   factory :region do
     name "Central"

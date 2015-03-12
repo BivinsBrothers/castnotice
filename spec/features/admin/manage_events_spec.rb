@@ -76,9 +76,9 @@ feature "an admin or mentor can manage events", js: true do
       fill_in "Pay Rate", with: "$500-$1,000"
       fill_in "Staff", with: "Assistant to the coffee-getter"
 
-      select current_date.day.to_s, from: "event_audition_date_3i"
-      select current_month, from: "event_audition_date_2i"
-      select current_date.year, from: "event_audition_date_1i"
+      select current_date.day.to_s, from: "event_event_audition_dates_attributes_0_audition_date_3i"
+      select current_month, from: "event_event_audition_dates_attributes_0_audition_date_2i"
+      select current_date.year, from: "event_event_audition_dates_attributes_0_audition_date_1i"
 
       check "Paid"
       check "Stipend"

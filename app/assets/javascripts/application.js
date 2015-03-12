@@ -16,4 +16,5 @@
 //= require moment.min
 //= require chosen.jquery.min
 //= require video
+//= require cocoon
 //= require_tree .

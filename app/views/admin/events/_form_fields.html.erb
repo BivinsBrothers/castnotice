@@ -84,10 +84,15 @@
   <div class="col-sm-3">
     <%= e.label :audition_date, "Date of Audition" %>*
   </div>
-  <div class="col-sm-9">
-    <%= e.date_select :audition_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
+  <div class="col-sm-6" id="event_audition_dates_fields">
+    <%= link_to_add_association "Add new date", e, :event_audition_dates, 'data-association-insertion-method' => :append %>
+    <%= e.fields_for :event_audition_dates do |ad|  %>
+      <%= render 'event_audition_date_fields', f: ad %>
+    <% end %>
   </div>
 </div>
+
+
 <div class="row">
   <div class="col-sm-3">
     <%= e.label :audition_times, "Audition Times"%>*

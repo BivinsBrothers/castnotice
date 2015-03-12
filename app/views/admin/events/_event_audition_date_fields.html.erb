@@ -1,0 +1,5 @@
+<div class="nested-fields">
+  <%= f.hidden_field :id %>
+  <%= f.date_select :audition_date, start_year: Time.now.year, end_year: Time.now.year + 4 %>
+  <%= link_to_remove_association "remove date", f %>
+</div>

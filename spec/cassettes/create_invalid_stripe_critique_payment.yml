@@ -358,4 +358,106 @@ http_interactions:
         </html>
     http_version: 
   recorded_at: Tue, 10 Mar 2015 19:58:40 GMT
+- request:
+    method: get
+    uri: https://js.stripe.com/v2/channel.html?stripe_xdm_c=default127560&stripe_xdm_e=http://127.0.0.1:64966&stripe_xdm_p=1
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept:
+      - text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+      Referer:
+      - http://127.0.0.1:64966/resume/edit
+      User-Agent:
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko)
+        PhantomJS/2.0.0 Safari/538.1
+      Connection:
+      - Keep-Alive
+      Accept-Language:
+      - en-US,*
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 11 Mar 2015 20:45:10 GMT
+      Server:
+      - nginx
+      Content-Type:
+      - text/html
+      Last-Modified:
+      - Fri, 27 Feb 2015 00:44:32 GMT
+      Etag:
+      - '"54efbdf0-459"'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Content-Length:
+      - '1113'
+      Accept-Ranges:
+      - bytes
+      Via:
+      - 1.1 varnish
+      Age:
+      - '934'
+      X-Served-By:
+      - cache-iad2143-IAD
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - public, max-age=300
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |
+        <!doctype html>
+        <html>
+        <head>
+        <title>Stripe Internal Communication Channel</title>
+        <script>
+        if ('postMessage' in window) {
+          var stripeTrack = function(type) {
+            var timestamp = Math.round(new Date().getTime() / 1000);
+            var report = (new Image()).src = "https://q.stripe.com?event=stripejs-error&type=" +
+              encodeURIComponent(type) +
+              "&timestamp=" + timestamp +
+              "&payment_user_agent=channel.html";
+          };
+
+          if (window.parent === window) {
+            stripeTrack('ChannelParentError');
+            window.Stripe = {earlyError: true};
+          }
+          else {
+            window.onload = function() {
+              var matches = window.location.search.match(/(\?|&)stripe_xdm_e=([^&]+)/);
+              if (matches && matches.length >= 3) {
+                var outerdomain = decodeURIComponent(matches[2]);
+                try {
+                  window.parent.postMessage('stripe:ack', outerdomain);
+                }
+                catch(e) {
+                  stripeTrack('ChannelAckError-' + e.toString());
+                }
+              }
+              else {
+                stripeTrack('ChannelUrlError');
+              }
+            }
+          }
+        }
+        </script>
+        </head>
+        <body>
+        <script src="https://js.stripe.com/v2/"></script>
+        </body>
+        </html>
+    http_version: 
+  recorded_at: Wed, 11 Mar 2015 20:45:10 GMT
 recorded_with: VCR 2.9.3

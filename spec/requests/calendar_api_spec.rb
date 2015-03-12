@@ -8,7 +8,7 @@ def full_event_hash(event)
      region: event.region.name,
      storyline: event.storyline,
      how_to_audition: event.how_to_audition,
-     audition_date: event.audition_date.strftime("%Y-%m-%d"),
+     audition_date: event.event_audition_dates.first.audition_date.strftime("%Y-%m-%d"),
      paid: event.paid,
      location: event.location,
      casting_director: event.casting_director,
@@ -16,6 +16,7 @@ def full_event_hash(event)
      staff: event.staff,
      pay_rate: event.pay_rate,
      production_location: event.production_location,
+     stipend: event.stipend,
      unions: (event.unions.map {|u| {name: u.name} }),
      roles: (
        event.roles.map do |r|
@@ -36,7 +37,7 @@ def limited_event_hash(event)
      project_title: event.project_title,
      project_type: event.project_type.name,
      region: event.region.name,
-     audition_date: event.audition_date.strftime("%Y-%m-%d"),
+     audition_date: event.event_audition_dates.first.audition_date.strftime("%Y-%m-%d"),
      paid: event.paid
   }
 end

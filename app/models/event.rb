@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 
   validates :project_title, :region, :project_type, :unions,
   :production_location, :pay_rate, :staff, :location,
-  :audition_date, :how_to_audition, presence: true
+  :how_to_audition, presence: true
 
   belongs_to :region
   belongs_to :project_type
@@ -15,4 +15,7 @@ class Event < ActiveRecord::Base
   has_many :event_unions
   has_many :unions, through: :event_unions
   has_many :roles
+  has_many :event_audition_dates
+
+  accepts_nested_attributes_for :event_audition_dates, allow_destroy: true
 end
