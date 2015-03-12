@@ -13,6 +13,7 @@ gem "sass-rails", "~> 4.0.3"
 gem "uglifier", ">= 1.3.0"
 
 gem "active_model_serializers"
+gem "cocoon"
 gem "countries"
 gem "devise"
 gem "elasticsearch-rails"
