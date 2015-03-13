@@ -177,6 +177,7 @@ FactoryGirl.define do
 
   factory :performance_skill do
     name "Ballet"
+    category "dancer"
   end
 
   factory :conversation do
