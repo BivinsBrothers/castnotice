@@ -55,7 +55,8 @@ module Admin
         :age_min,
         :age_max,
         :gender,
-        :ethnicity
+        :ethnicity,
+        performance_skill_ids: []
       )
     end
   end

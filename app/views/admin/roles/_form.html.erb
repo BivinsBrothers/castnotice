@@ -1,18 +1,37 @@
 <%= form_for [:admin, @event, @role] do |f| %>
-  <%= f.label :description, "Seeking" %>
-  <%= f.text_field :description %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :description, "Seeking" %>
+      <%= f.text_field :description %>
 
-  <%= f.label :gender %>
-  <%= f.text_field :gender %>
+      <%= f.label :gender %>
+      <%= f.text_field :gender %>
 
-  <%= f.label :ethnicity %>
-  <%= f.text_field :ethnicity %>
+      <%= f.label :ethnicity %>
+      <%= f.text_field :ethnicity %>
 
-  <%= f.label :age_min, "Age Min" %>*
-  <%= select_tag "role[age_min]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_min) %>
+      <%= f.label :age_min, "Age Min" %>*
+      <%= select_tag "role[age_min]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_min) %>
 
-  <%= f.label :age_max, "Age Max" %>*
-  <%= select_tag "role[age_max]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_max) %>
+      <%= f.label :age_max, "Age Max" %>*
+      <%= select_tag "role[age_max]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_max) %>
+    </div>
+
+    <div class="col-md-12">
+      <h2>Skills</h2>
+    </div>
+
+    <% grouped_performance_skills.in_groups(2, false) do |skills| %>
+      <div class="col-md-6">
+        <% skills.each do |category, skills| %>
+          <h4><%= category.titleize %></h4>
+          <div>
+            <%= f.collection_select :performance_skill_ids, skills, :id, :name, {}, multiple: true, "data-placeholder" => "Choose one or more options..." %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
   <%= f.submit "#{@role.new_record? ? "Create" : "Update" } Role" %>
   <br>
