@@ -36,6 +36,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.permit(date: [:start, :end], filters: [:age, union: [], project: [], region: []])
+    params.permit(date: [:start, :end], filters: [:age, union: [], project: [], region: [], performance_skill: []])
   end
 end

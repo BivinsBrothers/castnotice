@@ -40,10 +40,10 @@ module Dom
   end
 
   class CalendarRegion < Domino
-    selector "#filter-region .calendar-checkbox"
+    selector "#filter-0 .calendar-checkbox"
 
     def self.select_region_id(region_id)
-      page.find("#filter-region-#{region_id}").trigger('click')
+      page.find("#filter-0-#{region_id}").trigger('click')
     end
 
     def name
@@ -52,7 +52,7 @@ module Dom
   end
 
   class CalendarProjectType < Domino
-    selector "#filter-project .calendar-checkbox"
+    selector "#filter-1 .calendar-checkbox"
 
     def name
       node.find("label").text
@@ -60,7 +60,7 @@ module Dom
   end
 
   class CalendarUnion < Domino
-    selector "#filter-union .calendar-checkbox"
+    selector "#filter-2 .calendar-checkbox"
 
     def name
       node.find("label").text

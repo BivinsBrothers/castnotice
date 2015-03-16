@@ -3,7 +3,8 @@ class Role < ActiveRecord::Base
   AGE_MAX = 99
 
   belongs_to :event
-  has_and_belongs_to_many :performance_skills, join_table: :role_performance_skills
+  has_many :role_performance_skills
+  has_many :performance_skills, through: :role_performance_skills
 
   scope :age, proc { |age| where("age_range @> ?", age.to_i) }
 

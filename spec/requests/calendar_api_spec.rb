@@ -237,20 +237,23 @@ describe "Calendar API" do
 
       filters = JSON.parse(response.body)["filters"]
 
-      expect(filters["region"]["label"]).to eq("Region")
-      expect(filters["region"]["values"]).to eq({
+      expect(filters[0]["label"]).to eq("Region")
+      expect(filters[0]["filter"]).to eq("region")
+      expect(filters[0]["values"]).to eq({
         ile.id.to_s =>"Ile-de-France",
         dordogne.id.to_s => "Dordogne"
       })
 
-      expect(filters["project"]["label"]).to eq("Type of Project")
-      expect(filters["project"]["values"]).to eq({
+      expect(filters[1]["label"]).to eq("Type of Project")
+      expect(filters[1]["filter"]).to eq("project")
+      expect(filters[1]["values"]).to eq({
         coworking.id.to_s => "Coworking",
         dance.id.to_s => "Dance"
       })
 
-      expect(filters["union"]["label"]).to eq("Union")
-      expect(filters["union"]["values"]).to eq({
+      expect(filters[2]["label"]).to eq("Union")
+      expect(filters[2]["filter"]).to eq("union")
+      expect(filters[2]["values"]).to eq({
         uea.id.to_s => "UEA",
         ipsa.id.to_s => "IPSA"
       })

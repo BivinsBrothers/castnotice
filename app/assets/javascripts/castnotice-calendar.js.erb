@@ -18,12 +18,13 @@ function calendarBuild() {
     $.ajax({
         url: api_filters,
         success: function(data) {
-            $.each(data.filters, function(key, val) {
+            $.each(data.filters, function(index, filter) {
+              var key = filter.filter;
                 $('.calendar-filters').append(
-                        '<div class="calendar-option" id="filter-' + key + '" data-filter="' + key + '"><h3>' + val.label + '</h3></div>'
+                        '<div class="calendar-option" id="filter-' + index + '" data-filter="' + key + '"><h3>' + filter.label + '</h3></div>'
                         );
-                $.each(val.values, function(i, option) {
-                    $("#filter-" + key).append('<div class="calendar-checkbox"><input type="checkbox" id="filter-' + key + '-' + i + '" name="' + key + '" value="' + i + '"> <label for="filter-' + key + '-' + i + '">' + option + "</label></div>");
+                $.each(filter.values, function(i, option) {
+                    $("#filter-" + index).append('<div class="calendar-checkbox"><input type="checkbox" id="filter-' + index + '-' + i + '" name="' + key + '" value="' + i + '"> <label for="filter-' + index + '-' + i + '">' + option + "</label></div>");
                 });
             });
             $('.calendar-checkbox input').change(function() {
@@ -57,6 +58,7 @@ function escapeHtml(str) {
 }
 
 function calendarUpdate() {
+    search.filters = {}
     $('.calendar-option').each(function() {
         var filterName = ($(this).attr('data-filter'));
         var filterValues = [];
@@ -65,8 +67,13 @@ function calendarUpdate() {
                 filterValues.push($(this).val());
             }
         });
-        search.filters[filterName] = filterValues;
+        if(search.filters[filterName]) {
+          search.filters[filterName] = search.filters[filterName].concat(filterValues);
+        } else {
+          search.filters[filterName] = filterValues;
+        }
     });
+
 
     $.ajax({
         url: api_events,
