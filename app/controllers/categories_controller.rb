@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   skip_before_action :enforce_promo_code_access
 
   def index
-    category_json = CategoryJson.new
+    category_json = CategoryJson.new(current_user)
     render json: category_json.generate
   end
 end

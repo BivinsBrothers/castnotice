@@ -35,6 +35,8 @@ feature "calendar", js: true do
       )
 
       visit page_path("calendar")
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       event = Dom::CalendarEvent.first
 

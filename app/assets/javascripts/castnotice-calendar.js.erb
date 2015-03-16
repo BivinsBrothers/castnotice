@@ -24,7 +24,8 @@ function calendarBuild() {
                         '<div class="calendar-option" id="filter-' + index + '" data-filter="' + key + '"><h3>' + filter.label + '</h3></div>'
                         );
                 $.each(filter.values, function(i, option) {
-                    $("#filter-" + index).append('<div class="calendar-checkbox"><input type="checkbox" id="filter-' + index + '-' + i + '" name="' + key + '" value="' + i + '"> <label for="filter-' + index + '-' + i + '">' + option + "</label></div>");
+                  var checked = $.inArray(parseInt(i), filter.selected_ids) != -1 ? "checked=checked" : "";
+                    $("#filter-" + index).append('<div class="calendar-checkbox"><input type="checkbox" ' + checked + ' id="filter-' + index + '-' + i + '" name="' + key + '" value="' + i + '"> <label for="filter-' + index + '-' + i + '">' + option + "</label></div>");
                 });
             });
             $('.calendar-checkbox input').change(function() {

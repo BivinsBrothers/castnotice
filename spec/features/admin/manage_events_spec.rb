@@ -55,7 +55,6 @@ feature "an admin or mentor can manage events", js: true do
     scenario "adding an event" do
       create(:region, name: "Central")
       create(:project_type, name: "Episodic")
-      create(:union, name: "Extraverts United")
 
       visit page_path("calendar")
       click_link "Add Event"
@@ -66,7 +65,7 @@ feature "an admin or mentor can manage events", js: true do
       fill_in "Name of Project", with: "Extravaganza!"
       select "Episodic", from: "Project Type"
       select "Central", from: "Region"
-      check "Extraverts United"
+      check "Awesome Union"
       fill_in "Story", with: "Happy people become ghosts, have good times"
       fill_in "Audition Details", with: "In person, there will be a gorilla"
       fill_in "Casting Director", with: "Nic Lindstrom"
@@ -98,7 +97,7 @@ feature "an admin or mentor can manage events", js: true do
       expect(event).to be_stipend
       expect(event.project_type).to eq("Episodic")
       expect(event.region).to eq("Central")
-      expect(event.unions).to eq("Extraverts United")
+      expect(event.unions).to eq("Awesome Union")
       expect(event.casting_director).to eq("Nic Lindstrom")
       expect(event.location).to eq("Detroit")
 
@@ -113,6 +112,8 @@ feature "an admin or mentor can manage events", js: true do
 
       visit page_path("calendar")
       click_link "Calendar"
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       event = Dom::CalendarEvent.first
 
@@ -121,7 +122,10 @@ feature "an admin or mentor can manage events", js: true do
       event.click_edit
 
       fill_in "Name of Project", with: "Extravaganza!"
-      find("#update-event").trigger("click")
+      find("#update-event").click
+
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       expect(page).to have_content("Extravaganza!")
 
@@ -134,6 +138,8 @@ feature "an admin or mentor can manage events", js: true do
 
       visit page_path("calendar")
       click_link "Calendar"
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       event = Dom::CalendarEvent.first
       event.click_delete
@@ -150,6 +156,8 @@ feature "an admin or mentor can manage events", js: true do
 
       visit page_path("calendar")
       click_link "Calendar"
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       Dom::CalendarEvent.first.manage_roles
 
@@ -163,6 +171,8 @@ feature "an admin or mentor can manage events", js: true do
 
       visit page_path("calendar")
       click_link "Calendar"
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       Dom::CalendarEvent.first.manage_roles
 
@@ -184,9 +194,11 @@ feature "an admin or mentor can manage events", js: true do
       create(:event, :full, audition_date: 1.day.from_now)
       create(:role, description: "Dorthy")
 
+
       visit page_path("calendar")
       click_link "Calendar"
-
+      uncheck "Awesome Union"
+      wait_for_ajax
       Dom::CalendarEvent.first.manage_roles
 
       Dom::CalendarEventRole.first.edit
@@ -205,6 +217,8 @@ feature "an admin or mentor can manage events", js: true do
 
       visit page_path("calendar")
       click_link "Calendar"
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       Dom::CalendarEvent.first.manage_roles
 
@@ -219,6 +233,8 @@ feature "an admin or mentor can manage events", js: true do
 
       visit page_path("calendar")
       click_link "Calendar"
+      uncheck "Awesome Union"
+      wait_for_ajax
 
       Dom::CalendarEvent.first.manage_roles
 
