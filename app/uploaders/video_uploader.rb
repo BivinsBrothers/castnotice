@@ -77,15 +77,18 @@ class VideoUploader < CarrierWave::Uploader::Base
       output: [
         {
           url: "s3://#{bucket}/#{processed_path("webm")}",
+          credentials: 's3'
         },
         {
-          url: "s3://#{bucket}/#{processed_path("mp4")}"
+          url: "s3://#{bucket}/#{processed_path("mp4")}",
+          credentials: 's3'
         },
         {
           thumbnails: {
             times: [2],
             base_url: "s3://#{bucket}/#{File.dirname(model.video.thumb.path)}",
-            filename: "thumbnail"
+            filename: "thumbnail",
+            credentials: 's3'
           }
         }
       ]
