@@ -43,3 +43,6 @@ build process if we want.
 
 ### Staging
 Travis CI is configured to push changes to staging whenever the master branch passes all tests.
+
+Environment name:
+heroku: castnotice-stage
