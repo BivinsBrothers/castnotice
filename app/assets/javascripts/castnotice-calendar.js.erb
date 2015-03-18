@@ -26,6 +26,29 @@ function calendarBuild() {
     }
   });
 
+  $("#calendar-datepicker").datepicker({"onChangeMonthYear": function(year, month) {
+          // Moment.month() expects zero-based month, datepicker callback returns typical month integer, thus subtract by 1
+          m = moment().month(month - 1).year(year);
+          search.date.start = m.startOf("month").format("YYYY-MM-DD");
+          search.date.end   = m.endOf("month").format("YYYY-MM-DD");
+          calendarUpdate();
+      },
+      beforeShowDay: function(date) {
+          var m = date.getUTCMonth(), d = date.getUTCDate(), y = date.getUTCFullYear();
+          for (i = 0; i < eventDates.length; i++) {
+          if ($.inArray(y + '-' + (m + 1) + '-' + d, eventDates) !== -1) {
+          return [true, 'calendar-matched-event-date'];
+              }
+              return [false, 'calendar-not-matched-event-date'];
+          }
+      },
+      onSelect: function(date) {
+      date = new Date(date);
+      target = $('[data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '"]');
+          $("html,body").animate({scrollTop: target.offset().top}, 500);
+      }
+  });
+
     $.ajax({
         url: api_filters,
         success: function(data) {
@@ -88,6 +111,7 @@ function calendarUpdate() {
     });
 
 
+    eventDates = [""];
     $.ajax({
         url: api_events,
         data: search,
@@ -158,28 +182,7 @@ function calendarUpdate() {
             if (eventDates.length === 1) {
                 $('.calendar-events').html('<p>Sorry, no events match your search criteria, please change your selection.</p>');
             }
-            $("#calendar-datepicker").datepicker({"onChangeMonthYear": function(year, month) {
-                    // Moment.month() expects zero-based month, datepicker callback returns typical month integer, thus subtract by 1
-                    m = moment().month(month - 1).year(year);
-                    search.date.start = m.startOf("month").format("YYYY-MM-DD");
-                    search.date.end   = m.endOf("month").format("YYYY-MM-DD");
-                    calendarUpdate();
-                },
-                beforeShowDay: function(date) {
-                    var m = date.getUTCMonth(), d = date.getUTCDate(), y = date.getUTCFullYear();
-                    for (i = 0; i < eventDates.length; i++) {
-                    if ($.inArray(y + '-' + (m + 1) + '-' + d, eventDates) !== -1) {
-                    return [true, 'calendar-matched-event-date'];
-                        }
-                        return [false, 'calendar-not-matched-event-date'];
-                    }
-                },
-                onSelect: function(date) {
-                date = new Date(date);
-                target = $('[data-date="' + date.getUTCMonth() + '-' + date.getUTCDate() + '"]');
-                    $("html,body").animate({scrollTop: target.offset().top}, 500);
-                }
-            });
+            $("#calendar-datepicker").datepicker("refresh");
         }
     });
 }

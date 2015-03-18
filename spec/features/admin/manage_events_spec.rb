@@ -82,7 +82,7 @@ feature "an admin or mentor can manage events", js: true do
       check "Paid"
       check "Stipend"
 
-      find("#create-event").trigger("click")
+      find("#create-event").click
 
       expect(page).to have_content("Calendar")
 
