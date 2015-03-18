@@ -39,7 +39,7 @@ gem "stripe-rails"
 gem "interactor-rails"
 gem "draper"
 
-group :production, :staging do
+group :production, :staging, :stage do
   gem "rails_12factor"
   gem "puma"
 end
