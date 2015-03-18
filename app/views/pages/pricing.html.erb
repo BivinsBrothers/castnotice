@@ -4,15 +4,15 @@
 <h1>Box Office</h1>
 <div class="row">
   <div class="col-md-3">
+    <h3>Annual Subscription</h3>
+    <h1 class="pricing">$5.83</h1>
+    <p>$69.99 paid annually</p>
+    <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::ANNUAL, promo_code: promo_code), :class => "btn register-annual" %>
+  </div>
+  <div class="col-md-3">
     <h3>Monthly Subscription</h3>
     <h1 class="pricing">$7.99</h1>
     <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::MONTHLY, promo_code: promo_code), class: "btn" %>
-  </div>
-  <div class="col-md-3">
-    <h3>Annual Subscription</h3>
-    <h1 class="pricing">$69.99</h1>
-    <p>Equivalent to $5.83/month</p>
-    <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::ANNUAL, promo_code: promo_code), :class => "btn register-annual" %>
   </div>
   <% if has_breakthrough_pricing? %>
     <div class="col-md-3">
@@ -26,7 +26,7 @@
 <div class="row">
   <div class="col-md-12">
     <h3>Membership Advantages</h3>
-    <ul>
+    <ul class="checkmark">
       <li>Geographical, financial and time barriers are eliminated.</li>
       <li>Producers, theaters, directors and all entertainment institutions will have access to the first searchable, filtered, global talent database.</li>
       <li>Aspiring performers receive constructive critiques on their performers’ videos and pictures while increasing exposure with top entertainment industry hiring professionals. </li>
