@@ -18,6 +18,13 @@
     </div>
     <div class="calendar-filters clearfix">
       <h2>Filter your results:</h2>
+
+      <% if current_user %>
+        <div>
+          <%= check_box_tag :my_preferences, 1, true %>
+          <%= label_tag :my_preferences %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

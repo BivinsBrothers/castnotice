@@ -15,6 +15,17 @@ var eventCount;
 
 function calendarBuild() {
 
+  $("#my_preferences").change(function(){
+    if ($(this).prop("checked")) {
+      $('.calendar-checkbox input').prop("checked", false);
+      $('.calendar-checkbox input.preference').prop("checked", true);
+      calendarUpdate();
+    } else {
+      $('.calendar-checkbox input').prop("checked", false);
+      calendarUpdate();
+    }
+  });
+
     $.ajax({
         url: api_filters,
         success: function(data) {
@@ -24,11 +35,12 @@ function calendarBuild() {
                         '<div class="calendar-option" id="filter-' + index + '" data-filter="' + key + '"><h3>' + filter.label + '</h3></div>'
                         );
                 $.each(filter.values, function(i, option) {
-                  var checked = $.inArray(parseInt(i), filter.selected_ids) != -1 ? "checked=checked" : "";
+                  var checked = $.inArray(parseInt(i), filter.selected_ids) != -1 ? "checked=checked class='preference'" : "";
                     $("#filter-" + index).append('<div class="calendar-checkbox"><input type="checkbox" ' + checked + ' id="filter-' + index + '-' + i + '" name="' + key + '" value="' + i + '"> <label for="filter-' + index + '-' + i + '">' + option + "</label></div>");
                 });
             });
             $('.calendar-checkbox input').change(function() {
+                $("#my_preferences").prop('checked', false);
                 calendarUpdate();
             });
             calendarUpdate();
