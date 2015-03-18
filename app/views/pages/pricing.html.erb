@@ -10,7 +10,7 @@
     <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::ANNUAL, promo_code: promo_code), :class => "btn register-annual" %>
   </div>
   <div class="col-md-3">
-    <h3>Monthly Subscription</h3>
+    <h3>Monthly</h3>
     <h1 class="pricing">$7.99</h1>
     <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::MONTHLY, promo_code: promo_code), class: "btn" %>
   </div>
