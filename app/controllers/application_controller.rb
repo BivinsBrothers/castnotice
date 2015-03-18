@@ -36,9 +36,13 @@ class ApplicationController < ActionController::Base
   end
 
   def enforce_promo_code_access
-    unless has_promo_code_or_logged_in? || (controller_name == 'pages' && params["id"] != "index")
+    unless has_promo_code_or_logged_in? || !term_of_service_page?
       redirect_to promo_path
     end
+  end
+
+  def term_of_service_page?
+    controller_name == 'pages' && params["id"] != "tos"
   end
 
   def ensure_admin
