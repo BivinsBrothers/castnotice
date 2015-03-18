@@ -14,14 +14,6 @@
     <h1 class="pricing">$7.99</h1>
     <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::MONTHLY, promo_code: promo_code), class: "btn" %>
   </div>
-  <% if has_breakthrough_pricing? %>
-    <div class="col-md-3">
-    <h3>Broadway Break Thru Annual Subscription</h3>
-    <h1 class="pricing">$59.99</h1>
-    <p>Equivalent to $4.99/month and includes 1 free critique.</p>
-    <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::BROADWAY, promo_code: promo_code), :class => "btn" %>
-  </div>
-<% end %>
 </div>
 <div class="row">
   <div class="col-md-12">
