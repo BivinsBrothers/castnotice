@@ -2,6 +2,7 @@ require "spec_helper"
 
 feature "searching resumes", js: true do
   before do
+    pending "search has been removed for now"
     enter_promo_code
 
     johnny = create(:user, name: "Johnny Five")

@@ -3,13 +3,6 @@
     <div class="logo">
       <%= link_to image_tag("logo.png", alt: "Cast Notice", class: "img-responsive"), root_path %>
     </div>
-    <div class="search">
-      <%= form_tag search_path, method: :get, id: "search-form" do %>
-        <%= label_tag :q, "Search", class: "hidden" %>
-        <%= text_field_tag :q, current_query, placeholder: "Search" %>
-        <%= submit_tag "Go", id: "btn-tiny" %>
-      <% end %>
-    </div>
     <div class="social">
     	<ul>
         <li><%= link_to image_tag("social/facebook.png", alt: "Cast Notice on Facebook"), "https://www.facebook.com/pages/CastNoticecom/297147789864" %></li>
