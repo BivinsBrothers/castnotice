@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def term_of_service_page?
-    controller_name == 'pages' && params["id"] != "tos"
+    controller_name == 'pages' && params["id"] != "tos" && params["id"] != "camp_terms"
   end
 
   def ensure_admin
