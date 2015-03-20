@@ -32,10 +32,31 @@
   <%= f.label :location_zip, "Zip code" %>
   <%= f.text_field :location_zip %>
 
+  <div class="input-wrapper"><%= f.label :birthday %>
+    <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %>
+  </div>
+
   <%= hidden_field_tag :account_type, "mentor" %>
   <%= f.hidden_field :mentor, value: true %>
 
   <%= f.fields_for :mentor_bio do |bio| %>
+    <%= bio.label :hometown  %>
+    <%= bio.text_field :hometown %>
+
+    <%= bio.label :current_city, "Current City"  %>
+    <%= bio.text_field :current_city %>
+
+    <div>
+      <%= bio.label :associated_to_college, "College/University?"  %>
+      <%= bio.check_box :associated_to_college %>
+    </div>
+
+    <%= bio.label :region_id, "Region"%>
+    <%= bio.select :region_id, for_select_by_model(Region) %>
+
+    <%= bio.label :college  %>
+    <%= bio.text_field :college %>
+
     <%= bio.label :company, "Current Company" %>
     <%= bio.text_field :company %>
     <%= bio.label :company_address, "Company Address" %>
@@ -55,26 +76,12 @@
     <%= bio.label :teaching_experience, "Teaching Experience" %>
     <%= bio.text_area :teaching_experience %>
 
-    <div class="union-checkbox collection-checkbox">
-      <h4>Talent Expertise</h4>
-      <%= bio.collection_check_boxes :talent_expertise, expertise_checkboxes, :last, :first %>
-    </div>
-
-    <div class="union-checkbox collection-checkbox">
-      <h4>Dance Expertise</h4>
-      <%= bio.collection_check_boxes :dance_style, dance_style_checkboxes, :last, :first %>
-    </div>
-
     <%= bio.label :education_experience, "Educational Experience" %>
     <%= bio.text_area :education_experience %>
 
     <%= bio.label :artistic_organizations, "Favorite Artistic Organizations" %>
     <%= bio.text_area :artistic_organizations %>
   <% end %>
-
-    <div class="input-wrapper"><%= f.label :birthday %>
-      <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %>
-    </div>
 
     <div>
       <%= link_to "Accept our Terms of Service", page_path("tos"), target: '_blank' %>

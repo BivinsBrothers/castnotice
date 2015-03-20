@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313143658) do
+ActiveRecord::Schema.define(version: 20150320193440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,13 +189,18 @@ ActiveRecord::Schema.define(version: 20150313143658) do
     t.string  "past_company"
     t.string  "current_projects"
     t.string  "teaching_experience"
-    t.string  "talent_expertise",       default: [], array: true
-    t.string  "dance_style",            default: [], array: true
+    t.string  "talent_expertise",       default: [],    array: true
+    t.string  "dance_style",            default: [],    array: true
     t.string  "education_experience"
     t.string  "artistic_organizations"
     t.integer "user_id"
     t.text    "biography"
     t.string  "company_phone"
+    t.string  "hometown"
+    t.boolean "associated_to_college",  default: false
+    t.string  "college"
+    t.string  "current_city"
+    t.integer "region_id"
   end
 
   create_table "messages", force: true do |t|
