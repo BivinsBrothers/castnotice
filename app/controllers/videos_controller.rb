@@ -11,13 +11,38 @@ class VideosController < ApplicationController
   end
 
   def create
-    @video = current_resume.videos.build(video_params)
-    unless @video.save
-      flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
+    if params["video"].present?
+      @video = current_resume.videos.build(video_params)
+
+      if @video.save
+        redirect_to edit_resume_path(anchor: 'video-anchor')
+      else
+        flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
+        redirect_to edit_resume_path
+      end
+    else
+      flash[:failure] = "Select the video to be uploaded"
+      redirect_to edit_resume_path
     end
 
-    redirect_to edit_resume_path(anchor: 'video-anchor')
   end
+
+  def create_from_link
+    if video_params["video_url"].blank?
+      flash[:failure] = "Enter the URL of a Youtube or Video video page"
+      redirect_to edit_resume_path
+    else
+      @video = current_resume.videos.build(video_params)
+      if @video.save
+        redirect_to edit_resume_path(anchor: 'video-anchor')
+      else
+        flash[:failure] = "Sorry unable to save your Video please correct errors: #{@video.errors.full_messages.to_sentence}"
+        redirect_to edit_resume_path
+      end
+    end
+  end
+
+
 
   def destroy
     @video = current_resume.videos.find_by_id(params[:id])

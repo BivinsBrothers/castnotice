@@ -38,7 +38,9 @@ Castnotice::Application.routes.draw do
   end
 
   resources :headshots, except: [:show, :edit, :index]
-  resources :videos, except: [:show, :update, :edit]
+  resources :videos, except: [:show, :update, :edit] do
+    post "video_from_link", to: "videos#create_from_link", on: :collection
+  end
 
   # Zencoder notification endpoint.
   post "/video_statuses" => "video_statuses#notify"

@@ -232,8 +232,9 @@
 		<div class="is-hidden new-video-form" id="new-video-form">
 			<div class="row">
 				<div class="col-md-5">
-		      <%= form_for @video, :multipart => true do |f| %>
+		      <%= form_for @video, url: video_from_link_videos_path, method: :post do |f| %>
 			      <%= f.text_field :video_url %>
+
 			      <%= f.submit "Save Video", :class => "video-save", :id => "upload-video-button" %>
 		      <% end %>
 
