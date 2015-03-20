@@ -69,7 +69,11 @@
 
     <div class="col-md-12">
       <%= f.submit "Save", :class => "resume-save" %>
-      <h2>Skills</h2>
+      <% if current_user.mentor? %>
+        <h2>Talent Expertise</h2>
+      <% else %>
+        <h2>Skills</h2>
+      <% end %>
     </div>
     <div class="col-md-6 skills">
       <% grouped_performance_skills.each do |category, skills| %>
