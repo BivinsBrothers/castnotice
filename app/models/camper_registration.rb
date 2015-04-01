@@ -15,6 +15,14 @@ class CamperRegistration < ActiveRecord::Base
     end
   end
 
+  def set_resumes
+    campers.each do |c|
+      if c.user && c.user.resume.nil?
+        c.user.build_resume
+      end
+    end
+  end
+
   def send_password_reset_emails!
     campers.each do |camper|
       if user = camper.user

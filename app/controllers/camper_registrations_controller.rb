@@ -19,6 +19,7 @@ class CamperRegistrationsController < ApplicationController
   def create
     @camper_registration = CamperRegistration.new(camper_registration_params)
     @camper_registration.set_missing_passwords
+    @camper_registration.set_resumes
     if @camper_registration.save
       session[:registration_id] = @camper_registration.id
       @camper_registration.send_password_reset_emails!
