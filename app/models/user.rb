@@ -69,6 +69,11 @@ class User < ActiveRecord::Base
     [parent_location, parent_location_two, parent_city, parent_state, parent_zip].select(&:present?).join(", ")
   end
 
+  def reset_campers_password_instructions!
+    token = set_reset_password_token
+    Notifier.reset_campers_password_instructions(self, token).deliver
+  end
+
   def stripe_customer
     @stripe_customer ||= begin
       Stripe::Customer.retrieve(stripe_customer_id)

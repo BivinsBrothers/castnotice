@@ -19,7 +19,7 @@ class CamperRegistration < ActiveRecord::Base
     campers.each do |camper|
       if user = camper.user
         if user.sign_in_count.to_i == 0
-          User.send_reset_password_instructions(email: user.email)
+          user.reset_campers_password_instructions!
         end
       end
     end

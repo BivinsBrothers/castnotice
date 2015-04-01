@@ -26,4 +26,11 @@ class Notifier < ActionMailer::Base
     mail :to => critique.user.email,
          :subject => "Critique Complete"
   end
+
+  def reset_campers_password_instructions(user, token)
+    @user = user
+    @token = token
+    mail to: user.email,
+      subject: "Reset password instructions"
+  end
 end
