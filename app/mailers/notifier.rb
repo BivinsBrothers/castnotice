@@ -30,7 +30,8 @@ class Notifier < ActionMailer::Base
   def reset_campers_password_instructions(user, token)
     @user = user
     @token = token
-    mail to: user.email,
+    email_to = user.under_18? ? user.parent_email : user.email
+    mail to: email_to,
       subject: "Reset password instructions"
   end
 end
