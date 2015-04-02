@@ -7,6 +7,7 @@ def full_event_hash(event)
      project_type: event.project_type.name,
      region: event.region.name,
      storyline: event.storyline,
+     start_date: event.start_date.strftime("%a, %b %e %Y"),
      how_to_audition: event.how_to_audition,
      audition_date: event.event_audition_dates.first.audition_date.strftime("%Y-%m-%d"),
      paid: event.paid,
