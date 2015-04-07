@@ -17,4 +17,6 @@
 //= require chosen.jquery.min
 //= require video
 //= require cocoon
+//= require transition
+//= require collapse
 //= require_tree .

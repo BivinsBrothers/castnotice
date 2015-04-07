@@ -1,6 +1,15 @@
 // JavaScript Document
 
 $(document).ready(function(){
+
+  $(".btn[data-toggle='collapse']").click(function() {
+      if ($(this).text() == 'Select') {
+          $(this).text('Selected');
+      } else {
+          $(this).text('Select');
+      }
+  });
+
 	$(window).scroll(function () {
 
     if($(window).scrollTop() > $(window).height()-105) {
