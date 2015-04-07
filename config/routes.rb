@@ -21,6 +21,7 @@ Castnotice::Application.routes.draw do
   resources :events, only: [:index]
   resources :categories, only: [:index]
 
+  resource :membership, only: [:create, :new]
   resource :camper_registration, only: [:new, :create, :show]
 
   resource :accounts, only: [:edit, :update]

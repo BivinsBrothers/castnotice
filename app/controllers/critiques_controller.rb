@@ -2,6 +2,7 @@ class CritiquesController < ApplicationController
   before_action :authenticate_user!
 
   before_action :able_to_create_critique?, only: [:new, :create]
+  before_action :check_membership, only: [:new, :create]
 
   def new
     @critique = Critique.new
@@ -63,5 +64,12 @@ class CritiquesController < ApplicationController
       critique_params[:video_attributes].delete(:video)
     end
     critique_params
+  end
+
+  def check_membership
+    unless current_user.has_membership?
+      flash[:alert] = 'CastNotice membership is required to request critiques'
+      redirect_to new_membership_path(redirect_to: new_critique_path)
+    end
   end
 end

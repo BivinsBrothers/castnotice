@@ -1,25 +1,25 @@
 $ ->
   Stripe.setPublishableKey "<%= Figaro.env.stripe_publishable_key %>"
-  token = false
-  $form = $("#user-registration-form")
+  $form = $("#user-registration-form, #membership_annual, #membership_monthly")
   return if $form.length == 0
 
-  stripeHandler = (status, response) =>
-    if (response.error)
-      $(".main-content").prepend($('<div class="error"></div>').text(response.error.message))
-      $form.find("button").prop("disabled", false)
-    else
-      token = response.id
-      $form.append($('<input type="hidden" name="stripe_token" />').val(token))
-      $form.submit()
-
-  $form.submit (e) =>
-    return true if token
-    $form.find("button").prop("disabled", true)
-    dates = $("#expiration").val().split("/")
+  $form.submit (e) ->
+    form = $(this)
+    token = form.find("input[name=stripe_token]")
+    return true if token.length
+    form.find("button").prop("disabled", true)
+    dates = form.find("#expiration").val().split("/")
+    stripeHandler = (status, response) ->
+      if (response.error)
+        $(".main-content").prepend($('<div class="flash failure"></div>').text(response.error.message))
+        form.find("button").prop("disabled", false)
+      else
+        token = response.id
+        form.append($('<input type="hidden" name="stripe_token" />').val(token))
+        form.submit()
     Stripe.card.createToken({
-      number: $("#card_number").val(),
-      cvc: $("#cvc").val(),
+      number: form.find("#card_number").val(),
+      cvc: form.find("#cvc").val(),
       exp_month: dates[0],
       exp_year: dates[1]
     }, stripeHandler)

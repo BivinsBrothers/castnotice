@@ -96,8 +96,9 @@ feature "camper registration", mysql: true do
 
     expect(page).to have_content "Thank you!"
 
-    expect(emails_sent_to('john@example.com').size).to eq(1)
-    expect(emails_sent_to('josie@example.com').size).to eq(1)
+    expect(emails_sent_to('john@example.com').size).to eq(0)
+    expect(emails_sent_to('josie@example.com').size).to eq(0)
+    expect(emails_sent_to('parent1@example.com').size).to eq(2)
 
 
     admin = create(:user, :admin)
@@ -138,6 +139,7 @@ feature "camper registration", mysql: true do
     expect(page).to have_content "Thank you!"
     expect(User.count).to eq(2)
     expect(emails_sent_to('john@example.com').size).to eq(0)
-    expect(emails_sent_to('josie@example.com').size).to eq(1)
+    expect(emails_sent_to('josie@example.com').size).to eq(0)
+    expect(emails_sent_to('parent1@example.com').size).to eq(1)
   end
 end

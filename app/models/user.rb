@@ -65,6 +65,10 @@ class User < ActiveRecord::Base
     [location_address, location_address_two, location_city, location_state, location_zip].select(&:present?).join(", ")
   end
 
+  def has_membership?
+    stripe_customer_id.present?
+  end
+
   def parent_address
     [parent_location, parent_location_two, parent_city, parent_state, parent_zip].select(&:present?).join(", ")
   end
