@@ -68,7 +68,7 @@ class CritiquesController < ApplicationController
 
   def check_membership
     unless current_user.has_membership?
-      flash[:alert] = 'CastNotice membership is required to request critiques'
+      flash[:notice] = 'CastNotice membership is required to request critiques'
       redirect_to new_membership_path(redirect_to: new_critique_path)
     end
   end

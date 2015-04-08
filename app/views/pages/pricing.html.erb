@@ -1,42 +1,29 @@
 <% content_for :background do %>
   <div class="bg-full" id="bg-pricing"></div>
 <% end %>
+
 <h1>Box Office</h1>
+
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     <h3>Annual Subscription</h3>
-    <h1 class="pricing">$5.83</h1>
-    <p>$69.99 paid annually</p>
+    <div class="row annual-price">
+      <div class="col-md-5">
+        <h1 class="pricing">$5.83</h1>
+      </div>
+      <div class="col-md-5 description">
+        <p>$69.99 paid annually</p>
+      </div>
+    </div>
     <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::ANNUAL, promo_code: promo_code), :class => "btn register-annual" %>
   </div>
-  <div class="col-md-3">
-    <h3>Monthly</h3>
+  <div class="col-md-4">
+    <h3>Monthly Subscription</h3>
     <h1 class="pricing">$7.99</h1>
     <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::MONTHLY, promo_code: promo_code), class: "btn" %>
   </div>
-  <div class="col-md-3">
-    <h3>Talent Mentor Professional Critiques</h3>
-    <h1 class="pricing">$24.99</h1>
-    <p>CastNotice Membership Required</p>
-  </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <h3>Membership Advantages</h3>
-    <ul class="checkmark">
-      <li>Receive constructive critiques on your videos and pictures and exposure from top entertainment industry hiring professionals.</li>
-      <li>Your videos, headshots and resumes are automatically formatted for all computers and mobile phones.</li>
-      <li>Extensive calendar of casting calls that automatically matches your profile. </li>
-      <li>The first searchable, filtered and curated global talent database.</li>
-      <li>Pre&ndash;audition for your choice universities and obtain invaluable feedback from department heads and faculty members.</li>
-      <li>Universities pre&ndash;recruiting using the database and critiqued videos.</li>
-      <li>Electronic industry invitation system for personal performances, appearances and special dates.</li>
-      <li>Q &amp; A sessions, educational forums and webisodes are hosted by foremost industry leaders.</li>
-      <li>Cutting edge social networking built around your calendar personal events.</li>
-      <li>Personal audition and performance journals built into subscribers&rsquo; profiles.</li>
-      <li>Connect with our global community of talent.</li>
-      <li>Geographical, financial and time barriers are eliminated.</li>
-    </ul>
-  </div>
-</div>
+
+<%= render 'shared/talent_mentor_pricing' %>
+<%= render 'shared/membership_advantages' %>
 
