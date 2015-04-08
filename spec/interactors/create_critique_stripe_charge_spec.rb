@@ -1,15 +1,15 @@
 require "spec_helper"
 
 describe CreateCritiqueStripeCharge do
-  let(:breakthru_user) { create(:user, 
+  let(:breakthru_user) { create(:user,
     stripe_customer_id: "cus_47oUnsvWTQWwPs",
     stripe_plan_id: "sub_4Mo72MSaDnWJdO"
   ) }
-  let(:standard_user) { create(:user, 
+  let(:standard_user) { create(:user,
     stripe_customer_id: "cus_47oUnsvWTQWwPs",
     stripe_plan_id: "sub_4CFLiZFRyp52ya"
   ) }
-  let(:user_with_invalid_payment_info) { create(:user, 
+  let(:user_with_invalid_payment_info) { create(:user,
     stripe_customer_id: "cus_4CKcopdQA6TpLA",
     stripe_plan_id: "sub_4CKcX10M49Xgsx"
   ) }
@@ -30,14 +30,16 @@ describe CreateCritiqueStripeCharge do
 
   context "with a broadway plan" do
     it "gives 1 free critique" do
-      result = described_class.call(
-        user: breakthru_user,
-        critique: critique
-      )
+      VCR.use_cassette("create_valid_stripe_critique_payment") do
+        result = described_class.call(
+          user: breakthru_user,
+          critique: critique
+        )
 
-      expect(result).to be_success
-      expect(result.critique.stripe_charge_id).to be_nil
-      expect(result.critique.payment_method).to eq("breakthru_free")
+        expect(result).to be_success
+        expect(result.critique.stripe_charge_id).to be_nil
+        expect(result.critique.payment_method).to eq("breakthru_free")
+      end
     end
 
     it "charges stripe for >=1 ctitique" do
