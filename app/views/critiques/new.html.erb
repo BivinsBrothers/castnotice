@@ -17,19 +17,32 @@
   </div>
 
   <h2>Critique Video</h2>
-  <p>Paste video URL from YouTube or Vimeo.</p>
-  <div>
-    <%= f.fields_for :videos do |ff| %>
-      <%= ff.text_field :video_url %>
-    <% end %>
-  </div>
+  <div class="row">
+    <p>Paste video URL from YouTube or Vimeo.</p>
+    <div class="col-md-5">
+      <%= f.fields_for :videos do |ff| %>
+        <%= ff.text_field :video_url %>
+      <% end %>
 
-  <p>or upload a video</p>
-  <div>
-    <%= f.fields_for :videos do |ff| %>
-      <%= ff.label :video %>
-      <%= ff.file_field :video %>
-    <% end %>
+      <p>or upload a video</p>
+      <%= f.fields_for :videos do |ff| %>
+        <%= ff.label :video %>
+        <%= ff.file_field :video %>
+      <% end %>
+    </div>
+
+    <div class="col-md-7">
+      <ul>
+        <li>You must be the only performer in your video.</li>
+        <li>Videos should be a maximum of 2 minutes.</li>
+        <li>Videos should be added using the URL of a YouTube or Vimeo video page </li>
+        <li>Check your video sound for clarity.</li>
+        <li>For best do not upload a video of you in a performance.  Film something specifically for CastNotice.com in the style of an audition.</li>
+        <li>Do not dress in costumes.  Dress in clothing you would normally wear.</li>
+        <li>Shooting your video close-up is more effective for Talent Mentors to critique your performance.</li>
+        <li>For best acting critiques upload a monologue instead of a scene.</li>
+      </ul>
+    </div>
   </div>
 
   <div class="critique-payment">
