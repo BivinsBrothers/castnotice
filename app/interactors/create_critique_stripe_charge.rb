@@ -20,7 +20,7 @@ class CreateCritiqueStripeCharge
   def paid_critique
     begin
       charge = Stripe::Charge.create(
-        amount: 2500,
+        amount: 2499,
         currency: "usd",
         customer: context.user.stripe_customer.id,
         description: "CastNotice Critique",
