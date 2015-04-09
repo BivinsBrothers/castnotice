@@ -1,6 +1,7 @@
 <h1>Critique Requested</h1>
 <%= link_to "Back to My Close Up", dashboard_path, class: "btn" %>
 <h3>Project Title: <%= @critique.project_title %></h3>
+<p>Resume: <%= link_to public_resume_url(@critique.user.resume.slug), public_resume_url(@critique.user.resume.slug) %> </p>
 <p>Critique Type: <%= @critique.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></p>
 <p>Project Notes: <%= @critique.notes %></p>
 

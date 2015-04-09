@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "Critique workflow" do
-  let(:user) { create(:user, 
+  let(:user) { create(:user,
     stripe_customer_id: "cus_47oUnsvWTQWwPs",
     stripe_plan_id: "sub_4CFLiZFRyp52ya"
   ) }
@@ -65,6 +65,7 @@ feature "Critique workflow" do
 
     scenario "can respond to a critique request" do
       visit critique_path(critique.uuid)
+      expect(page).to have_content(critique.user.resume.slug)
       expect(page).to have_content("Critique Requested")
       expect(page).to have_content("OZ")
       expect(page).to have_content("Dance")
