@@ -1,18 +1,12 @@
+<% content_for :background do %>
+  <div class="bg-full" id="bg-pricing"></div>
+<% end %>
 <h1>Membership</h1>
-
-<h2>Select a subscription</h2>
-
-<div class="row" id="memberships">
-  <div class="col-md-4">
+<div class="row">
+  <div class="col-md-3">
     <h3>Annual Subscription</h3>
-    <div class="row annual-price">
-      <div class="col-md-5">
-        <h1 class="pricing">$5.83</h1>
-      </div>
-      <div class="col-md-5 description">
-        <p>$69.99 paid annually</p>
-      </div>
-    </div>
+    <h1 class="pricing">$5.83</h1>
+    <p>$69.99 paid annually</p>
     <button class="btn register-annual collapsed" type="button" data-toggle="collapse" id="annual-btn" data-target="#annualsub" aria-expanded="false" aria-controls="annualsub">Select</button>
     <div class="collapse" id="annualsub">
       <h3>Credit Card Info</h3>
@@ -24,8 +18,8 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-4">
-    <h3>Monthly Subscription</h3>
+  <div class="col-md-3">
+    <h3>Monthly</h3>
     <h1 class="pricing">$7.99</h1>
     <button class="btn collapsed" type="button" data-toggle="collapse" id="monthly-btn" data-target="#monthlysub" aria-expanded="false" aria-controls="monthlysub">Select</button>
     <div class="collapse" id="monthlysub">
@@ -38,7 +32,14 @@
       <% end %>
     </div>
   </div>
+  <div>
+    <h3>Talent Mentor Professional Critiques</h3>
+    <h1 class="pricing">$24.99</h1>
+    <p>CastNotice Membership Required</p>
+  </div>
 </div>
-<%= render 'shared/talent_mentor_pricing' %>
-
-<%= render 'shared/membership_advantages' %>
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'shared/membership_advantages' %>
+  </div>
+</div>
