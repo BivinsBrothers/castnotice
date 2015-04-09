@@ -1,7 +1,7 @@
 <h1>Submit Critique Request</h1>
 
 <%= form_for @critique do |f| %>
-  <%= f.label :project_title, "Project Title" %>
+  <%= f.label :project_title, "Audition Title" %>
   <%= f.text_field :project_title %>
   <%= f.label :types, "Critique Type" %>
   <%= f.select(:types, type_select, {}, {multiple: true, size: 5})%>
