@@ -14,7 +14,7 @@ feature "managing mentor" do
     fill_in "Password", with: "superpass"
     fill_in "Password confirmation", with: "superpass"
     fill_in "Hometown", with: "Jacksonville"
-    check "College/University?"
+    check "Are you a current College/University Faculty Member?"
     fill_in "College", with: "UNF"
     fill_in "Current City", with: "Chicago"
     select "Western", from: "Region"

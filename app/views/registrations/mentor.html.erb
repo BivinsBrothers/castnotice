@@ -47,15 +47,15 @@
     <%= bio.text_field :current_city %>
 
     <div>
-      <%= bio.label :associated_to_college, "College/University?"  %>
+      <%= bio.label :associated_to_college, "Are you a current College/University Faculty Member?"  %>
       <%= bio.check_box :associated_to_college %>
     </div>
 
-    <%= bio.label :region_id, "Region"%>
-    <%= bio.select :region_id, for_select_by_model(Region) %>
-
     <%= bio.label :college  %>
     <%= bio.text_field :college %>
+
+    <%= bio.label :region_id, "Region"%>
+    <%= bio.select :region_id, for_select_by_model(Region) %>
 
     <%= bio.label :company, "Current Company" %>
     <%= bio.text_field :company %>
