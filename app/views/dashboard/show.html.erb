@@ -52,7 +52,7 @@
         <p>Add YouTube or Vimeo links to embed video into your resume.</p>
 
         <% if current_resume.videos.present? %>
-          <% current_resume.videos.processed.each do |video| %>
+          <% current_resume.videos.available.each do |video| %>
             <%= render "shared/video_player", video: video %>
           <% end %>
         <% else %>

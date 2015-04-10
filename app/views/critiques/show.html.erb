@@ -22,7 +22,7 @@
 
 <% if @critique.videos.present? %>
   <h4>Video:</h4>
-  <% @critique.videos.processed.each do |video| %>
+  <% @critique.videos.available.each do |video| %>
     <div>
       <%= render "shared/video_player", video: video %>
     </div>
@@ -77,7 +77,7 @@
       <div class="col-md-12">
         <% if @critique.response.videos.present? %>
           <h3>Video</h3>
-          <% @critique.response.videos.processed.each do |video| %>
+          <% @critique.response.videos.available.each do |video| %>
             <div>
               <%= render "shared/video_player", video: video %>
             </div>

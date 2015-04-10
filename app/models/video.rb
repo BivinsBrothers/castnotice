@@ -10,6 +10,12 @@ class Video < ActiveRecord::Base
 
   scope :processed, -> { where.not(video_job_status: "processing") }
 
+  scope :available, -> do
+    t = self.arel_table
+    where(t[:video_job_status].eq('finished')
+      .or(t[:video_url].not_eq(nil)))
+  end
+
   def resume=(resume)
     self.videoable = resume
   end
