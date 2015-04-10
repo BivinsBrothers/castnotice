@@ -90,12 +90,27 @@ feature "Critique workflow" do
     scenario "talent receives an email when critique request is completed" do
       visit critique_path(critique.uuid)
       fill_in "critique_response_body", with: "Looks Great!"
+      fill_in "critique_response_headshot_comment", with: "Great picture"
+      fill_in "critique_response_resume_comment", with: "How about skills?"
+      fill_in "critique_response_improvement_comment", with: "Improve the video quality"
+      fill_in "critique_response_overall_comment", with: "Overall is really good"
       click_button "Respond"
 
       open_email critique.user.email
 
       expect(current_email.body).to have_content("Your Critique Request has been completed please click the link provided to review.")
       expect(current_email.body).to have_content(critique_url(critique.uuid))
+
+      log_out
+      log_in critique.user
+      visit critique_url(critique.uuid)
+      expect(page).to have_content(critique.project_title)
+      expect(page).to have_content(critique.response.body)
+      expect(page).to have_content(critique.response.resume_comment)
+      expect(page).to have_content(critique.response.headshot_comment)
+      expect(page).to have_content(critique.response.overall_comment)
+      expect(page).to have_content(critique.response.improvement_comment)
+
     end
 
     scenario "mentor can view index of available critique requests" do

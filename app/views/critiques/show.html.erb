@@ -39,14 +39,38 @@
             <%= image_tag(@critique.response.user.resume.profile_photo.image_url(:profile_photo)) %>
           </div>
         <% end %>
-        <div class="col-md-8">
-          <h3><%= @critique.response.user.name %></h3>
-        </div>
+      </div>
+      <div class="col-md-8">
+        <h3><%= @critique.response.user.name %></h3>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <p><%= @critique.response.body %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        Headshot:
+        <p><%= @critique.response.headshot_comment %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        Resume:
+        <p><%= @critique.response.resume_comment %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        What to improve?
+        <p><%= @critique.response.improvement_comment %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        Overall Comments:
+        <p><%= @critique.response.overall_comment %></p>
       </div>
     </div>
     <div class="row">
@@ -67,6 +91,14 @@
         <%= form_for @critique_response, url: critique_response_path(@critique.uuid) do |f| %>
           <%= f.label :body, "Please type your response here." %>
           <%= f.text_area :body %>
+          <%= f.label :headshot_comment , "Headshot:" %>
+          <%= f.text_area :headshot_comment %>
+          <%= f.label :resume_comment, "Resume" %>
+          <%= f.text_area :resume_comment %>
+          <%= f.label :improvement_comment, "What To Improve" %>
+          <%= f.text_area :improvement_comment %>
+          <%= f.label :overall_comment, "Overall Comments" %>
+          <%= f.text_area :overall_comment %>
 
           <%= f.fields_for :videos do |ff| %>
             <%= ff.label :video, "Upload A Video Response" %>

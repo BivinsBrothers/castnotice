@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320193440) do
+ActiveRecord::Schema.define(version: 20150410133622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 20150320193440) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "headshot_comment"
+    t.text     "resume_comment"
+    t.text     "improvement_comment"
+    t.text     "overall_comment"
   end
 
   add_index "critique_responses", ["critique_id"], name: "index_critique_responses_on_critique_id", using: :btree
