@@ -5,7 +5,7 @@ feature "managing mentor" do
     enter_promo_code
     create(:region, name: "Central")
     create(:region, name: "Western")
-    click_link "talent mentor register"
+    visit '/users/sign_up/mentor'
 
     expect(page).to have_content("Mentor Account")
 
