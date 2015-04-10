@@ -17,6 +17,9 @@
 </div>
 
 <%= link_to "Edit Resume", edit_resume_path, class: "btn", id: "dashboard-edit-resume" %>
+<% if current_user.mentor? %>
+  <%= link_to "Post Your Casting Notices", page_path("calendar"), class: "btn" %>
+<% end %>
 
 <% if current_user.resume %>
   <%= link_to "Print Resume", print_resume_path(current_user.resume.slug), target: "_blank", class: "btn" %>
