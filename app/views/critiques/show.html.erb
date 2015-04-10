@@ -1,9 +1,9 @@
 <h1>Critique Requested</h1>
 <%= link_to "Back to My Close Up", dashboard_path, class: "btn" %>
-<h3>Project Title: <%= @critique.project_title %></h3>
+<h3>Audition Title: <%= @critique.project_title %></h3>
 <p>Resume: <%= link_to public_resume_url(@critique.user.resume.slug), public_resume_url(@critique.user.resume.slug) %> </p>
 <p>Critique Type: <%= @critique.types.map {|t| I18n.t("helpers.label.critique.types.#{t}")}.join(", ") %></p>
-<p>Project Notes: <%= @critique.notes %></p>
+<p>Audition Notes: <%= @critique.notes %></p>
 
 <div class="row">
   <div class="col-md-12">
@@ -22,11 +22,27 @@
 
 <% if @critique.videos.present? %>
   <h4>Video:</h4>
-  <% @critique.videos.available.each do |video| %>
-    <div>
-      <%= render "shared/video_player", video: video %>
+  <div class="row">
+    <div class="col-md-12">
+      <% @critique.videos.available.each do |video| %>
+        <div>
+          <%= render "shared/video_player", video: video %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="col-md-12">
+      <h4>How it works:</h4>
+      <ul>
+        <li>Talent Mentors are paid $20 for each video critiqued</li>
+        <li>Payment is sent via check on the 1st of every month</li>
+        <li>Watch performers 2 minute video</li>
+        <li>Take notes during their video</li>
+        <li>Record your 6 minute professional critique about their performance, their resume and their headshots</li>
+        <li>Complete the critique form</li>
+        <li>Click “Send Critique”</li>
+      </ul>
+    </div>
+  </div>
 <% end %>
 
 <div>
@@ -107,7 +123,7 @@
 
           <div class="row">
             <div class="col-md-12">
-              <%= f.submit "Respond", class: "btn" %>
+              <%= f.submit "Send Critique", class: "btn" %>
             </div>
           </div>
         </div>

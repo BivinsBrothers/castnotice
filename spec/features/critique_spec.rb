@@ -78,7 +78,7 @@ feature "Critique workflow" do
 
       attach_file "critique_response_videos_attributes_0_video", "#{Rails.root}/spec/fixtures/sample.mov"
 
-      click_button "Respond"
+      click_button "Send Critique"
 
       expect(page).to have_content("Your response has been sent.")
       expect(current_path).to eq(critiques_path)
@@ -94,7 +94,7 @@ feature "Critique workflow" do
       fill_in "critique_response_resume_comment", with: "How about skills?"
       fill_in "critique_response_improvement_comment", with: "Improve the video quality"
       fill_in "critique_response_overall_comment", with: "Overall is really good"
-      click_button "Respond"
+      click_button "Send Critique"
 
       open_email critique.user.email
 
