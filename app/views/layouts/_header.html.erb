@@ -48,7 +48,9 @@
           <% if current_user.admin? %>
             <%= link_to "Camps", admin_camps_path %>
             /
-            <%= link_to "Mentors", admin_users_path(type: "mentors") %>
+          <% end %>
+          <% if current_user.superadmin? %>
+            <%= link_to "Mentors", superadmin_users_path(type: "mentors") %>
             /
           <% end %>
           <% if current_user.can_send_messages? %>

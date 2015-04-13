@@ -11,13 +11,13 @@ Castnotice::Application.routes.draw do
 
   namespace :admin do
     resources :camps
-    resources :users, only: [:index, :edit, :update]
     resources :events, except: [:show, :index] do
       resources :roles
     end
   end
 
   namespace :superadmin do
+    resources :users, only: [:index, :edit, :update]
     get "/mentors/invite", to: "mentors#invite"
     post "/mentors/send_invite", to: "mentors#send_invite"
   end

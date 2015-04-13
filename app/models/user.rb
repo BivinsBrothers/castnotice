@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
 
   scope :talent_mentors, -> { where(mentor: true).order(:email) }
 
+  def superadmin?
+    email == "hello@castnotice.com" ? true : false
+  end
+
   def happy_birthday?
     birthday.day == Date.current.day && birthday.month == Date.current.month
   end

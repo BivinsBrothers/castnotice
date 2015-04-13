@@ -1,4 +1,5 @@
 class Superadmin::MentorsController < ApplicationController
+  before_action :ensure_superadmin
 
   def send_invite
     email = params[:email]

@@ -1,4 +1,5 @@
-class Admin::UsersController < ApplicationController
+class Superadmin::UsersController < ApplicationController
+  before_action :ensure_superadmin
 
   def index
     @mentors = User.talent_mentors
@@ -12,7 +13,7 @@ class Admin::UsersController < ApplicationController
     @mentor = User.find(params[:id])
     if @mentor.update_attributes(user_params)
       flash[:notice] = "Talent mentor successfully updated"
-      redirect_to admin_users_path
+      redirect_to superadmin_users_path
     else
       render :edit
     end

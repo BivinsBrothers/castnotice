@@ -51,6 +51,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_superadmin
+    user = User.find_by_email("hello@castnotice.com")
+    unless current_user && current_user == user
+      redirect_to promo_path
+    end
+  end
+
   def has_promo_code_or_logged_in?
     !! current_user || has_promo_code?
   end

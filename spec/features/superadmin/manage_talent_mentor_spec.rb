@@ -5,6 +5,7 @@ feature "superadmin can manage mentor" do
   let!(:mentor) { create(:user, :mentor, email: 'mentor@example.com', name: "m1") }
   let!(:mentor1) { create(:user, :mentor, email: 'mentor1@example.com', name: "m2") }
   let!(:admin)  { create(:user, :admin) }
+  let!(:superadmin) { create(:user, :admin, email: 'hello@castnotice.com') }
 
   scenario "views list" do
     log_in user
@@ -16,6 +17,11 @@ feature "superadmin can manage mentor" do
     click_link "sign out"
 
     log_in admin
+    expect(page).not_to have_link("Mentors")
+    click_link "sign out"
+
+    log_in superadmin
+
     within(".login") { click_link "Mentors" }
     expect(page).to have_content(mentor.email)
     expect(page).to have_content(mentor.name)
