@@ -1,0 +1,21 @@
+<% if @mentor.errors.any? %>
+<div id="error_explanation">
+  <ul>
+    <% @mentor.errors.full_messages.each do |msg| %>
+      <li class="error"><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<h1> Edit Mentor </h1>
+<%= form_for @mentor, url: admin_user_path(@mentor), method: :put  do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :mentor, "Mentor?" %>
+  <%= f.check_box :mentor %>
+  <fieldset>
+    <%= f.submit "Save" %>
+  </fieldset>
+<% end %>

@@ -11,7 +11,7 @@ Castnotice::Application.routes.draw do
 
   namespace :admin do
     resources :camps
-    resources :mentors, only: :index
+    resources :users, only: [:index, :edit, :update]
     resources :events, except: [:show, :index] do
       resources :roles
     end

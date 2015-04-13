@@ -5,6 +5,7 @@
     <tr>
       <th>Email</th>
       <th>Name</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -12,6 +13,7 @@
       <tr>
         <td><%= mentor.email %></td>
         <td><%= mentor.name %></td>
+        <td><%= link_to "Edit", edit_admin_user_path(mentor) %></td>
       </tr>
     <% end %>
   </tbody>
