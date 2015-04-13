@@ -9,6 +9,6 @@ class Superadmin::MentorsController < ApplicationController
     else
       flash[:failure] = "Your invite failed to be sent, please try again."
     end
-    redirect_to admin_users_path
+    redirect_to superadmin_users_path
   end
 end
