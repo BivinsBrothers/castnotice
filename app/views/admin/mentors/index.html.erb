@@ -1,0 +1,18 @@
+<h1> Mentors </h1>
+
+<table class="standard">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- @mentors.each do |mentor| %>
+      <tr>
+        <td><%= mentor.email %></td>
+        <td><%= mentor.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

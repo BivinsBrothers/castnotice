@@ -37,4 +37,12 @@ describe User do
 
     expect(user.save).to be_truthy
   end
+
+  it "scopes: talent mentors" do
+    user = create(:user)
+    mentor = create(:user, email: 'cba@example.com', mentor: true)
+    mentor1 = create(:user, email: 'abc@example.com', mentor: true)
+
+    expect(User.talent_mentors).to eq([mentor1, mentor])
+  end
 end

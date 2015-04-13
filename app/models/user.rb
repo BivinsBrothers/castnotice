@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   validates_presence_of :location_address, :location_city, :location_state,
     :location_zip, on: :create, if: :camper
 
+  scope :talent_mentors, -> { where(mentor: true).order(:email) }
+
   def happy_birthday?
     birthday.day == Date.current.day && birthday.month == Date.current.month
   end

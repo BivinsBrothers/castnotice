@@ -48,6 +48,8 @@
           <% if current_user.admin? %>
             <%= link_to "Camps", admin_camps_path %>
             /
+            <%= link_to "Mentors", admin_mentors_path %>
+            /
           <% end %>
           <% if current_user.can_send_messages? %>
             <span id="message-header"><%= message_toolbar %></span>
