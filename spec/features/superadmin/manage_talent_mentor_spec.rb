@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "an admin can manage mentor" do
+feature "superadmin can manage mentor" do
   let!(:user)  { create(:user) }
   let!(:mentor) { create(:user, :mentor, email: 'mentor@example.com', name: "m1") }
   let!(:mentor1) { create(:user, :mentor, email: 'mentor1@example.com', name: "m2") }

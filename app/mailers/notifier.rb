@@ -34,4 +34,10 @@ class Notifier < ActionMailer::Base
     mail to: email_to,
       subject: "Reset password instructions"
   end
+
+  def invite_talent_mentors(email_to)
+    @email = email_to
+    mail to: email_to,
+         subject: "Invitation"
+  end
 end

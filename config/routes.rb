@@ -17,6 +17,11 @@ Castnotice::Application.routes.draw do
     end
   end
 
+  namespace :superadmin do
+    get "/mentors/invite", to: "mentors#invite"
+    post "/mentors/send_invite", to: "mentors#send_invite"
+  end
+
   resource :promo, only: [:create, :show], controller: "promo"
 
   resources :events, only: [:index]
