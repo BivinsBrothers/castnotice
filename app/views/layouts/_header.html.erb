@@ -58,7 +58,7 @@
           <%= link_to "sign out", destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to "register", page_path("pricing") %> /
-          <%= link_to "log in", new_user_session_path %> /
+          <%= link_to "log in", new_user_session_path %>
         <% end %>
       </div>
     </div><!-- /.navbar-collapse -->
