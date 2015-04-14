@@ -2,18 +2,23 @@ class Superadmin::UsersController < ApplicationController
   before_action :ensure_superadmin
 
   def index
-    @mentors = User.talent_mentors
+    @account_type = params[:type]
+    if @account_type == "admins"
+      @users = User.admins
+    elsif @account_type == "mentors"
+      @users = User.talent_mentors
+    end
   end
 
   def edit
-    @mentor = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
-    @mentor = User.find(params[:id])
-    if @mentor.update_attributes(user_params)
-      flash[:notice] = "Talent mentor successfully updated"
-      redirect_to superadmin_users_path
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:notice] = "User successfully updated"
+      redirect_to :back
     else
       render :edit
     end
@@ -23,7 +28,8 @@ class Superadmin::UsersController < ApplicationController
     params.require(:user).permit(
       :name,
       :email,
-      :mentor
+      :mentor,
+      :admin
     )
   end
 end

@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
     :location_zip, on: :create, if: :camper
 
   scope :talent_mentors, -> { where(mentor: true).order(:email) }
+  scope :admins, -> { where(admin: true).order(:email) }
 
   def superadmin?
     email == "hello@castnotice.com" ? true : false

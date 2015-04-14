@@ -1,5 +1,7 @@
-<h1> Mentors </h1>
-<%= link_to "Invite", superadmin_mentors_invite_path, class: "btn" %>
+<h1><%= @account_type.titleize %> </h1>
+<% if @account_type == "mentors" %>
+  <%= link_to "Invite", superadmin_mentors_invite_path, class: "btn" %>
+<% end %>
 
 <table class="standard">
   <thead>
@@ -10,11 +12,11 @@
     </tr>
   </thead>
   <tbody>
-    <%- @mentors.each do |mentor| %>
+    <%- @users.each do |user| %>
       <tr>
-        <td><%= mentor.email %></td>
-        <td><%= mentor.name %></td>
-        <td><%= link_to "Edit", edit_superadmin_user_path(mentor) %></td>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= link_to "Edit", edit_superadmin_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>

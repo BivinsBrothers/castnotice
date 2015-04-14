@@ -1,18 +1,20 @@
-<% if @mentor.errors.any? %>
+<% if @user.errors.any? %>
 <div id="error_explanation">
   <ul>
-    <% @mentor.errors.full_messages.each do |msg| %>
+    <% @user.errors.full_messages.each do |msg| %>
       <li class="error"><%= msg %></li>
     <% end %>
   </ul>
 </div>
 <% end %>
-<h1> Edit Mentor </h1>
-<%= form_for @mentor, url: superadmin_user_path(@mentor), method: :put  do |f| %>
+<h1> Edit Mentor/Admin </h1>
+<%= form_for @user, url: superadmin_user_path(@user), method: :put  do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.label :email %>
   <%= f.text_field :email %>
+  <%= f.label :admin, "Admin?" %>
+  <%= f.check_box :admin %>
   <%= f.label :mentor, "Mentor?" %>
   <%= f.check_box :mentor %>
   <fieldset>

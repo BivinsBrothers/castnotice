@@ -12,7 +12,7 @@ feature "superadmin can manage mentor" do
     expect(page).not_to have_link("Mentors")
     click_link "sign out"
 
-    log_in user
+    log_in mentor
     expect(page).not_to have_link("Mentors")
     click_link "sign out"
 
@@ -34,6 +34,7 @@ feature "superadmin can manage mentor" do
     uncheck "Mentor?"
     click_button "Save"
 
+    within(".login") { click_link "Mentors" }
     expect(page).to have_content(mentor.email)
     expect(page).to have_content(mentor.name)
     expect(page).to_not have_content(mentor1.email)

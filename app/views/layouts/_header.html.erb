@@ -46,6 +46,8 @@
       <div class="login">
         <% if current_user %>
           <% if current_user.superadmin? %>
+            <%= link_to "Admins", superadmin_users_path(type: "admins") %>
+            /
             <%= link_to "Camps", superadmin_camps_path %>
             /
             <%= link_to "Mentors", superadmin_users_path(type: "mentors") %>
