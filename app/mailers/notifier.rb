@@ -38,6 +38,6 @@ class Notifier < ActionMailer::Base
   def invite_talent_mentors(email_to)
     @email = email_to
     mail to: email_to,
-         subject: "Invitation"
+         subject: "We Want To Hire You"
   end
 end
