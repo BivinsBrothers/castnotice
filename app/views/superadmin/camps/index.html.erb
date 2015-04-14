@@ -6,7 +6,7 @@
     <div class="row critique-request">
       <h3><%= camp.name %></h3>
       <p>code: <%= camp.code %></p>
-      <p><%= link_to "edit", edit_admin_camp_path(camp) %></p>
+      <p><%= link_to "edit", edit_superadmin_camp_path(camp) %></p>
       <h4>Unregistered</h4>
       <% if @unregistered[camp.code].present? %>
         <p><small>Successfully ordered this camp, but have not yet registered here</small></p>
@@ -24,7 +24,7 @@
       <h4>Registered</h4>
       <p><%= pluralize camp.camper_count, "camper" %> are fully registered</p>
       <p>
-        <%= link_to "download roster (csv)", admin_camp_path(camp, format: :csv) %>
+        <%= link_to "download roster (csv)", superadmin_camp_path(camp, format: :csv) %>
       </p>
     </div>
   </div>
@@ -32,5 +32,5 @@
 <% end %>
 
 <p>
-  <%= link_to "Add new camp", new_admin_camp_path, class: "btn" %>
+  <%= link_to "Add new camp", new_superadmin_camp_path, class: "btn" %>
 </p>

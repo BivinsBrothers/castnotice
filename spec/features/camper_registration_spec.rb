@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "camper registration", mysql: true do
+feature "camper registration" do
   let(:mysql_conn) { MysqlConnection.create }
 
   def select_date(date, options = {})
@@ -104,8 +104,13 @@ feature "camper registration", mysql: true do
     admin = create(:user, :admin)
     log_in admin
     within "header nav" do
-      click_on "Camps"
+      expect(page).to_not have_content("Camps")
     end
+    click_link "sign out"
+
+    superadmin = create(:user, :admin, email: 'hello@castnotice.com')
+    log_in superadmin
+    click_on "Camps"
 
     expect(page).to have_selector("h1", text: "Camps")
     within ".main-content" do

@@ -1,5 +1,5 @@
-class Admin::CampsController < ApplicationController
-  before_action :ensure_admin
+class Superadmin::CampsController < ApplicationController
+  before_action :ensure_superadmin
   before_action :find_camp, only: [:edit, :update]
 
   def index
@@ -18,7 +18,7 @@ class Admin::CampsController < ApplicationController
   def create
     camp.attributes = camp_params
     if camp.save
-      redirect_to admin_camps_path
+      redirect_to superadmin_camps_path
     else
       render :new
     end
