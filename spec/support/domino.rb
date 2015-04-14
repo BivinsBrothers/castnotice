@@ -282,6 +282,10 @@ module Dom
       node.find(".plan-information").text.partition("Plan Level: ").last
     end
 
+    def admin_account
+      node.find("#account_type").text
+    end
+
     def full_name
       find_field("Full Name").value
     end

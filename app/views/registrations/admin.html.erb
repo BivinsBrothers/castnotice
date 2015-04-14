@@ -1,0 +1,48 @@
+<h1>Admin an account</h1>
+
+<%= devise_error_messages! %>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {:id => "user-registration-form"}) do |f| %>
+
+  <%= hidden_field_tag :account_type, @account_type %>
+  <%= f.hidden_field :mentor, value: @account_type == "mentor" %>
+
+  <%= f.label :name, "Full Name" %>
+  <%= f.text_field :name, :autofocus => true %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.label :location_address, "Address One" %>
+  <%= f.text_field :location_address %>
+
+  <%= f.label :location_address_two, "Address Two" %>
+  <%= f.text_field :location_address_two %>
+
+  <%= f.label :location_city, "City" %>
+  <%= f.text_field :location_city %>
+
+  <%= f.label :location_state, "State" %>
+  <%= f.select :location_state, us_states_select %>
+
+  <%= f.label :location_zip, "Zip Code" %>
+  <%= f.text_field :location_zip %>
+
+  <%= f.hidden_field :admin, value: "1"%>
+
+  <div class="input-wrapper"><%= f.label :birthday %>
+  <%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, :include_blank => true %></div>
+
+  <div>
+    <%= link_to "Accept our Terms of Service", page_path("tos"), target: '_blank' %>
+    <%= f.check_box :tos %>
+  </div>
+
+  <%= f.submit "Sign up" %>
+<% end %>

@@ -3,7 +3,10 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     @account_type = params[:account_type]
-    if @account_type == "mentor"
+    if @account_type == "new_admin"
+      @user = User.new
+      render :admin, locals: { resource: @user }
+    elsif @account_type == "mentor"
       @user = User.new
       @user.build_mentor_bio
       render :mentor, locals: { resource: @user }
@@ -16,7 +19,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @account_type = params[:account_type]
-    if @account_type == "mentor"
+    if @account_type == "mentor" || @account_type == "new_admin"
       result = CreateUser.call( user_attributes: registration_params )
     else
       result = CreateUserAndStripeCustomer.call(
@@ -32,7 +35,9 @@ class RegistrationsController < Devise::RegistrationsController
     else
       flash[:failure] = result.error
       @user = result.user
-      if @account_type == "mentor"
+      if @account_type == "new_admin"
+        render :admin, locals: { resource: @user }
+      elsif @account_type == "mentor"
         render :mentor, locals: { resource: @user }
       else
         render :new
@@ -47,7 +52,7 @@ class RegistrationsController < Devise::RegistrationsController
           .permit( :name, :email, :password, :password_confirmation, :location_address, :location_address_two,
                    :location_city, :location_state, :location_zip, :birthday, :parent_name, :parent_email,
                    :parent_location, :parent_location_two, :parent_city, :parent_state, :parent_zip, :parent_phone,
-                   :tos, :stripe_token, :mentor, :company, :company_address, :company_phone_number, :past_companies, :current_projects,
+                   :tos, :stripe_token, :admin, :mentor, :company, :company_address, :company_phone_number, :past_companies, :current_projects,
                    :teaching_experience, :talent_expertise, :dance_style, :education_experience, :artistic_organizations,
                    mentor_bio_attributes: [:company, :company_address, :company_phone, :past_company, :current_projects, :biography,
                                            :teaching_experience, :education_experience, :artistic_organizations, :hometown,

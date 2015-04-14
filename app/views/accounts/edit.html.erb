@@ -2,6 +2,11 @@
 <div class="account-information">
 
   <p>Your account information is listed below.</p>
+  <% if @user.admin? %>
+    <div id="account_type">
+      <h4>Admin</h4>
+    </div>
+  <% end %>
   <% if @user.stripe_plan %>
     <div class="plan-information">
       Plan Level: <%= @user.stripe_plan.plan.name %>
@@ -12,7 +17,7 @@
     <ul>
       <% @user.errors.full_messages.each do |msg| %>
         <li class="error"><%= msg %></li>
-      <% end %>      
+      <% end %>
     </ul>
   </div>
   <% end %>
