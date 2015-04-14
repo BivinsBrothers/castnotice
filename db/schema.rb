@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20150415143825) do
     t.string    "project_title"
     t.text      "storyline"
     t.text      "how_to_audition"
+    t.datetime  "audition_date"
     t.datetime  "start_date"
     t.boolean   "paid",                    default: false, null: false
     t.datetime  "created_at"
@@ -164,6 +165,7 @@ ActiveRecord::Schema.define(version: 20150415143825) do
     t.integer   "user_id"
   end
 
+  add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
   add_index "events", ["project_type_id"], name: "index_events_on_project_type_id", using: :btree
   add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
 
