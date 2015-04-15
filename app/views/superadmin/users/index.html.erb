@@ -8,6 +8,7 @@
     <tr>
       <th>Email</th>
       <th>Name</th>
+      <th>Birthday</th>
       <th></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= user.email %></td>
         <td><%= user.name %></td>
+        <td><%= user.birthday %> </td>
         <td><%= link_to "Edit", edit_superadmin_user_path(user) %></td>
       </tr>
     <% end %>

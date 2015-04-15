@@ -4,14 +4,16 @@ class Superadmin::UsersController < ApplicationController
   def index
     @account_type = params[:type]
     if @account_type == "admins"
-      @users = User.admins
+      @users = User.admins.decorate
     elsif @account_type == "mentors"
-      @users = User.talent_mentors
+      @users = User.talent_mentors.decorate
+    else
+      @users = User.all.order("email").decorate
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]).decorate
   end
 
   def update
@@ -26,10 +28,10 @@ class Superadmin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :name,
-      :email,
-      :mentor,
-      :admin
-    )
+      :name, :email, :mentor, :admin, :location_address,
+      :location_address_two, :location_city, :location_state,
+      :location_zip, :parent_name, :parent_email,
+      :parent_location, :parent_location_two, :parent_city,
+      :parent_state, :parent_zip, :parent_phone)
   end
 end

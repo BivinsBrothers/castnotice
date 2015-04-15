@@ -7,14 +7,62 @@
   </ul>
 </div>
 <% end %>
-<h1> Edit Mentor/Admin </h1>
+<h1> Edit User </h1>
+<% if @user.stripe_plan %>
+  <div class="plan-information">
+    <h3>Plan Level: <%= @user.stripe_plan.plan.name %></h3>
+  </div>
+<% end %>
 <%= form_for @user, url: superadmin_user_path(@user), method: :put  do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+
   <%= f.label :email %>
   <%= f.text_field :email %>
+
+  <%= f.label :location_address, "Address One" %>
+  <%= f.text_field :location_address %>
+
+  <%= f.label :location_address_two, "Address Two" %>
+  <%= f.text_field :location_address_two %>
+
+  <%= f.label :location_city, "City" %>
+  <%= f.text_field :location_city %>
+
+  <%= f.label :location_state, "State" %>
+  <%= f.select :location_state, us_states_select, include_blank: true %>
+
+  <%= f.label :location_zip, "Zip Code" %>
+  <%= f.text_field :location_zip %>
+
+
+  <%= f.label :parent_name, "Parents Fullname" %>
+  <%= f.text_field :parent_name %>
+
+  <%= f.label :parent_email, "Parents Email" %>
+  <%= f.email_field :parent_email %>
+
+  <%= f.label :parent_location, "Parents Street Address" %>
+  <%= f.text_field :parent_location %>
+
+  <%= f.label :parent_location_two, "Parents Suite/Apt" %>
+  <%= f.text_field :parent_location_two %>
+
+  <%= f.label :parent_city, "Parents City" %>
+  <%= f.text_field :parent_city %>
+
+  <%= f.label :parent_state, "Parents State" %>
+  <%= f.select :parent_state, us_states_select %>
+
+  <%= f.label :parent_zip, "Parents Zip Code" %>
+  <%= f.text_field :parent_zip %>
+
+  <%= f.label :parent_phone, "Parents Phone" %>
+  <%= f.text_field :parent_phone %>
+
   <%= f.label :admin, "Admin?" %>
   <%= f.check_box :admin %>
+
   <%= f.label :mentor, "Mentor?" %>
   <%= f.check_box :mentor %>
   <fieldset>
