@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
 
   scope :talent_mentors, -> { where(mentor: true).order(:email) }
   scope :admins, -> { where(admin: true).order(:email) }
+  scope :subscribers, -> { where(admin: false, mentor: false).order(:email) }
 
   def superadmin?
     email == "hello@castnotice.com" ? true : false

@@ -8,7 +8,7 @@ class Superadmin::UsersController < ApplicationController
     elsif @account_type == "mentors"
       @users = User.talent_mentors.decorate
     else
-      @users = User.all.order("email").decorate
+      @users = User.subscribers.order("email").decorate
     end
   end
 

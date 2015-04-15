@@ -6,18 +6,22 @@
 <table class="standard">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Email</th>
       <th>Name</th>
       <th>Birthday</th>
+      <th>Stripe Customer ID</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <%- @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= user.name %></td>
         <td><%= user.birthday %> </td>
+        <td><%= user.stripe_customer_id %></td>
         <td><%= link_to "Edit", edit_superadmin_user_path(user) %></td>
       </tr>
     <% end %>
