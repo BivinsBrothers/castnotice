@@ -14,6 +14,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :region
   belongs_to :project_type
+  belongs_to :user
 
   has_many :event_unions
   has_many :unions, through: :event_unions

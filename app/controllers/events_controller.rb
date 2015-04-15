@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     events = Event.joins(:event_audition_dates).where(event_audition_dates: {audition_date: query_date_range})
       .select('events.* as event, event_audition_dates.audition_date as audition_date')
       .order("event_audition_dates.audition_date ASC")
-      .periscope(event_params.fetch(:filters, {}))
+      .periscope(event_params.fetch(:filters, {})).uniq
 
     if current_user.present?
       render json: events, meta: {member: true, admin: current_user.admin? || current_user.mentor?}

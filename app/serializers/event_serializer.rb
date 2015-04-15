@@ -3,7 +3,7 @@ class EventSerializer < ActiveModel::Serializer
 
   attributes :id, :project_title, :project_type, :region, :storyline, :start_date,
     :how_to_audition, :audition_date, :paid, :location, :casting_director,
-    :special_notes, :staff, :pay_rate, :production_location, :stipend
+    :special_notes, :staff, :pay_rate, :production_location, :stipend, :user_id, :can_edit
 
   has_many :unions
   has_many :roles
@@ -16,4 +16,7 @@ class EventSerializer < ActiveModel::Serializer
     end
   end
 
+  def can_edit
+    scope.current_user == object.user ? true : false
+  end
 end

@@ -108,7 +108,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "editing an event" do
-      create(:event, :full, project_title: "Boring Times", audition_date: Date.current)
+      create(:event, :full, user: admin, project_title: "Boring Times", audition_date: Date.current)
 
       visit page_path("calendar")
       click_link "Calendar"
@@ -134,7 +134,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "deleting an event" do
-      create(:event, :full, audition_date: Date.current)
+      create(:event, :full, user: admin,  audition_date: Date.current)
 
       visit page_path("calendar")
       click_link "Calendar"
@@ -149,7 +149,7 @@ feature "an admin or mentor can manage events", js: true do
 
     scenario "listing roles for an event" do
       event_date = Time.now
-      event = create(:event, :full, audition_date: event_date)
+      event = create(:event, :full, user: admin, audition_date: event_date)
 
       create(:role, event: event)
       create(:role, event: event)
@@ -167,7 +167,7 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "adding a role to an event" do
-      create(:event, :full, audition_date: Date.today)
+      create(:event, :full, user: admin, audition_date: Date.today)
 
       visit page_path("calendar")
       click_link "Calendar"
@@ -191,54 +191,50 @@ feature "an admin or mentor can manage events", js: true do
     end
 
     scenario "editing an existing event" do
-      create(:event, :full, audition_date: 1.day.from_now)
-      create(:role, description: "Dorthy")
+      event = create(:event, :full, user: admin,  audition_date: 1.day.from_now)
+      role = create(:role, event: event,  description: "Dorthy")
 
 
       visit page_path("calendar")
       click_link "Calendar"
       uncheck "Awesome Union"
       wait_for_ajax
-      Dom::CalendarEvent.first.manage_roles
-
-      Dom::CalendarEventRole.first.edit
+      click_link "Manage Roles"
+      click_link "Edit"
 
       fill_in "Seeking", with: "Lead character, Dorthy"
       click_button "Update Role"
 
-      role = Dom::CalendarEventRole.first
-
-      expect(role.description).to eq("Lead character, Dorthy")
+      expect(page).to have_content("Lead character, Dorthy")
     end
 
     scenario "removing an  role from an event" do
-      event = create(:event, :full, audition_date: 1.day.from_now)
-      create(:role, description: "Dorthy")
+      event = create(:event, :full, user: admin, audition_date: 1.day.from_now)
+      create(:role, event: event, description: "Dorthy")
 
       visit page_path("calendar")
       click_link "Calendar"
       uncheck "Awesome Union"
       wait_for_ajax
 
-      Dom::CalendarEvent.first.manage_roles
+      click_link "Manage Roles"
 
-      Dom::CalendarEventRole.first.delete
+      click_link "Delete"
 
       expect(event.roles).to be_empty
     end
 
     scenario "viewing a role details" do
-      create(:event, :full, audition_date: 1.day.from_now)
-      create(:role, description: "Dorthy")
+      event = create(:event, :full, user: admin,  audition_date: 1.day.from_now)
+      create(:role, event: event, description: "Dorthy")
 
       visit page_path("calendar")
       click_link "Calendar"
       uncheck "Awesome Union"
       wait_for_ajax
 
-      Dom::CalendarEvent.first.manage_roles
-
-      Dom::CalendarEventRole.first.view_details
+      click_link "Manage Roles"
+      click_link "View"
 
       expect(page).to have_content("Dorthy")
     end

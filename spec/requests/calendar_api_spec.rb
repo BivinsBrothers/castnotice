@@ -18,6 +18,8 @@ def full_event_hash(event)
      pay_rate: event.pay_rate,
      production_location: event.production_location,
      stipend: event.stipend,
+     user_id: nil,
+     can_edit: false,
      unions: (event.unions.map {|u| {name: u.name} }),
      roles: (
        event.roles.map do |r|

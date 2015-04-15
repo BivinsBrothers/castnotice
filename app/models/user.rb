@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :critique_responses_given, class: CritiqueResponse
   has_many :critique_responses_received, class: CritiqueResponse, through: :critiques, source: :response
+  has_many :events
 
   accepts_nested_attributes_for :mentor_bio
 
