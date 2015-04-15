@@ -36,11 +36,10 @@ feature "public resume view" do
     expect(page).to have_content("Awesome Union")
     expect(page).to have_content("1-616-555-4567")
     expect(page).to have_content(resume.user.email)
-    expect(page).to have_content("Experience")
     expect(page).to have_content("Wizzard of OZ")
     expect(page).to have_content("Dorothy")
     expect(page).to have_content("Disney Studios")
-    expect(page).to have_content("Education")
+    expect(page).to have_content("Training")
     expect(page).to have_content("University of Michigan")
     expect(page).to have_content("Acting")
     expect(page).to have_content("Associates Degree in Creative Dance")
@@ -58,7 +57,6 @@ feature "public resume view" do
     click_link "Print Resume"
 
     expect(page).to have_content("Joe Boxer")
-    expect(page).to have_content("parent@fake.com")
     expect(page).to have_content("5551231234")
   end
 end
