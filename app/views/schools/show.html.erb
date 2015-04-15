@@ -1,13 +1,11 @@
 <div class="row repeatable-row">
-	<% schools.each do |school| %>
-		<div class="col-md-4">
-		<h4>School: <%= school.school %></h4>
-		<p>School Type: <%= education_type_name(school.education_type) %></p>
-		<p>Years: <%= school.years %></p>
-		<p>Major: <%= school.major %></p>
-	    <p>Degree: <%= school.degree %></p>
-		<p>Teacher: <%= school.teacher %></p>
-		<p>Instrument: <%= school.instruments %></p>
-	  </div>
-	<% end %>
+  <% schools.each do |school| %>
+    <div class="col-md-12">
+      <p>Acting: <%= school.acting %></p>
+      <p>Dance: <%= school.dance %></p>
+      <p>Voice: <%= school.voice %></p>
+      <p>Instruments: <%= school.instruments %></p>
+      <p>Stage Combat: <%= school.stage_combat %></p>
+    </div>
+  <% end %>
 </div>

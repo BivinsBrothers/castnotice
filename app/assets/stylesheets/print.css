@@ -2,7 +2,7 @@
 
 h1 {
   font-size: 25px;
-  text-align: center;
+  text-align: left;
   margin-bottom: 30px;
 }
 
@@ -53,12 +53,20 @@ table.project {
   width: 100%;
 }
 
+table.project td {
+  width: 33.3%;
+}
+
 .contact-info table {
   width: 100%;
 }
 
 .contact-info table td {
-  padding: 0 10px;
+  padding: 0;
   width: 40%;
   vertical-align: top;
+}
+
+.contact-info table td + td {
+  padding-left: 20px;
 }

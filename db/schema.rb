@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415143825) do
+ActiveRecord::Schema.define(version: 20150417154451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(version: 20150415143825) do
     t.string    "project_title"
     t.text      "storyline"
     t.text      "how_to_audition"
-    t.datetime  "audition_date"
     t.datetime  "start_date"
     t.boolean   "paid",                    default: false, null: false
     t.datetime  "created_at"
@@ -165,7 +164,6 @@ ActiveRecord::Schema.define(version: 20150415143825) do
     t.integer   "user_id"
   end
 
-  add_index "events", ["audition_date"], name: "index_events_on_audition_date", using: :btree
   add_index "events", ["project_type_id"], name: "index_events_on_project_type_id", using: :btree
   add_index "events", ["region_id"], name: "index_events_on_region_id", using: :btree
 
@@ -235,6 +233,7 @@ ActiveRecord::Schema.define(version: 20150415143825) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "display_order"
   end
 
   create_table "projects", force: true do |t|
@@ -376,8 +375,12 @@ ActiveRecord::Schema.define(version: 20150415143825) do
     t.string   "teacher"
     t.integer  "years"
     t.string   "education_type"
-    t.string   "instruments"
+    t.text     "instruments"
     t.integer  "resume_id"
+    t.text     "acting"
+    t.text     "dance"
+    t.text     "voice"
+    t.text     "stage_combat"
   end
 
   add_index "schools", ["resume_id"], name: "index_schools_on_resume_id", using: :btree

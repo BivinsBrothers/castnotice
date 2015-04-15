@@ -22,24 +22,24 @@
             <p><%= sentence_for_category_collection(@resume.unions) %></p>
           </td>
           <td>
-            <% if @resume.height %>
+            <% if @resume.height.present? %>
               <p>Height: <%= @resume.height %></p>
             <% end %>
             <% if @resume.user.birthday >= 18.years.ago %>
-              <% if @resume.weight %>
+              <% if @resume.weight.present? %>
                 <p>Weight: <%= @resume.weight %></p>
               <% end %>
             <% end %>
-            <% if @resume.hair_color %>
-              <p><%= @resume.hair_color %> hair</p>
+            <% if @resume.hair_color.present? %>
+              <p>Hair: <%= @resume.hair_color %></p>
             <% end %>
-            <% if @resume.eye_color %>
-              <p><%= @resume.eye_color %> eyes</p>
+            <% if @resume.eye_color.present? %>
+              <p>Eyes: <%= @resume.eye_color %></p>
             <% end %>
-            <% if @resume.agent_name %>
+            <% if @resume.agent_name.present? %>
               <p>Agent: <%= @resume.agent_name %></p>
             <% end %>
-            <% if @resume.manager_name %>
+            <% if @resume.manager_name.present? %>
               <p> Manager: <%= @resume.manager_name %></p>
             <% end %>
           </td>
@@ -51,26 +51,18 @@
   <% if @resume.projects.present? %>
     <tr>
       <td class="experience" colspan="2">
-        <% @resume.projects.each do |project| %>
-        <h3><%= project.project_type.name if project.project_type.present? %></h3>
+        <% @resume.grouped_projects.each do |key, value| %>
+          <h3><%= key.name %></h3>
           <table class="project">
-            <thead>
-              <th>Title</th>
-              <th>Role</th>
-              <th>Director</th>
-              <tbody>
+            <tbody>
+              <% value.each do |project| %>
                 <tr>
-                  <td>
-                    <%= project.title %>
-                  </td>
-                  <td>
-                    <%= project.role %>
-                  </td>
-                  <td>
-                    <%= project.director_studio %>
-                  </td>
+                  <td> <%= project.title %> </td>
+                  <td> <%= project.role %> </td>
+                  <td> <%= project.director_studio %> </td>
                 </tr>
-              </tbody>
+              <% end %>
+            </tbody>
           <table>
         <% end %>
       </td>
@@ -80,15 +72,23 @@
   <% if @resume.schools.present? %>
     <tr>
       <td class="training">
-        <h3>Training</h3>
+        <h3>Education & Training</h3>
           <% @resume.schools.each do |school| %>
-            <h4>School: <%= school.school %></h4>
-            <p>School Type: <%= education_type_name(school.education_type) %></p>
-            <p>Years: <%= school.years %></p>
-            <p>Major: <%= school.major %></p>
-            <p>Degree: <%= school.degree %></p>
-            <p>Teacher: <%= school.teacher %></p>
-            <p>Instrument: <%= school.instruments %></p>
+            <% if school.acting.present? %>
+              <p> <strong>Acting:</strong> <%= school.acting %></p>
+            <% end %>
+            <% if school.dance.present? %>
+              <p> <strong>Dance:</strong> <%= school.dance %></p>
+            <% end %>
+            <% if school.voice.present? %>
+              <p> <strong>Voice:</strong> <%= school.voice %></p>
+            <% end %>
+            <% if school.instruments.present? %>
+              <p> <strong>Instruments:</strong> <%= school.instruments %></p>
+            <% end %>
+            <% if school.stage_combat.present? %>
+              <p> <strong>Stage Combat:</strong> <%= school.stage_combat %></p>
+            <% end %>
           <% end %>
       </td>
     </tr>
@@ -98,6 +98,6 @@
     <tr>
       <td class="addl-skills" colspan="2">
         <h3>Special Skills</h3>
-        <p><%= @resume.additional_skills %></p>
+        <p><%= @resume.ordered_performance_skills %></p>
     </tr>
   <% end %>

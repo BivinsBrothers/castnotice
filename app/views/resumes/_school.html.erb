@@ -1,11 +1,11 @@
 <div class="col-md-4">
   <h4>School: <%= school.school %>
-    <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", school_path(school), method: :delete, :class => "mini-link" %> |
-    <%= link_to "Edit", edit_school_path(school), :class => "mini-link" %></h4>
-  <p>School Type: <%= education_type_name(school.education_type) %></p>
-  <p>Years: <%= school.years %></p>
-  <p>Major: <%= school.major %></p>
-  <p>Degree: <%= school.degree %></p>
-  <p>Teacher: <%= school.teacher %></p>
-  <p>Instrument: <%= school.instruments %></p>
+  <span class="glyphicon glyphicon-trash mini-link"></span> <%= link_to "Delete", school_path(school), method: :delete, :class => "mini-link" %> |
+  <%= link_to "Edit", edit_school_path(school), :class => "mini-link" %></h4>
+
+  <p>Acting: <%= school.acting %></p>
+  <p>Dance: <%= school.dance %></p>
+  <p>Voice: <%= school.voice %></p>
+  <p>Instruments: <%= school.instruments %></p>
+  <p>Stage Combat: <%= school.stage_combat %></p>
 </div>

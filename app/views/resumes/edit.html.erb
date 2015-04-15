@@ -285,36 +285,38 @@
 </div>
 
 <div class="row">
-	<div class="col-md-12">
-		<h2>Schools</h2>
-		<div class="add-new-btn-wrapper">
-		  <span class="glyphicon glyphicon-plus mini-link"></span> <%= link_to "Add a school", "#new-school-form", class: "btn-add-new show-school-form mini-link" %>
-		</div>
-		<div class="is-hidden new-school-form" id="new-school-form">
-		  <%= form_for @school, :remote => true do |f| %>
-        <%= f.label :education_type, "Education Type" %>
-        <%= f.select :education_type, education_type_select %>
-        <%= f.label :school %>
-        <%= f.text_field :school %>
-        <%= f.label :major %>
-        <%= f.text_field :major %>
-        <%= f.label :degree %>
-        <%= f.text_field :degree %>
-        <%= f.label :teacher %>
-        <%= f.text_field :teacher %>
-        <%= f.label :years %>
-        <%= f.text_field :years %>
-        <%= f.label :instruments %>
-        <%= f.text_field :instruments %>
-        <%= f.submit "Save School", :class => "school-save" %>
-		  <% end %>
-		</div>
-    <div class="school-list row">
-      <% current_resume.schools.each do |school| %>
-        <%= render 'school', :school => school %>
-      <% end %>
-    </div>
-	</div>
+  <div class="col-md-12">
+    <h2>Education & Training</h2>
+    <div class="add-new-btn-wrapper">
+      <span class="glyphicon glyphicon-plus mini-link"></span> 
+      <%= link_to "Add a school", "#new-school-form", class: "btn-add-new show-school-form mini-link" %>
+  </div>
+  <div class="is-hidden new-school-form" id="new-school-form">
+    <%= form_for @school, :remote => true do |f| %>
+
+      <%= f.label :acting %>
+      <%= f.text_area :acting %>
+
+      <%= f.label :dance %>
+      <%= f.text_area :dance %>
+
+      <%= f.label :voice %>
+      <%= f.text_area :voice %>
+
+      <%= f.label :instruments %>
+      <%= f.text_area :instruments %>
+
+      <%= f.label :stage_combat %>
+      <%= f.text_area :stage_combat %>
+      <%= f.submit "Save", :id=> 'school-save', :class => "school-save" %>
+    <% end %>
+  </div>
+  <div class="school-list row">
+    <% current_resume.schools.each do |school| %>
+      <%= render 'school', :school => school %>
+    <% end %>
+  </div>
+</div>
 </div>
 
 <div class="row">

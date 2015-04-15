@@ -1,38 +1,39 @@
-name
-Advertisement
-Cable Commercial
-Director's Reel
-Documentary
-Episodic
-Feature Film
-Fundraiser/Benefit
-Industrial
-Infomercial
-Interactive Project
-Internet Projects
-Miniseries
-Movie Of The Week
-Musical Theatre
-Music Video
-Open Call
-Photo Shoot
-Pilot
-Pilot Presentation
-Print
-Promo
-PSA
-Radio
-Reality
-Televesion
-Short Film
-Showcase
-Stage Reading
-Still Photo Shoot
-Stock Photo Shoot
-Student Film
-Theatre
-Trailer
-Voice Over
-Webisode
-Webseries
-Commercials
+name,display_order
+Feature Film, 1
+Television, 2
+Theatre, 3
+Musical Theatre, 4
+Commercials, 5
+Industrial, 6
+Modeling, 7
+Advertisement, 8
+Cable Commercial, 9
+Director's Reel, 10
+Documentary, 11
+Episodic, 12
+Fundraiser/Benefit, 13
+Infomercial, 14
+Interactive Project, 15
+Internet Projects, 16
+Miniseries, 17
+Movie Of The Week, 18
+Music Video, 19
+Open Call, 20
+Photo Shoot, 21
+Pilot, 22
+Pilot Presentation, 23
+Print, 34
+Promo, 25
+PSA, 26
+Radio, 27
+Reality, 28
+Short Film, 29
+Showcase, 30
+Stage Reading, 31
+Still Photo Shoot, 32
+Stock Photo Shoot, 33
+Student Film, 34
+Trailer, 35
+Voice Over, 36
+Webisode, 37
+Webseries, 38

@@ -1,17 +1,13 @@
 <%= form_for @school do |f| %>
-  <%= f.label :education_type %>
-  <%= f.select :education_type, education_type_select %>
-  <%= f.label :school %>
-  <%= f.text_field :school %>
-  <%= f.label :major %>
-  <%= f.text_field :major %>
-  <%= f.label :degree %>
-  <%= f.text_field :degree %>
-  <%= f.label :teacher %>
-  <%= f.text_field :teacher %>
-  <%= f.label :years %>
-  <%= f.text_field :years %>
+  <%= f.label :acting %>
+  <%= f.text_field :acting %>
+  <%= f.label :dance %>
+  <%= f.text_field :dance %>
+  <%= f.label :voice %>
+  <%= f.text_field :voice %>
   <%= f.label :instruments %>
   <%= f.text_field :instruments %>
+  <%= f.label :stage_combat %>
+  <%= f.text_field :stage_combat %>
   <%= f.submit "Save" %>
 <% end %>

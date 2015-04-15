@@ -10,7 +10,21 @@ class CategorySeed
       end
     end
   end
+
+  def self.generate_project_type
+    CSV.foreach(Rails.root.join("db/categories/project_types.csv"), headers: true) do |row|
+      attrs = row.to_hash.each {|k, v| v.strip! }
+      pj = ProjectType.find_by_name(attrs["name"])
+      if pj.present?
+        pj.update_attributes(display_order: attrs["display_order"])
+      else
+        ProjectType.create(name: attrs['name'], display_order: attrs["display_order"])
+      end
+    end
+  end
+
 end
+
 
 # Generate Regions
 Region::DEFAULTS.each do |r|
@@ -18,7 +32,6 @@ Region::DEFAULTS.each do |r|
 end
 
 CategorySeed.generate_from_csv([
-  ProjectType,
   Union,
   Accent,
   AthleticEndeavor,
@@ -29,3 +42,5 @@ CategorySeed.generate_from_csv([
   PerformanceSkill,
   Region
 ])
+
+CategorySeed.generate_project_type

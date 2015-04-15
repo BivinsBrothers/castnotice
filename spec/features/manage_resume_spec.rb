@@ -301,17 +301,11 @@ feature "manage resume" do
     click_link "dashboard-edit-resume"
 
     click_link "Add a school"
-    select "College", from: "Education Type"
-    fill_in "School", with: "Michigan Tech"
-    fill_in "Major", with: "Computer Science"
-    fill_in "Degree", with: "Masters"
+    fill_in "Instruments", with: "Piano"
 
-    click_button "Save School"
+    find("#school-save").click
 
-    expect(page).to have_content("College")
-    expect(page).to have_content("Michigan Tech")
-    expect(page).to have_content("Computer Science")
-    expect(page).to have_content("Masters")
+    expect(page).to have_content("Piano")
   end
 
   it "allows editing/deleting a school" do
@@ -321,28 +315,17 @@ feature "manage resume" do
 
     click_link "dashboard-edit-resume"
 
-    expect(page).to have_content("University")
-    expect(page).to have_content("University of Michigan")
-    expect(page).to have_content("Acting")
-    expect(page).to have_content("Associates Degree in Creative Dance")
 
     click_link "Edit"
-    select "College", from: "Education type"
-    fill_in "School", with: "Michigan Tech"
-    fill_in "Major", with: "Computer Science"
-    fill_in "Degree", with: "Masters"
+    fill_in "Acting", with: "Guitar"
 
     click_button "Save"
 
-    expect(page).to have_content("Michigan Tech")
-    expect(page).to have_content("Computer Science")
-    expect(page).to have_content("Masters")
+    expect(page).to have_content("Guitar")
 
     click_link "Delete"
 
-    expect(page).to_not have_content("Michigan Tech")
-    expect(page).to_not have_content("Computer Science")
-    expect(page).to_not have_content("Masters")
+    expect(page).to_not have_content("Guitar")
   end
 
   it "talent can add a custom slug to their public profile" do

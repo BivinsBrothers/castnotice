@@ -40,9 +40,6 @@ feature "public resume view" do
     expect(page).to have_content("Dorothy")
     expect(page).to have_content("Disney Studios")
     expect(page).to have_content("Training")
-    expect(page).to have_content("University of Michigan")
-    expect(page).to have_content("Acting")
-    expect(page).to have_content("Associates Degree in Creative Dance")
     expect(page).to have_content("Special Skills")
     expect(page).to have_content("Improve")
   end

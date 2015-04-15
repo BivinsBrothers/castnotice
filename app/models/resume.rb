@@ -84,6 +84,14 @@ class Resume < ActiveRecord::Base
     })
   end
 
+  def ordered_performance_skills
+    (performance_skills.map(&:name) + [additional_skills]).join(", ")
+  end
+
+  def grouped_projects
+    projects.joins(:project_type).order('project_types.display_order').group_by(&:project_type)
+  end
+
   private
 
   def slug_versions
