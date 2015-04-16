@@ -7,12 +7,12 @@
     <h3>Annual Subscription</h3>
     <h1 class="pricing">$5.83</h1>
     <p>$69.99 paid annually</p>
-    <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::ANNUAL, promo_code: promo_code), :class => "btn register-annual" %>
+    <%= link_to "Sign Up", new_user_registration_path(account_type: Stripe::Plans::ANNUAL, promo_code: promo_code), :class => "btn register-annual" %>
   </div>
   <div class="col-md-3">
     <h3>Monthly</h3>
     <h1 class="pricing">$7.99</h1>
-    <%= link_to "Register", new_user_registration_path(account_type: Stripe::Plans::MONTHLY, promo_code: promo_code), class: "btn" %>
+    <%= link_to "Sign Up", new_user_registration_path(account_type: Stripe::Plans::MONTHLY, promo_code: promo_code), class: "btn" %>
   </div>
   <div >
     <h3>Talent Mentor Professional Critiques</h3>
