@@ -23,7 +23,7 @@ en:
   helpers:
     label:
       project:
-        director_studio: "Director/Studio"
+        director_studio: "Director/Studio/Theatre"
         project_type: "Project Type"
       school:
         education_type: "Education Type"
