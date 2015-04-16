@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def height_options
-    48.upto(84).map do |inches|
+    36.upto(84).map do |inches|
       [%{#{inches / 12}'#{inches % 12}"}, inches]
     end
   end
