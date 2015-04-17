@@ -40,4 +40,10 @@ class Notifier < ActionMailer::Base
     mail to: email_to,
          subject: "We Want To Hire You"
   end
+
+  def invite_campers(email_to, link_to_sign_up)
+    @link_to_sign_up = link_to_sign_up
+    mail to: email_to,
+      subject: 'Broadway Break Thru Student Registration'
+  end
 end
