@@ -19,4 +19,21 @@ IncompleteOrder = Struct.new(:order_id, :email, :code, :quantity) do
       end
     end
   end
+
+  def self.insert_on_db
+    camps = Camp.all
+    incomplete_orders =IncompleteOrder.all(CamperRegistration.pluck(:order_id))
+    unregistered = incomplete_orders ?  incomplete_orders.group_by(&:code) : {}
+
+    camps.each do |camp|
+      if unregistered[camp.code].present?
+        unregistered[camp.code].each do |order|
+          CampersList.find_or_create_by(user_email: order.email) do |c|
+            c.code = camp.code
+            c.order_id = order.order_id
+          end
+        end
+      end
+    end
+  end
 end

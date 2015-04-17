@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 20150420165311) do
     t.boolean "agreed_to_medical_release",      default: false, null: false
   end
 
+  create_table "campers_lists", force: true do |t|
+    t.string  "user_email"
+    t.integer "order_id"
+    t.string  "code"
+  end
+
   create_table "camps", force: true do |t|
     t.string "name", null: false
     t.string "code", null: false
