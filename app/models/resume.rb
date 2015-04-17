@@ -9,6 +9,8 @@ class Resume < ActiveRecord::Base
   TATTOOS      = %w( yes no )
   CITIZENS     = %w( us_citizen resident_alien )
   AGENT_TYPES  = %w( theatrical television film commercial dance modeling_print modeling_high_fashion modeling_editorial modeling_commercial childrens_talent_agent)
+  GENDER_TYPES = ["Male", "Female"]
+
 
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks

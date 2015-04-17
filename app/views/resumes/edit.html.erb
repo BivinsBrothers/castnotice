@@ -35,7 +35,7 @@
         <%= f.label :phone_two, "Second Phone" %>
         <%= f.phone_field :phone_two %>
         <%= f.label :gender %>
-        <%= f.text_field :gender %>
+        <%= f.select :gender,  Resume::GENDER_TYPES %>
         <%= f.label :citizen, "Citizenship?" %>
         <%= f.select :citizen, citizen_select %>
 

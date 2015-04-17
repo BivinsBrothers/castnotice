@@ -29,7 +29,7 @@ feature "manage resume" do
     fill_in "Weight", with: "140"
     select "Blond", from: "resume_hair_color"
     select "Blue", from: "resume_eye_color"
-    fill_in "resume_gender", with: "Female"
+    select "Female", from: "Gender"
     select "Medium", from: "resume_hair_length"
     select "No", from: "resume_piercing"
     select "No", from: "resume_tattoo"
