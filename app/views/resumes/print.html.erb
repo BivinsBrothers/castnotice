@@ -94,7 +94,7 @@
     </tr>
   <% end %>
 
-  <% if @resume.additional_skills? %>
+  <% if @resume.ordered_performance_skills.present? %>
     <tr>
       <td class="addl-skills" colspan="2">
         <h3>Special Skills</h3>
