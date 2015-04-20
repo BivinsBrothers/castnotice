@@ -25,6 +25,6 @@ class EventSerializer < ActiveModel::Serializer
   end
 
   def can_edit
-    scope.current_user == object.user ? true : false
+    scope.current_user.superadmin? || scope.current_user == object.user
   end
 end

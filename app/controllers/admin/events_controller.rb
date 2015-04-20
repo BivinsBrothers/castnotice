@@ -54,7 +54,7 @@ class Admin::EventsController < ApplicationController
 
   def event
     @event ||= Event.find(params[:id])
-    unless current_user == @event.user
+    unless current_user == @event.user || current_user.superadmin?
       flash[:notice] = "You are not allowed to edit this event."
       @event = nil
     else
