@@ -45,7 +45,7 @@ class Admin::EventsController < ApplicationController
     params.require(:event).permit(
       :project_title, :project_type_id, :region_id, :special_notes,
       :storyline, :how_to_audition, :audition_date, :location,
-      :start_date, :casting_director, :paid, :stipend,
+      :start_date, :end_date, :casting_director, :paid, :stipend,
       :staff, :pay_rate, :audition_times, :production_location,
       :user_id, union_ids: [],
       event_audition_dates_attributes: [:audition_date, :_destroy, :id]

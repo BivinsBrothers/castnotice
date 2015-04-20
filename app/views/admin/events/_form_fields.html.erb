@@ -34,6 +34,14 @@
 </div>
 <div class="row">
   <div class="col-sm-3">
+    <%= e.label :end_date, "Production End Date" %>*
+  </div>
+  <div class="col-sm-9">
+    <%= e.date_select :end_date, start_year: Time.now.year, end_year: Time.now.year + 4, with_css_classes: true, include_blank: true %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
     <%= e.label :union_ids, "Union" %>*
   </div>
   <div class="col-sm-9">
