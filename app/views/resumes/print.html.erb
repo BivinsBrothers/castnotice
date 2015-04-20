@@ -7,7 +7,7 @@
     <% end %>
     <td class="contact-info">
       <h1><%= @resume.user.name %></h1>
-      <table>
+      <table class="contact-info">
         <tr>
           <td>
             <p><%= @resume.user.email %></p>
@@ -44,9 +44,7 @@
             <% end %>
           </td>
         </tr>
-      </table>
-    </td>
-  </tr>
+
 
   <% if @resume.projects.present? %>
     <tr>
@@ -101,3 +99,7 @@
         <p><%= @resume.ordered_performance_skills %></p>
     </tr>
   <% end %>
+
+      </table>
+  </td>
+</tr>

@@ -18,23 +18,39 @@ th, h4 {
 table.print-content {
   font-size: 12px;
   border: 0;
-  cellpadding: 0;
-  cellspacing: 0;
   width: 100%;
 }
 
 .resume-photo {
   vertical-align: top;
+  width: 20%;
 }
 
 .resume-photo img {
   max-width: 250px;
 }
 
-table.contact-info {
-  padding: 0 20px;
-  width: 70%;
-  vertical-align: top
+td.contact-info {
+  padding: 0 0 0 20px;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+td.contact-info table {
+  width: 100%;
+}
+
+td.contact-info table tr > td {
+  vertical-align: top;
+  width: 50%;
+}
+
+td.contact-info table.project tr > td {
+  width: 25%;
+}
+
+td.contact-info table.project tr > td:last-child {
+  width: 50%;
 }
 
 table tr td.training {
@@ -43,30 +59,4 @@ table tr td.training {
 
 table tr td.training table th {
   font-size: 15px;
-}
-
-table tr td.training table td {
-  padding: 10px 0;
-}
-
-table.project {
-  width: 100%;
-}
-
-table.project td {
-  width: 33.3%;
-}
-
-.contact-info table {
-  width: 100%;
-}
-
-.contact-info table td {
-  padding: 0;
-  width: 40%;
-  vertical-align: top;
-}
-
-.contact-info table td + td {
-  padding-left: 20px;
 }
