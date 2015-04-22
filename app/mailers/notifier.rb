@@ -44,6 +44,7 @@ class Notifier < ActionMailer::Base
   def invite_campers(email_to, link_to_sign_up)
     @link_to_sign_up = link_to_sign_up
     mail to: email_to,
-      subject: 'Broadway Break Thru Student Registration'
+         from: "bbt@castnotice.com",
+      subject: 'URGENT: BBT Summer Intensive Registration'
   end
 end
