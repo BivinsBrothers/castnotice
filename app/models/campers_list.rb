@@ -8,7 +8,7 @@ class CampersList < ActiveRecord::Base
       email = camper.user_email
       link = "http://www.castnotice.com/camper_registration/new?order_id=#{camper.order_id}"
 
-      Notifier.invite_campers('thais@hashrocket.com', link).deliver
+      Notifier.invite_campers(email, link).deliver
     end
   end
 end
