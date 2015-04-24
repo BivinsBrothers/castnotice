@@ -7,6 +7,11 @@ feature "an admin or mentor can manage events", js: true do
     enter_promo_code
   end
 
+  scenario "redirect to login when not signed in" do
+    visit "/admin/events/new"
+    expect(current_path).to eq(new_user_session_path)
+  end
+
   scenario "allows only mentors and admins to create events" do
     user   = create(:user)
     mentor = create(:user, :mentor)

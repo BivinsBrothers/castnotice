@@ -38,6 +38,12 @@ class Admin::EventsController < ApplicationController
   private
 
   def enforce_event_manage_permissions
+    unless current_user && can_edit?
+      redirect_to new_user_session_path
+    end
+  end
+
+  def can_edit?
     current_user.admin? || current_user.mentor?
   end
 
