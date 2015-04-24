@@ -11,10 +11,10 @@
       <%= f.text_field :ethnicity %>
 
       <%= f.label :age_min, "Age Min" %>*
-      <%= select_tag "role[age_min]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_min) %>
+      <%= select_tag "role[age_min]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), @role.age_min) %>
 
       <%= f.label :age_max, "Age Max" %>*
-      <%= select_tag "role[age_max]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), :age_max) %>
+      <%= select_tag "role[age_max]", options_for_select((Role::AGE_MIN..Role::AGE_MAX), @role.age_max)%>
     </div>
 
     <div class="col-md-12">

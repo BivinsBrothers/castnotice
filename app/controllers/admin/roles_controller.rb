@@ -18,6 +18,8 @@ module Admin
       if @role.save
         redirect_to admin_event_roles_path(@event), notice: "Successfully added role"
       else
+        flash[:failure] = "Sorry unable to save please correct errors:
+        #{@role.errors.full_messages.to_sentence}"
         render :new
       end
     end
@@ -32,6 +34,8 @@ module Admin
       if @role.update_attributes(role_params)
         redirect_to admin_event_roles_path(@event), notice: "Successfully updated role"
       else
+        flash[:failure] = "Sorry unable to save please correct errors:
+        #{@role.errors.full_messages.to_sentence}"
         render :edit
       end
     end

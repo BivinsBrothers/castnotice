@@ -5,6 +5,7 @@ class Role < ActiveRecord::Base
   belongs_to :event
   has_many :role_performance_skills
   has_many :performance_skills, through: :role_performance_skills
+  validate :range_for_age
 
   scope :age, proc { |age| where("age_range @> ?", age.to_i) }
 
@@ -19,10 +20,16 @@ class Role < ActiveRecord::Base
   end
 
   def age_min
-    self.age_range ? self.age_range.begin : AGE_MIN
+    self.age_range ? self.age_range.begin : nil
   end
 
   def age_max
-    self.age_range ? self.age_range.max : AGE_MAX
+    self.age_range ? self.age_range.max : nil
+  end
+
+  def range_for_age
+    if age_min.to_i > age_max.to_i
+      errors.add(:base, "minimum age is cannot be greater than maximum age")
+    end
   end
 end
