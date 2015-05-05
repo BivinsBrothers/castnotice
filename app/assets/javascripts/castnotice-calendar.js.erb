@@ -156,8 +156,8 @@ function calendarUpdate() {
                             '<div class="calendar-attribute start-date"><span>Production End Date:</span> ' + val.end_date + '</div>',
                             '<div class="calendar-attribute unions"><span>Unions:</span> ' + sentenceForUnions(val.unions) + '</div>',
                             '<div class="calendar-attribute casting-director"><span>Casting Director:</span> ' + escapeHtml(val.casting_director) + '</div>',
-                            '<div class="calendar-attribute pay_rate"><span>Pay Rate:</span> ' + val.pay_rate + '</div>',
-                            '<div class="calendar-attribute location"><span>Location:</span> ' + escapeHtml(val.location) + '</div>'
+                            '<div class="calendar-attribute location"><span>Location:</span> ' + escapeHtml(val.location) + '</div>',
+                            '<div class="calendar-attribute pay_rate"><span>Pay Rate:</span> ' + val.pay_rate + '</div>'
                             );
                     if (val.roles.length){
                       $('#calendar-detail-' + key).append(
